@@ -1,0 +1,52 @@
+\documentclass[a4paper, 12pt]{report}
+
+%%%%%%%%%%%%
+% Packages %
+%%%%%%%%%%%%
+
+\usepackage[english]{babel}
+\usepackage[noheader]{packages/sleek}
+\usepackage{packages/sleek-title}
+\usepackage{packages/sleek-theorems}
+\usepackage{packages/sleek-listings}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usepackage{lipsum}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{mathrsfs}
+
+
+%%%%%%%%%%%%%%
+% Title-page %
+%%%%%%%%%%%%%%
+
+\title{Notes on Quantum Field Theory}
+\author{\textit{Jie Ren}}
+\date{\today}
+
+%%%%%%%%%%
+% Others %
+%%%%%%%%%%
+
+\def\tbs{\textbackslash}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\romantableofcontents
+    
+\input{tex/RealKleinGordon.tex}
+\input{tex/QED.tex}
+\input{tex/NonrelativisticQFT.tex}
+
+    
+\end{document}
