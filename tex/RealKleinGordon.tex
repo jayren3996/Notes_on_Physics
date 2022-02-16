@@ -1,18 +1,7 @@
-\chapter{Real Klein-Gordon Field Theory}
+\chapter{Scalar Field Theory}
 In this note, we use the $(+,-,-,-)$ metric, where the inner product of two 4-momentum and 4-coordinate is
 \begin{equation}
 	k\cdot x=\omega t-\vec k\cdot \vec x.
-\end{equation}
-In this chapter, we consider the real Klein-Gordon field.
-The free field Lagrangian density:
-\begin{equation}
-	\mathcal L_0 = \frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 
-	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
-\end{equation}
-The action for free field with source is
-\begin{equation}
-	S_0[\phi,J]
-	= \int d^dx\left(\frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 + J\cdot\phi\right).
 \end{equation}
 The space-time Fourier transformation is defined as
 \begin{equation}
@@ -21,23 +10,39 @@ The space-time Fourier transformation is defined as
 	\phi(x) &= \int \frac{d^{d}k}{(2\pi)^{d}} e^{-ik\cdot x}\tilde{\phi}(k).
 \end{aligned}
 \end{equation}
-The Lagrangian in momentum space is
-\begin{equation*}
-	\tilde{\mathcal L}_0[\phi_k,J]=\tilde\phi(k)( k^2-m^2)\tilde\phi(-k)+\tilde J(k)\cdot\tilde\phi(-k)+\tilde\phi(k)\cdot\tilde J(-k).
-\end{equation*}
 
 
 
 
 
-\section{Quantization of Free Field}
 
+\section{Quantization of Real Klein-Gordon Field}
+
+In this chapter, we consider the real Klein-Gordon field with the Lagrangian:
+\begin{equation}
+	\mathcal{L}_{\mathrm{K-G}} = \mathcal{L}_0 + \mathcal{L}_{\mathrm{int}},
+\end{equation}
+where the free field Langrangian is 
+\begin{equation}
+	\mathcal L_0 = \frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 
+	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
+\end{equation}
 
 
 \subsection{Path Integral Formalism}
-In the path integral formula,
+
+Consider the action for free field with source
+\begin{equation*}
+	S_0[\phi,J]
+	= \int d^dx\left[\mathcal{L}_0(\phi) + J(x)\cdot\phi(x) \right].
+\end{equation*}
+In momentum space, the free Lagrangian (with source) is 
+\begin{equation*}
+	\tilde{\mathcal L}_0[\phi_k,J]=\tilde\phi(k)( k^2-m^2)\tilde\phi(-k)+\tilde J(k)\cdot\tilde\phi(-k)+\tilde\phi(k)\cdot\tilde J(-k).
+\end{equation*}
+In the path integral formalism, we consider the partition function 
 \begin{equation}
-Z_0[J] = \int D[\phi] \exp(iS_0[\phi,J]).
+	Z_0[J] = \int D[\phi] \exp(iS_0[\phi,J]).
 \end{equation}
 The partition function for free field:
 \begin{eqnarray*}
@@ -45,10 +50,12 @@ The partition function for free field:
 	&=& \exp\left(-\frac{i}{2}\int \frac{d^dk}{(2\pi)^d} \frac{\tilde J(k) \tilde J(-k)}{k^2-m^2+i\epsilon} \right) \\
 	&=& \exp\left(-\frac{i}{2}\int d^dx_1 d^dx_2 J(x_1)\Delta_0(x_1-x_2)J(x_2)\right).
 \end{eqnarray*}
-where the propagator is\footnote{The extra $i\epsilon$ term is use to bring the singularities infinitesimally below the real axis. This infinitesimal value can be absorbed into the mass term, by regarding the mass term $m^2$ as $m^2-i\epsilon$.}
+where the propagator is
 \begin{equation}
-	\Delta_0(x_1-x_2) = \int \frac{d^dk}{(2\pi)^d} \frac{e^{-ik\cdot x}}{k^2-m^2+i\epsilon}.
+	\Delta_0(x_1-x_2) = \int \frac{d^dk}{(2\pi)^d} \frac{e^{-ik\cdot x}}{k^2-m^2+i\epsilon},
 \end{equation}
+where the extra $i\epsilon$ term is use to bring the singularities infinitesimally below the real axis. 
+This infinitesimal value can be absorbed into the mass term, by regarding the mass term $m^2$ as $m^2-i\epsilon$.
 
 \begin{framedrmk}[Gaussian Integral for Real Scalar Field]
 The real Gaussian integral formula is
@@ -84,20 +91,18 @@ This gives the propagator in the momentum space:
 \end{equation*}
 \end{framedrmk}
 
-
-
 Note that $\Delta_0(x_1-x_2)$ is related to the correlation function:
-\begin{equation}
-\begin{aligned}
+\begin{equation*}
 	\langle 0| T\phi(x_1)\phi(x_2)|0\rangle
-	&= \frac{\delta}{i\delta J(x_1)}\frac{\delta}{i\delta J(x_2)} Z_0[J] \\
-	&= i\Delta(x_1-x_2).
-\end{aligned}
-\end{equation}
+	= \frac{\delta}{i\delta J(x_1)}\frac{\delta}{i\delta J(x_2)} Z_0[J] 
+	= i\Delta(x_1-x_2).
+\end{equation*}
 
 
 
-For interaction theory, the partition function is
+\subsection{Perturbation Theory}
+
+For interaction theory, the partition function can be formally expressed as:
 \begin{equation}
 	Z[J] = \exp\left(i\int d^dx \mathcal{L}_{\mathrm{int}}\left[\frac{\delta}{i\delta J(x)}\right]\right)Z_0[J].
 \end{equation}
@@ -108,7 +113,6 @@ The expectation values for a generic operator of the form $O(\phi)$ can be evalu
 	\label{eq:ptb-exp-val}
 \end{equation}
 
-\begin{framedrmk}[Connected Diagrams]
 The expression (\ref{eq:ptb-exp-val}) can be expanded order by order using the Feynman diagram. 
 Since the unconnected diagram can be absorbed into $Z[0]$, we only need to calculate the connected diagram.
 
@@ -120,110 +124,50 @@ The perturbative expansion of $W[J]$ contain only the connected diagrams.
 Eq.~(\ref{eq:ptb-exp-val}) can then be rephrased as
 \begin{equation}
 	\langle O(\phi)\rangle
-	= \left. O\left[\frac{\delta}{\delta J(x)}\right] W[J] \right|_{J=0}.
-\end{equation}
-For example, the two-point connected correlation (propagator) is
-\begin{equation}
-\begin{aligned}
-	\langle \mathcal{T}\phi(x_1) \phi(x_2)\rangle_c 
-	=& \frac{1}{i}\left.\frac{\delta^2 W[J]}{\delta J(x_1)\delta J(x_2)}\right|_{J=0} \\
-	=& -\left.\frac{\delta^2}{\delta J(x_1)\delta J(x_2)} \ln Z[J]\right|_{J=0} \\
-	=& \frac{1}{Z[0]}\left.\frac{\delta^2 Z[J]}{i\delta J(x_1)i\delta J(x_2)}\right|_{J=0}.
-\end{aligned}
-\end{equation}
-\end{framedrmk}
-
-
-
-
-
-\subsection{Canonical Quantization}
-The classical equation of motion for the real Klein-Gordon field is 
-\begin{equation}
-	(-\partial_t^2+\nabla^2-m^2)\phi(\vec x,t) = 0. 
-	\label{eq:rkg-eom}
-\end{equation}
-The solution to Eq.~(\ref{eq:rkg-eom}) is proportional to the plane wave:
-\begin{equation}
-	\phi(\vec x, t) \propto e^{-i\omega_{\bm{k}}t+i\vec{p}\cdot\vec{x}} + e^{i\omega_{\vec{k}}t-i\bm{p}\cdot\vec{x}},
-\end{equation}
-where the energy is $\omega_{\bm{k}}=\bm{k}^2+m^2$ and $\vec k$ is the momentum as the conserved quantity.
-The general solution to the EOM is
-\begin{equation}
-	\phi(\vec x,t) \propto \int \frac{d^d k}{(2\pi)^d} \left(
-		a_{k}e^{-i\omega_{\bm{k}}t+i\vec{k}\cdot\vec{x}} + 
-		a^*_{k}e^{i\omega_{\bm{k}}t-i\vec{k}\cdot\vec{x}} 
-	\right).
-\end{equation}
-The canonical quantization promote the coefficient $a_{k}/a_{k}^*$ to the particle annihilation/creation operator $a_{k}/a_{k}^\dagger$, with the commutation relation
-\begin{equation}
-	[a_{k}, a_{p}^\dagger] = (2\pi)^d \delta^d(\vec{k}-\vec{p}).
+	= i\left. O\left[\frac{\delta}{i\delta J(x)}\right] W[J] \right|_{J=0}.
 \end{equation}
 
-The single-particle state with momentum $\vec k$ is created by $a_{k}^{\dagger}$ operators acting on the vacuum:
-\begin{equation}
-	a_{k}^{\dagger}|0\rangle =
-	\frac{1}{\sqrt{2\omega_{\bm k}}}|\vec{k}\rangle,
-	\label{eq:rel-single-particle}
-\end{equation}
-where $|\vec{k}\rangle$ is a state with a single particle of momentum $\vec{k}$.
-\begin{framedrmk}[Lorentz Invariance of Single-particle State]
-The factor of $\sqrt{2 \omega_{\bm k}}$ in Eq.~(\ref{eq:rel-single-particle}) is just a convention, but it will make some calculations easier. 
-To compute the normalization of one-particle states, we start with
-\begin{equation}
-	\langle 0|0\rangle=1,
-\end{equation}
-which leads to
-\begin{equation}
-	\langle\vec{p}|\vec{k}\rangle 
-	= 2\sqrt{\omega_{\bm p} \omega_{\bm k}}\left\langle 0\left|a_{p} a_{k}^{\dagger}\right| 0\right\rangle
-	= 2 \omega_{\bm p}(2\pi)^{d} \delta^{d}(\vec{p}-\vec{k}).
-\end{equation}
-The identity operator for one-particle states is
-\begin{equation}
-	1=\int \frac{d^{d} p}{(2\pi)^{d}} \frac{1}{2\omega_{\bm p}}|\vec{p}\rangle\langle\vec{p}|, \label{eq:rel-identity}
-\end{equation}
-which we can check with
+\begin{framedexpl}[Two-point Correlation]
+Consider the two-point connected correlation (propagator):
 \begin{equation*}
-	|\vec{k}\rangle
-	=\int \frac{d^d p}{(2\pi)^d} \frac{1}{2\omega_{\bm p}}|\vec{p}\rangle\langle\vec{p}|\vec{k}\rangle
-	=\int \frac{d^d p}{(2\pi)^d} \frac{1}{2\omega_{\bm p}} 2\omega_{\bm p}(2\pi)^d \delta^d(\vec{p}-\vec{k})|\vec{p}\rangle
-	=|\vec{k}\rangle.
-\end{equation*}
-The identity operator Eq.~(\ref{eq:rel-identity}) is Lorentz invariant since it can be expressed as
-\begin{equation}
-	1 = \int \frac{d^{d} p}{(2\pi)^{d}} \int\frac{d\omega}{2\pi} 2\pi\delta(\omega^2-{\bm{p}}^2-m^2).
-\end{equation}
-\end{framedrmk}
-
-
-By requiring $\langle \vec k|\phi|0\rangle = 1$, the normalization Eq.~(\ref{eq:rel-single-particle}) determines the normalization for the quantized field operator:
-\begin{equation}
-	\phi(\vec{x}, t)
-	=\int \frac{d^d k}{(2\pi)^d} \frac{1}{\sqrt{2\omega_{\bm k}}}\left(a_k 
-	e^{-i k \cdot x}+a_k^{\dagger} e^{i k \cdot x}\right).
-\end{equation}
-
-\subsection{Scattering Amplitude}
-Consider the scattering process in the interaction picture,
-\begin{equation}
 \begin{aligned}
-	\langle f| e^{-iHt} |i\rangle &= \langle f| T \exp \left(-i\int dt V_{\mathrm{int}}(t) \right)|i\rangle \\
-	&= \langle f| T \exp \left(i\int d^d x \mathcal{L}_{\mathrm{int}}(t) \right)|i\rangle.
+	i\Delta(x_1-x_2)
+	&= \langle \mathcal{T}\phi(x_1) \phi(x_2)\rangle_c \\
+	&= i\left.\frac{\delta^2 W[J]}{i\delta J(x_1) i\delta J(x_2)}\right|_{J=0} \\
+	&= \left.\frac{\delta^2 \ln Z[J]}{i\delta J(x_1) i\delta J(x_2)}\right|_{J=0}\\
+	&= \frac{1}{Z[0]}\left.\frac{\delta^2 Z[J]}{i\delta J(x_1)i\delta J(x_2)}\right|_{J=0},
 \end{aligned}
-\end{equation}
-The S-matrix is defined as
-\begin{equation}
-	S = \mathcal{T} \exp \left(i\int d^d x \mathcal{L}_{\mathrm{int}}(t) \right)
-	= 1 + i \mathcal{T}.
-\end{equation}
-Because of the additional momentum conservation,
-\begin{equation}
-	\mathcal{T} = (2\pi)^d \delta^d\left(\sum p\right) \mathcal M.
-\end{equation}
+\end{equation*}
+where we have used the fact that
+\begin{equation*}
+	\frac{\delta Z^n[J]}{\delta J(x_1) \cdots \delta J(x_n)} = 0,\ \forall n = 1\ \mathrm{mod}\ 2.
+\end{equation*}
+The result is the same as the original definition.
+\end{framedexpl}
+
+\begin{framedexpl}[Four-point Correlation]
+Consider the four-point connected correlation:
+\begin{equation*}
+	iV_4 \equiv \langle \mathcal{T}\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\rangle_c
+\end{equation*}
+Following the same procedure,
+\begin{equation*}
+\begin{aligned}
+	iV_4 
+	=&\ i\left.\frac{\delta^4 W[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
+	=&\ \frac{1}{Z[0]}\left.\frac{\delta^4 Z[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
+	& -i\Delta(x_1-x_2) i\Delta(x_3-x_4) \\
+	& -i\Delta(x_1-x_3) i\Delta(x_2-x_4) \\
+	& -i\Delta(x_1-x_4) i\Delta(x_2-x_3).
+\end{aligned}
+\end{equation*}
+The connected correlation function automatically omit those disconnected components.
+\end{framedexpl}
 
 
-\section{$\phi^3$ Theory in $(d=6-\epsilon)$ Space-time}
+
+
+\section{$\phi^3$ Theory on 6D Space-time}
 
 Now consider the interaction theory with additional Lagrangian
 \begin{equation}
@@ -673,7 +617,7 @@ The Callan-Symanzik equation is
 \right)\tilde{\Delta}(k)=0.
 \end{equation}
 
-\section{$\phi^4$ Theory in $(d=4-\epsilon)$ Space-time}
+\section{$\phi^4$ Theory on 4D Space-time}
 In this section, we consider the real Klein-Gordon field with $\phi^4$ interaction in ($4-\epsilon$)-dimension space-time:
 \begin{equation}
 	\mathcal{L}

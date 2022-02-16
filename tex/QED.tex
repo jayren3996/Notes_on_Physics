@@ -42,40 +42,100 @@ The free Dirac field is
 \end{equation}
 Consider the partition function with source
 \begin{equation}
-\begin{aligned}
 	Z_{\mathrm{Dirac}}[J]
-	&= \int D[\bar\psi,\psi] \exp\left[i\int d^dx \left(\mathcal{L}_{\mathrm{Dirac}}+\bar{\eta}\psi + \bar\psi\eta \right) \right] \\
-	&= Z_{\mathrm{Dirac}}[0] \exp\left[-i\int d^dx_1 d^d x_2 \bar{\eta}(x_1)\cdot D_F(x_1-x_2)\cdot \eta(x_2) \right].
+	= \int D[\bar\psi,\psi] \exp\left[i\int d^dx \left(\mathcal{L}_{\mathrm{Dirac}}+\bar{\eta}\psi + \bar\psi\eta \right) \right].
+\end{equation}
+In momentum space:
+\begin{equation}
+	S = \int\frac{d^d k}{(2\pi)^d} \left[
+		\tilde{\bar\psi}(k)(\cancel{k}-m)\tilde{\psi}(k) +
+		\tilde{\bar\eta}(k) \tilde{\psi}(k) +
+		\tilde{\bar\psi}(k) \tilde{\eta}(k)
+	\right].
+\end{equation}
+Using the Gaussian integral formula (for Grassman variables), the partition function is:
+\begin{equation}
+\begin{aligned}
+	\frac{Z_{\mathrm{Dirac}}[J]}{Z_{\mathrm{Dirac}}[0]}
+	&= \exp\left[-i\int \frac{d^d k}{(2\pi)^d} \tilde{\bar\eta}(k)\frac{1}{\cancel{k}-m}\tilde\eta(k)\right] \\
+	&= \exp\left[-i\int d^dx_1 d^d x_2 \bar{\eta}(x_1)\cdot D_F(x_1-x_2)\cdot \eta(x_2) \right]
 \end{aligned}
 \end{equation}
+
 where
 \begin{equation}
 	D_F(x_1-x_2) = \int \frac{d^d k}{(2\pi)^d} \frac{e^{-i k \cdot (x_1-x_2)}}{\cancel{k}-m}
-	= \int \frac{d^d k}{(2\pi)^d} e^{-i k \cdot (x_1-x_2)} \frac{\cancel{k}+m}{k^2-m^2}.
+	= \int \frac{d^d k}{(2\pi)^d} \frac{\cancel{k}+m}{k^2-m^2} e^{-i k \cdot (x_1-x_2)}.
 \end{equation}
 Note that the propagator is\footnote{The sign in the variational derivative comes from the anti-commutation relation of the fermionic fields.}
 \begin{equation}
 \begin{aligned}
-	\langle 0| T \psi(x_1) \bar\psi(x_2) |0\rangle
-	&= \frac{1}{Z_{\mathrm{Dirac}}[0]}\frac{\delta}{i\delta \bar{\eta}(x_1))}\frac{i\delta}{\delta(\eta(x_2))} Z_{\mathrm{Dirac}}[J] \\
-	&= i D_F(x_1-x_2).
+	\langle 0| T \psi^\alpha(x_1) \bar\psi^\beta(x_2) |0\rangle
+	&= \left.\frac{1}{Z_{\mathrm{Dirac}}[0]}\frac{\delta}{i\delta \bar{\eta}_\alpha(x_1))}\frac{i\delta}{\delta\eta_\beta(x_2)} Z_{\mathrm{Dirac}}[\bar\eta,\eta]\right|_{\eta=\bar\eta=0} \\
+	&= i D^{\alpha\beta}_F(x_1-x_2).
 \end{aligned}
 \end{equation}
 
-\subsection{Electromagnetic Field}
+
+\subsection{Maxwell Field}
 The Lagrangian for the classical electromagnetic field is
 \begin{equation}
 	\mathcal{L} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}+A_\mu J^\mu.
 \end{equation}
-Consider the partition function
+We define the gauge fixing function
+\begin{equation*}
+	G(A) = \partial_\mu A^\mu(x) -\omega(x) = 0
+\end{equation*}
+The gauge transformation has the form:
+\begin{equation*}
+	A^\alpha_\mu(x) = A_\mu(x) + \partial_\mu \alpha(x).
+\end{equation*}
+We then have
+\begin{equation*}
+	1 \propto \int D[\alpha] \det\left(\frac{\delta G(A^\alpha)}{\delta \alpha}\right) \delta(G(A)).
+\end{equation*}
+Inset the identity operator into the path integral formula
+\begin{equation*}
+	Z[J] \propto \det\left(\partial^2 \right) \int D[\alpha]D[A] e^{iS[A,J]} \delta(\partial_\mu A^\mu -\omega(x)).
+\end{equation*}
+The above equation does not depend on $\omega(x)$.
+We can then integrate over $\omega(x)$ with gaussian weight
+\begin{equation*}
+\begin{aligned}
+	Z[J] &\propto \int D[\omega] e^{-i\int d^d x \frac{\omega^2}{2\xi}} \int D[\alpha]D[A] e^{iS[A,J]}
+	\delta(\partial_\mu A^\mu-\omega) \\
+	&= \int D[A] e^{iS[A,J]} \exp\left\{i \left[S[A,J]-\int d^d x \frac{1}{2\xi}(\partial_\mu A^\mu)^2 \right]\right\}.
+\end{aligned}
+\end{equation*}
+In momentum space, the modified Langriangian is 
+\begin{equation*}
+	\tilde{\mathcal{L}}_\xi(k) = \tilde{A}^\mu(k)\left[
+		-k^2 g_{\mu\nu}+\left(1-\frac{1}{\xi}\right)k_\mu k_\nu
+		\right] \tilde{A}^\nu(-k) +
+		\tilde{J}_\mu(k) \tilde{A}^\mu(-k) +
+		\tilde{A}^\mu(k) \tilde{J}_\mu(-k).
+\end{equation*}
+We can check that
+\begin{equation}
+	\left[-k^2 g_{\mu\nu}+\left(1-\frac{1}{\xi}\right)k_\mu k_\nu\right]^{-1}
+	= \frac{-g^{\mu\nu}+(1-\xi)k^\mu k^\nu}{k^2}.
+\end{equation}
+Thus, the partition function is
 \begin{equation}
 	\frac{Z_{\mathrm{maxwell}}[J]}{Z_{\mathrm{maxwell}}[0]}
-	= \exp\left[-\frac{i}{2}\int dx_1 dx_2 J_\mu(x_1) \Pi^{\mu\nu}(x_1-x_2) J_\nu(x_2) \right].
+	= \exp\left[-\frac{i}{2}\int d^dx_1 d^dx_2 J_\mu(x_1) \Pi^{\mu\nu}(x_1-x_2) J_\nu(x_2) \right],
 \end{equation}
-
-The propagator is
+where
 \begin{equation}
 	\Pi^{\mu\nu}(x_1-x_2) = \int \frac{d^d k}{(2\pi)^d} e^{-ik\cdot(x_1-x_2)}\frac{-g^{\mu\nu}+(1-\xi)k^\mu k^\nu}{k^2}.
+\end{equation}
+The propagator is
+\begin{equation}
+\begin{aligned}
+	\langle 0|T A^\mu(x_1) A^\nu(x_2) |0\rangle
+	&= \left.\frac{1}{Z_{\mathrm{Maxwell}}[0]}\frac{\delta}{iJ_\mu(x_1)}\frac{\delta}{iJ_\nu(x_2)} Z_{\mathrm{Maxwell}}[J]\right|_{J=0} \\
+	&= i\Pi^{\mu\nu}(x_1-x_2).
+\end{aligned}
 \end{equation}
 
 
@@ -259,7 +319,7 @@ contribute to the vertex with term
 
 
 
-\section{Loop Correction}
+\section{One-loop Correction}
 In this section, we consider the QED in ($d=4-\epsilon$) dimensional space-time.
 \subsection{Electron Propagator}
 Consider the one-loop correction to the electron propagator, where the self energy (\ref{eq:QED-ele-loop-prop}) is
