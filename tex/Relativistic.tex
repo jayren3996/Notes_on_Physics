@@ -1,0 +1,760 @@
+\chapter{Relativistic Quantum Field Theory}
+
+\section{Lorentz Invariance}
+
+\subsection{The Lorentz Algebra}
+The metric is chosen to be 
+\begin{equation}
+	g_{\mu\nu}=g^{\mu\nu}=\mathrm{diag}(-1,+1,+1,+1).
+\end{equation}
+The Lorentz transformation ${\Lambda^{\mu}}_{\nu}$ satisfies
+\begin{equation}
+{\Lambda^{\mu}}_{\alpha}{\Lambda^{\nu}}_{\beta} g_{\mu\nu} = g_{\alpha\beta}.
+\end{equation}
+From this we have
+\begin{equation*}
+	g^{\gamma\alpha}{\Lambda^{\mu}}_{\alpha}{\Lambda^{\nu}}_{\beta} g_{\mu\nu} 
+	= g^{\gamma\alpha}g_{\alpha\beta} 
+	\quad \Longrightarrow \quad
+	{\Lambda_{\nu}}^{\gamma}{\Lambda^{\nu}}_{\beta} 
+	= {\delta^{\gamma}}_{\beta},
+\end{equation*}
+The inverse Lorentz transformation satisfies:
+\begin{equation*}
+	{(\Lambda^{-1})^{\mu}}_{\nu} = {\Lambda_{\nu}}^{\mu}.
+\end{equation*}
+The infinitesimal transformation is denoted as
+\begin{equation*}
+\begin{aligned}
+	{\Lambda^{\mu}}_{\nu} &= {\delta^{\mu}}_{\nu}+\delta{\omega^{\mu}}_{\nu} \\
+	{(\Lambda^{-1})^\mu}_\nu &= {\delta^{\mu}}_{\nu}-\delta{\omega^\mu}_\nu
+\end{aligned}
+	\quad \Longrightarrow \quad
+	g_{\alpha\nu}\delta{\omega^{\nu}}_{\beta}+\delta{\omega^{\mu}}_{\alpha}g_{\mu\beta}
+	=\delta\omega_{\alpha\beta} + \delta\omega_{\beta\alpha} = 0.
+\end{equation*}
+A representation of Lorentz group $U(\Lambda)$ can be parametrized as:
+\begin{equation}
+	U(\Lambda) = \exp\left(\frac{i}{2}\omega_{\mu\nu}M^{\mu\nu}\right).
+\end{equation}
+Another useful parametrization is
+\begin{equation*}
+	\theta_i \equiv \frac{1}{2}\varepsilon_{ijk}\omega_{jk}, \ 
+	\beta_i \equiv \omega_{0i}.
+\end{equation*}
+A new set of generators are:
+\begin{equation}
+	J_i \equiv \frac{1}{2}\varepsilon_{ijk}M^{jk},\ 
+	K_i \equiv M^{i0},
+\end{equation}
+where $J_i$'s are the generators of the spatial rotations, and $K_i$'s are the generators of Lorentz boosts.
+
+In the fundamental representation, the generators are represented by
+\begin{equation*}
+\begin{aligned}
+	J_1 &= \left[\begin{array}{cccc} 0 & & & \\ & 0 & & \\ & & 0 & -i \\ & & i & 0 \end{array}\right], & 
+	J_2 &= \left[\begin{array}{cccc} 0 & & & \\ & 0 & & i \\ & & 0 & \\ & -i & & 0 \end{array}\right], &
+	J_3 &= \left[\begin{array}{cccc} 0 & & & \\ & 0 & -i & \\ & i & 0 & \\ & & & 0 \end{array}\right], \\
+	K_1 &= \left[\begin{array}{cccc} 0 & -i & & \\ -i & 0 & & \\ & & 0 & \\ & & & 0 \end{array}\right], & 
+	K_2 &= \left[\begin{array}{cccc} 0 & & -i & \\ & 0 & & \\ -i & & 0 & \\ & & & 0 \end{array}\right], &
+	K_3 &= \left[\begin{array}{cccc} 0 & & & -i \\ & 0 & & \\ & & 0 & \\ -i & & & 0 \end{array}\right].
+\end{aligned}
+\end{equation*}
+The Lie algebra of the Lorentz algebra can be explicitly done using the fundamental representation. 
+The result is
+\begin{equation}
+\begin{aligned}
+	\left[J_i, J_j\right] &= i \varepsilon_{ijk} J_k, \\
+	\left[J_i, K_j\right] &= i \varepsilon_{ijk} K_k, \\
+	\left[K_i, K_j\right] &= -i\varepsilon_{ijk} J_k.
+\end{aligned}
+\end{equation}
+By defining a new set of generators:
+\begin{equation}
+	N_i^{L} \equiv \frac{J_i - i K_i}{2},\ 
+	N_i^{R} \equiv \frac{J_i + i K_i}{2}.
+\end{equation}
+They satisfies two independent $\mathfrak{su}(2)$ algebra:
+\begin{equation*}
+\begin{aligned}
+	\left[N_i^L, N_j^L \right] &= i\varepsilon_{ijk}N_k^L, \\
+	\left[N_i^R, N_j^R \right] &= i\varepsilon_{ijk}N_k^R, \\
+	\left[N_i^L, N_j^R \right] &= 0.
+\end{aligned}
+\end{equation*}
+That is, the Lorentz algebra is isomorphic to two $\mathfrak{su}(2)$ algebra,
+\begin{equation}
+	\mathfrak{so}(3,1) \approx \mathfrak{su}_L(2)\oplus\mathfrak{su}_R(2).
+	\label{eq:Lorentz-alg-decomp}
+\end{equation}
+From Eq.~(\ref{eq:Lorentz-alg-decomp}), we know that the representation of the Lorentz algebra can be labelled by $j_L$ and $j_R$.
+Note that the fundamental representation correspond to
+\begin{equation*}
+	\left(j_L=\frac{1}{2},j_R=\frac{1}{2}\right).
+\end{equation*}
+The specific form of the group is
+\begin{equation*}
+	\Lambda(\vec\theta,\vec\beta)
+	=\exp\left[i(\vec\theta+i\vec\beta)\cdot \vec N^L + i(\vec\theta-i\vec\beta)\cdot \vec N^R\right].
+\end{equation*}
+The spinor representations are those with $j_L=1/2$ or $j_R=1/2$. 
+Specifically, we define the left-hand spinor $\psi_L$ and right-hand spinor $\psi_R$ that transform as:
+\begin{equation}
+\begin{aligned}
+	\Lambda_L(\vec\theta,\vec\beta)\psi_L 
+	&= \exp\left(\frac{i}{2}\vec\theta\cdot\vec\sigma-\frac{1}{2}\vec\beta\cdot\vec\sigma \right) \psi_L, \\
+	\Lambda_R(\vec\theta,\vec\beta)\psi_R 
+	&= \exp\left(\frac{i}{2}\vec\theta\cdot\vec\sigma+\frac{1}{2}\vec\beta\cdot\vec\sigma \right) \psi_R.
+\end{aligned}
+\end{equation}
+Using the fact $\sigma^2 \cdot \vec\sigma^* \cdot\sigma^2 = -\vec\sigma$, the left-hand and the right-hand representations are related by:
+\begin{equation}
+\begin{aligned}
+	\sigma^2 \Lambda_L^* \sigma^2 &= \Lambda_R, & \sigma^2 \Lambda_L^T \sigma^2 &= \Lambda_L^{-1}, \\
+	\sigma^2 \Lambda_R^* \sigma^2 &= \Lambda_L, & \sigma^2 \Lambda_R^T \sigma^2 &= \Lambda_R^{-1}.
+\end{aligned}
+\end{equation}
+For this reason, the left-hand and right-hand spinor can be interchanged by
+\begin{equation}
+\begin{aligned}
+	\sigma^2 \psi_L^* &\sim \chi_R, & \psi_L^\dagger \sigma^2 &\sim \chi^\dagger_R \\
+	\sigma^2 \psi_R^* &\sim \chi_L, & \psi^\dagger_R \sigma^2 &\sim \chi^\dagger_L.
+	\label{eq:left-right-spinor-rel}
+\end{aligned}
+\end{equation}
+
+
+
+\subsection{The Invariant Symbols}
+The invariant symbols can be thought as the Clebsch-Gordan coefficients that help to form singlets.
+The first singlet comes from the decomposition
+\begin{equation*}
+	\frac{1}{2}\otimes \frac{1}{2} \approx 0 \oplus 1.
+\end{equation*}
+Correspondingly, we can check that for each-hand-side spinor, the quadratic forms
+\begin{equation}
+	\psi_L^T\sigma^2\chi_L \quad \text{or} \quad 
+	\psi_R^T\sigma^2\chi_R
+	\label{eq:inner-product-inv-symbol}
+\end{equation}
+are singlets.
+We can define the first invariant symbol as\footnote{We use the dotted symbol to denote the right-hand spinor indices.}
+\begin{equation}
+	\varepsilon^{ab} = \varepsilon^{\dot a \dot b} = i(\sigma^2)_{ab}, \quad
+	\varepsilon_{ab} = \varepsilon_{\dot a \dot b} = -i(\sigma^2)_{ab}.
+\end{equation}
+The symbol $\varepsilon^{ab}$ or $\varepsilon_{ab}$ also serve as the index raising/lowering symbol, i.e.,
+\begin{equation}
+	\varepsilon^{ab}\psi_b = \psi^a,\ 
+	\varepsilon_{ab}\psi^b = \psi_a.
+\end{equation}
+The singlet (\ref{eq:inner-product-inv-symbol}) is then defined as the inner product of two spinors:
+\begin{equation}
+	\psi\cdot\chi 
+	\equiv \varepsilon_{ab}\psi^a\chi^b
+	= \psi^a\chi_{a}
+	= -\varepsilon_{ba}\psi^a\chi^b
+	= -\psi_b\chi^b.
+\end{equation}
+In addition, because of (\ref{eq:left-right-spinor-rel}), the expressions
+\begin{equation*}
+	\psi_L^\dagger \chi_R \quad \text{and} \quad \psi_R^\dagger \chi_L
+\end{equation*}
+are also singlets.
+
+Besides, we know there should be another invariant symbol from the decomposition
+\begin{equation*}
+	\left(\frac{1}{2}, 0\right) \otimes \left(0,\frac{1}{2}\right)
+	\approx \left(0, 0\right) \oplus \cdots.
+\end{equation*}
+For this reason, we are searching for the symbol $M$ that the expression
+\begin{equation*}
+	M^\mu_{a\dot b} \psi^a_L \chi^{\dot b}_R
+\end{equation*}
+transforms as the Lorentz vector.
+The matrix $M^\mu$ should transform as
+\begin{equation*}
+	M^\mu \longrightarrow \Lambda_L^T \cdot M^\mu \cdot \Lambda_R = {\Lambda^\mu}_\nu M^\nu.
+\end{equation*}
+Use the fact that $\sigma^2 \cdot \Lambda_L^T \cdot \sigma^2 = \Lambda_L^{-1}$, the above equation transforms to
+\begin{equation*}
+	\left(\sigma^2 M^\mu\right) \longrightarrow \Lambda_L^{-1} \cdot \left(\sigma^2 M^\mu\right)\cdot \Lambda_R.
+\end{equation*}
+We then show the matrices $\sigma^\mu = (\sigma^0,\vec\sigma)$ satisfies the requirement.
+Firstly, for the spatial rotation,
+\begin{equation*}
+	\Lambda_L(\vec\theta,\vec 0) = \Lambda_R(\theta,\vec 0) = \exp\left(i\vec\theta\cdot \frac{\vec\sigma}{2}\right)
+\end{equation*}
+The Pauli matrix transform as
+\begin{equation*}
+	\left(1-i\delta\vec\theta\cdot\frac{\vec\sigma}{2}\right)\sigma^j\left(1+i\delta\vec\theta\cdot \frac{\vec\sigma}{2}\right)
+	= \sigma^j + i\delta\theta_i \left(-i \varepsilon_{ijk}\sigma^k \right)
+\end{equation*}
+Secondly, for the boosts,
+\begin{equation*}
+	\Lambda_L(\vec 0, \vec\beta) = \exp\left(-\vec\beta\cdot \frac{\vec\sigma}{2}\right),\ 
+	\Lambda_R(\vec 0, \vec\beta) = \exp\left(+\vec\beta\cdot \frac{\vec\sigma}{2}\right)
+\end{equation*}
+The Pauli matrix transform as
+\begin{equation*}
+	\left(1+\delta\vec\beta\cdot\frac{\vec\sigma}{2}\right)\sigma^\mu \left(1+\delta\vec\beta\cdot \frac{\vec\sigma}{2}\right) = \begin{cases}
+		 \sigma^0 + i\delta\beta_i \cdot (-i\sigma^i), & \mu = 0 \\
+		 \sigma^j + i\delta\beta_j (-i\sigma^0), & \mu = j
+	\end{cases}.
+\end{equation*}
+We thus have shown indeed that
+\begin{equation}
+	\psi_L^T \sigma^2 \sigma^\mu \chi_R
+\end{equation}
+is a Lorentz vector.
+Further more, from (\ref{eq:left-right-spinor-rel}), we know that
+\begin{equation}
+	\eta_R^\dagger \sigma^\mu \chi_R
+\end{equation}
+is also a Lorentz vector.
+Similarly, consider the Lorentz vector 
+\begin{equation*}
+	N^\mu_{\dot a b} \psi^{\dot a}_R \chi^{b}_R,
+\end{equation*}
+which together with $\sigma^2$ should transforms as
+\begin{equation*}
+	\left(\sigma^2 N^\mu\right) \longrightarrow 
+	\Lambda_R^{-1} \cdot \left(\sigma^2 N^\mu\right)\cdot \Lambda_L.
+\end{equation*}
+We can check that $\bar\sigma^\mu = (\sigma^0,-\vec\sigma)$ satisfies the requirement, and thus 
+\begin{equation}
+	\eta_L^\dagger \bar\sigma^\mu \chi_L
+\end{equation}
+is also a Lorentz vector.
+
+
+\section{Klein-Gordon Field}
+
+In relativistic quantum field theory, the Lagrangian should be a singlet under Lorentz transformation.
+Different free fields correspond to different representation of the Lorentz algebra.
+The symmetry under Lorentz transformation also restrict the possible terms that can appear in the Lagrangian.
+
+
+The simplest case is when $j_L=j_R = 0$, corresponding to the scalar field, which we denote as $\phi(x)$.
+Since the field it self is singlet, any polynomial of the field in principle can appear in the theory.
+When considering the free theory, we restrict our attention to the quadratic terms.
+We require the field theory to have a dynamical term, which contains derivative the the field.
+The derivative operator $\partial^\mu$ transforms as the fundamental representation.
+To be Lorentz invariant, the allowed free theory can only be
+\begin{equation}
+	\mathcal L_{\mathrm{K-G}} = \frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 
+	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
+\end{equation}
+
+
+
+\subsection{Path-integral Formalism}
+In this note, the space-time Fourier transformation is defined as
+\begin{equation}
+\begin{aligned}
+	\tilde{\phi}(k) &= \int d^{d}x e^{ik\cdot x} \phi(x), \\ 
+	\phi(x) &= \int \frac{d^{d}k}{(2\pi)^{d}} e^{-ik\cdot x}\tilde{\phi}(k),
+\end{aligned}
+\end{equation}
+where the inner product of two 4-momentum and 4-coordinate is
+\begin{equation}
+	k\cdot x=\omega t-\vec k\cdot \vec x.
+\end{equation}
+
+Consider the action for free field with source
+\begin{equation}
+	S_0[\phi,J]
+	= \int d^dx\left[\mathcal{L}_0(\phi) + J(x)\cdot\phi(x) \right].
+\end{equation}
+In momentum space, the free Lagrangian (with source) is 
+\begin{equation*}
+	\tilde{\mathcal L}_0[\phi_k,J]=\tilde\phi(k)( k^2-m^2)\tilde\phi(-k)+\tilde J(k)\cdot\tilde\phi(-k)+\tilde\phi(k)\cdot\tilde J(-k).
+\end{equation*}
+In the path integral formalism, we consider the partition function 
+\begin{equation}
+	Z_0[J] = \int D[\phi] \exp(iS_0[\phi,J]).
+\end{equation}
+The partition function for free field:
+\begin{eqnarray*}
+	\frac{Z_0[J]}{Z_0[0]}
+	&=& \exp\left(-\frac{i}{2}\int \frac{d^dk}{(2\pi)^d} \frac{\tilde J(k) \tilde J(-k)}{k^2-m^2+i\epsilon} \right) \\
+	&=& \exp\left(-\frac{i}{2}\int d^dx_1 d^dx_2 J(x_1)\Delta_0(x_1-x_2)J(x_2)\right).
+\end{eqnarray*}
+where the propagator is
+\begin{equation}
+	\Delta_0(x_1-x_2) = \int \frac{d^dk}{(2\pi)^d} \frac{e^{-ik\cdot x}}{k^2-m^2+i\epsilon},
+\end{equation}
+where the extra $i\epsilon$ term is use to bring the singularities infinitesimally below the real axis. 
+This infinitesimal value can be absorbed into the mass term, by regarding the mass term $m^2$ as $m^2-i\epsilon$.
+
+Note that $\Delta_0(x_1-x_2)$ is related to the correlation function:
+\begin{equation}
+	\langle 0| T\phi(x_1)\phi(x_2)|0\rangle
+	= \frac{\delta}{i\delta J(x_1)}\frac{\delta}{i\delta J(x_2)} Z_0[J] 
+	= i\Delta(x_1-x_2).
+\end{equation}
+
+\begin{framedrmk}[Gaussian Integral for Real Scalar Field]
+The real Gaussian integral formula is
+\begin{equation}
+	\int d\bm v \exp\left(-\frac{1}{2}\bm{v}^T \cdot A\cdot \bm{v} + \bm{b}^T \cdot \bm{v}\right) 
+	= \sqrt{\frac{(2\pi)^N}{\det{A}}}\exp\left(\frac{1}{2}\bm{b}^T \cdot A^{-1} \cdot \bm{b}\right),
+	\label{eq:real-gaussian-integral}
+\end{equation}
+where $\bm v, \bm b$ are two $N$-dimensional vector, and $A$ is an $N\times N$ matrix.
+For the field integral, we absorbed the $(2\pi)^{N/2}$ term into the measure, and express the path integral for the Gaussian field as:
+\begin{equation*}
+\begin{aligned}
+	Z[J] &= \int D[\phi] \exp\left(\frac{i}{2}\int d^dx \phi \hat{A} \phi +i \int d^d xJ \phi\right) \\
+	&= Z[0] \exp\left[-\frac{i}{2}\int d^d x_1 d^d x_2 J(x_1) A^{-1}(x_1-x_2) J(x_2)\right].
+\end{aligned}
+\end{equation*}
+We make use of (\ref{eq:real-gaussian-integral}) by making the identification 
+\begin{equation*}
+	A = \bigoplus_{|k|} \left(
+	\begin{array}{cc} 
+		0 & k^2-m^2 \\ 
+		k^2-m^2 & 0 
+	\end{array}\right),\ 
+	b = \bigoplus_{|k|} \left(
+	\begin{array}{c}
+		\tilde{J}(k) \\ 
+		\tilde{J}(-k) 
+	\end{array}\right).
+\end{equation*}
+This gives the propagator in the momentum space:
+\begin{equation*}
+	\tilde{\Delta}_0(k) = \frac{1}{k^2-m^2}.
+\end{equation*}
+\end{framedrmk}
+
+
+
+\subsection{Canonical Quantization}
+The classical equation of motion for Klein-Gordon field is 
+\begin{equation}
+	(-\partial_t^2+\nabla^2-m^2)\phi(\vec x,t) = 0. 
+	\label{eq:rkg-eom}
+\end{equation}
+The solution to Eq.~(\ref{eq:rkg-eom}) is proportional to the plane wave:
+\begin{equation*}
+	\phi(\vec x, t) \propto e^{-i\omega_{\bm{k}}t+i\vec{p}\cdot\vec{x}} + e^{i\omega_{\vec{k}}t-i\bm{p}\cdot\vec{x}},
+\end{equation*}
+where the energy is $\omega_{\bm{k}}=\bm{k}^2+m^2$ and $\vec k$ is the momentum as the conserved quantity.
+The general solution to the EOM is
+\begin{equation}
+	\phi(\vec x,t) \propto \int \frac{d^{3} k}{(2\pi)^{3}} \left(
+		a_{k}e^{-i\omega_{\bm{k}}t+i\vec{k}\cdot\vec{x}} + 
+		a^*_{k}e^{i\omega_{\bm{k}}t-i\vec{k}\cdot\vec{x}} 
+	\right).
+\end{equation}
+The canonical quantization promote the coefficient $a_{k}/a_{k}^*$ to the particle annihilation/creation operator $a_{k}/a_{k}^\dagger$, with the commutation relation
+\begin{equation}
+	[a_{k}, a_{p}^\dagger] = (2\pi)^{3} \delta^{3}(\vec{k}-\vec{p}).
+\end{equation}
+
+The single-particle state with momentum $\vec k$ is created by $a_{k}^{\dagger}$ operators acting on the vacuum:
+\begin{equation}
+	|\vec{k}\rangle \equiv \sqrt{2\omega_{\bm k}} a_{k}^{\dagger}|0\rangle,
+	\label{eq:rel-single-particle}
+\end{equation}
+where $|\vec{k}\rangle$ is a state with a single particle of momentum $\vec{k}$.
+
+\begin{framedrmk}[Lorentz Invariance of Single-particle State]
+The factor of $\sqrt{2 \omega_{\bm k}}$ in Eq.~(\ref{eq:rel-single-particle}) is just a convention, but it will make some calculations easier. 
+To compute the normalization of one-particle states, we start with
+\begin{equation}
+	\langle 0|0\rangle=1,
+\end{equation}
+which leads to
+\begin{equation}
+	\langle\vec{p}|\vec{k}\rangle 
+	= 2\sqrt{\omega_{\bm p} \omega_{\bm k}}\left\langle 0\left|a_{p} a_{k}^{\dagger}\right| 0\right\rangle
+	= 2 \omega_{\bm p}(2\pi)^{3} \delta^{3}(\vec{p}-\vec{k}).
+\end{equation}
+The identity operator for one-particle states is
+\begin{equation}
+	1=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}}|\vec{p}\rangle\langle\vec{p}|, \label{eq:rel-identity}
+\end{equation}
+which we can check with
+\begin{equation*}
+	|\vec{k}\rangle
+	=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}}|\vec{p}\rangle\langle\vec{p}|\vec{k}\rangle
+	=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}} 2\omega_{\bm p}(2\pi)^3 \delta^3(\vec{p}-\vec{k})|\vec{p}\rangle
+	=|\vec{k}\rangle.
+\end{equation*}
+The identity operator Eq.~(\ref{eq:rel-identity}) is Lorentz invariant since it can be expressed as
+\begin{equation}
+	1 = \int \frac{d^{3} p d\omega}{(2\pi)^{4}} 2\pi\delta(\omega^2-{\bm{p}}^2-m^2) |\vec p\rangle\langle \vec p|.
+\end{equation}
+\end{framedrmk}
+
+We fix the normalization by requiring 
+\begin{equation*}
+	\langle \vec k|\phi(\vec x,0)|0\rangle = e^{-i \vec k\cdot \vec x},
+\end{equation*}
+and the quantized field operator is
+\begin{equation}
+	\phi(\vec{x}, t)
+	=\int \frac{d^{3} k}{(2\pi)^{3}} \frac{1}{\sqrt{2\omega_{\bm k}}}\left(a_k 
+	e^{-i k \cdot x}+a_k^{\dagger} e^{i k \cdot x}\right).
+\end{equation}
+
+Consider the two-point correlation:
+\begin{equation*}
+\begin{aligned}
+	i\Delta(x_1-x_2) &= \langle 0|T \phi(x_1) \phi(x_2) |0\rangle \\
+	&= \theta(t_1-t_2) \langle 0|\phi(x_1) \phi(x_2) |0\rangle 
+	+ \theta(t_2-t_1) \langle 0|\phi(x_2) \phi(x_1) |0\rangle.
+\end{aligned}
+\end{equation*}
+Note that
+\begin{equation*}
+	\langle 0|\phi(x_1) \phi(x_2) |0\rangle
+	= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\vec k\cdot (\vec x_1-\vec x_2)-i\omega_{\vec k}\tau},
+\end{equation*}
+where $\tau =t_1-t_2$.
+The propagator can be written as
+\begin{equation*}
+\begin{aligned}
+	i\Delta(x_1-x_2) 
+	&= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\vec k\cdot (\vec x_1-\vec x_2)}\left[e^{-i\omega_{\vec k}\tau}\theta(\tau)+e^{i\omega_{\vec k}\tau}\theta(-\tau)\right] \\
+	&= \int\frac{d^{3} k}{(2\pi)^{3}} e^{i\vec k\cdot (\vec x_1-\vec x_2)}\int \frac{d\omega}{2\pi i}\frac{-e^{i\omega\tau}}{\omega^2-\omega_k^2+i\epsilon} \\
+	&= \int\frac{d^{4} k}{(2\pi)^{4}} e^{-i k\cdot (x_1-x_2)}\frac{i}{k^2-m^2+i\epsilon}.
+\end{aligned}
+\end{equation*}
+
+
+
+\section{Vector Field}
+
+If we can choose $j_L=j_R=1/2$, the field is transformed as Lorentz vector.
+We denote the field as $A^\mu(x)$.
+Some possible quadratic forms for the vector field that forms singlets are
+\begin{equation*}
+	A^\mu A_\mu,\ (\partial_\mu A^\mu)^2,\ A^\nu \partial^2 A_\nu,\ 
+	\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda.
+\end{equation*}
+For the field theory describe the electromagnetic field, we require the theory to further have gauge symmetry, i.e., invariant under
+\begin{equation}
+	A^\mu(x) \rightarrow A^\mu(x) + \partial^\mu \alpha(x).
+\end{equation}
+The gauge invariant forbids the first term, and forces the second and third term to combine as
+\begin{equation*}
+	(\partial_\mu A^\mu)^2 - A^\nu \partial^2 A_\nu
+	\sim \frac{1}{2}(\partial^\mu A^\nu - \partial^\nu A^\mu)(\partial_\mu A^\nu-\partial_\nu A_\mu)
+	\equiv \frac{1}{2} F^{\mu\nu}F_{\mu\nu}.
+\end{equation*}
+where we have define a field-strength tensor
+\begin{equation}
+	F^{\mu\nu}\equiv (\partial^\mu A^\nu - \partial^\nu A^\mu)
+	= \left[\begin{array}{cccc}
+		0 & B_1 & B_2 & B_3 \\
+		-B_1 & 0 & E_3 & -E_2 \\
+		-B_2 & -E_3 & 0 & E_1 \\
+		-B_3 & E_2 & -E_1 & 0
+	\end{array} \right].
+\end{equation}
+Note that the fourth term is called the \textit{theta term}, which can be written as a boundary term
+\begin{equation*}
+	\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda
+	= \partial^\mu (\varepsilon_{\mu\nu\rho\lambda} A^\nu \partial^\rho A^\lambda).
+\end{equation*}
+The Lagrangian describing the electromagnetic field is given by
+\begin{equation}
+	\mathcal{L}_{\mathrm{Maxwell}} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}.
+\end{equation}
+
+
+
+\subsection{Path-integral Formalism}
+We define the gauge fixing function
+\begin{equation*}
+	G(A) = \partial_\mu A^\mu(x) -\omega(x) = 0
+\end{equation*}
+The gauge transformation has the form:
+\begin{equation*}
+	A^\alpha_\mu(x) = A_\mu(x) + \partial_\mu \alpha(x).
+\end{equation*}
+We then have
+\begin{equation*}
+	1 \propto \int D[\alpha] \det\left(\frac{\delta G(A^\alpha)}{\delta \alpha}\right) \delta(G(A)).
+\end{equation*}
+Inset the identity operator into the path integral formula
+\begin{equation*}
+	Z[J] \propto \det\left(\partial^2 \right) \int D[\alpha]D[A] e^{iS[A,J]} \delta(\partial_\mu A^\mu -\omega(x)).
+\end{equation*}
+The above equation does not depend on $\omega(x)$.
+We can then integrate over $\omega(x)$ with gaussian weight
+\begin{equation*}
+\begin{aligned}
+	Z[J] &\propto \int D[\omega] e^{-i\int d^d x \frac{\omega^2}{2\xi}} \int D[\alpha]D[A] e^{iS[A,J]}
+	\delta(\partial_\mu A^\mu-\omega) \\
+	&= \int D[A] e^{iS[A,J]} \exp\left\{i \left[S[A,J]-\int d^d x \frac{1}{2\xi}(\partial_\mu A^\mu)^2 \right]\right\}.
+\end{aligned}
+\end{equation*}
+In momentum space, the modified Langriangian is 
+\begin{equation*}
+	\tilde{\mathcal{L}}_\xi(k) = \tilde{A}^\mu(k)\left[
+		-k^2 g_{\mu\nu}+\left(1-\frac{1}{\xi}\right)k_\mu k_\nu
+		\right] \tilde{A}^\nu(-k) +
+		\tilde{J}_\mu(k) \tilde{A}^\mu(-k) +
+		\tilde{A}^\mu(k) \tilde{J}_\mu(-k).
+\end{equation*}
+We can check that
+\begin{equation}
+	\left[-k^2 g_{\mu\nu}+\left(1-\frac{1}{\xi}\right)k_\mu k_\nu\right]^{-1}
+	= \frac{-g^{\mu\nu}+(1-\xi)k^\mu k^\nu}{k^2}.
+\end{equation}
+Thus, the partition function is
+\begin{equation}
+	\frac{Z_{\mathrm{maxwell}}[J]}{Z_{\mathrm{maxwell}}[0]}
+	= \exp\left[-\frac{i}{2}\int d^dx_1 d^dx_2 J_\mu(x_1) \Pi^{\mu\nu}(x_1-x_2) J_\nu(x_2) \right],
+\end{equation}
+where
+\begin{equation}
+	\Pi^{\mu\nu}(x_1-x_2) = \int \frac{d^d k}{(2\pi)^d} e^{-ik\cdot(x_1-x_2)}\frac{-g^{\mu\nu}+(1-\xi)k^\mu k^\nu}{k^2}.
+\end{equation}
+The propagator is
+\begin{equation}
+\begin{aligned}
+	\langle 0|T A^\mu(x_1) A^\nu(x_2) |0\rangle
+	&= \left.\frac{1}{Z_{\mathrm{Maxwell}}[0]}\frac{\delta}{iJ_\mu(x_1)}\frac{\delta}{iJ_\nu(x_2)} Z_{\mathrm{Maxwell}}[J]\right|_{J=0} \\
+	&= i\Pi^{\mu\nu}(x_1-x_2).
+\end{aligned}
+\end{equation}
+
+
+\subsection{Canonical Quantization}
+In momentum space, the Lagrangian transforms to
+\begin{equation}
+	\tilde{A}^\mu(k)\left(-k^2 g_{\mu\nu}+k_\mu k_\nu\right) \tilde{A}^\nu(-k).
+\end{equation}
+The EOM in momentum space is
+\begin{equation*}
+	(-k^2 g_{\mu\nu}+k_\mu k_\nu) \tilde{A}^\nu(k) = 0.
+\end{equation*}
+Since the linear operator $(-k^2 g_{\mu\nu}+k_\mu k_\nu)$ is singular, i.e.,
+\begin{equation*}
+	(-k^2 g_{\mu\nu}+k_\mu k_\nu)k^\nu = 0.
+\end{equation*}
+The gauge freedom can be used to further restrict
+\begin{equation*}
+	A^0 = 0.
+\end{equation*}
+In this way, there are only two independent polarization for EOM solution
+\begin{equation}
+	A^\mu = e^{-ik\cdot x} \epsilon^\mu_j,\ j=1,2,
+\end{equation}
+where
+\begin{equation*}
+	\epsilon_1 = (0,1,0,0),\
+	\epsilon_2 = (0,0,1,0).
+\end{equation*}
+The field expansion is then
+\begin{equation}
+	A^\mu = \int \frac{d^{3} k}{(2\pi)^{3}}\frac{1}{\sqrt{2\omega_k}}
+	\sum_{j=1}^2 \left(\epsilon^\mu_j a_{k,j} e^{-ik\cdot x} + 
+	\epsilon^{\mu*}_j a^\dagger_{k,j} e^{ik\cdot x}\right).
+\end{equation}
+A single-particle state with polarization vector $\epsilon_j$ is defined as
+\begin{equation}
+	|k,\epsilon_j\rangle = \sqrt{2\omega_k}	\vec\epsilon_j a^\dagger_{k,j}|0\rangle.
+\end{equation}
+Note that then the field is off shell (internal photon line), the photon can be space-like or time-like, and then there are an additional polarization.
+In general, 
+\begin{equation*}
+	\sum_{j=1}^3 \epsilon^{\mu*}_j \epsilon^\nu_j = -(1 - P_{k}) = -(g^{\mu\nu}-k^\mu k^\nu),
+\end{equation*}
+where $P_k$ is the projection to 4-momentum $k$.
+The propagator is then
+\begin{equation}
+	i\Pi(x_1-x_2)= \int \frac{d^4 k}{(2\pi)^4} e^{-ik\cdot(x_1-x_2)}\frac{-i(g^{\mu\nu}-k^\mu k^\nu)}{k^2+i\epsilon}.
+\end{equation}
+
+
+
+\section{Dirac Field}
+
+Based on previous discussion, the Lagrangian for spinor field can have
+\begin{equation*}
+	\psi_L^\dagger \bar\sigma^\mu \partial_\mu \psi_L,\ 
+	\psi_R^\dagger \sigma^\mu \partial_\mu \psi_R,\ 
+	\psi_L^\dagger \psi_R,\ \psi_R^\dagger \psi_L,\ 
+	\psi_L \cdot \psi_L,\ \psi_R \cdot \psi_R.
+\end{equation*}
+The Dirac field describe the theory with both left-hand and right-hand spinors.
+The Lagrangian is
+\begin{equation}
+	\mathcal{L}_{\mathrm{Dirac}}
+	= \bar\psi \left(i\gamma^\mu \partial_\mu - m\right)\psi,
+\end{equation}
+where
+\begin{eqnarray}
+	\psi = \left(\begin{array}{c}
+		\psi_L \\ \psi_R
+	\end{array}\right),\ 
+	\bar\psi = \left(\begin{array}{cc}
+		\psi_R^\dagger & \psi_L^\dagger
+	\end{array}\right),\ 
+	\gamma^\mu = \left(\begin{array}{cc}
+		0 & \sigma^\mu \\
+		\bar\sigma^\mu & 0
+	\end{array}\right).
+\end{eqnarray}
+In addition, we could consider using the last two terms as the mass, the result theory is the \textit{Majorana field theory}:
+\begin{equation}
+\begin{aligned}
+	\mathcal{L}^{L}_{\mathrm{Majorana}}
+	&= \psi_L^\dagger \left(i\bar\sigma^\mu \partial_\mu -m \sigma^2 \right) \psi_L, \\
+	\mathcal{L}^{R}_{\mathrm{Majorana}}
+	&= \psi_R^\dagger \left(i\sigma^\mu \partial_\mu -m \sigma^2 \right) \psi_R. 
+\end{aligned}
+\end{equation} 
+
+
+
+\subsection{Path-integral Formalism}
+
+Consider the partition function with source
+\begin{equation}
+	Z_{\mathrm{Dirac}}[J]
+	= \int D[\bar\psi,\psi] \exp\left[i\int d^dx \left(\mathcal{L}_{\mathrm{Dirac}}+\bar{\eta}\psi + \bar\psi\eta \right) \right].
+\end{equation}
+In momentum space:
+\begin{equation}
+	S = \int\frac{d^d k}{(2\pi)^d} \left[
+		\tilde{\bar\psi}(k)(\cancel{k}-m)\tilde{\psi}(k) +
+		\tilde{\bar\eta}(k) \tilde{\psi}(k) +
+		\tilde{\bar\psi}(k) \tilde{\eta}(k)
+	\right].
+\end{equation}
+Using the Gaussian integral formula (for Grassman variables), the partition function is:
+\begin{equation}
+\begin{aligned}
+	\frac{Z_{\mathrm{Dirac}}[J]}{Z_{\mathrm{Dirac}}[0]}
+	&= \exp\left[-i\int \frac{d^d k}{(2\pi)^d} \tilde{\bar\eta}(k)\frac{1}{\cancel{k}-m}\tilde\eta(k)\right] \\
+	&= \exp\left[-i\int d^dx_1 d^d x_2 \bar{\eta}(x_1)\cdot D_F(x_1-x_2)\cdot \eta(x_2) \right]
+\end{aligned}
+\end{equation}
+
+where
+\begin{equation}
+	D_F(x_1-x_2) = \int \frac{d^d k}{(2\pi)^d} \frac{e^{-i k \cdot (x_1-x_2)}}{\cancel{k}-m}
+	= \int \frac{d^d k}{(2\pi)^d} \frac{\cancel{k}+m}{k^2-m^2} e^{-i k \cdot (x_1-x_2)}.
+\end{equation}
+Note that the propagator is
+\begin{equation}
+\begin{aligned}
+	\langle 0| T \psi^\alpha(x_1) \bar\psi^\beta(x_2) |0\rangle
+	&= \left.\frac{1}{Z_{\mathrm{Dirac}}[0]}\frac{\delta}{i\delta \bar{\eta}_\alpha(x_1))}\frac{i\delta}{\delta\eta_\beta(x_2)} Z_{\mathrm{Dirac}}[\bar\eta,\eta]\right|_{\eta=\bar\eta=0} \\
+	&= i D^{\alpha\beta}_F(x_1-x_2),
+\end{aligned}
+\end{equation}
+where the sign in the variational derivative comes from the anti-commutation relation of the fermionic fields.
+
+
+\subsection{Canonical Quantization}
+In momentum space, the Lagrangian ie=s:
+\begin{equation*}
+	\tilde{\bar \psi}(p)(\cancel{p} - m)\tilde\psi(p),
+\end{equation*}
+The EOM is
+\begin{equation}
+	(\cancel p -m)\tilde\psi(p) = 0
+\end{equation}
+
+
+The general solution of the Dirac equation can be written as a linear combination of plane waves. 
+The positive frequency waves are of the form
+\begin{equation*}
+	\psi(x)=u(p) e^{-i p \cdot x}, \quad p^{2}=m^{2}, \quad p^{0}>0
+\end{equation*}
+There are two linearly independent solutions for $u(p)$,
+\begin{equation*}
+	u^{s}(p)=\left(\begin{array}{c}
+	\sqrt{p \cdot \sigma} \xi^{s} \\
+	\sqrt{p \cdot \bar{\sigma}} \xi^{s}
+	\end{array}\right), \quad s=1,2
+\end{equation*}
+which we normalize according to
+\begin{equation*}
+	\bar{u}^{r}(p) u^{s}(p)=2 m \delta^{r s} \quad \text { or } \quad u^{r \dagger}(p) u^{s}(p)=2 \omega_{\bm p} \delta^{r s}
+\end{equation*}
+In exactly the same way, we can find the negative-frequency solutions:
+\begin{equation*}
+	\psi(x)=v(p) e^{+i p \cdot x}, \quad p^{2}=m^{2}, \quad p^{0}>0 \text {. (3.61) }
+\end{equation*}
+Note that we have chosen to put the $+$ sign into the exponential, rather than having $p^{0}<0$.
+There are two linearly independent solutions for $v(p)$,
+\begin{equation*}
+	v^{s}(p)=\left(\begin{array}{c}
+		\sqrt{p \cdot \sigma} \eta^{s} \\
+		-\sqrt{p \cdot \bar{\sigma}} \eta^{s}
+	\end{array}\right), \quad s=1,2
+\end{equation*}
+where $\eta^{s}$ is another basis of two-component spinors. These solutions are normalized according to
+\begin{equation*}
+	\bar{v}^{r}(p) v^{s}(p)=-2 m \delta^{r s} \quad \text { or } \quad v^{r \dagger}(p) v^{s}(p)=+2 \omega_{\bm{p}} \delta^{r s}
+\end{equation*}
+The $u$'s and $v$'s are also orthogonal to each other:
+\begin{equation*}
+\begin{aligned}
+	\bar{u}^{r}(p) v^{s}(p) &=0, & 
+	u^{r\dagger}(\bm p,\omega_{\bm p}) v^{s}(-\bm p,\omega_{\bm p}) &=0, \\
+	\bar{v}^{r}(p) u^{s}(p) &=0, & 
+	v^{r\dagger}(\bm p,\omega_{\bm p}) u^{s}(-\bm p,\omega_{\bm p}) &=0.
+\end{aligned}
+\end{equation*}
+A useful identity is
+\begin{equation*}
+\begin{aligned}
+	\sum_{s} u^{s}(p) \bar{u}^{s}(p) &= \cancel p+m, \\
+	\sum_{s} v^{s}(p) \bar{v}^{s}(p) &= \cancel p-m.
+\end{aligned}
+\end{equation*}
+
+
+The Dirac field expansion is
+\begin{equation}
+\begin{aligned}
+	\psi(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
+		\sum_{s}\left(a_{\mathbf{p}}^{s} u^{s}(p) e^{-i p \cdot x}
+		+b_{\mathbf{p}}^{s \dagger} v^{s}(p) e^{i p \cdot x}\right), \\
+	\bar{\psi}(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
+		\sum_{s}\left(b_{\mathbf{p}}^{s} \bar{v}^{s}(p) e^{-i p \cdot x}
+		+a_{\mathbf{p}}^{s \dagger} \bar{u}^{s}(p) e^{i p \cdot x}\right).
+\end{aligned}
+\end{equation}
+Now let us investigate the propagator
+\begin{equation}
+\begin{aligned}
+	iD_{F,\alpha\beta}(x_1-x_2) &= \langle0|T\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle \\
+	&= \theta(\tau) \langle0|\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle - \theta(-\tau) \langle0|\bar\psi_\beta(x_2)\psi_\alpha(x_1)|0\rangle.
+\end{aligned}
+\end{equation}
+On the RHS, the first term is
+\begin{equation*}
+\begin{aligned}
+	\langle0|\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle 
+	&= \int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \left[\sum_s u_\alpha^s(p)\bar u_\beta^s(p)\right]e^{-i p\cdot (x_1-x_2)} \\
+	&= (i\cancel \partial+m)_{\alpha\beta}\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} e^{-i p\cdot (x_1-x_2)}.
+\end{aligned}
+\end{equation*}
+For the second term:
+\begin{equation*}
+\begin{aligned}
+	\langle0|\bar\psi_\beta(x_2)\psi_\alpha(x_1)|0\rangle
+	&= \int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \left[\sum_s \bar v_\beta^s(p)v_\alpha^s(p)\right]e^{i p\cdot (x_1-x_2)} \\
+	&= -(i\cancel \partial + m)_{\alpha\beta}\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} e^{i p\cdot (x_1-x_2)}.
+\end{aligned}
+\end{equation*}
+Together, the Dirac propagator is:
+\begin{equation*}
+\begin{aligned}
+	iD_F(x_1-x_2) &= (i\cancel \partial+m)i\Delta(x_1-x_2) \\
+	&= \int\frac{d^{4} p}{(2\pi)^{4}} e^{-i p\cdot (x_1-x_2)}\frac{i(\cancel p+m)}{p^2-m^2+i\epsilon}.
+\end{aligned}
+\end{equation*}
+
+

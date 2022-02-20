@@ -1,107 +1,193 @@
 \chapter{Scalar Field Theory}
-In this note, we use the $(+,-,-,-)$ metric, where the inner product of two 4-momentum and 4-coordinate is
+
+\section{Interaction and Scattering}
+
+\subsection{Lehmann Representation}
+The interacting Hamiltonian do not conserve particle number, and the ground state $|\Omega\rangle$ is no longer the vacuum $|0\rangle$.
+
+Consider the Green's function
+\begin{equation*}
+	iG(x_1-x_2) = \begin{cases}
+		\langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle & \mathrm{Klein-Gordon} \\
+		\langle\Omega|T A(x_1)A(x_2)|\Omega\rangle & \mathrm{Maxwell} \\
+		\langle\Omega|T\psi(x_1)\bar\psi(x_2)|\Omega\rangle & \mathrm{Dirac}
+	\end{cases}.
+\end{equation*}
+We can insert a complete basis 
+\begin{equation*}
+	1 = |\Omega\rangle\langle\Omega| + \sum_\lambda\int\frac{d^3 k}{(2\pi)^3}\frac{1}{2\omega_k}|\lambda_{\vec k}\rangle \langle\lambda_{\vec k}|
+\end{equation*}
+into the correlation function,\footnote{Here we assume $\langle\Omega|\phi(x)|\Omega\rangle=0$ unless there is spontaneously symmetry breaking happening.} the Green's function takes the form (take K-G field as the example):
+\begin{equation*}
+	iG(x_1-x_2) = \sum_\lambda \int\frac{d^3 k}{(2\pi)^3}
+	\left[\theta(t_1-t_2)\langle\Omega|\phi(x_1)|\lambda_{\vec k}\rangle\langle\lambda_{\vec k}|\phi(x_2)|\Omega\rangle + (t_1\leftrightarrow t_2, x_1 \leftrightarrow x_2)\right].
+\end{equation*}
+Note that
+\begin{equation*}
+	\langle\lambda_{\vec k}|\phi(x)|\Omega\rangle 
+	= \langle\lambda_{\vec k}|e^{iP\cdot x}\phi(0) e^{-iP\cdot x}|\Omega\rangle
+	= e^{ik\cdot x} \left.\langle\lambda_{0}|\phi(0)|\Omega\rangle\right|_{k^0=\omega_{\vec k}}.
+\end{equation*}
+Following the same procedure as we do for the free field theory, 
 \begin{equation}
-	k\cdot x=\omega t-\vec k\cdot \vec x.
+	G(x_1-x_2) = \int_0^\infty \frac{dM^2}{2\pi} \rho(M^2) G_0(x_1-x_2;M^2),
 \end{equation}
-The space-time Fourier transformation is defined as
+where the spectral function $\rho(M^2)$ is
+\begin{equation*}
+	\rho(M^2) = \sum_\lambda(2\pi)\delta(M^2-m_\lambda^2)|\langle\Omega|\phi(0)|\lambda_0\rangle|^2.
+\end{equation*}
+In particle, near the one-particle state the Green's function looks like:
+\begin{equation*}
+	i\tilde G(k) = \frac{iZ_{\phi}}{k^2-m^2+i\epsilon} + \mathrm{regular\ terms}.
+\end{equation*}
+If we renormalize the field strength 
+\begin{equation*}
+	\phi_R(x) = \frac{1}{\sqrt{Z_\phi}}\phi_0(x),
+\end{equation*}
+the Green's function then has exactly the same form as free theory.
+This normalization factor $Z_\phi$ is exactly what we obtained in the loop correction to the propagator.
+
+
+
+\subsection{Scattering Amplitude}
+
+Consider the scattering process in the interaction picture,
 \begin{equation}
 \begin{aligned}
-	\tilde{\phi}(k) &= \int d^{d}x e^{ik\cdot x} \phi(x), \\ 
-	\phi(x) &= \int \frac{d^{d}k}{(2\pi)^{d}} e^{-ik\cdot x}\tilde{\phi}(k).
+	\langle f| e^{-iHt} |i\rangle &= \langle f| T \exp \left(-i\int dt V_{\mathrm{int}}(t) \right)|i\rangle \\
+	&= \langle f| T \exp \left(i\int d^d x \mathcal{L}_{\mathrm{int}}(t) \right)|i\rangle.
 \end{aligned}
 \end{equation}
-
-
-
-
-
-
-\section{Quantization of Real Klein-Gordon Field}
-
-In this chapter, we consider the real Klein-Gordon field with the Lagrangian:
+The S-matrix is defined as
 \begin{equation}
-	\mathcal{L}_{\mathrm{K-G}} = \mathcal{L}_0 + \mathcal{L}_{\mathrm{int}},
+	\langle f|S|i\rangle 
+	= \langle f|\mathcal{T} \exp \left(i\int d^d x \mathcal{L}_{\mathrm{int}}(t) \right)|i\rangle 
+	= 1 + i \langle f|\mathcal{T}|i\rangle .
 \end{equation}
-where the free field Langrangian is 
+Because of the additional momentum conservation,
 \begin{equation}
-	\mathcal L_0 = \frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 
-	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
+	\langle f|\mathcal{T}|i\rangle = (2\pi)^d \delta^d\left(\sum p\right) \mathcal M_{fi}.
 \end{equation}
 
 
-\subsection{Path Integral Formalism}
-
-Consider the action for free field with source
+\subsection{LSZ for Klein-Gordon Field}
+For free theory, the particle annihilation operator is
+\begin{equation}
+\begin{aligned}
+	\sqrt{2\omega_k} a_k &= i \int d^3 x\ e^{ik\cdot x}(-i\omega_k+\partial_t)\phi(x), \\
+	\sqrt{2\omega_k} a^\dagger_k &= -i \int d^3 x\ e^{-ik\cdot x}(i\omega_k+\partial_t)\phi(x).
+\end{aligned}
+\end{equation}
+When interaction is turned on, the field operator $\phi(x)$ is renormalized as
 \begin{equation*}
-	S_0[\phi,J]
-	= \int d^dx\left[\mathcal{L}_0(\phi) + J(x)\cdot\phi(x) \right].
+	\phi(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{in}}(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{out}}(x).
 \end{equation*}
-In momentum space, the free Lagrangian (with source) is 
-\begin{equation*}
-	\tilde{\mathcal L}_0[\phi_k,J]=\tilde\phi(k)( k^2-m^2)\tilde\phi(-k)+\tilde J(k)\cdot\tilde\phi(-k)+\tilde\phi(k)\cdot\tilde J(-k).
-\end{equation*}
-In the path integral formalism, we consider the partition function 
-\begin{equation}
-	Z_0[J] = \int D[\phi] \exp(iS_0[\phi,J]).
-\end{equation}
-The partition function for free field:
-\begin{eqnarray*}
-	\frac{Z_0[J]}{Z_0[0]}
-	&=& \exp\left(-\frac{i}{2}\int \frac{d^dk}{(2\pi)^d} \frac{\tilde J(k) \tilde J(-k)}{k^2-m^2+i\epsilon} \right) \\
-	&=& \exp\left(-\frac{i}{2}\int d^dx_1 d^dx_2 J(x_1)\Delta_0(x_1-x_2)J(x_2)\right).
-\end{eqnarray*}
-where the propagator is
-\begin{equation}
-	\Delta_0(x_1-x_2) = \int \frac{d^dk}{(2\pi)^d} \frac{e^{-ik\cdot x}}{k^2-m^2+i\epsilon},
-\end{equation}
-where the extra $i\epsilon$ term is use to bring the singularities infinitesimally below the real axis. 
-This infinitesimal value can be absorbed into the mass term, by regarding the mass term $m^2$ as $m^2-i\epsilon$.
-
-\begin{framedrmk}[Gaussian Integral for Real Scalar Field]
-The real Gaussian integral formula is
-\begin{equation}
-	\int d\bm v \exp\left(-\frac{1}{2}\bm{v}^T \cdot A\cdot \bm{v} + \bm{b}^T \cdot \bm{v}\right) 
-	= \sqrt{\frac{(2\pi)^N}{\det{A}}}\exp\left(\frac{1}{2}\bm{b}^T \cdot A^{-1} \cdot \bm{b}\right),
-	\label{eq:real-gaussian-integral}
-\end{equation}
-where $\bm v, \bm b$ are two $N$-dimensional vector, and $A$ is an $N\times N$ matrix.
-For the field integral, we absorbed the $(2\pi)^{N/2}$ term into the measure, and express the path integral for the Gaussian field as:
+In this way, we have
 \begin{equation*}
 \begin{aligned}
-	Z[J] &= \int D[\phi] \exp\left(\frac{i}{2}\int d^dx \phi \hat{A} \phi +i \int d^d xJ \phi\right) \\
-	&= Z[0] \exp\left[-\frac{i}{2}\int d^d x_1 d^d x_2 J(x_1) A^{-1}(x_1-x_2) J(x_2)\right].
+	\sqrt{2\omega_k}(a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger)
+	&= i Z_\phi^{-1/2} \int dt \partial_t \left(\int d^{3}x\ e^{-ikx}(i\omega_k+\partial_t)\phi_0(x)\right) \\
+	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}(\omega_k^2+\partial_t^2)\phi_0(x) \\
+	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}\partial_t^2\phi_0(x) + \phi_0(x)(-\nabla^2+m^2)e^{-i k\cdot x} \\
+	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}(\partial^2+m^2)\phi_0(x)
 \end{aligned}
 \end{equation*}
-We make use of (\ref{eq:real-gaussian-integral}) by making the identification 
+The initial and final states are:
+\begin{equation}
+\begin{aligned}
+	|k_1, \cdots, k_m; \mathrm{in}\rangle &= \left[\prod_{j=1}^m \sqrt{2\omega_{k_j}} a^\dagger_{\mathrm{in}}(k_j)\right] |0\rangle, \\
+	|p_1, \cdots, p_n, \mathrm{out}\rangle &= \left[\prod_{j=1}^n \sqrt{2\omega_{p_j}}a^\dagger_{\mathrm{out}}(p_j)\right] |0\rangle.
+\end{aligned}
+\end{equation}
+The S-matrix is
 \begin{equation*}
-	A = \bigoplus_{|k|} \left(
-	\begin{array}{cc} 
-		0 & k^2-m^2 \\ 
-		k^2-m^2 & 0 
-	\end{array}\right),\ 
-	b = \bigoplus_{|k|} \left(
-	\begin{array}{c}
-		\tilde{J}(k) \\ 
-		\tilde{J}(-k) 
-	\end{array}\right).
+\begin{aligned}
+	S_{fi} &= \langle p_1, \cdots, p_n;\mathrm{out}| S |k_1, \cdots, k_m; \mathrm{in}\rangle \\
+	&= \frac{\langle 0|T 
+		\left(\prod \sqrt{2\omega_{p_j}} a_{p_j;\mathrm{out}} \right)
+		\int d^4 x \exp(i\mathcal{L}_{\mathrm{int}})
+		\left(\prod \sqrt{2\omega_{k_j}} a^\dagger_{k_j;\mathrm{in}} \right)|0\rangle}
+		{\langle 0|T\int d^4 x \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
+\end{aligned}
 \end{equation*}
-This gives the propagator in the momentum space:
+Since the scattering process correspond to the connected diagram, meaning that the initial and final state has distinct momentum particles.
+We are free to make the substitution
 \begin{equation*}
-	\tilde{\Delta}_0(k) = \frac{1}{k^2-m^2}.
+	a^\dagger_{\mathrm{in}} \rightarrow (a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger),\ 
+	a_{\mathrm{out}} \rightarrow -(a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger)^\dagger.
 \end{equation*}
+In this way, the S-matrix is
+\begin{equation*}
+\begin{aligned}
+	& \langle p_1, \cdots, p_n| S |k_1, \cdots, k_m\rangle  \\
+	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i}\frac{-\partial^2-m_i^2}{i\sqrt{Z_\phi}}\right]
+	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}\frac{-\partial^2-m_j^2}{i\sqrt{Z_\phi}}\right] \\
+	& \times \frac{\langle 0| T \phi_0(x_1)\cdots \phi_0(x_{m+n}) \int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
+		{\langle 0|T\int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle} \\
+	=& \prod_{i=1}^{m}\left[\frac{p_i^2-m_i^2}{i\sqrt{Z_\phi}}\right]
+		\prod_{j=m+1}^{m+n}\left[\frac{k_j^2-m_j^2}{i\sqrt{Z_\phi}}\right]
+		\tilde{G}(-p_1,\cdots,-p_n,k_1,\cdots,k_m).
+	\label{eq:K-G-LSZ}
+\end{aligned}
+\end{equation*}
+Note that in the second equality, we move the operator $\partial^2$ out of the time-ordering operator, which will actually create contact terms.
+The contact terms can be shown to have no contribution to the S-matrix.
+Also, the Green function is defined as
+\begin{equation*}
+\begin{aligned}
+	G(x_1,\cdots,x_{m+n}) 
+	&\equiv \langle \Omega|T \phi(x_1)\cdots \phi(x_{m+n})|\Omega\rangle \\
+	&= \frac{\langle 0| T \phi_0(x_1)\cdots \phi_0(x_{m+n}) \int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
+		{\langle 0|T\int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}.
+\end{aligned}
+\end{equation*}
+
+The extra factor before the momentum-space Green's function effectively cancel out the external propagator. 
+Thus the LSZ formula (\ref{eq:K-G-LSZ}) means that the S-matrix is the amputated Green's function.
+
+
+\begin{framedrmk}[Contact Terms]
+We first consider the time-ordered two-point function:
+\begin{equation*}
+	\langle 0|T\phi(x_1)\phi(x_2)|0\rangle
+	= \theta(t_1-t_2)\langle 0|\phi(x_1)\phi(x_2)|0\rangle -
+	\theta(t_2-t_1)\langle 0|\phi(x_2)\phi(x_1)|0\rangle.
+\end{equation*}	
+Take time derivative on both side:
+\begin{equation*}
+\begin{aligned}
+	\partial_{t_1} \langle 0|T\phi(x_1)\phi(x_2)|0\rangle
+	&= \langle 0|T\partial_{t_1}\phi(x_1)\phi(x_2)|0\rangle +
+	\delta(t_1-t_2)\langle 0|[\phi(x_1),\phi(x_2)]|0\rangle \\
+	&= \langle 0|T\partial_{t_1}\phi(x_1)\phi(x_2)|0\rangle.
+\end{aligned}
+\end{equation*}
+The second equality follows from the fact that $x_1,x_2$ is equal-time.
+Take the the time derivative once more:
+\begin{equation*}
+	\partial^2_{t_1} \langle 0|T\phi(x_1)\phi(x_2)|0\rangle
+	= \langle 0|T\partial^2_{t_1}\phi(x_1)\phi(x_2)|0\rangle +
+	\delta(t_1-t_2)\langle 0|[\partial_{t_1}\phi(x_1),\phi(x_2)]|0\rangle.
+\end{equation*}
+The second term on the right hand side is the contact term.
+For free theory, $\partial_{t_1}\phi(x_1)$ is the canonical momentum, meaning that
+\begin{equation*}
+	[\phi(\vec x_1, t),\partial_{t}\phi(\vec x_1,t)] = i \hbar \delta^{3}(\vec x_1-\vec x_2).
+\end{equation*}
+In general, for n-point correlation,
+\begin{equation*}
+\begin{aligned}
+	 \partial_{t_1}^2 \langle 0|T\phi_{x_1}\cdots\phi_{x_n}|0\rangle 
+	=& \langle 0|T\partial_{t_1}^2\phi_{x_1}\cdots\phi_{x_n}|0\rangle \\
+	 &-i\hbar \sum_j \delta^4(x_1-x_j)\langle 0|T\phi_{x_2}\cdots\cancel{\phi_{x_j}}\cdots\phi_{x_n}|0\rangle.
+\end{aligned}
+\end{equation*}
+In the LSZ formula, the contact term do not have any singularity.
+When the external legs approach to momentum shell, these regular terms vanishes, so the contact will not contribute to the S-matrix.
 \end{framedrmk}
-
-Note that $\Delta_0(x_1-x_2)$ is related to the correlation function:
-\begin{equation*}
-	\langle 0| T\phi(x_1)\phi(x_2)|0\rangle
-	= \frac{\delta}{i\delta J(x_1)}\frac{\delta}{i\delta J(x_2)} Z_0[J] 
-	= i\Delta(x_1-x_2).
-\end{equation*}
-
 
 
 \subsection{Perturbation Theory}
-
 For interaction theory, the partition function can be formally expressed as:
 \begin{equation}
 	Z[J] = \exp\left(i\int d^dx \mathcal{L}_{\mathrm{int}}\left[\frac{\delta}{i\delta J(x)}\right]\right)Z_0[J].
@@ -167,13 +253,17 @@ The connected correlation function automatically omit those disconnected compone
 
 
 
-\section{$\phi^3$ Theory on 6D Space-time}
+\section{Real $\phi^3$ Theory}
 
 Now consider the interaction theory with additional Lagrangian
 \begin{equation}
 	\mathcal L_{\mathrm{int}}[\phi] = \frac{g}{3!}\phi^3.
 \end{equation}
-Note that the field $\phi$ has the mass dimension $[\frac{d-2}{2}]$. When $d=6$, the coupling constant $g$ is dimensionless. 
+Note that the field $\phi$ has the mass dimension $[\frac{d-2}{2}]$. 
+The critical dimension is $d=6$ where the coupling constant $g$ is dimensionless. 
+In this section, we consider the real Klein-Gordon field with $\phi^3$ interaction on 6-dimensional space-time.
+
+
 For interaction theory, the renormalized Lagrangian has the form:
 \begin{equation}
 \begin{aligned}
@@ -617,15 +707,16 @@ The Callan-Symanzik equation is
 \right)\tilde{\Delta}(k)=0.
 \end{equation}
 
-\section{$\phi^4$ Theory on 4D Space-time}
-In this section, we consider the real Klein-Gordon field with $\phi^4$ interaction in ($4-\epsilon$)-dimension space-time:
+\section{Real $\phi^4$ Theory}
+In this section, we consider the real Klein-Gordon field with $\phi^4$ interaction.
+The field $\phi$ has mass dimension $[\frac{d-2}{2}]=[1]$, so the critical dimension is $d=4$, where the coupling constant $g$ is dimensionless.
+For dimensional regulation purpose, we write the renormalized Lagrangian on $(4-\epsilon)$-dimensional space-time as
 \begin{equation}
 	\mathcal{L}
 	= Z_{\phi}\frac{1}{2} \partial^\mu\phi\partial_\mu\phi - 
-	Z_m \frac{m^2}{2}\phi^2 - Z_g\frac{g \tilde{\mu}^\epsilon}{4!}\phi^4.
+	Z_m \frac{m^2}{2}\phi^2 - Z_g\frac{g \tilde{\mu}^\epsilon}{4!}\phi^4,
 \end{equation}
-Note that the field $\phi$ has mass dimension $[\frac{d-2}{2}]=[1]$, so the original coupling constant $g$ is dimensionless.
-
+where we have introduced a mass scale $\tilde \mu$.
 As the $\phi^3$ theory, we can rewrite the Lagrangian as:
 \begin{equation}
 	\mathcal L = \mathcal L_0 + \mathcal L_{\mathrm{int}} + \mathcal L_{\mathrm{ct}}.
