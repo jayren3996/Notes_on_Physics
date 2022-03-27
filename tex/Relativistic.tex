@@ -5,11 +5,11 @@
 \subsection{The Lorentz Algebra}
 The metric is chosen to be 
 \begin{equation}
-	g_{\mu\nu}=g^{\mu\nu}=\mathrm{diag}(-1,+1,+1,+1).
+	g_{\mu\nu}=g^{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1).
 \end{equation}
 The Lorentz transformation ${\Lambda^{\mu}}_{\nu}$ satisfies
 \begin{equation}
-{\Lambda^{\mu}}_{\alpha}{\Lambda^{\nu}}_{\beta} g_{\mu\nu} = g_{\alpha\beta}.
+{\Lambda^{\mu}}_{\alpha}{\Lambda^{\nu}}_{\beta} g^{\alpha\beta} = g^{\mu\nu}.
 \end{equation}
 From this we have
 \begin{equation*}
@@ -20,9 +20,9 @@ From this we have
 	= {\delta^{\gamma}}_{\beta},
 \end{equation*}
 The inverse Lorentz transformation satisfies:
-\begin{equation*}
+\begin{equation}
 	{(\Lambda^{-1})^{\mu}}_{\nu} = {\Lambda_{\nu}}^{\mu}.
-\end{equation*}
+\end{equation}
 The infinitesimal transformation is denoted as
 \begin{equation*}
 \begin{aligned}
@@ -38,10 +38,10 @@ A representation of Lorentz group $U(\Lambda)$ can be parametrized as:
 	U(\Lambda) = \exp\left(\frac{i}{2}\omega_{\mu\nu}M^{\mu\nu}\right).
 \end{equation}
 Another useful parametrization is
-\begin{equation*}
+\begin{equation}
 	\theta_i \equiv \frac{1}{2}\varepsilon_{ijk}\omega_{jk}, \ 
 	\beta_i \equiv \omega_{0i}.
-\end{equation*}
+\end{equation}
 A new set of generators are:
 \begin{equation}
 	J_i \equiv \frac{1}{2}\varepsilon_{ijk}M^{jk},\ 
@@ -75,13 +75,13 @@ By defining a new set of generators:
 	N_i^{R} \equiv \frac{J_i + i K_i}{2}.
 \end{equation}
 They satisfies two independent $\mathfrak{su}(2)$ algebra:
-\begin{equation*}
+\begin{equation}
 \begin{aligned}
 	\left[N_i^L, N_j^L \right] &= i\varepsilon_{ijk}N_k^L, \\
 	\left[N_i^R, N_j^R \right] &= i\varepsilon_{ijk}N_k^R, \\
 	\left[N_i^L, N_j^R \right] &= 0.
 \end{aligned}
-\end{equation*}
+\end{equation}
 That is, the Lorentz algebra is isomorphic to two $\mathfrak{su}(2)$ algebra,
 \begin{equation}
 	\mathfrak{so}(3,1) \approx \mathfrak{su}_L(2)\oplus\mathfrak{su}_R(2).
@@ -93,10 +93,10 @@ Note that the fundamental representation correspond to
 	\left(j_L=\frac{1}{2},j_R=\frac{1}{2}\right).
 \end{equation*}
 The specific form of the group is
-\begin{equation*}
+\begin{equation}
 	\Lambda(\vec\theta,\vec\beta)
 	=\exp\left[i(\vec\theta+i\vec\beta)\cdot \vec N^L + i(\vec\theta-i\vec\beta)\cdot \vec N^R\right].
-\end{equation*}
+\end{equation}
 The spinor representations are those with $j_L=1/2$ or $j_R=1/2$. 
 Specifically, we define the left-hand spinor $\psi_L$ and right-hand spinor $\psi_R$ that transform as:
 \begin{equation}
@@ -246,10 +246,8 @@ To be Lorentz invariant, the allowed free theory can only be
 	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
 \end{equation}
 
-
-
-\subsection{Path-integral Formalism}
-In this note, the space-time Fourier transformation is defined as
+For general discussion, we consider the field theory on $d$-dimensional space-time.
+Note that the space-time Fourier transformation is defined as
 \begin{equation}
 \begin{aligned}
 	\tilde{\phi}(k) &= \int d^{d}x e^{ik\cdot x} \phi(x), \\ 
@@ -261,79 +259,15 @@ where the inner product of two 4-momentum and 4-coordinate is
 	k\cdot x=\omega t-\vec k\cdot \vec x.
 \end{equation}
 
-Consider the action for free field with source
-\begin{equation}
-	S_0[\phi,J]
-	= \int d^dx\left[\mathcal{L}_0(\phi) + J(x)\cdot\phi(x) \right].
-\end{equation}
-In momentum space, the free Lagrangian (with source) is 
-\begin{equation*}
-	\tilde{\mathcal L}_0[\phi_k,J]=\tilde\phi(k)( k^2-m^2)\tilde\phi(-k)+\tilde J(k)\cdot\tilde\phi(-k)+\tilde\phi(k)\cdot\tilde J(-k).
-\end{equation*}
-In the path integral formalism, we consider the partition function 
-\begin{equation}
-	Z_0[J] = \int D[\phi] \exp(iS_0[\phi,J]).
-\end{equation}
-The partition function for free field:
-\begin{eqnarray*}
-	\frac{Z_0[J]}{Z_0[0]}
-	&=& \exp\left(-\frac{i}{2}\int \frac{d^dk}{(2\pi)^d} \frac{\tilde J(k) \tilde J(-k)}{k^2-m^2+i\epsilon} \right) \\
-	&=& \exp\left(-\frac{i}{2}\int d^dx_1 d^dx_2 J(x_1)\Delta_0(x_1-x_2)J(x_2)\right).
-\end{eqnarray*}
-where the propagator is
-\begin{equation}
-	\Delta_0(x_1-x_2) = \int \frac{d^dk}{(2\pi)^d} \frac{e^{-ik\cdot x}}{k^2-m^2+i\epsilon},
-\end{equation}
-where the extra $i\epsilon$ term is use to bring the singularities infinitesimally below the real axis. 
-This infinitesimal value can be absorbed into the mass term, by regarding the mass term $m^2$ as $m^2-i\epsilon$.
-
-Note that $\Delta_0(x_1-x_2)$ is related to the correlation function:
-\begin{equation}
-	\langle 0| T\phi(x_1)\phi(x_2)|0\rangle
-	= \frac{\delta}{i\delta J(x_1)}\frac{\delta}{i\delta J(x_2)} Z_0[J] 
-	= i\Delta(x_1-x_2).
-\end{equation}
-
-\begin{framedrmk}[Gaussian Integral for Real Scalar Field]
-The real Gaussian integral formula is
-\begin{equation}
-	\int d\bm v \exp\left(-\frac{1}{2}\bm{v}^T \cdot A\cdot \bm{v} + \bm{b}^T \cdot \bm{v}\right) 
-	= \sqrt{\frac{(2\pi)^N}{\det{A}}}\exp\left(\frac{1}{2}\bm{b}^T \cdot A^{-1} \cdot \bm{b}\right),
-	\label{eq:real-gaussian-integral}
-\end{equation}
-where $\bm v, \bm b$ are two $N$-dimensional vector, and $A$ is an $N\times N$ matrix.
-For the field integral, we absorbed the $(2\pi)^{N/2}$ term into the measure, and express the path integral for the Gaussian field as:
-\begin{equation*}
-\begin{aligned}
-	Z[J] &= \int D[\phi] \exp\left(\frac{i}{2}\int d^dx \phi \hat{A} \phi +i \int d^d xJ \phi\right) \\
-	&= Z[0] \exp\left[-\frac{i}{2}\int d^d x_1 d^d x_2 J(x_1) A^{-1}(x_1-x_2) J(x_2)\right].
-\end{aligned}
-\end{equation*}
-We make use of (\ref{eq:real-gaussian-integral}) by making the identification 
-\begin{equation*}
-	A = \bigoplus_{|k|} \left(
-	\begin{array}{cc} 
-		0 & k^2-m^2 \\ 
-		k^2-m^2 & 0 
-	\end{array}\right),\ 
-	b = \bigoplus_{|k|} \left(
-	\begin{array}{c}
-		\tilde{J}(k) \\ 
-		\tilde{J}(-k) 
-	\end{array}\right).
-\end{equation*}
-This gives the propagator in the momentum space:
-\begin{equation*}
-	\tilde{\Delta}_0(k) = \frac{1}{k^2-m^2}.
-\end{equation*}
-\end{framedrmk}
-
-
 
 \subsection{Canonical Quantization}
-The classical equation of motion for Klein-Gordon field is 
+The classical equation of motion 
+\begin{equation*}
+	\partial_\mu \left[\frac{\partial}{\partial(\partial_\mu \phi)}\right] - \frac{\partial \mathcal L}{\partial \phi} = 0
+\end{equation*}
+for Klein-Gordon field is 
 \begin{equation}
-	(-\partial_t^2+\nabla^2-m^2)\phi(\vec x,t) = 0. 
+	(\partial_t^2-\nabla^2+m^2)\phi(\vec x,t) = 0. 
 	\label{eq:rkg-eom}
 \end{equation}
 The solution to Eq.~(\ref{eq:rkg-eom}) is proportional to the plane wave:
@@ -348,6 +282,8 @@ The general solution to the EOM is
 		a^*_{k}e^{i\omega_{\bm{k}}t-i\vec{k}\cdot\vec{x}} 
 	\right).
 \end{equation}
+
+\subsubsection{Single Particle State}
 The canonical quantization promote the coefficient $a_{k}/a_{k}^*$ to the particle annihilation/creation operator $a_{k}/a_{k}^\dagger$, with the commutation relation
 \begin{equation}
 	[a_{k}, a_{p}^\dagger] = (2\pi)^{3} \delta^{3}(\vec{k}-\vec{p}).
@@ -359,8 +295,6 @@ The single-particle state with momentum $\vec k$ is created by $a_{k}^{\dagger}$
 	\label{eq:rel-single-particle}
 \end{equation}
 where $|\vec{k}\rangle$ is a state with a single particle of momentum $\vec{k}$.
-
-\begin{framedrmk}[Lorentz Invariance of Single-particle State]
 The factor of $\sqrt{2 \omega_{\bm k}}$ in Eq.~(\ref{eq:rel-single-particle}) is just a convention, but it will make some calculations easier. 
 To compute the normalization of one-particle states, we start with
 \begin{equation}
@@ -387,12 +321,12 @@ The identity operator Eq.~(\ref{eq:rel-identity}) is Lorentz invariant since it 
 \begin{equation}
 	1 = \int \frac{d^{3} p d\omega}{(2\pi)^{4}} 2\pi\delta(\omega^2-{\bm{p}}^2-m^2) |\vec p\rangle\langle \vec p|.
 \end{equation}
-\end{framedrmk}
 
+\subsubsection{Field Expansion}
 We fix the normalization by requiring 
-\begin{equation*}
+\begin{equation}
 	\langle \vec k|\phi(\vec x,0)|0\rangle = e^{-i \vec k\cdot \vec x},
-\end{equation*}
+\end{equation}
 and the quantized field operator is
 \begin{equation}
 	\phi(\vec{x}, t)
@@ -400,7 +334,7 @@ and the quantized field operator is
 	e^{-i k \cdot x}+a_k^{\dagger} e^{i k \cdot x}\right).
 \end{equation}
 
-Consider the two-point correlation:
+Consider the two-point correlation (propagator):
 \begin{equation*}
 \begin{aligned}
 	i\Delta(x_1-x_2) &= \langle 0|T \phi(x_1) \phi(x_2) |0\rangle \\
@@ -409,20 +343,182 @@ Consider the two-point correlation:
 \end{aligned}
 \end{equation*}
 Note that
-\begin{equation*}
+\begin{equation}
 	\langle 0|\phi(x_1) \phi(x_2) |0\rangle
 	= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\vec k\cdot (\vec x_1-\vec x_2)-i\omega_{\vec k}\tau},
-\end{equation*}
+\end{equation}
 where $\tau =t_1-t_2$.
 The propagator can be written as
-\begin{equation*}
+\begin{equation}
 \begin{aligned}
 	i\Delta(x_1-x_2) 
 	&= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\vec k\cdot (\vec x_1-\vec x_2)}\left[e^{-i\omega_{\vec k}\tau}\theta(\tau)+e^{i\omega_{\vec k}\tau}\theta(-\tau)\right] \\
 	&= \int\frac{d^{3} k}{(2\pi)^{3}} e^{i\vec k\cdot (\vec x_1-\vec x_2)}\int \frac{d\omega}{2\pi i}\frac{-e^{i\omega\tau}}{\omega^2-\omega_k^2+i\epsilon} \\
 	&= \int\frac{d^{4} k}{(2\pi)^{4}} e^{-i k\cdot (x_1-x_2)}\frac{i}{k^2-m^2+i\epsilon}.
 \end{aligned}
+\end{equation}
+
+
+\subsection{Path-integral Formalism}
+Consider the action for free field with source
+\begin{equation}
+	S_0[\phi,J]
+	= \int d^dx\left[\mathcal{L}_0 + J(x)\cdot\phi(x) \right].
+\end{equation}
+In the path integral formalism, we consider the partition function 
+\begin{equation}
+	Z[J] = \int D[\phi] \exp(iS[\phi,J])
+	\equiv Z[0] \exp(iW[J]).
+\end{equation}
+where we have introduced a new quantity
+\begin{equation}
+\begin{aligned}
+	W[J] = -\frac{1}{2}\int d^dx_1 d^dx_2 J(x_1)\Delta(x_1-x_2)J(x_2).
+\end{aligned}
+\end{equation}
+For free field, the free propagator $\Delta_0(x_1-x_2)$ is:
+\begin{equation}
+	i\Delta_0(x_1-x_2) = \int \frac{d^dk}{(2\pi)^d} \frac{e^{-ik\cdot x}}{k^2-m^2+i\epsilon},
+	\label{eq:free-rkg-pgt}
+\end{equation}
+where the extra $i\epsilon$ term is use to bring the singularities infinitesimally below the real axis. 
+This infinitesimal value can be absorbed into the mass term, by regarding the mass term $m^2$ as $m^2-i\epsilon$.
+
+Note that $\Delta_0(x_1-x_2)$ is related to the correlation function:
+\begin{equation}
+	\Delta_0(x_1-x_2) = \frac{1}{i} \langle 0| T\phi(x_1)\phi(x_2)|0\rangle
+	= \frac{\delta}{i\delta J(x_1)}\frac{\delta}{i\delta J(x_2)} W_0[J].
+\end{equation}
+
+
+
+
+\subsubsection{Gaussian Integral}
+Now we evaluate the propagator in the path-integral formalism.
+In momentum space, the free action (with source) is 
+\begin{equation*}
+	\frac{1}{V}\sum_k \left[\tilde\phi^*(k)( k^2-m^2)\tilde\phi(k)+\tilde J^*(k)\cdot\tilde\phi(k)+\tilde\phi^*(k)\cdot\tilde J(k)\right].
 \end{equation*}
+For real field, $\tilde\phi^*(k) = \tilde\phi(-k)$.
+For our convenience, we have expressed the momentum integral as summation.
+Actually, consider the $d$-dimensional box of size $L^d$, the momentum along each axis is multiple of $2\pi/L$, so when $L\rightarrow \infty$, the summation approaches in integral,
+\begin{equation*}
+	\frac{1}{V}\sum_k \rightarrow \int \frac{d^d k}{(2\pi)^d}.
+\end{equation*}
+Let us omit the $1/V$ factor, the summation can be formally expressed as
+\begin{equation}
+	-\frac{1}{2}\mathbf{v}^T \cdot \mathbf A\cdot \mathbf{v} + \mathbf{b}^T \cdot \mathbf{v}
+\end{equation}
+where
+\begin{equation*}
+	\mathbf v = \bigoplus_{|\mathbf k|} \left[
+	\begin{array}{c}
+		\tilde{\phi}(k) \\ 
+		\tilde{\phi}^*(k) 
+	\end{array}\right],\ 
+	\mathbf A = \bigoplus_{|\mathbf k|} \left[
+	\begin{array}{cc} 
+		0 & k^2-m^2 \\ 
+		k^2-m^2 & 0 
+	\end{array}\right],\ 
+	\mathbf b = \bigoplus_{|\mathbf k|} \left[
+	\begin{array}{c}
+		\tilde{J}^*(k) \\ 
+		\tilde{J}(k) 
+	\end{array}\right].
+\end{equation*}
+We can use a unitary transformation to tranform
+\begin{equation*}
+	\mathbf U = \frac{1}{\sqrt 2} \left[\begin{array}{cc}
+		1 & 1 \\
+		-i & i
+	\end{array}\right], \quad
+	\mathbf U \cdot \left[
+	\begin{array}{c}
+		\tilde{\phi}(k) \\ 
+		\tilde{\phi}^*(k) 
+	\end{array}\right] 
+	= \frac{1}{\sqrt 2}\left[
+	\begin{array}{c}
+		\tilde\phi(k)+\tilde\phi^*(k) \\ 
+		-i\tilde\phi(k)+i\tilde\phi^*(k)
+	\end{array}\right]
+	\equiv \left[
+	\begin{array}{c}
+		\tilde\phi_1(k) \\ 
+		\tilde\phi_2(k) 
+	\end{array}\right]
+\end{equation*}
+The path integral then becomes a real field integral.
+Recall the real Gaussian integral formula:
+\begin{equation}
+	\int d\mathbf v \exp\left(-\frac{1}{2}\mathbf{v}^T \cdot \mathbf A\cdot \mathbf{v} + \mathbf{b}^T \cdot \bm{v}\right) 
+	= \sqrt{\frac{(2\pi)^N}{\det{\mathbf A}}}\exp\left(\frac{1}{2}\mathbf{b}^T \cdot \mathbf{A}^{-1} \cdot \mathbf{b}\right),
+	\label{eq:real-gaussian-integral}
+\end{equation}
+For the field integral, we absorbed the $(2\pi)^{N/2}$ term into the measure, and express the path integral for the Gaussian field as:
+\begin{equation}
+	W_0[J] 
+	= -\frac{i}{2}\int \frac{d^d k}{(2\pi)^d} \mathbf b^T_k \cdot \mathbf A^{-1}_k \cdot \mathbf b_k.
+\end{equation}
+This gives the propagator in the momentum space:
+\begin{equation*}
+	\tilde{\Delta}_0(k) = \frac{1}{k^2-m^2}.
+\end{equation*}
+
+
+\subsubsection{From Field to Force}
+Consider two separate particle described by the delta function $J_a(x) = \delta^{(3)}(\bm x - \bm x_a)$, together the source is
+\begin{equation}
+	J(x) = J_1(x) + J_2(x).
+\end{equation}
+Adding the source,
+\begin{equation*}
+	W[J] = -\frac{1}{2}\int d^4x_1 d^4 x_2 J(x_1) \Delta(x_1-x_2) J(x_2)
+\end{equation*}
+Omit the self energy terms $J_1^2(x), J_2^2(x)$, $W[J]$ is
+\begin{equation}
+\begin{aligned}
+	W[J] &= -\int d^4 y_1 d^4 y_2\ e^{-ik^0(y_1^0-y_2^0)}\int \frac{d^4 k}{(2\pi)^4} J_1(y_1)\frac{e^{i\bm k\cdot (\bm y_1-\bm y_2)}}{k^2-m^2} J_2(y_2) \\
+	&= -\int  dt \int d (y_1^0 - y_2^0) \ e^{-ik^0(y_1^0-y_2^0)}\int \frac{d^4 k}{(2\pi)^4} \frac{e^{i\bm k\cdot (\bm y_1-\bm y_2)}}{k^2-m^2} \\
+	&= \left(\int dt \right)\int \frac{d^3 k}{(2\pi)^3} \frac{e^{i\bm k\cdot (\bm y_1-\bm y_2)}}{\bm k^2 + m^2}
+\end{aligned}
+\end{equation}
+Recall that the partition function is actually infinite:
+\begin{equation}
+	Z \sim \langle 0| e^{-iHT} |0\rangle \quad \Longrightarrow \quad
+	W = -iET,
+\end{equation}
+where $E$ is the energy.
+Writing $\bm r \equiv \bm y_1 - \bm y_2$, and $u \equiv \cos\theta$ with $\theta$ the angle between $\bm k$ and $\bm r$, the volume form is $dk \cdot kd\theta \cdot  2\pi k \sin \theta = 2\pi k^2 dk du$, and the integral is
+\begin{equation}
+\begin{aligned}
+	E &= -\int \frac{d^3 k}{(2\pi)^3} \frac{e^{i k r u}}{k^2 + m^2} \\
+	&= - \frac{1}{(2\pi)^2} \int_0^\infty k^2 dk \int_{-1}^1 du \frac{e^{ikru}}{k^2 +m^2} \\
+	&= -\frac{1}{2\pi^2 r} \int_0^\infty k  \frac{\sin kr}{k^2 +m^2} dk.
+\end{aligned}
+\end{equation}
+Since the integral is even, we can extend the integral to
+\begin{equation}
+\begin{aligned}
+	E &= -\frac{1}{4\pi^2 r} \int_{-\infty}^\infty k  \frac{\sin kr}{k^2 +m^2} dk \\
+	&= \frac{i}{4\pi^2 r} \int_{-\infty}^\infty \frac{k e^{ikr}}{k^2 +m^2} dk
+\end{aligned}
+\end{equation}
+The residue theorem gives
+\begin{equation*}
+	\int_{-\infty}^\infty \frac{k e^{ikr}}{k^2 +m^2} dk = \pi ie^{-mr}
+\end{equation*}
+So we get the potential of two particles:
+\begin{equation}
+	E(r) = -\frac{e^{-mr}}{4\pi r},
+\end{equation}
+and the attractive force is
+\begin{equation}
+	F(r) = -\frac{dE}{dr} = -(1+mr)\frac{e^{-mr}}{4\pi r^2}.
+\end{equation}
+
+
 
 
 
@@ -756,5 +852,25 @@ Together, the Dirac propagator is:
 	&= \int\frac{d^{4} p}{(2\pi)^{4}} e^{-i p\cdot (x_1-x_2)}\frac{i(\cancel p+m)}{p^2-m^2+i\epsilon}.
 \end{aligned}
 \end{equation*}
+
+
+
+\section{Symmetries}
+
+\subsection{Global Symmetries and Conserved Quantities}
+If a field theory has a global symmetry, it means that under the infinitesimal transformation:
+\begin{equation*}
+\begin{aligned}
+	x^{\mu} & \rightarrow x^{\mu}+\delta x^{\mu},\\
+	\phi_{r}\left(x\right) & \rightarrow \phi_{r}\left(x\right)+\delta\phi_{r}\left(x\right),
+\end{aligned}
+\end{equation*}
+the action is invariant, i.e.,
+\begin{equation}
+	\int_{\Omega'}d^{4}x'\mathcal{L}'\left(x'\right)=\int_{\Omega}d^{4}x\mathcal{L}\left(x\right).
+\end{equation}
+Here, instead of writing the infinite integral, we require that for any space-time region $\Omega$ (which is transformed to $\Omega'$ under symmetry transformation), the Lagrangian integral is invariant under the symmetry action.
+
+
 
 

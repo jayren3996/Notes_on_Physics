@@ -44,7 +44,7 @@ Use the field expansion
 		+b_{\mathbf{p}}^{s \dagger} v^{s}(p) e^{i p \cdot x}\right), \\
 	\bar{\psi}(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
 		\sum_{s}\left(b_{\mathbf{p}}^{s} \bar{v}^{s}(p) e^{-i p \cdot x}
-		+a_{\mathbf{p}}^{s \dagger} \bar{u}^{s}(p) e^{i p \cdot x}\right).
+		+a_{\mathbf{p}}^{s \dagger} \bar{u}^{s}(p) e^{i p \cdot x}\right),
 \end{aligned}
 \end{equation*}
 and the orthogonality relation
@@ -284,36 +284,31 @@ where
 
 
 \subsubsection{Counter Terms}
-Consider the counter term in the diagram
-\begin{equation*}
-	\includegraphics[width=0.25\linewidth]{pics/QED-ct-1.png}
-\end{equation*}
-The perturbative expansion is
-\begin{equation*}
-	iD_F^{\mathrm{(ct)}} \sim \frac{\delta^2}{\delta\bar\eta \delta\eta}
+
+The counter terms for the fermion propagator come from the diagram expression:
+\begin{equation}
+\begin{aligned}
+	iD_F^{\mathrm{(ct)}} 
+	&= \includegraphics[align=c, width=0.25\linewidth]{pics/QED-ct-1.png} \\
+	&\sim \frac{\delta^2}{\delta\bar\eta \delta\eta}
 	i(\delta_{\psi}\gamma^\mu_{\alpha\beta}k_\mu-\delta_m \mathbb{I}_{\alpha\beta})\frac{\delta^2}{\delta\eta_{\alpha} \delta\bar\eta_{\beta}}
 	\frac{1}{2!}\left(-i \bar\eta_{\alpha} D_F^{\alpha\beta} \eta_{\beta} \right)^2.
-\end{equation*}
+\end{aligned}
+\end{equation}
 The contribution to the electron self energy is
-\begin{equation*}
+\begin{equation}
 	\delta_{\psi}\cancel{k}-\delta_m m_R.
-\end{equation*}
-Similarly, the digram
-\begin{equation*}
-	\includegraphics[width=0.25\linewidth]{pics/QED-ct-2.png}
-\end{equation*}
-contribute to the photon self energy with term
-\begin{equation*}
-	\delta_A [-p^2 g^{\mu\nu} + (1-\xi)p^\mu p^\nu],
-\end{equation*}
-and the diagram
-\begin{equation*}
-	\includegraphics[width=0.2\linewidth]{pics/QED-ct-3.png}
-\end{equation*}
-contribute to the vertex with term
-\begin{equation*}
-	\delta_e \gamma^\mu.
-\end{equation*}
+\end{equation}
+Similarly, the counter term contribution to the photon self energy is
+\begin{equation}
+	\includegraphics[align=c, width=0.25\linewidth]{pics/QED-ct-2.png}
+	= \delta_A [-p^2 g^{\mu\nu} + (1-\xi)p^\mu p^\nu].
+\end{equation}
+And the counter term contribution to the QED vertex is
+\begin{equation}
+	\includegraphics[align=c, width=0.2\linewidth]{pics/QED-ct-3.png}
+	= \delta_e \gamma^\mu.
+\end{equation}
 
 
 

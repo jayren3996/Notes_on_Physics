@@ -4,14 +4,9 @@
 
 \subsection{Lehmann Representation}
 The interacting Hamiltonian do not conserve particle number, and the ground state $|\Omega\rangle$ is no longer the vacuum $|0\rangle$.
-
 Consider the Green's function
 \begin{equation*}
-	iG(x_1-x_2) = \begin{cases}
-		\langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle & \mathrm{Klein-Gordon} \\
-		\langle\Omega|T A(x_1)A(x_2)|\Omega\rangle & \mathrm{Maxwell} \\
-		\langle\Omega|T\psi(x_1)\bar\psi(x_2)|\Omega\rangle & \mathrm{Dirac}
-	\end{cases}.
+	iG(x_1-x_2) = \langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle 
 \end{equation*}
 We can insert a complete basis 
 \begin{equation*}
@@ -204,18 +199,26 @@ Since the unconnected diagram can be absorbed into $Z[0]$, we only need to calcu
 
 The procedure of perturbative expansion with only connected diagrams can be formally represented by introducing the quantity
 \begin{equation}
-	Z[J] = \exp\left(i W[J]\right).
+	Z[J] = Z[0]\exp\left(i W[J]\right).
 \end{equation}
 The perturbative expansion of $W[J]$ contain only the connected diagrams.
-Eq.~(\ref{eq:ptb-exp-val}) can then be rephrased as
+Note that for the free theory,
+\begin{equation*}
+	\frac{Z_0[J]}{Z_0[0]} = \exp\left[-\frac{i}{2}\int d^d x_1 d^d x_2 J(x_1) \Delta(x_1-x_2)J(x_2)\right],
+\end{equation*}
+which means
+\begin{equation*}
+	W_0 = -\frac{1}{2}\int d^d x_1 d^d x_2 J(x_1) \Delta(x_1-x_2)J(x_2).
+\end{equation*}
+For the interaction theory, the expectation (\ref{eq:ptb-exp-val}) can then be replaced by the connected expectation:
 \begin{equation}
-	\langle O(\phi)\rangle
-	= i\left. O\left[\frac{\delta}{i\delta J(x)}\right] W[J] \right|_{J=0}.
+	\langle O(\phi)\rangle_c
+	\equiv i\left. O\left[\frac{\delta}{i\delta J(x)}\right] W[J] \right|_{J=0}.
 \end{equation}
 
-\begin{framedexpl}[Two-point Correlation]
+
 Consider the two-point connected correlation (propagator):
-\begin{equation*}
+\begin{equation}
 \begin{aligned}
 	i\Delta(x_1-x_2)
 	&= \langle \mathcal{T}\phi(x_1) \phi(x_2)\rangle_c \\
@@ -223,21 +226,21 @@ Consider the two-point connected correlation (propagator):
 	&= \left.\frac{\delta^2 \ln Z[J]}{i\delta J(x_1) i\delta J(x_2)}\right|_{J=0}\\
 	&= \frac{1}{Z[0]}\left.\frac{\delta^2 Z[J]}{i\delta J(x_1)i\delta J(x_2)}\right|_{J=0},
 \end{aligned}
-\end{equation*}
+\end{equation}
 where we have used the fact that
 \begin{equation*}
 	\frac{\delta Z^n[J]}{\delta J(x_1) \cdots \delta J(x_n)} = 0,\ \forall n = 1\ \mathrm{mod}\ 2.
 \end{equation*}
 The result is the same as the original definition.
-\end{framedexpl}
 
-\begin{framedexpl}[Four-point Correlation]
-Consider the four-point connected correlation:
+
+
+Further, we can consider the four-point connected correlation:
 \begin{equation*}
 	iV_4 \equiv \langle \mathcal{T}\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\rangle_c
 \end{equation*}
 Following the same procedure,
-\begin{equation*}
+\begin{equation}
 \begin{aligned}
 	iV_4 
 	=&\ i\left.\frac{\delta^4 W[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
@@ -246,9 +249,9 @@ Following the same procedure,
 	& -i\Delta(x_1-x_3) i\Delta(x_2-x_4) \\
 	& -i\Delta(x_1-x_4) i\Delta(x_2-x_3).
 \end{aligned}
-\end{equation*}
+\end{equation}
 The connected correlation function automatically omit those disconnected components.
-\end{framedexpl}
+
 
 
 
@@ -291,22 +294,20 @@ The counter term for the the free field gives additional corrrection
 \begin{aligned}
 	i\tilde{\Delta}^{(\mathrm{ct})}(k)
 	&= i\tilde{\Delta}_0(k)(Ak^2-Bm^2)i\tilde{\Delta}_0(k) \\
-	&= \includegraphics[width=0.2\linewidth]{pics/KG-ct.png}.
+	&= \includegraphics[align=c, width=0.2\linewidth]{pics/KG-ct.png}.
 \end{aligned}
 \end{equation}
 
 
 
 \subsection{Self Energy Correction}
-To second order, we consider the one-loop correction to the propagator with the diagram:
-\begin{equation*}
-	\includegraphics[width=0.3\linewidth]{pics/KG-1.png}
-\end{equation*}
-This correspond to 
-\begin{equation}
-	i\tilde{\Delta}^{(2)}(k)
-	= i\tilde\Delta_0(k)\left[i\Sigma^{(2)}(k^2)\right]i\tilde\Delta_0(k), 
-	\label{eq:rkg-self-energy}
+To second order, we consider the one-loop correction to the propagator: 
+\begin{equation}\label{eq:rkg-self-energy}
+\begin{aligned}
+	i\tilde{\Delta}^{(2)}(k) 
+	&= \includegraphics[align=c, width=0.2\linewidth]{pics/KG-1.png} \\
+	&= i\tilde\Delta_0(k)\left[i\Sigma^{(2)}(k^2)\right]i\tilde\Delta_0(k),
+\end{aligned}
 \end{equation}
 where the self energy term to the second order $i\Pi^{(2)}(k)$ is defined as:
 \begin{equation}
@@ -503,14 +504,13 @@ The self energy under $\overline{\mathrm{MS}}$ scheme will depend on the the mas
 
 
 \subsection{Vertex Correction}
-Now consider the simplest one-loop correction to the vertex function from the diagram:
-\begin{equation*}
-	\includegraphics[width=0.23\linewidth]{pics/KG-2.png}
-\end{equation*}
-The vertex function corresponding to such correction, together with the counter term, can be expressed as:
+Now consider the simplest one-loop correction to the vertex function (together with the counter term):
 \begin{equation}
+\begin{aligned}
 	i V_3^{(3)}(k_{1}, k_{2}, k_{3})
-	= (ig)^3i^3 \int \frac{d^{a} q}{(2 \pi)^{d}} \tilde{\Delta}(q-k_{1}) \tilde{\Delta}(q+k_{2}) \tilde{\Delta}(q) + i Cg,
+	&= \includegraphics[align=c, width=0.4\linewidth]{pics/KG-2.png} \\
+	&= (ig)^3i^3 \int \frac{d^{a} q}{(2 \pi)^{d}} \tilde{\Delta}(q-k_{1}) \tilde{\Delta}(q+k_{2}) \tilde{\Delta}(q) + i Cg,
+\end{aligned}
 \end{equation}
 Using the Feynman parameter, the integrant is
 \begin{equation*}
@@ -726,15 +726,14 @@ In the following we investigate the loop correction to the mass and the coupling
 
 \subsection{One-loop Correction}
 \subsubsection*{Self-energy}
-Following the same procedure, the one-loop self-energy correction is
+Following the same procedure, the one-loop self-energy correction is (with counter terms):
 \begin{equation}
-	i\Sigma(k^2) = -\frac{g\tilde{\mu}^\epsilon}{2}\int \frac{d^d q}{(2\pi)^d} \frac{1}{q^2-m^2} + i(Ak^2-Bm^2).
+\begin{aligned}
+	i\Sigma(k^2) 
+	&= \includegraphics[align=c, width=0.4\linewidth]{pics/KG-3.png} \\
+	&= -\frac{g\tilde{\mu}^\epsilon}{2}\int \frac{d^d q}{(2\pi)^d} \frac{1}{q^2-m^2} + i(Ak^2-Bm^2).
+\end{aligned}
 \end{equation}
-The first term comes from the diagram
-\begin{equation*}
-	\includegraphics[width=0.2\linewidth]{pics/KG-3.png}
-\end{equation*}
-and the second term comes from the counter terms. 
 After the Wick rotation, 
 \begin{equation}
 	\Sigma(k^2) = -\frac{g\tilde{\mu}^\epsilon}{2}\frac{\Omega_d}{(2\pi)^d} \int \frac{q^{d-1} dq}{q^2+m^2} + (Ak^2-Bm^2).
@@ -764,13 +763,13 @@ The result is
 
 \subsubsection*{Vertex Correction}
 Now consider the vertex correction.
-To the lowest order the diagram is
-\begin{equation*}
-	\includegraphics[width=0.2\linewidth]{pics/KG-4.png}
-\end{equation*}
-Together with the counter term, the vertex function is
+The vertex correction to the lowest order (with the counter term) is
 \begin{equation}
-	iV_4^{(2)}(k_1,k_2,k_3,k_4) = \frac{g^2}{2} \left[iF(s)+iF(t)+iF(u)\right] -iCg,
+\begin{aligned}
+	iV_4^{(2)}(k_1,k_2,k_3,k_4) 
+	&= \includegraphics[align=c, width=0.6\linewidth]{pics/KG-4.png}\\
+	&= \frac{g^2}{2} \left[iF(s)+iF(t)+iF(u)\right] -iCg,
+\end{aligned}
 \end{equation}
 where
 \begin{equation}
