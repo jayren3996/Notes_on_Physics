@@ -1,185 +1,57 @@
 \chapter{Scalar Field Theory}
 
-\section{Interaction and Scattering}
+In this chapter, we study the interacting scalar field theory
+\begin{equation}
+	\mathcal L = \mathcal L_0 + \mathcal L_{\mathrm{int}}, \quad
+	\mathcal L_0 =\frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2.
+\end{equation}
+We will study the case where the interaction is $\frac{g}{3!}\phi^3$ or $\frac{g}{4!}\phi^4$.
+To make the coupling constant marginal, as it is the physically interesting case, we assume the space-time dimension is 6 and 4 respectively.
 
+
+
+
+\section{Turning on Interaction}
 \subsection{Lehmann Representation}
 The interacting Hamiltonian do not conserve particle number, and the ground state $|\Omega\rangle$ is no longer the vacuum $|0\rangle$.
 Consider the Green's function
-\begin{equation*}
+\begin{equation}
 	iG(x_1-x_2) = \langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle 
-\end{equation*}
+\end{equation}
 We can insert a complete basis 
-\begin{equation*}
-	1 = |\Omega\rangle\langle\Omega| + \sum_\lambda\int\frac{d^3 k}{(2\pi)^3}\frac{1}{2\omega_k}|\lambda_{\vec k}\rangle \langle\lambda_{\vec k}|
-\end{equation*}
+\begin{equation}
+	1 = |\Omega\rangle\langle\Omega| + \sum_\lambda\int\frac{d^3 k}{(2\pi)^3}\frac{1}{2\omega_k}|\lambda_{\bm k}\rangle \langle\lambda_{\bm k}|
+\end{equation}
 into the correlation function,\footnote{Here we assume $\langle\Omega|\phi(x)|\Omega\rangle=0$ unless there is spontaneously symmetry breaking happening.} the Green's function takes the form (take K-G field as the example):
 \begin{equation*}
 	iG(x_1-x_2) = \sum_\lambda \int\frac{d^3 k}{(2\pi)^3}
 	\left[\theta(t_1-t_2)\langle\Omega|\phi(x_1)|\lambda_{\vec k}\rangle\langle\lambda_{\vec k}|\phi(x_2)|\Omega\rangle + (t_1\leftrightarrow t_2, x_1 \leftrightarrow x_2)\right].
 \end{equation*}
 Note that
-\begin{equation*}
-	\langle\lambda_{\vec k}|\phi(x)|\Omega\rangle 
-	= \langle\lambda_{\vec k}|e^{iP\cdot x}\phi(0) e^{-iP\cdot x}|\Omega\rangle
-	= e^{ik\cdot x} \left.\langle\lambda_{0}|\phi(0)|\Omega\rangle\right|_{k^0=\omega_{\vec k}}.
-\end{equation*}
+\begin{equation}
+	\langle\lambda_{\bm k}|\phi(x)|\Omega\rangle 
+	= \langle\lambda_{\bm k}|e^{iP\cdot x}\phi(0) e^{-iP\cdot x}|\Omega\rangle
+	= e^{ik\cdot x} \left.\langle\lambda_{0}|\phi(0)|\Omega\rangle\right|_{k^0=\omega_{\bm k}}.
+\end{equation}
 Following the same procedure as we do for the free field theory, 
 \begin{equation}
 	G(x_1-x_2) = \int_0^\infty \frac{dM^2}{2\pi} \rho(M^2) G_0(x_1-x_2;M^2),
 \end{equation}
 where the spectral function $\rho(M^2)$ is
-\begin{equation*}
+\begin{equation}
 	\rho(M^2) = \sum_\lambda(2\pi)\delta(M^2-m_\lambda^2)|\langle\Omega|\phi(0)|\lambda_0\rangle|^2.
-\end{equation*}
+\end{equation}
 In particle, near the one-particle state the Green's function looks like:
-\begin{equation*}
+\begin{equation}
 	i\tilde G(k) = \frac{iZ_{\phi}}{k^2-m^2+i\epsilon} + \mathrm{regular\ terms}.
-\end{equation*}
+\end{equation}
 If we renormalize the field strength 
-\begin{equation*}
+\begin{equation}
 	\phi_R(x) = \frac{1}{\sqrt{Z_\phi}}\phi_0(x),
-\end{equation*}
+\end{equation}
 the Green's function then has exactly the same form as free theory.
 This normalization factor $Z_\phi$ is exactly what we obtained in the loop correction to the propagator.
 
-
-
-\subsection{Scattering Amplitude}
-
-Consider the scattering process in the interaction picture,
-\begin{equation}
-\begin{aligned}
-	\langle f| e^{-iHt} |i\rangle &= \langle f| T \exp \left(-i\int dt V_{\mathrm{int}}(t) \right)|i\rangle \\
-	&= \langle f| T \exp \left(i\int d^d x \mathcal{L}_{\mathrm{int}}(t) \right)|i\rangle.
-\end{aligned}
-\end{equation}
-The S-matrix is defined as
-\begin{equation}
-	\langle f|S|i\rangle 
-	= \langle f|\mathcal{T} \exp \left(i\int d^d x \mathcal{L}_{\mathrm{int}}(t) \right)|i\rangle 
-	= 1 + i \langle f|\mathcal{T}|i\rangle .
-\end{equation}
-Because of the additional momentum conservation,
-\begin{equation}
-	\langle f|\mathcal{T}|i\rangle = (2\pi)^d \delta^d\left(\sum p\right) \mathcal M_{fi}.
-\end{equation}
-
-
-\subsection{LSZ for Klein-Gordon Field}
-For free theory, the particle annihilation operator is
-\begin{equation}
-\begin{aligned}
-	\sqrt{2\omega_k} a_k &= i \int d^3 x\ e^{ik\cdot x}(-i\omega_k+\partial_t)\phi(x), \\
-	\sqrt{2\omega_k} a^\dagger_k &= -i \int d^3 x\ e^{-ik\cdot x}(i\omega_k+\partial_t)\phi(x).
-\end{aligned}
-\end{equation}
-When interaction is turned on, the field operator $\phi(x)$ is renormalized as
-\begin{equation*}
-	\phi(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{in}}(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{out}}(x).
-\end{equation*}
-In this way, we have
-\begin{equation*}
-\begin{aligned}
-	\sqrt{2\omega_k}(a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger)
-	&= i Z_\phi^{-1/2} \int dt \partial_t \left(\int d^{3}x\ e^{-ikx}(i\omega_k+\partial_t)\phi_0(x)\right) \\
-	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}(\omega_k^2+\partial_t^2)\phi_0(x) \\
-	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}\partial_t^2\phi_0(x) + \phi_0(x)(-\nabla^2+m^2)e^{-i k\cdot x} \\
-	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}(\partial^2+m^2)\phi_0(x)
-\end{aligned}
-\end{equation*}
-The initial and final states are:
-\begin{equation}
-\begin{aligned}
-	|k_1, \cdots, k_m; \mathrm{in}\rangle &= \left[\prod_{j=1}^m \sqrt{2\omega_{k_j}} a^\dagger_{\mathrm{in}}(k_j)\right] |0\rangle, \\
-	|p_1, \cdots, p_n, \mathrm{out}\rangle &= \left[\prod_{j=1}^n \sqrt{2\omega_{p_j}}a^\dagger_{\mathrm{out}}(p_j)\right] |0\rangle.
-\end{aligned}
-\end{equation}
-The S-matrix is
-\begin{equation*}
-\begin{aligned}
-	S_{fi} &= \langle p_1, \cdots, p_n;\mathrm{out}| S |k_1, \cdots, k_m; \mathrm{in}\rangle \\
-	&= \frac{\langle 0|T 
-		\left(\prod \sqrt{2\omega_{p_j}} a_{p_j;\mathrm{out}} \right)
-		\int d^4 x \exp(i\mathcal{L}_{\mathrm{int}})
-		\left(\prod \sqrt{2\omega_{k_j}} a^\dagger_{k_j;\mathrm{in}} \right)|0\rangle}
-		{\langle 0|T\int d^4 x \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
-\end{aligned}
-\end{equation*}
-Since the scattering process correspond to the connected diagram, meaning that the initial and final state has distinct momentum particles.
-We are free to make the substitution
-\begin{equation*}
-	a^\dagger_{\mathrm{in}} \rightarrow (a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger),\ 
-	a_{\mathrm{out}} \rightarrow -(a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger)^\dagger.
-\end{equation*}
-In this way, the S-matrix is
-\begin{equation*}
-\begin{aligned}
-	& \langle p_1, \cdots, p_n| S |k_1, \cdots, k_m\rangle  \\
-	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i}\frac{-\partial^2-m_i^2}{i\sqrt{Z_\phi}}\right]
-	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}\frac{-\partial^2-m_j^2}{i\sqrt{Z_\phi}}\right] \\
-	& \times \frac{\langle 0| T \phi_0(x_1)\cdots \phi_0(x_{m+n}) \int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
-		{\langle 0|T\int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle} \\
-	=& \prod_{i=1}^{m}\left[\frac{p_i^2-m_i^2}{i\sqrt{Z_\phi}}\right]
-		\prod_{j=m+1}^{m+n}\left[\frac{k_j^2-m_j^2}{i\sqrt{Z_\phi}}\right]
-		\tilde{G}(-p_1,\cdots,-p_n,k_1,\cdots,k_m).
-	\label{eq:K-G-LSZ}
-\end{aligned}
-\end{equation*}
-Note that in the second equality, we move the operator $\partial^2$ out of the time-ordering operator, which will actually create contact terms.
-The contact terms can be shown to have no contribution to the S-matrix.
-Also, the Green function is defined as
-\begin{equation*}
-\begin{aligned}
-	G(x_1,\cdots,x_{m+n}) 
-	&\equiv \langle \Omega|T \phi(x_1)\cdots \phi(x_{m+n})|\Omega\rangle \\
-	&= \frac{\langle 0| T \phi_0(x_1)\cdots \phi_0(x_{m+n}) \int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
-		{\langle 0|T\int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}.
-\end{aligned}
-\end{equation*}
-
-The extra factor before the momentum-space Green's function effectively cancel out the external propagator. 
-Thus the LSZ formula (\ref{eq:K-G-LSZ}) means that the S-matrix is the amputated Green's function.
-
-
-\begin{framedrmk}[Contact Terms]
-We first consider the time-ordered two-point function:
-\begin{equation*}
-	\langle 0|T\phi(x_1)\phi(x_2)|0\rangle
-	= \theta(t_1-t_2)\langle 0|\phi(x_1)\phi(x_2)|0\rangle -
-	\theta(t_2-t_1)\langle 0|\phi(x_2)\phi(x_1)|0\rangle.
-\end{equation*}	
-Take time derivative on both side:
-\begin{equation*}
-\begin{aligned}
-	\partial_{t_1} \langle 0|T\phi(x_1)\phi(x_2)|0\rangle
-	&= \langle 0|T\partial_{t_1}\phi(x_1)\phi(x_2)|0\rangle +
-	\delta(t_1-t_2)\langle 0|[\phi(x_1),\phi(x_2)]|0\rangle \\
-	&= \langle 0|T\partial_{t_1}\phi(x_1)\phi(x_2)|0\rangle.
-\end{aligned}
-\end{equation*}
-The second equality follows from the fact that $x_1,x_2$ is equal-time.
-Take the the time derivative once more:
-\begin{equation*}
-	\partial^2_{t_1} \langle 0|T\phi(x_1)\phi(x_2)|0\rangle
-	= \langle 0|T\partial^2_{t_1}\phi(x_1)\phi(x_2)|0\rangle +
-	\delta(t_1-t_2)\langle 0|[\partial_{t_1}\phi(x_1),\phi(x_2)]|0\rangle.
-\end{equation*}
-The second term on the right hand side is the contact term.
-For free theory, $\partial_{t_1}\phi(x_1)$ is the canonical momentum, meaning that
-\begin{equation*}
-	[\phi(\vec x_1, t),\partial_{t}\phi(\vec x_1,t)] = i \hbar \delta^{3}(\vec x_1-\vec x_2).
-\end{equation*}
-In general, for n-point correlation,
-\begin{equation*}
-\begin{aligned}
-	 \partial_{t_1}^2 \langle 0|T\phi_{x_1}\cdots\phi_{x_n}|0\rangle 
-	=& \langle 0|T\partial_{t_1}^2\phi_{x_1}\cdots\phi_{x_n}|0\rangle \\
-	 &-i\hbar \sum_j \delta^4(x_1-x_j)\langle 0|T\phi_{x_2}\cdots\cancel{\phi_{x_j}}\cdots\phi_{x_n}|0\rangle.
-\end{aligned}
-\end{equation*}
-In the LSZ formula, the contact term do not have any singularity.
-When the external legs approach to momentum shell, these regular terms vanishes, so the contact will not contribute to the S-matrix.
-\end{framedrmk}
 
 
 \subsection{Perturbation Theory}
@@ -188,10 +60,9 @@ For interaction theory, the partition function can be formally expressed as:
 	Z[J] = \exp\left(i\int d^dx \mathcal{L}_{\mathrm{int}}\left[\frac{\delta}{i\delta J(x)}\right]\right)Z_0[J].
 \end{equation}
 The expectation values for a generic operator of the form $O(\phi)$ can be evaluated by the true partition function
-\begin{equation}
+\begin{equation}\label{eq:ptb-exp-val}
 	\langle O(\phi)\rangle
 	= \frac{1}{Z[0]} \left. O\left[\frac{\delta}{i\delta J(x)}\right] Z[J] \right|_{J=0}.
-	\label{eq:ptb-exp-val}
 \end{equation}
 
 The expression (\ref{eq:ptb-exp-val}) can be expanded order by order using the Feynman diagram. 
@@ -228,17 +99,15 @@ Consider the two-point connected correlation (propagator):
 \end{aligned}
 \end{equation}
 where we have used the fact that
-\begin{equation*}
+\begin{equation}
 	\frac{\delta Z^n[J]}{\delta J(x_1) \cdots \delta J(x_n)} = 0,\ \forall n = 1\ \mathrm{mod}\ 2.
-\end{equation*}
+\end{equation}
 The result is the same as the original definition.
 
-
-
 Further, we can consider the four-point connected correlation:
-\begin{equation*}
+\begin{equation}
 	iV_4 \equiv \langle \mathcal{T}\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\rangle_c
-\end{equation*}
+\end{equation}
 Following the same procedure,
 \begin{equation}
 \begin{aligned}
@@ -289,7 +158,7 @@ where
 \begin{equation*}
 	A=Z_\phi-1, B=Z_m-1, C=Z_g-1.
 \end{equation*}
-The counter term for the the free field gives additional corrrection
+The counter term for the the free field gives additional correction
 \begin{equation}
 \begin{aligned}
 	i\tilde{\Delta}^{(\mathrm{ct})}(k)
@@ -315,7 +184,6 @@ where the self energy term to the second order $i\Pi^{(2)}(k)$ is defined as:
 	\equiv \frac{g^2}{2} \int \frac{d^dq}{(2\pi)^d} \tilde{\Delta}_0(q)\tilde{\Delta}_0(k-q) + (Ak^2-Bm^2).
 \end{equation}
 
-\begin{framedrmk}[Symmetry Factor]
 The coefficient $g^2/2$ comes from the symmetry factor in the diagram. We can also check the coefficient explicitly, by considering the expansion to the second order (we denote $\delta/\delta J(x_i)$ as $\delta_i$):
 \begin{equation*}
 \begin{aligned}
@@ -332,8 +200,8 @@ Now consider the combinatorial factor, which comes from the exchange of $\phi(x_
 	(2!)^4\times(3!)^2\times(4\times 3)\times2.
 \end{equation*}
 Those two factors produce a $-g^2/2$ coefficient.
-Note that in the self energy expression (\ref{eq:rkg-self-energy}), we put a $i$ factor in front of each propagator, which absorbs the minus sign.
-\end{framedrmk}
+Note that in the self energy expressio, we put a $i$ factor in front of each propagator, which absorbs the minus sign.
+
 
 Once we obtain the self energy, the one-loop corrected propagator has the form:
 \begin{equation}

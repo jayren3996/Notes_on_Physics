@@ -32,116 +32,18 @@ where we have define the covariant derivative as:
 \end{equation}
 
 
-\section{Perturbation Theory}
-
-
-\subsection{LSZ for Dirac Field}
-Use the field expansion
-\begin{equation*}
-\begin{aligned}
-	\psi(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
-		\sum_{s}\left(a_{\mathbf{p}}^{s} u^{s}(p) e^{-i p \cdot x}
-		+b_{\mathbf{p}}^{s \dagger} v^{s}(p) e^{i p \cdot x}\right), \\
-	\bar{\psi}(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
-		\sum_{s}\left(b_{\mathbf{p}}^{s} \bar{v}^{s}(p) e^{-i p \cdot x}
-		+a_{\mathbf{p}}^{s \dagger} \bar{u}^{s}(p) e^{i p \cdot x}\right),
-\end{aligned}
-\end{equation*}
-and the orthogonality relation
-\begin{equation*}
-\begin{aligned}
-	u^{r \dagger}(p) u^{s}(p) &= 2 \omega_{\bm p} \delta^{r s}, & 
-	u^{r \dagger}(\bm p,\omega_{\bm p}) v^{s}(-\bm p,\omega_{\bm p}) &= 0,\\
-	v^{r \dagger}(p) v^{s}(p) &= 2\omega_{\bm p} \delta^{r s}, & 
-	v^{r \dagger}(\bm p,\omega_{\bm p}) u^{s}(-\bm p,\omega_{\bm p}) &= 0.
-\end{aligned}
-\end{equation*}
-The spatial Fourier transformation gives:
-\begin{equation*}
-	\int d^3x e^{ip\cdot x}\psi(x) = \frac{1}{\sqrt{2\omega_{\bm p}}}\sum_s a^s_{\bm p}u^s(p) +\frac{1}{\sqrt{2\omega_{\bm p}}}\sum_s b^{s \dagger}_{\bm p} v^s(-\bm p,\omega) e^{2i\omega t}
-\end{equation*}
-Left-multiply on both hand side by $\bar u^{s}(p) \gamma^0$, we then get
-\begin{equation*}
-\begin{aligned}
-	\sqrt{2\omega_{\bm p}}a^{s}_{\bm p} &= \int d^3 x e^{ip\cdot x}\bar u^{s}(p)\gamma^0 \psi(x), \\
-	\sqrt{2\omega_{\bm p}}a^{s \dagger}_{\bm p} &= \int d^3 x e^{-ip\cdot x}\bar\psi(x)\gamma^0 u^{s}(p).
-\end{aligned}
-\end{equation*}
-Similarly, we consider
-\begin{equation*}
-	\int d^3x e^{ip\cdot x}\bar\psi(x) = \frac{1}{\sqrt{2\omega_{\bm p}}}\sum_s b^s_{\bm p}\bar v^s(p) +\frac{1}{\sqrt{2\omega_{\bm p}}}\sum_s a^{s \dagger}_{\bm p} \bar u^s(-\bm p,\omega) e^{2i\omega t}
-\end{equation*}
-Right-multiply on both hand side by $\gamma^0 v^{s}(p)$, we then get
-\begin{equation*}
-\begin{aligned}
-	\sqrt{2\omega_{\bm p}}b^{s}_{\bm p} &= \int d^3 x e^{ip\cdot x}\bar\psi(x)\gamma^0 v^s(p), \\
-	\sqrt{2\omega_{\bm p}}b^{s \dagger}_{\bm p} &= \int d^3 x e^{-ip\cdot x}\bar v^s(p)\gamma^0 \psi(x).
-\end{aligned}
-\end{equation*}
-Following the same strategy as we did for the scalar field, we consider
-\begin{equation*}
-\begin{aligned}
-	\sqrt{2\omega_{\bm p}}a^{s}_{\bm p;\mathrm{out}} - 
-	\sqrt{2\omega_{\bm p}}a^{s}_{\bm p;\mathrm{in}} 
-	&= \int dt\ \partial_t \sqrt{2\omega_{\bm p}}a^s_{\bm p} \\
-	&= \int dt\ \int d^3x e^{ip\cdot x}\bar u(p)(\gamma^0 \partial_t +i\gamma^0 p^0)\psi(x) \\
-	&= \int d^4x e^{ip\cdot x}\bar u(p)(\gamma^0 \partial_t +i\gamma^i p^i +i m)\psi(x) \\ 
-	&= i\int d^4x e^{ip\cdot x}\bar u(p)(-i\cancel\partial + m)\psi(x)
-\end{aligned}
-\end{equation*}
-where we have used the fact $\bar u(p) (\cancel p - m) = 0$.
-Take hermitian conjugate,
-\begin{equation*}
-\begin{aligned}
-	\sqrt{2\omega_{\bm p}}a^{s \dagger}_{\bm p;\mathrm{in}} - 
-	\sqrt{2\omega_{\bm p}}a^{s \dagger}_{\bm p;\mathrm{out}} 
-	&= i\int d^4x e^{-ip\cdot x}\bar\psi(x)\gamma^0(-i\cancel\partial + m)^\dagger \gamma^0 u(p) \\
-	&= i\int d^4x e^{-ip\cdot x}\bar\psi(x)(i \overleftarrow{\cancel\partial} + m) u(p)
-\end{aligned}
-\end{equation*}
-Similarly, using the fact $(\cancel p + m)v(p) =0$,
-\begin{equation*}
-\begin{aligned}
-	\sqrt{2\omega_{\bm p}}b^{s}_{\bm p;\mathrm{out}} - 
-	\sqrt{2\omega_{\bm p}}b^{s}_{\bm p;\mathrm{in}} 
-	&= \int d^4x e^{ip\cdot x}\bar\psi(x)(\gamma^0 \overleftarrow{\partial_t} +i\gamma^0 p^0)v(p) \\
-	&= \int d^4x e^{ip\cdot x}\bar\psi(x)(\gamma^0 \overleftarrow{\partial_t} +i\gamma^i p^i -i m)v(p) \\ 
-	&= -i\int d^4x e^{ip\cdot x}\bar\psi(x)(i\overleftarrow{\cancel\partial} + m)v(p).
-\end{aligned}
-\end{equation*}
-Again, take the hermitian conjugate,
-\begin{equation*}
-\begin{aligned}
-	\sqrt{2\omega_{\bm p}}b^{s \dagger}_{\bm p;\mathrm{in}} - 
-	\sqrt{2\omega_{\bm p}}b^{s \dagger}_{\bm p;\mathrm{out}} 
-	&= -i\int d^4x e^{ip\cdot x}\bar v(p)\gamma^0(i\overleftarrow{\cancel\partial} + m)^\dagger \gamma^0 \psi(x) \\
-	&= -i\int d^4x e^{-ip\cdot x}\bar v(p)(-i \cancel\partial + m) \psi(x)
-\end{aligned}
-\end{equation*}
-The same strategy gives the LSZ reduction formula for Dirac field.
-Consider the S-matrix for particles:
-\begin{equation*}
-\begin{aligned}
-	& \langle p_1, \cdots, p_n| S |k_1, \cdots, k_m\rangle  \\
-	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i} u^{s_1}(p_i)\frac{i\cancel\partial-m_i}{i\sqrt{Z_\phi}}\right] iG(x)
-	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}\frac{-i\overleftarrow{\cancel\partial}-m_j}{i\sqrt{Z_\phi}}u^{s_j}(k_j)\right] \\
-	=& \prod_{i=1}^{m}\left[\frac{\cancel p-m_i}{i\sqrt{Z_\phi}}u^{s_i}(p_i)\right]
-		i\tilde{G}(p_1,\cdots,p_n,-k_1,\cdots,-k_m)
-		\prod_{j=m+1}^{m+n}\left[u^{s_j}(k_j)\frac{\cancel k-m_j}{i\sqrt{Z_\phi}}\right].
-\end{aligned}
-\end{equation*}
-
-
-
-
-\subsection{Perturbative Corrections}
+\section{Perturbative Renormalization}
 As with the scalar field, 
 \begin{equation}
 	Z[\bar\eta,\eta,J] = \exp\left\{i\int d^dx \mathcal{L}_{\mathrm{int}}\left[\frac{\delta}{i\delta J},\frac{\delta}{i\delta \eta},\frac{i\delta}{\delta \bar\eta}\right]\right\} Z_0[\bar\eta,\eta,J].
 \end{equation}
 We use the dimensional regularization by default. 
 Note that $\psi$ has the mass dimension $[\frac{d-1}{2}]$, $A^\mu$ had the mass dimension $[\frac{d}{2}-1]$, and $e$ has the mass dimension $[2-\frac{d}{2}]$.
-When $d=4-\epsilon$, we replace $e$ with $e \tilde{\mu}^{\epsilon/2}$, so that to make the coupling constant $e$ dimensionless.
+When $d=4-\epsilon$, we make the replacement
+\begin{equation}
+	e \rightarrow e \tilde{\mu}^{\epsilon/2},
+\end{equation}
+so that to make the coupling constant $e$ dimensionless.
 
 The renormalized Lagrangian is
 \begin{equation}
@@ -161,130 +63,6 @@ The we define the coefficients
 	\delta_e = Z_e - 1.
 \end{equation}
 The counter term also contribute to the perturbative expansion like the interactions.
-
-\subsubsection{One-loop Correction to Electron Propagator}
-
-Consider the diagram
-\begin{equation*}
-	\includegraphics[width=0.3\linewidth]{pics/QED-1.png}
-\end{equation*}
-This contains 3 electron propagator, 1 photon propagator, and 2 vertices.
-The coefficient is (omit all the integration and summation for simplicity):
-\begin{equation*}
-	iD_F^{(2)}(p) \sim \frac{\delta^2}{\delta\bar\eta \delta\eta}\frac{1}{2!}
-	\left(\frac{-ie\gamma^\mu_{\alpha\beta}\delta^3}{i\delta J^\mu \delta\eta_{\alpha} \delta\bar\eta_{\beta}}\right)^2 
-	\frac{1}{3!}\left(-i \bar\eta_{\alpha} D_F^{\alpha\beta} \eta_{\beta} \right)^3 
-	\left(-\frac{i}{2} J^\mu\Pi_{\mu\nu}J^{\nu} \right).
-\end{equation*}
-First consider the scalar coefficient. 
-Since there is no additional symmetry, the abstract value is $e^2$.
-There is an additional sign factor by the proper order of the fermion operators:
-\begin{equation*}
-	\frac{\delta^2}{\delta\bar\eta_f \delta\eta_i} \frac{\delta^2}{\delta\eta_1 \delta\bar\eta_1} \frac{\delta^2}{\delta\eta_2 \delta\bar\eta_2}
-	= - \frac{\delta}{\delta \eta_i}\frac{\delta^2}{\delta\bar\eta_1 \delta\eta_1}\frac{\delta^2}{\delta\bar\eta_2 \delta\eta_2}\frac{\delta}{\delta \bar\eta_f}.
-\end{equation*}
-
-Then consider the tensor contraction, 
-\begin{equation*}
-	\Pi_{\mu\nu} D_F^{\alpha\lambda}\gamma^\mu_{\lambda\rho} D_F^{\rho\tau} \gamma^\nu_{\tau\sigma} D_F^{\sigma\beta}.
-\end{equation*}
-
-The total amplitude is
-\begin{equation*}
-\begin{aligned}
-	iD_F^{(2)}(p)
-	&= -e^2\int\frac{d^4 k}{(2\pi)^4} \Pi_{\mu\nu}(p-k) \left[D_F(p) \gamma^\mu D_F(k) \gamma^\nu D_F(p)\right]_{\alpha\beta} \\
-	&= iD_F(p) i\Sigma(p^2) iD_F(p),
-\end{aligned}
-\end{equation*}
-where $i\Sigma(p^2)$ is the self energy:
-\begin{equation}
-	i\Sigma(p^2)
-	= e^2\int\frac{d^4 k}{(2\pi)^4} \Pi_{\mu\nu}(p-k) \gamma^\mu D_F(k) \gamma^\nu ,
-	\label{eq:QED-ele-loop-prop}
-\end{equation}
-
-
-
-\subsubsection{One-loop Correction to Photon Propagator}
-Consider the diagram
-\begin{equation*}
-	\includegraphics[width=0.3\linewidth]{pics/QED-2.png}
-\end{equation*}
-There is 2 electron propagator, 2 photon propagator, and 2 vertices.
-Consider the perturbative expansion:
-\begin{equation*}
-	i\Pi^{(2)}(p) \sim \frac{\delta^2}{i\delta J i\delta J}\frac{1}{2!}
-	\left(\frac{-e\gamma^\mu_{\alpha\beta}\delta^3}{\delta J^\mu \delta\eta_{\alpha} \delta\bar\eta_{\beta}}\right)^2 
-	\frac{1}{2!}\left(-i \bar\eta_{\alpha} D_F^{\alpha\beta} \eta_{\beta} \right)^2 
-	\frac{1}{2!}\left(\frac{i}{2} J^\mu \Pi_{\mu\nu} J^{\nu} \right)^2.
-\end{equation*}
-The diagram has no symmetry factor, but with a $-1$ sign, which is canceled out by the operator reordering:
-\begin{equation}
-	\bar\eta_\beta D_F^{\beta\tau} \eta_\tau \bar\eta_\sigma D_F^{\sigma\alpha} \eta_\alpha
-	= -\eta_\alpha\bar\eta_\beta D_F^{\beta\tau} \eta_\tau \bar\eta_\sigma D_F^{\sigma\alpha}.
-\end{equation}
-The overall value is $e^2$.
- 
-Then consider the tensor contraction, 
-\begin{equation*}
-\begin{aligned}
-	-i\Pi_{(2)}^{\mu\nu} 
-	&\sim e^2 \Pi_{\mu\rho} \gamma^\rho_{\alpha\beta} D_F^{\beta\tau} \gamma^\eta_{\tau\sigma} D_F^{\sigma\alpha} \Pi_{\eta\nu}
-	&\sim i\Pi_{\mu\rho} i\Sigma^{\rho\sigma} i\Pi_{\sigma\nu}.
-\end{aligned}
-\end{equation*}
-
-The photon self-energy is
-\begin{equation}
-	i \Sigma^{\mu\nu}(p^2)
-	= -e^2 \int\frac{d^4 k}{(2\pi)^4}
-	\mathrm{Tr}\left[\gamma^\mu D_F(k-p) \gamma^\nu D_F(k) \right].
-	\label{eq:QED-photon-loop-prop}
-\end{equation}
-
-
-
-
-\subsubsection{One-loop Correction to Vertex}
-Consider the diagram
-\begin{equation*}
-	\includegraphics[width=0.3\linewidth]{pics/QED-3.png}
-\end{equation*}
-There is 4 electron propagator, 2 photon propagator, and 3 vertices.
-Consider the perturbative expansion:
-\begin{equation*}
-	\frac{\delta^3}{i\delta J \delta\bar\eta \delta\eta}\frac{1}{2!}
-	\left(\frac{-e\gamma^\mu_{\alpha\beta}\delta^3}{\delta J^\mu \delta\eta_{\alpha} \delta\bar\eta_{\beta}}\right)^3 
-	\frac{1}{2!}\left(-i \bar\eta_{\alpha} D_F^{\alpha\beta} \eta_{\beta} \right)^4 
-	\frac{1}{2!}\left(-\frac{i}{2} J^\mu \Pi_{\mu\nu} J^{\nu} \right)^2.
-\end{equation*}
-There is not symmetry factor, and an additional $-i$ factor. 
-The total coefficient is $-ie^3$. 
-
-Then consider the tensor contraction
-\begin{equation*}
-	D_F^{\alpha\gamma} \gamma^\nu_{\gamma\rho} D_F^{\rho\sigma} \gamma^\zeta_{\sigma\tau} D_F^{\tau\eta} \gamma^\lambda_{\eta\xi} D_F^{\xi\beta} \Pi_{\nu\lambda} \Pi_{\mu\zeta}.
-\end{equation*}
-
-The vertex correction is:
-\begin{equation*}
-	iV_3(q,p,p') = [iD_F(p)][iD_F(p')][i\Pi^{\mu\nu}(q)][-ie\Gamma^\nu(q,p,p')] 
-\end{equation*}
-where
-\begin{equation}
-	i\Gamma^\mu(q,p,p')
-	= -e^2 \int\frac{d^4 k}{(2\pi)^4} 
-	\Pi_{\nu\lambda}(p-k) 
-	\gamma^\nu D_F(k') \gamma^\mu D_F(k) \gamma^\lambda.
-	\label{eq:QED-loop-vertex}
-\end{equation}
-
-
-
-
-\subsubsection{Counter Terms}
-
 The counter terms for the fermion propagator come from the diagram expression:
 \begin{equation}
 \begin{aligned}
@@ -297,45 +75,55 @@ The counter terms for the fermion propagator come from the diagram expression:
 \end{equation}
 The contribution to the electron self energy is
 \begin{equation}
-	\delta_{\psi}\cancel{k}-\delta_m m_R.
+	i\Sigma(p) = \delta_{\psi}\cancel{p}-\delta_m m_R.
 \end{equation}
 Similarly, the counter term contribution to the photon self energy is
 \begin{equation}
-	\includegraphics[align=c, width=0.25\linewidth]{pics/QED-ct-2.png}
-	= \delta_A [-p^2 g^{\mu\nu} + (1-\xi)p^\mu p^\nu].
+\begin{aligned}
+	i \Sigma^{\mu\nu}(k) 
+	&= \includegraphics[align=c,width=0.25\linewidth]{pics/QED-ct-2.png} \\
+	&= \delta_A [-p^2 g^{\mu\nu} + (1-\xi)p^\mu p^\nu].
+\end{aligned}
 \end{equation}
 And the counter term contribution to the QED vertex is
 \begin{equation}
-	\includegraphics[align=c, width=0.2\linewidth]{pics/QED-ct-3.png}
-	= \delta_e \gamma^\mu.
+	i\Gamma^{\mu}_{\alpha\beta} 
+	= \includegraphics[align=c, width=0.2\linewidth]{pics/QED-ct-3.png} 
+	= \delta_e \gamma^{\mu}_{\alpha\beta}.
 \end{equation}
 
 
 
+\subsection{One-loop Correction to Electron Propagator}
 
-\section{One-loop Correction}
-In this section, we consider the QED in ($d=4-\epsilon$) dimensional space-time.
-\subsection{Electron Propagator}
-Consider the one-loop correction to the electron propagator, where the self energy (\ref{eq:QED-ele-loop-prop}) is
+Consider the one-loop correction to the particle propagator:
+\begin{equation}
+	\includegraphics[width=0.2\linewidth,align=c]{pics/QED-1.png} \simeq (-ie)^2\wick{
+		\c1{A}_\mu \bar\psi_\alpha \gamma^\mu_{\alpha\gamma} \c2{\psi}_\gamma
+		\c1{A}_\nu \c2{\bar\psi}_\tau \gamma^\nu_{\tau\beta} \psi_\beta}
+	\equiv i\bar\psi_\alpha \Sigma^{\alpha\beta}(p) \psi_\beta.
+\end{equation}
+The self energy is
 \begin{equation}
 \begin{aligned}
-	i\Sigma(p^2)
-	&= e^2\tilde{\mu}^{\epsilon}\int\frac{d^d k}{(2\pi)^d} \Pi_{\mu\nu}(p-k) \left[\gamma^\mu D_F(k) \gamma^\nu \right]_{\alpha\beta} \\
-	&= -e^2\tilde{\mu}^{\epsilon}\int\frac{d^d k}{(2\pi)^d}\frac{\gamma^\mu(\cancel{k}+m)\gamma_\mu}{(p-k)^2(k^2-m^2)}.
+	i\Sigma_{\alpha\beta}(p)
+	&= e^2\int\frac{d^4 k}{(2\pi)^4} \Pi_{\mu\nu}(p-k) \left[\gamma^\mu D_F(k) \gamma^\nu\right]_{\alpha\beta} \\
+	&= -e^2\int\frac{d^d k}{(2\pi)^d}\frac{\gamma^\mu(\cancel{k}+m)\gamma_\mu}{(p-k)^2(k^2-m^2)}.
 \end{aligned}
 \end{equation}
-The nominator can be simplified using the \texttt{FeynCalc} Package:
-\begin{lstlisting}[style=mathematicaFrameTB]
-(*load FeynCalc Package*)
-<< FeynCalc`
-
-(*simplify the gamma expression*)
-Contract[GA[\[Mu]].(GS[k]+m).GA[\[Mu]]]//DiracSimplify	
-\end{lstlisting}
-The result is
-\begin{equation*}
-	4 m-2\cancel{k}.
-\end{equation*}
+The seconded equality comes from the contraction:
+\begin{equation}
+	(-ie)^2\wick{
+		\c1{A}_\mu \bar\psi_\alpha \gamma^\mu_{\alpha\gamma} \c2{\psi}_\gamma
+		\c1{A}_\nu \c2{\bar\psi}_\tau \gamma^\nu_{\tau\beta} \psi_\beta}
+\end{equation}
+The nominator can be simplified using the Dirac matrix identities:
+\begin{equation}
+	\gamma^\mu \gamma_\mu = 4, \
+	\gamma^\mu \gamma^\nu \gamma_\mu = -2 \gamma^\nu
+	\quad \Rightarrow \quad
+	\gamma^\mu(\cancel{k}+m)\gamma_\mu = 4 m-2\cancel{k}.
+\end{equation}
 The denominator can be simplify using the Feynman parameter:
 \begin{equation*}
 	\frac{1}{(p-k)^2(k^2-m^2)} = \int_0^1 \frac{dx}{\left[(k-b)^2-D\right]^2}
@@ -348,15 +136,11 @@ A2=k^2-m^2;
 -b/2
 -c+b^2/(4*a)//Simplify
 \end{lstlisting}
-The result is
-\begin{equation*}
-	b = p x,\ 
-	D = (1-x)(m^2-p^2 x).
-\end{equation*}
-Shift $k \rightarrow k + px$, the self energy becomes:
+The result is $b = p x$ and $D = (1-x)(m^2-p^2 x)$.
+Shift $k \rightarrow k + px$, the self energy becomes (including a $\tilde \mu$ mass scale):
 \begin{equation}
 \begin{aligned}
-	i\Sigma(p^2)
+	i\Sigma(p)
 	&= 2e^2\tilde{\mu}^{\epsilon} 
 		\int_0^1 (x\cancel{p}-2m)dx 
 		\int \frac{d^d k}{(2\pi)^d} 
@@ -366,7 +150,7 @@ Shift $k \rightarrow k + px$, the self energy becomes:
 		\int \frac{k^{d-1} dk}{(k^2+D)^2}.
 \end{aligned}
 \end{equation}
-The regularization procedure
+The regularization procedure is
 \begin{lstlisting}[style=mathematicaFrameTB]
 omg=(2*Pi^(d/2))/(Gamma[d/2]);
 cof=2*e^2*\[Mu]^(4-d)*omg/(2*Pi)^d;
@@ -377,13 +161,13 @@ ans/.map//Simplify
 \end{lstlisting}
 The result is ($\mu^2 = 4\pi \tilde\mu^2 e^{-\gamma_E}$)
 \begin{equation}
-	\Sigma(p^2) = \frac{e_R^2}{8\pi^2}\int_0^1 dx(x\cancel{p}-2m_R)\left[\frac{2}{\epsilon}+\ln\left(\frac{\mu^2}{D}\right)\right].
+	\Sigma(p) = \frac{e_R^2}{8\pi^2}\int_0^1 dx(x\cancel{p}-2m_R)\left[\frac{2}{\epsilon}+\ln\left(\frac{\mu^2}{D}\right)\right].
 \end{equation}
 The infinity comes from
-\begin{equation*}
+\begin{equation}
 	\frac{e_R^2}{4\pi^2\epsilon}\int_0^1 dx(x\cancel{p}-2m_R)
 	= \frac{e_R^2}{8\pi^2\epsilon}\cancel{p} - \frac{e_R^2}{2\pi^2\epsilon}m_R.
-\end{equation*}
+\end{equation}
 Using the $\overline{\mathrm{MS}}$ subtraction scheme, we choose
 \begin{equation}
 	\delta_{\psi} = -\frac{e_R^2}{8\pi^2\epsilon},\ 
@@ -392,7 +176,7 @@ Using the $\overline{\mathrm{MS}}$ subtraction scheme, we choose
 and the self energy is
 \begin{equation}
 \begin{aligned}
-	\Sigma(p^2) 
+	\Sigma(p) 
 	&= \frac{e_R^2}{8\pi^2}\int_0^1 dx(x\cancel{p}-2m_R)\ln\left[\frac{\mu^2}{(1-x)(m_R^2-p^2 x)}\right] \\
 	&= \frac{e_R^2}{8\pi^2}(\cancel{p}-4m_R)\ln\left(\frac{\mu}{m_R}\right)-\int_0^1 dx \ln\left[(1-x)\left(1-\frac{p^2x}{m_R^2}\right)\right].
 \end{aligned}
@@ -400,16 +184,28 @@ and the self energy is
 
 
 
-\subsection{Photon Self-energy}
-Consider the one-loop correction to the photon propagator, where the self energy (\ref{eq:QED-photon-loop-prop}) is
+\subsection{One-loop Correction to Photon Propagator}
+Consider the one-loop correction to the photon propagator:
 \begin{equation}
-	i \Sigma^{\mu\nu}
-	= -e^2\tilde{\mu}^{\epsilon} \int\frac{d^d k}{(2\pi)^d} 
-	\frac{\mathrm{Tr}\left[\gamma^\mu D_F(k-p) \gamma^\nu D_F(k) \right]}{(k^2-m^2)[(p-k)^2-m^2]}.
+	\includegraphics[align=c,width=0.15\linewidth]{pics/QED-2.png} 
+	\simeq (-ie)^2\wick{
+		A_\mu \c2{\bar\psi}_\alpha \gamma^\mu_{\alpha\beta} \c1{\psi}_\beta 
+		A_\nu \c1{\bar\psi}_\gamma \gamma^\nu_{\gamma\tau} \c2{\psi}_\tau
+	} \equiv iA_\mu \Pi^{\mu\nu}(p) A_\nu.
 \end{equation}
-The Dirac trace and Feynman parameter is calculated by
+The self energy is:
+\begin{equation}
+\begin{aligned}
+	i\Sigma^{\mu\nu}(p) 
+	&= -e^2 \int\frac{d^4 k}{(2\pi)^4} \mathrm{Tr}\left[\gamma^\mu D_F(k-p) \gamma^\nu D_F(k) \right] \\
+	&= -e^2 \int\frac{d^4 k}{(2\pi)^4} 
+	\frac{\mathrm{Tr}\left[\gamma^\mu (\cancel k- \cancel p +m) \gamma^\nu (\cancel k +m) \right]}{(k^2-m^2)[(p-k)^2-m^2]}.
+\end{aligned}
+\end{equation}
+The Dirac trace and Feynman parameter is calculated by the following code:
+
 \begin{lstlisting}[style=mathematicaFrameTB]
-(*Dirac trace*)
+(*Dirac trace using FeynCalc`*)
 DiracTrace[GA[\[Mu]].(GS[k-p]+m).GA[\[Nu]].(GS[k]+m)]//DiracSimplify
 
 (*Feynman paramater*)
@@ -419,19 +215,20 @@ A2=(k-p)^2-m^2;
 -b/2
 -c+b^2/(4*a)//Simplify
 \end{lstlisting}
+
 The nominator is
-\begin{equation*}
-	4 \left[g^{\mu\nu} \left(k\cdot p-{k}^2+m^2\right)+ 2k^\mu k^\nu - k^\mu p^\nu - p^\mu k^\nu \right]
-\end{equation*}
+\begin{equation}
+	4 \left[g^{\mu\nu} \left(k\cdot p-{k}^2+m^2\right)+ 2k^\mu k^\nu - k^\mu p^\nu - p^\mu k^\nu \right].
+\end{equation}
 The denominator is:
-\begin{equation*}
+\begin{equation}
 	\frac{1}{(k^2-m^2)[(p-k)^2-m^2]}
-	= \frac{1}{\left\{[k-p(1-x)]^2-[m^2+p^2 x(x-1)]\right\}^2}
-\end{equation*}
+	= \frac{1}{\left\{[k-p(1-x)]^2-[m^2+p^2 x(x-1)]\right\}^2}.
+\end{equation}
 Let $D=m^2-p^2 x(1-x)$, shift $k \rightarrow k + p(1-x)$, and drop all $p^\mu$ linear term,\footnote{The Ward identity requires that the $p^\mu$ term in the propagator do not contribute to any scattering process.} the result is
 \begin{equation}
 	i\Sigma^{\mu \nu}= -4 e^{2}\tilde{\mu}^{\epsilon} \int_0^1 dx
-		\int \frac{d^{d} k}{(2 \pi)^{d}}  \frac{2 k^{\mu} k^{\nu}-g^{\mu \nu}\left[k^{2}-x(1-x) p^{2}-m^{2}\right]}{\left[k^{2}-D\right]^{2}}
+		\int \frac{d^{d} k}{(2 \pi)^{d}}  \frac{2 k^{\mu} k^{\nu}-g^{\mu \nu}\left[k^{2}-x(1-x) p^{2}-m^{2}\right]}{\left[k^{2}-D\right]^{2}}.
 \end{equation}
 The self-energy $i\Sigma^\mu \propto g^{\mu\nu}$, we can make the substitution
 \begin{equation*}
@@ -458,7 +255,7 @@ ans/.map//Simplify
 \end{lstlisting}
 The result is
 \begin{equation}
-	\Sigma^{\mu\nu}(p^2) 
+	\Sigma^{\mu\nu}(p) 
 	= -\frac{e_R^2 p^2 g^{\mu\nu}}{2\pi^2} \int_0^1 dx\ x(1-x)
 	\left[\frac{2}{\epsilon}+\ln\left(\frac{\mu^2}{m_R^2-p^2 x(1-x)}\right)\right]
 \end{equation}
@@ -474,7 +271,7 @@ The counter term coefficient is
 The photon self-energy is then
 \begin{equation}
 \begin{aligned}
-	\Sigma^{\mu\nu}(p^2) 
+	\Sigma^{\mu\nu}(p) 
 	&= -\frac{e_R^2 p^2 g^{\mu\nu}}{2\pi^2} \int_0^1 dx\ x(1-x)
 	\ln\left[\frac{\mu^2}{m_R^2-p^2 x(1-x)}\right] \\
 	&= -\frac{e_R^2 p^2 g^{\mu\nu}}{12\pi^2} \ln\left(\frac{\mu}{m}\right)
@@ -483,12 +280,33 @@ The photon self-energy is then
 \end{equation}
 
 
-\subsection{Vertex Correction}
-Consider the loop correction (\ref{eq:QED-loop-vertex}):
+
+
+
+
+\subsection{One-loop Correction to Vertex}
+Consider the one-loop correction to interaction:
 \begin{equation}
-	i \Gamma^\mu(p,q_1,q_2)
-	= e^2\tilde{\mu}^{\epsilon} \int\frac{d^4 k}{(2\pi)^4} 
-	\frac{\gamma^\nu(\cancel{k}'+m)\gamma^\mu (\cancel{k}+m)\gamma_\nu}{(k^2-m^2)(k'^2-m^2)(p-k)^2}.
+\begin{aligned}
+	\includegraphics[align=c,width=0.23\linewidth]{pics/QED-3.png}
+	& \simeq (-ie)^3\wick{
+		\c1{A}_\nu \bar\psi_\alpha \gamma^\nu_{\alpha\beta} \c2{\psi}_\beta 
+		A_\mu \c2{\bar\psi}_\lambda \gamma^\mu_{\lambda\tau} \c3{\psi}_\tau
+		\c1{A}_\xi \c3{\bar\psi}_\rho \gamma^\nu_{\rho\sigma} \psi_\sigma
+	} \\ &\equiv -ie A_\mu \Gamma^\mu_{\alpha\beta}(q,p,p') \bar\psi_\alpha \psi_\beta.
+\end{aligned}
+\end{equation}
+The vertex function is:
+\begin{equation}
+\begin{aligned}
+	i\Gamma^\mu_{\alpha\beta}(q,p,p')
+	&= -e^2 \int\frac{d^4 k}{(2\pi)^4} 
+	\Pi_{\nu\lambda}(p-k) 
+	[\gamma^\nu D_F(k') \gamma^\mu D_F(k) \gamma^\lambda]_{\alpha\beta} \\
+	&= e^2 \int\frac{d^4 k}{(2\pi)^4} 
+	\frac{[\gamma^\nu(\cancel{k}'+m)\gamma^\mu (\cancel{k}+m)\gamma_\nu]_{\alpha\beta}}{(k^2-m^2)(k'^2-m^2)(p-k)^2}
+\end{aligned}
+	\label{eq:QED-loop-vertex}
 \end{equation}
 Using the following code
 \begin{lstlisting}[style=mathematicaFrameTB]

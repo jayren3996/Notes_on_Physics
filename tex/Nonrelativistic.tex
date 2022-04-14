@@ -1,60 +1,89 @@
 \chapter{Non-relativistic Quantum Field Theory}
-A general non-relativistic field has the Lagrangian\footnote{The repeated indices are automatically summed.}
-\begin{equation}
-	\mathcal L = \bar\psi_a(x) (i\delta_{ab}\partial_t-\hat H_{ab})\psi_b(x) + \mathcal{V}_{\mathrm{int}}
-\end{equation}
-where the field operator $\psi$ can be bosonic or fermionic, which is denoted by a number $\zeta=\pm 1$, and $\mathcal{V}_{\mathrm{int}}$ is the interaction Lagrangian.
-A general interaction has the form
-\begin{equation}
-	\mathcal{V}_{\mathrm{int}} = \bar\psi_{a}(x_1)\bar\psi_{b}(x_2) V_{ab}(x_1,x_2) \psi_{b}(x_2)\psi_{a}(x_1).
-\end{equation}
-Note that the classical equation of motion for the free field is
+A general non-relativistic field theory is described by the action (with repeated indices automatically summed):
 \begin{equation}
 \begin{aligned}
-	0 &= \partial_\mu \frac{\partial \mathcal L}{\partial(\partial_\mu \bar\psi_a(x))} - \frac{\partial \mathcal L}{\partial\bar{\psi}_a(x)} \\
-	&= - i\partial_t \phi_a(x) + \hat H_{ab}\phi_b(x),
+	S &= S_0 + S_{\mathrm{int}} = \int dt \int d^d x \mathcal{L}_0 + \int dt\ \mathcal{V}_{\mathrm{int}}, \\
+	\mathcal{L}_0 &= \bar\psi_a(x) (i\delta_{ab}\partial_t-\hat H_{ab})\psi_b(x).
 \end{aligned}
 \end{equation}
-which satisfies the Schr\"{o}dinger equation.
-
-We are mostly work with finite system size $L^d$ with UV cutoff $\Lambda = \frac{2\pi}{a}$,\footnote{We can regard $a$ as the lattice spacing, and assume $L = Na$.} in which case the spatial Fourier transformation is
-\begin{eqnarray}
-	\tilde{\psi}_a(k) &=& \int_{L^d} d^dx e^{-i k \cdot x}\psi(k), \\
-	\psi_a(x) &=& \frac{1}{L^d}\sum_{k} e^{i k \cdot x}\tilde{\psi}(k).
-\end{eqnarray}
-Note that for finite size, the momentum is discretized: 
+where the field operator $\psi(x)$ can be bosonic or fermionic, which is denoted by a number $\zeta=\pm 1$, and $\mathcal{V}_{\mathrm{int}}$ is the interaction Lagrangian.
+A general interaction has the form
 \begin{equation}
-	k_i = \frac{2\pi}{L} n_i,\ n_i = -N,\cdots,N.
+	\mathcal{V}_{\mathrm{int}} = \sum_{abcd}\int \prod_{i=1}^4 d^d x_i \ \bar\psi_{c}(x_3)\bar\psi_{d}(x_4) V_{abcd}(x_1,x_2,x_3,x_4) \psi_{b}(x_2)\psi_{a}(x_1).
 \end{equation}
-By default, we take the thermodynamic limit.
-The summation is approximated by the integration:
+Note that the classical equation of motion for the free field satisfies the Schr\"{o}dinger equation:
+\begin{equation}
+	\partial_\mu \frac{\partial \mathcal L_0}{\partial(\partial_\mu \bar\psi_a(x))} - \frac{\partial \mathcal L_0}{\partial\bar{\psi}_a(x)} 
+	= - i\partial_t \psi_a(x) + \hat H_{ab}\psi_b(x) = 0.
+\end{equation}
+
+We are mostly work with finite system size $L^d$ with UV cutoff $\Lambda = 2\pi/a$ (where $a$ is the lattice spacing, and $L = Na$). The spatial Fourier transformation is
+\begin{equation}
+	\tilde{\psi}_a(k) = \int_{L^d} d^dx e^{-i k \cdot x}\psi_a(x), \quad
+	\psi_a(x) = \frac{1}{L^d}\sum_{k} e^{i k \cdot x}\tilde{\psi}_a(k).
+\end{equation}
+For the finite size, the momentum is discretized: $k = 2\pi n_k/L$, $n_k \in \mathbb Z$.
+The summation in the thermodynamic limit becomes the integral:
 \begin{equation}
 	\frac{1}{L^d}\sum_k \longrightarrow \int_{|k|<\Lambda} \frac{d^dk}{(2\pi)^d}.
 \end{equation}
+In the momentum space, the free theory can be simplified:
+\begin{equation}
+	S_0 = \int dt \int \frac{d^d k}{(2\pi)^d} \tilde{\bar\psi}_a(k) [i\partial_t-\varepsilon_a(k)]\tilde{\psi}_a(k).
+\end{equation}
+The interaction in the momentum space is described by the vertex function:
+\begin{equation}
+	\tilde V_{abcd}(k_1,k_2,k_3,k_4)
+	= \int \prod_{i=1}^4 d^d x_i e^{i(k_1x_1+k_2x_2-k_3x_3-k_4x_4)} V_{abcd}(x_1,x_2,x_3,x_4).
+\end{equation}
+Because of the momentum conservation, the vertex will contain a delta function factor.
+
+Consider the Coulomb repulsive potential $e^2/r$, in the field theory formalism, the coefficient $V_{abcd}(x_1,x_2,x_3,x_4)$ is
+\begin{equation}
+\begin{aligned}
+	\frac{V(x_1-x_2)}{2!2!}\left[\delta_{ac}\delta_{bd}\delta^{(3)}(x_1-x_3)\delta^{(3)}(x_2-x_4) - \delta_{ad}\delta_{bc}\delta^{(3)}(x_1-x_4)\delta^{(3)}(x_2-x_3)\right],
+\end{aligned}
+\end{equation}
+where the factor $\frac{1}{2!2!}$ is the symmetry from interchanging the fermion fields.
+In momentum space:
+\begin{equation}
+	V_{abab}(k_1,k_2,k_3+q,k_4-q) = \frac{1}{2!2!} V_{\mathrm{Coul}}(q),
+\end{equation}
+where the Coulomb potential in the momentum space is
+\begin{equation}
+\begin{aligned}
+	V_{\mathrm{Coul}}(q) 
+	&=  \lim_{\alpha\rightarrow0}e^{2}\int_{0}^{\infty}dr\ 2\pi r^{2} \int_{-1}^{+1}d\left(\cos\theta\right)\frac{e^{-iqr\cos\theta-\alpha r}}{r} \\
+	&=  \lim_{\alpha\rightarrow0}\frac{2\pi e^{2}}{iq}\int_{0}^{\infty}dr\left(e^{iqr-\alpha r}-e^{-iqr-\alpha r}\right)\\
+ 	&=  \lim_{\alpha\rightarrow0}\frac{4\pi e^{2}}{q^{2}+\alpha^{2}}
+	=  \frac{4\pi e^{2}}{q^{2}}.
+\end{aligned}
+\end{equation}
+
+
 
 \section{Finite Temperature Field Theory}
+
 The original real-time partition function is defined as\footnote{As with the relativistic case, we introduce an auxiliary source $J$, which is bosonic/fermionic if the field $\psi$ is bosonic/fermionic.
 }
 \begin{equation}
 	Z[J] = \int D[\bar\psi,\psi] \exp\left\{i\int dt \int d^dx \left[\mathcal{L}+\bar{J}_a(x)\psi_a(x)+\bar{\psi}_a(x)J_a(x)\right]\right\}.
 \end{equation}
-For finite-temperature field theory, after making the wick rotation $t \rightarrow -i\tau$, the partition function for a generic non-relativistic lattice theory is:
+For finite-temperature field theory, after making the wick rotation ($t \rightarrow -i\tau$), the partition function for a generic non-relativistic lattice theory is:
 \begin{equation}
 	Z[J] = \int D[\bar\psi,\psi] e^{-S[\bar\psi,\psi]+\bar{J}\cdot\psi+\bar{\psi}\cdot J},
 \end{equation}
 where the action is
 \begin{equation}
-	S = \int_0^\beta d\tau \int d^dx \left[\bar\psi_a(x) (\delta_{ab}\partial_\tau+\hat H_{ab})\psi_b(x) + \mathcal{V}_{\mathrm{int}}\right].
+	S = \int_0^\beta d\tau \left[\int d^dx\ \bar\psi_a(x) (\delta_{ab}\partial_\tau+\hat H_{ab})\psi_b(x) + \mathcal{V}_{\mathrm{int}}\right].
 \end{equation}
-
-\begin{framedrmk}[Temporal Fourier Transformation]
 The Fourier transformation on the imaginary time domain is defined as:
-\begin{eqnarray}
-	\tilde\psi(\omega_n) &=& \int_0^\beta d\tau e^{i\omega_n\tau} \psi(\tau),\\ 
-	\psi(\tau) &=& \frac{1}{\beta}\sum_{\omega_n} e^{-i\omega_n\tau} \tilde\psi(\omega_n).
-\end{eqnarray}
+\begin{equation}
+	\tilde\psi(\omega_n) = \int_0^\beta d\tau e^{i\omega_n\tau} \psi(\tau),\quad
+	\psi(\tau) = \frac{1}{\beta}\sum_{\omega_n} e^{-i\omega_n\tau} \tilde\psi(\omega_n).
+\end{equation}
 Under such convention, in the thermodynamic limit and zero-temperature limit, the spatial-temporal Fourier transformation agrees with the relativistic case (up to a Wick rotation).
-\end{framedrmk}
+
 
 
 \subsection{Free Field Theory}
@@ -166,182 +195,25 @@ the above expression can be simplified to
 \end{equation}
 
 
-
-\section{Interacting Fermi Gas}
-In this section, we are considering the system of weakly interacting Fermi gas. 
+\section{Fermi Liquid Theory}
+In this section, we are considering the system of weakly interacting Fermi gas.
 To be specific, we consider the lattice Hamiltonian:
 \begin{equation}\label{eq:FL-gen-ham}
 	H = -\frac{1}{2}\sum_{\langle i,j \rangle} (c_i^\dagger c_{j} + c_{j}^\dagger c_i) + \mu\sum_i c_i^\dagger c_i + \sum_{i,j,k,l} u_{ijkl} c_i^\dagger c_j^\dagger c_k c_l.
 \end{equation}
-In the following, we investigate the effective field theory (near the Fermi surface) in one and two dimensions. 
+In the following, we investigate the effective field theory near the Fermi surface.
+We discuss the RG flow of the couplings (mainly for two dimensional system).
+Then we carry out the perturbative calculation for the correlation functions. 
 
-
-\subsection{One-dimensional Fermi System}
-
-We first consider the one-dimensional case at half filling.
-The free field part of (\ref{eq:FL-gen-ham}) gives the dispersion
-\begin{equation}
-	E(K) = -\cos K.
-\end{equation}
-The property of the system is determined mainly by the degrees of freedom near the Fermi surface (at $K_F = \pm\pi$), where the linearized dispersion is:
-\begin{equation}
-	E(K_i) = k, 
-\end{equation}
-where we have defined the momentum for the left-mover hand the right-mover:
-\begin{equation}
-	K_i = \epsilon_i (K_F + k), \quad 
-	\epsilon_i = \begin{cases}
-		+1 & i=R \\
-		-1 & i=L
-	\end{cases}.
-\end{equation}
-The effective field theory for the free field is
-\begin{equation}
-	Z_0 = \prod_{i=L/R}\int D\left[\bar\psi_i(k,\omega),\psi_i(k,\omega)\right] e^{-S_0},
-\end{equation}
-where the free field action is
-\begin{equation}
-	S_0 = \sum_{i=L/R} \int^\Lambda_{-\Lambda} \frac{dk}{2\pi} \int^\infty_{-\infty} \frac{d\omega}{2\pi} 
-	\bar\psi(k,\omega)(-i\omega+k)\psi(k,\omega),
-\end{equation}
-which gives the free field propagator:
-\begin{equation}
-	G(k,\omega) = -\langle \psi(k,\omega)\bar\psi(k,\omega)\rangle 
-	= \frac{1}{i\omega - k}.
-\end{equation}
-We then consider the rescaling of the cut-off $\Lambda \rightarrow \Lambda/s$. 
-To make the free action scale invariant, we define the rescaled variables:
-\begin{equation}
-	k' = sk, \quad \omega' = s\omega, \quad \psi'(k',\omega') = s^{-3/2}\psi(k,\omega).
-\end{equation}
-Then we consider the perturbation from quadratic and quartic terms:\footnote{We use the notation that $\psi(i) = \psi(K_i,\omega_i)$, and $u(4,3,2,1) = u(\{K_i,\omega_i,i=1,2,3,4\})$.}
-\begin{equation}
-\begin{aligned}
-	\delta S_2 &= \sum_{i=L/R} \int^\Lambda_{-\Lambda}\frac{dk}{2\pi}\int^\infty_{-\infty} \frac{d\omega}{2\pi} 
-	\mu(k,\omega) \bar\psi(k,\omega) \psi(k,\omega), \\
-	\delta S_4 &= \frac{1}{4} \sum_{\{i_j\}=L}^R \int^\Lambda_{K,\omega} 
-	\bar\psi_{i_4}(4)\bar\psi_{i_3}(3)
-	u(4,3,2,1)\psi_{i_2}(2)\psi_{i_1}(1),
-\end{aligned}
-\end{equation}
-where we have defined:\footnote{The symbol $\bar\delta$ enforces momentum conservation mod $2\pi$, as is appropriate to any lattice problem. A process where lattice momentum is violated in multiples of $2\pi$ is called an \textit{umklapp process}.}
-\begin{equation}
-\begin{aligned}
-	\int_{K \omega}^{\Lambda}
-	=&\ {\int_{-\Lambda}^{\Lambda} \frac{d k_{1} \cdots d k_{4}}{(2 \pi)^{4}} \int_{-\infty}^{\infty} \frac{d \omega_{1} \cdots d \omega_{4}}{(2 \pi)^{4}} \times 2 \pi \delta\left(\omega_{1}+\omega_{2}-\omega_{3}-\omega_{4}\right) } \\
-	&\ \times 2 \pi \bar{\delta}\left[
-		\sum_{j=1}^2 \epsilon_{i_{j}}\left(K_{\mathrm{F}}+k_{j}\right)-
-		\sum_{j=3}^4 \epsilon_{i_{j}}\left(K_{\mathrm{F}}+k_{j}\right)
-	\right].
-\end{aligned}
-\end{equation}
-Since this action separates into slow and fast pieces, the effect of mode elimination is simply to reduce $\Lambda$ to $\Lambda/s$ in the integral above. Rescaling moments and fields, we find that
-\begin{equation}
-	\mu'(k',\omega') = s\cdot\mu\left(\frac{k'}{s}, \frac{\omega}{s}\right).
-\end{equation}
-Expand $\mu$ in series:
-\begin{equation}
-	\mu(k, \omega)=\mu_{00}+\mu_{10} k+\mu_{01} i \omega+\cdots+\mu_{n m} k^{n}(i \omega)^{m}+\cdots,
-\end{equation}
-and compare both sides. The constant piece is a relevant perturbation.
-This relevant flow reflects the readjustment of the Fermi sea to a change in chemical potential. 
-The correct way to deal with this term is to include it in the free-field action by filling the Fermi sea to a point that takes $\mu_{00}$ into account. 
-The next two terms are marginal and modify terms that are already present in the action.
-
-We now turn on the quartic interaction, the dimensional analysis gives the transformation of $u$:
-\begin{equation}
-	u'_{i_4,i_3,i_2,i_1}(k'_i,\omega'_i) = u_{i_4,i_3,i_2,i_1}\left(\frac{k'_i}{s},\frac{\omega'_i}{s}\right).
-\end{equation}
-If we expand $u$ in a Taylor series in its arguments and compare coefficients, we find that the constant term u0 is marginal and the higher coefficients are irrelevant. 
-Thus, $u$ depends only on its discrete labels and we can limit the problem to just a few coupling constants instead of the coupling function we started with. 
-Furthermore, all reduce to just one coupling constant:
-\begin{equation}
-	u_0 = u_{LRLR} = u_{RLRL} = -u_{RLLR} = -u_{LRRL} \equiv u.
-\end{equation}
-Other couplings corresponding to the ($LL \rightarrow RR$) process are wiped out by the Pauli principle since they have no momentum dependence and cannot have the desired antisymmetry.
-
-\subsubsection*{RG at One-loop Level}
-
-Consider the infinitesimal rescale $s=e^{dt}$. 
-The one-loop contribution to the quadratic term is\footnote{We include an infinitesimal $e^{i\omega\eta}$ to ensure convergence as we do the integral over $\omega$ by closing the upper half-plane.}
-\begin{equation}
-	\mu^{(2)}_{LL} = \includegraphics[align=c, width=0.125\linewidth]{pics/FL-1.png}
-	= -u \int_{d\Lambda} \frac{dk}{2\pi}\int^\infty_{-\infty}\frac{d\omega}{2\pi}\frac{e^{i\omega \eta}}{i\omega-k},
-\end{equation}
-where the integral on the momentum shell is
-\begin{equation}
-	\int_{d\Lambda}\frac{dk}{2\pi} = \int_{-\Lambda}^{-\Lambda(1-dt)} \frac{dk}{2\pi} + \int_{\Lambda(1-dt)}^{\Lambda} \frac{dk}{2\pi}.
-\end{equation}
-The result gives:
-\begin{equation*}
-	\mu^{(2)}_{LL}
-	= -\frac{u\Lambda}{2 \pi}dt
-\end{equation*}
-Assuming that we choose to measure $\mu$ in units of $\Lambda$, (since we rescale momentum to keep $\Lambda$ fixed, we can choose $\Lambda = 1$.)
-By the symmetry $L \leftrightarrow R$, we know $\mu^{(2)}_{LL}=\mu^{(2)}_{RR}=\mu^{(2)}$, so the RG flow is
-\begin{equation}
-	\frac{d}{dt}\left[s\cdot\left(\mu+\mu^{(2)}\right)\right] = \mu - \frac{u}{2\pi}.
-\end{equation}
-The one-loop correction to the quartic terms have two contributions.
-One is called ZS' (zero sound) channel:\footnote{There is actually another zero sound channel ZS, but which has no contribution to the vertex because the diagram contains the vertex of the ($LL \rightarrow RR$) process, which has no relevant contribution the the vertex.}
-\begin{equation}
-\begin{aligned}
-	u^{(2)}_{\mathrm{ZS'}} 
-	&= \includegraphics[align=c, width=0.2\linewidth]{pics/FL-2.png} \\
-	&= -u^2 \int^\infty_{-\infty}\int_{\Lambda/s<|k|<\Lambda} \frac{d\omega dk}{(2\pi)^2} \frac{e^{i\omega\eta}}{(i\omega+k)(i\omega-k)} \\
-	&= u^2\int_{\Lambda/s<|k|<\Lambda} \frac{dk}{2\pi} \frac{1}{2|k|} \\
-	&= \frac{u^2}{2\pi}\frac{d\Lambda}{\Lambda}.
-\end{aligned}
-\end{equation}
-The sign is obtained from contracting the Fermion field monomial:
-\begin{equation*}
-	\wick{
-        \c1 {\bar\psi}_L \bar\psi_R \psi_L \c2 \psi_R
-        \bar\psi_L \c2 {\bar\psi}_R \c1 {\psi}_L \psi_R
-	} = -G_L G_R \bar\psi_R \psi_L \bar\psi_L \psi_R
-	= -G_L G_R \bar\psi_L \bar\psi_R \psi_L \psi_R.
-\end{equation*}
-The other is called the BCS channel:\footnote{The $1/2$ factor comes from the symmetry factor of the diagram.}
-\begin{equation}
-	u^{(2)}_{\mathrm{BCS}} 
-	= \includegraphics[align=c, width=0.15\linewidth]{pics/FL-3.png} 
-	= -\frac{u^2}{2} \sum_{i=L/R}\int^\infty_{-\infty}\int_{d\Lambda} \frac{d\omega dk_i}{(2\pi)^2} \frac{e^{i\omega\eta}}{(i\omega-k_i)(-i\omega-k_i)}.
-\end{equation}
-The sign is obtained from the contraction:
-\begin{equation*}
-	\wick{
-        \bar\psi_L \bar\psi_R \c1 \psi_L \c2 \psi_R
-        \c1 {\bar\psi}_L \c2 {\bar\psi}_R \psi_L \psi_R
-	} = -G_L G_R \bar\psi_L \bar\psi_R \psi_L \psi_R.
-\end{equation*}
-Note that we will obtained a factor of 2 since in this channel, the intermedia propagator can be left mover or right mover.
-We see that two contributions cancel out:
-\begin{equation}
-	u^{(2)}_{\mathrm{ZS'}} + u^{(2)}_{\mathrm{BCS}} = 0.
-\end{equation}
-Together, the RG flow to the one-loop level is
-\begin{equation}
-	\frac{d\mu}{dt} = \mu - \frac{u}{2\pi}, \quad
-	\frac{du}{dt} = 0.
-\end{equation}
-The fixed point solution to the RG flow is:
-\begin{equation}
-	\mu = \frac{u^*}{2\pi},
-\end{equation}
-where the fixed-point value of $u^*$ is arbitrary. 
-The vanishing beta function predict that the ground state of one-dimensional weakly interacting Fermi gas remains gapless (rather than develops CDW order and becomes gapped).
-
-
-\subsection{Two-dimensional Fermi System}
-
+\subsection{Effective Field Theory for Interacting Fermi Systems}
 The low-energy manifold is an annulus of thickness $2 \Lambda$ symmetrically situated with respect to the Fermi circle $K=K_{\mathrm{F}}$.
 The dispersion for the free lattice model is
 \begin{equation}
 	E(\bm K) = -\cos K_x - \cos K_y \simeq -2 + \frac{\bm K^2}{2}.
 \end{equation}
-For a given chemical potential $\mu$, the Fermi circle is $K_F = \sqrt{2m\mu}$, we can linearize the dispersion near the Fermi furface:
+For a given chemical potential $\mu$, the Fermi circle is $K_F = \sqrt{2m\mu}$, we can linearize the dispersion near the Fermi surface:
 \begin{equation}
-	E(\bm K) = \frac{\bm K^2-K_F^2}{2m} \eqsim \frac{K_F}{m}k \equiv v_F k, \quad
+	E(\bm K) = \frac{\bm K^2-K_F^2}{2m} \simeq \frac{K_F}{m}k \equiv v_F k, \quad
 	k\equiv |K|-K_F
 \end{equation}
 The partition function is:
@@ -428,7 +300,7 @@ Because of the rotational symmetry, the marginal vertex functions are determined
 Note that the manifestation of the Pauli principle on $F$ and $V$ is somewhat subtle: $F$ will not be antisymmetric under $1 \leftrightarrow 2$ since, according to the way it is defined above, we cannot exchange 1 and 2 without exchanging 3 and 4 at the same time. 
 On the other hand, since 3 and 4 can be exchanged without touching 1 and 2 in the definition of $V$, $V$ must go to $-V$ when $1 \leftrightarrow 3$.
 
-\subsubsection*{RG at One-loop Level}
+\subsection{One-loop RG for 2D System}
 We first consider the loop correction to the chemical potential:
 \begin{equation}
 \begin{aligned}
@@ -489,6 +361,7 @@ The solution to the RG flow is:
 	V_l(t) = \frac{V_l(0)}{1+\frac{V_l(0)}{4\pi v_F}t}.
 \end{equation}
 What these equations tell us is that if the potential in angular momentum channel $l$ is repulsive, it will get renormalized (logarithmically) down to zero, while if it is attractive, it will run off to large negative values signaling the BCS instability. 
-This is the reason the $V$’s are excluded in Landau theory, which assumes we have no phase transitions.\footnote{Remember that the sign of any given $V_l$ is not necessarily equal to that of the microscopic interaction. Kohn and Luttinger have shown (PRL, 15, 524 (1965)) that some of them will be always negative. Thus, the BCS instability is inevitable, though possibly at absurdly low temperatures or absurdly high angular momentum $l$.}
+This is the reason the $V$'s are excluded in Landau theory, which assumes we have no phase transitions.\footnote{Remember that the sign of any given $V_l$ is not necessarily equal to that of the microscopic interaction. Kohn and Luttinger have shown (PRL, 15, 524 (1965)) that some of them will be always negative. Thus, the BCS instability is inevitable, though possibly at absurdly low temperatures or absurdly high angular momentum $l$.}
+
 
 
