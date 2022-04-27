@@ -526,10 +526,10 @@ We see that in the massless case, the force gives the long-range Coulomb force $
 If we can choose $j_L=j_R=1/2$, the field is transformed as Lorentz vector.
 We denote the field as $A^\mu(x)$.
 Some possible quadratic forms for the vector field that forms singlets are
-\begin{equation*}
+\begin{equation}
 	A^\mu A_\mu,\ (\partial_\mu A^\mu)^2,\ A^\nu \partial^2 A_\nu,\ 
 	\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda.
-\end{equation*}
+\end{equation}
 For the field theory describe the electromagnetic field, we require the theory to further have gauge symmetry, i.e., invariant under
 \begin{equation}
 	A^\mu(x) \rightarrow A^\mu(x) + \partial^\mu \alpha(x).
@@ -700,12 +700,12 @@ which leads to (\ref{eq:qft-photon-momentum-propagator}) after a suitable manipu
 \section{Dirac Field}
 
 Based on previous discussion, the Lagrangian for spinor field can have
-\begin{equation*}
+\begin{equation}
 	\psi_L^\dagger \bar\sigma^\mu \partial_\mu \psi_L,\ 
 	\psi_R^\dagger \sigma^\mu \partial_\mu \psi_R,\ 
 	\psi_L^\dagger \psi_R,\ \psi_R^\dagger \psi_L,\ 
 	\psi_L \cdot \psi_L,\ \psi_R \cdot \psi_R.
-\end{equation*}
+\end{equation}
 The Dirac field describe the theory with both left-hand and right-hand spinors.
 The Lagrangian is
 \begin{equation}
@@ -1041,47 +1041,103 @@ Together, the Dirac propagator is:
 
 
 
-\section{Scattering Theory}
-Quantum mechanics consists of an elaborate collection of rules for manipulating states in a Hilbert space. The experimentally measurable quantities that are predicted in quantum mechanics are differential probabilities. 
-These probabilities are given by the modulus squared of inner products of states. We can write such inner products as 
-\begin{equation*}
-	\left\langle f ; t_{f} \mid i ; t_{i}\right\rangle,
-\end{equation*}
-where $\left|i ; t_{i}\right\rangle$ is the initial state we start with at time $t_{i}$ and $\left| f ; t_{f}\right\rangle$ is the final state we are interested in at some later time $t_{f}$. 
-Since quantum field theory is just quantum mechanics with lots of fields, the experimental quantities we will be able to predict are also of the form 
-\begin{equation*}
-	\left|\left\langle f ; t_{f} \mid i ; t_{i}\right\rangle\right|^{2}.
-\end{equation*}
+\section{Interacting Field Theory}
 
-The notation $\langle f;t_f|i;t_i\rangle$ refers to the Schr{\"o}dinger picture representation, where the states evolve in time. 
-In the Heisenberg picture, which will be the default picture for quantum field theory, we leave the states alone and put all the time evolution into an operator. 
-In the special case where we evolve momentum eigenstates from $t=-\infty$ to $t=+\infty$, relevant for collider physics applications, we give the time-evolution operator a special name: the scattering or \textit{S-matrix}. The S-matrix is defined as
+In this section, we are going to investigate the effects of interactions.
+When the field theory is no longer free, the notion of free particle is not very well defined.
+Also, the interactions actually gives the physical quantities that can be measured. 
+For example the scattering amplitudes.
+
+We will mainly focus on the scalar field theory, as the complexity of the vector or spinor field mainly comes from the algebraic structures of themselves.
+After explaining the stories of the scalar filed, we will try to generalize them to the vector and spinor cases.
+
+
+\subsection{Renormalized Field}
+
+For the interacting scalar field, the Hamiltonian do not conserve particle number any more, and the ground state $|\Omega\rangle$ is no longer the vacuum $|0\rangle$.
+Consider the Green's function
+\begin{equation}
+	iG(x_1-x_2) = \langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle 
+\end{equation}
+We can insert a complete basis into the correlation function:\footnote{Here we assume $\langle\Omega|\phi(x)|\Omega\rangle=0$ unless there is spontaneously symmetry breaking happening.}
+\begin{equation}
+	1 = |\Omega\rangle\langle\Omega| + \sum_\lambda\int\frac{d^3 k}{(2\pi)^3}\frac{1}{2\omega_k}|\lambda_{\bm k}\rangle \langle\lambda_{\bm k}|,
+\end{equation}
+and the Green's function takes the form:
+\begin{equation*}
+	iG(x_1-x_2) = \sum_\lambda \int\frac{d^3 k}{(2\pi)^3}
+	\left[\theta(t_1-t_2)\langle\Omega|\phi(x_1)|\lambda_{\vec k}\rangle\langle\lambda_{\vec k}|\phi(x_2)|\Omega\rangle + (t_1\leftrightarrow t_2, x_1 \leftrightarrow x_2)\right].
+\end{equation*}
+Note that $\phi(x)=e^{iP\cdot x}\phi(0) e^{-iP\cdot x}$, so that
+\begin{equation}
+	\langle\lambda_{\bm k}|\phi(x)|\Omega\rangle 
+	= e^{ik\cdot x} \left.\langle\lambda_{0}|\phi(0)|\Omega\rangle\right|_{k^0=\omega_{\bm k}}.
+\end{equation}
+Following the same procedure as we do for the free field theory, 
+\begin{equation}
+	G(x_1-x_2) = \int_0^\infty \frac{dM^2}{2\pi} \rho(M^2) G_0(x_1-x_2;M^2),
+\end{equation}
+where the \textit{spectral function} $\rho(M^2)$ is
+\begin{equation}
+	\rho(M^2) = \sum_\lambda(2\pi)\delta(M^2-m_\lambda^2)|\langle\Omega|\phi(0)|\lambda_0\rangle|^2.
+\end{equation}
+In particle, near the one-particle state the Green's function looks like:
+\begin{equation}\label{eq:scalar-prop-lehmann}
+	i\tilde G(k) = \frac{iZ_{\phi}}{k^2-m^2+i\epsilon} + \mathrm{regular\ terms}.
+\end{equation}
+Physically, Eq.~(\ref{eq:scalar-prop-lehmann}) states that in the interacting theory, the field operator $\tilde\phi(k)$ acting on the vacuum only only generate a single particle state, but also multi-particle states with total momentum $k$.
+However, those multi-particle state have different singularity structure in the Greens function, as they only contribute regular terms.
+If we only care about the propagator of the single particle states, we simply need to extract the singular part of of the Green's function.
+That is, the singularity of $\tilde{G}(k)$ gives the (addresses) mass, and the residue 
+\begin{equation*}
+	\lim_{k^2 \rightarrow m^2} (k^2-m^2)\tilde{G}(k)
+\end{equation*}
+gives the wave-function normalization factor $Z_\phi$.
+Trying to restore the original form of the free theory, we consider a renormalized field:
+\begin{equation}
+	\phi_R(x) = \frac{1}{\sqrt{Z_\phi}}\phi_0(x).
+\end{equation}
+The Green's function of $\phi_R$ has the same form as free theory.
+For this reason, we generate the asymptotic single-particle state using the renormalized field operator:
+\begin{equation}\label{eq:scalar-field-generate-particle}
+	\phi_R(k)|\Omega\rangle = \frac{1}{2\omega_{\bm k}}|k\rangle + \text{multi-particle states}.
+\end{equation}
+
+If we want to create a single-particle state, say at time $t=0$.
+We can do this by acting the operator $\tilde{\phi}(k)$ on the vacuum state at time $-T$, then we know when the system evolves for time $T$, it becomes:
+\begin{equation}
+	e^{-i E_{\bm k} T}|k\rangle + e^{-iHT} \cdot \text{multi-particle states}.
+\end{equation}
+Here comes the trick.
+Assuming the theory is gapped (with mass $m^2>0$), the multi-particle states have higher energy than the single particle states.
+We then replace the $t$ by $(1-i\epsilon)t$, which effectives impose a suppression factor $e^{-\epsilon H T}$ to the state.
+In the $T\rightarrow \infty$ limit, the amplitude of the multi-particle states vanishes.
+
+The story for the spinor field is exactly the same as the scalar field (also assume the particle has nonzero mass).
+However, the story for the photon field is different, since the photon is massless.
+A quick escape from the conundrum is to assume the photon has a small mass $m_\gamma$, and latter set $m_\gamma \rightarrow 0$.
+
+
+
+\subsection{Cross Section and Decay Rates}
+
+One important physical observable is the transition amplitude from initial state $|i;t_i\rangle$ and initial time $t_i$ to the finial state $|f;t_f\rangle$ at $t_f$.
+In the scattering experiment, the initial and final states are assumed to be ``free''.
+For this reason, we can think of the process as start from $t=-\infty$ to $t=+\infty$, where free states at $t=\pm \infty$ are known as \textit{asymptotic states}.
+We give the time-evolution operator a special name: the \textit{S-matrix}, defined as:
 \begin{equation}
 	\langle f|S| i\rangle_{\text{Heisenberg}}
-	= \langle f ; \infty \mid i ;-\infty\rangle
+	= \langle f ; \infty \mid i ;-\infty\rangle.
 \end{equation}
-The S-matrix has all the information about how the initial and final states evolve in time. Quantum field theory will tell us how to calculate S-matrix elements. 
-As we will explain in this chapter and the next, the S-matrix is defined assuming that all of the things that change the state (the interactions) happen in a finite time interval, so that at asymptotic times, $t=\pm \infty$, the states are free of interactions. 
-Free states at $t=\pm \infty$ are known as \textit{asymptotic states}.
+The S-matrix is related to quantities experimentally measurable, for example the cross sections or decay rates, as discussed in the following.
 
-S-matrix elements are the primary objects of interest for high-energy physics. 
-In this chapter, we will relate S-matrix elements to scattering cross sections, which are directly measured in collider experiments. 
-We will also derive an expression for decay rates, which are also straightforward to measure experimentally. 
-Quantum field theory is capable of calculating other quantities besides S-matrix elements, such as thermodynamic properties of condensed matter systems. 
-However, since the tools we develop for S-matrix calculations, such as Feynman rules, are also relevant for these applications, it is logical to focus on S-matrix elements for concreteness.
-
-
-
-\subsection{Cross Sections and Decay Rates}
-A cross section is a natural quantity to measure experimentally. 
+\subsubsection{Cross Sections}
+The \textit{cross section} is an analogy from classical scattering experiment.
 For example, Rutherford was interested in the size $r$ of an atomic nucleus. 
-By colliding $\alpha$-particles with gold foil and measuring how many $\alpha$-particles were scattered, he could determine the cross-sectional area
-\begin{equation*}
-	\sigma=\pi r^{2}
-\end{equation*}
-of the nucleus. 
+By colliding $\alpha$-particles with gold foil and measuring how many $\alpha$-particles were scattered, he could determine the cross-sectional area $\sigma=\pi r^{2}$ of the nucleus. 
 
-Imagine there is just a single nucleus. Then the cross-sectional area is given by
+Imagine there is just a single nucleus. 
+Then the \textit{cross-sectional area} is given by
 \begin{equation}
 	\sigma=\frac{\text { number of particles scattered }}{\text { time } \times \text { number density in beam } \times \text { velocity of beam }}=\frac{1}{T} \frac{1}{\Phi} N,
 \end{equation}
@@ -1091,7 +1147,7 @@ where $T$ is the time for the experiment and $\Phi$ is the incoming flux:
 \end{equation*}
 and $N$ is the number of particles scattered.
 
-In quantum mechanics, we generalize the notion of cross-sectional area to a \textit{cross section}, which still has units of area, but has a more abstract meaning as a measure of the interaction strength. 
+In quantum mechanical generalization of the notion of cross-sectional area is the cross section, which still has units of area, but has a more abstract meaning as a measure of the interaction strength. 
 While classically an $\alpha$-particle either scatters off the nucleus or it does not scatter, quantum mechanically it has a probability for scattering. 
 The classical differential probability is 
 \begin{equation*}
@@ -1176,7 +1232,10 @@ Putting everything together, we have
 \end{equation}
 All the factors of $V$ and $T$ have dropped out, so now it is trivial to take $V \rightarrow \infty$ and $T \rightarrow \infty$. Recall also that velocity is related to momentum by $\vec{v}=\vec{p} / p_{0}$.
 
-A differential decay rate is the probability that a one-particle state with momentum $p_{1}$ turns into a multi-particle state with momenta $\left\{p_{j}\right\}$ over a time $T$:
+
+\subsubsection{Decay Rates}
+An unstable particle may decays to other particle(s), the rate of which is called the \textit{decay rate}.
+A \textit{differential decay rate} is the probability that a one-particle state with momentum $p_{1}$ turns into a multi-particle state with momenta $\left\{p_{j}\right\}$ over a time $T$:
 \begin{equation}
 	d \Gamma=\frac{1}{T} d P .
 \end{equation}
@@ -1195,8 +1254,76 @@ The rate in the boosted frame can be calculated from the rest-frame decay rate u
 
 
 
-\subsection{LSZ for Klein-Gordon Field}
-For free theory, the particle annihilation operator is
+
+\subsection{LSZ Reduction Formula}
+
+The LSZ reduction formula is used to simplify the calculation of the S-matrix in the momentum space.
+It essentially states that for the S-matrix of an ($n \rightarrow m$) process, the matrix element equals to the \textit{amputated Green's function}, which is the Green's function with in and out states propagators amputated:
+\begin{equation}
+	\tilde{G}(k_1,\cdots,k_n) = \left[\prod_{i=1}^n \tilde{G}(k_i) \right] \tilde{G}_{\mathrm{amp}}(k_1,\cdots,k_n).
+\end{equation}
+Or, in the coordinate space (for scalar field), 
+\begin{equation}
+	\tilde{G}_{\mathrm{amp}}(k_1,\cdots,k_n) = \left[\prod_{i=1}^n \int d x_i e^{-i k_i x_i} \frac{-\partial^2-m^2}{i\sqrt Z} \right] G(x_1,\cdots,x_n).
+\end{equation}
+Note that since the in and out states are on-shell, the factor $-\partial^2-m^2$ effectively filter out the singularity $\frac{i}{k^2-m^2}$, and any regular term without singularity will not affect the result.
+
+
+To get the basis idea how it happens, consider the correlation function
+\begin{equation}
+	iG(y_m,\cdots,y_1,x_1,\cdots,x_n) = \langle\Omega|\phi(y_m)\cdots\phi(y_1) \phi(x_1)\cdots\phi(x_n)|\Omega\rangle.
+\end{equation}
+Now we are going to Fourier transform this function for the variable $x_1$.
+First we split the time to three domains: $(-\infty,T_-]$, $(T_-,T_+)$, and $[T_+,+\infty)$ such that at time $T_{\pm}$ the particles are well-separated.
+Consider first the integral over the first domain:
+\begin{equation}
+	\int_{-\infty}^{T_-} dx_1^0 \int d^3 x\ e^{i k\cdot x_1} \int \frac{d^3q}{(2\pi)^3}\frac{1}{2\omega_q}\langle \Omega|\phi(y_m)\cdots\phi(y_1) \phi(x_2)\cdots\phi(x_n)|q\rangle \langle q|\phi(x_1) |\Omega\rangle,
+\end{equation}
+where we have inserted the complete set of intermediate states.\footnote{Note that the multi-particle state are discarded as discussed. Also, the single particle state $|k\rangle$ shall be think as a concentrated wave packet near the particle at $\bm x_1$, so that it has negligible overlap with other particle states.}
+Then use the fact $\langle q|\phi(x_1)|\Omega\rangle = \sqrt{Z_\phi} e^{i q \cdot x_1}$, 
+\begin{equation}
+	\int_{-\infty}^{T_-} dx_1^0 \ e^{i (k^0+\omega_q-i\epsilon)\cdot x_1^0}\frac{\sqrt{Z_\phi}}{2\omega_k}\langle \Omega|\phi(y_m)\cdots\phi(y_1) \phi(x_2)\cdots\phi(x_n)|k\rangle,
+\end{equation}
+The time integral gives the singularity at $k^0=-\omega_k$:
+\begin{equation}
+	\frac{1}{2\omega_k} \frac{i}{\omega_k+k^0 + i\epsilon} = \frac{i\sqrt{Z_\phi}}{k^2-m^2+i\epsilon} + \text{regular terms}.
+\end{equation}
+
+Now consider the integral over the third time domain.
+The calculation is basically the same, the difference is the insertion gives
+\begin{equation*}
+	\langle\Omega| \phi(x_1) |q\rangle = \sqrt{Z_\phi} e^{i q \cdot x_1},
+\end{equation*}
+which leads to a singularity at $k^0=\omega_k$:
+\begin{equation}
+	\frac{1}{2\omega_k} \frac{i}{\omega_k-k^0 + i\epsilon} = \frac{i\sqrt{Z_\phi}}{k^2-m^2+i\epsilon} + \text{regular terms}.
+\end{equation}
+Note that although for the above two cases, the final singular expression can be brought to the same form, the location of the singularity is different, which indicate whether it is the in or out state.
+Specific frequency filter can be chosen to select out the component accordingly.
+
+Finally, consider the integral over time interval $(T_-,T_+)$, where the particle are interacting and single particles are not well defined.
+On this interval the correlation will not have any singularity.\footnote{some branch cuts are possible, but they will also be annihilated by $k^2-m^2$ term.}
+We then know that if we choose $\phi(x_1)$ to create the in state, and we only care about the singular structure, then the Fourier transformation produce the factor
+\begin{equation}
+	\frac{i\sqrt{Z_\phi}}{k_1^2-m_1^2}.
+\end{equation}
+The same procedure applies to every field operator, and the final result is
+\begin{equation}
+\begin{aligned}
+	S &= \langle p_1,\cdots,p_1;T_+|k_1,\cdots,k_n;T_-\rangle \\
+	&= i\tilde{G}_{\mathrm{amp}}(p_m,\cdots,p_1;-k_1,\cdots,-k_n) \delta^{(4)}\left(\sum p-\sum k \right).
+\end{aligned}
+\end{equation}
+Or, the matrix element satisfies
+\begin{equation}
+	\mathcal M_{fi} = \tilde{G}_{\mathrm{amp}}(p_m,\cdots,p_1;-k_1,\cdots,-k_n).
+\end{equation}
+
+
+\subsubsection{Alternative Proof for Scalar Field}
+Here we choose another way to prove the LSZ formula.
+We think a single-particle state to be created by the particle creation operator $a^\dagger$.
+For free theory, we have
 \begin{equation}
 \begin{aligned}
 	\sqrt{2\omega_k} a_k &= i \int d^3 x\ e^{ik\cdot x}(-i\omega_k+\partial_t)\phi(x), \\
@@ -1205,23 +1332,37 @@ For free theory, the particle annihilation operator is
 \end{equation}
 When interaction is turned on, the field operator $\phi(x)$ is renormalized as
 \begin{equation*}
-	\phi(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{in}}(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{out}}(x).
+	\phi_R(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{in}}(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{out}}(x),
 \end{equation*}
-In this way, we have
-\begin{equation*}
+so we define the particle creation operator as
+\begin{equation}
+	a_R^\dagger \equiv -i \int d^3 x\ e^{-ik\cdot x}(i\omega_k+\partial_t)\phi_R(x).
+\end{equation}
+When acting on the vacuum:
+\begin{equation}
+	\sqrt{2\omega_k} a_R^\dagger(k) |\Omega\rangle = |k\rangle + \text{multi-particle states}.
+\end{equation}
+On may wonder why $a_{\mathrm{in}}(k)$ do not contribute to the single-particle state. 
+To see that, one can think of the original particle-creation operator $a^\dagger(k)$ in the frequency domain to have a delta function peak at $\omega_k$.
+While for the $a(k)$ in the interacting theory, although it can have weight at the frequency $\omega_k$, there will be no delta-function-like peak.
+
+The in and out state are though to be created by the operator $a_R^\dagger(k)$.
+Note that as discussed, the multi-particle contribution is discarded.
+In the Heisenberg picture, the particle-creation operator satisfies:
+\begin{equation}
 \begin{aligned}
-	\sqrt{2\omega_k}(a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger)
-	&= i Z_\phi^{-1/2} \int dt \partial_t \left(\int d^{3}x\ e^{-ikx}(i\omega_k+\partial_t)\phi_0(x)\right) \\
-	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}(\omega_k^2+\partial_t^2)\phi_0(x) \\
-	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}\partial_t^2\phi_0(x) + \phi_0(x)(-\nabla^2+m^2)e^{-i k\cdot x} \\
-	&= i Z_\phi^{-1/2} \int d^4 x e^{-ik\cdot x}(\partial^2+m^2)\phi_0(x)
+	a_{R}^\dagger(-\infty) - a_{R}^\dagger(+\infty)
+	&= \frac{i}{\sqrt{2\omega_k}} \int dt\ \partial_t \left[\int d^{3}x\ e^{-ikx}(i\omega_k+\partial_t)\phi_R(x)\right] \\
+	&= \frac{i}{\sqrt{2\omega_k}} \int d^4 x e^{-ik\cdot x}(\omega_k^2+\partial_t^2)\phi_R(x) \\
+	&= \frac{i}{\sqrt{2\omega_k}} \int d^4 x e^{-ik\cdot x}\partial_t^2\phi_0(x) + \phi_R(x)(-\nabla^2+m^2)e^{-i k\cdot x} \\
+	&= \frac{i}{\sqrt{2\omega_k}} \int d^4 x e^{-ik\cdot x}(\partial^2+m^2)\phi_R(x)
 \end{aligned}
-\end{equation*}
+\end{equation}
 The initial and final states are:
 \begin{equation}
 \begin{aligned}
-	|k_1, \cdots, k_m; \mathrm{in}\rangle &= \left[\prod_{j=1}^m \sqrt{2\omega_{k_j}} a^\dagger_{\mathrm{in}}(k_j)\right] |0\rangle, \\
-	|p_1, \cdots, p_n, \mathrm{out}\rangle &= \left[\prod_{j=1}^n \sqrt{2\omega_{p_j}}a^\dagger_{\mathrm{out}}(p_j)\right] |0\rangle.
+	|k_1, \cdots, k_m; \mathrm{in}\rangle &= \left[\prod_{j=1}^m \sqrt{2\omega_{k_j}} a^\dagger_{R}(k_j;-\infty)\right] |\Omega\rangle, \\
+	|p_1, \cdots, p_n, \mathrm{out}\rangle &= \left[\prod_{j=1}^n \sqrt{2\omega_{p_j}}a^\dagger_{R}(p_j;+\infty)\right] |\Omega\rangle.
 \end{aligned}
 \end{equation}
 The S-matrix is
@@ -1242,42 +1383,30 @@ We are free to make the substitution
 	a_{\mathrm{out}} \rightarrow -(a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger)^\dagger.
 \end{equation*}
 In this way, the S-matrix is
-\begin{equation*}
+\begin{equation}
 \begin{aligned}
 	& \langle p_1, \cdots, p_n| S |k_1, \cdots, k_m\rangle  \\
-	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i}\frac{-\partial^2-m_i^2}{i\sqrt{Z_\phi}}\right]
-	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}\frac{-\partial^2-m_j^2}{i\sqrt{Z_\phi}}\right] \\
-	& \times \frac{\langle 0| T \phi_0(x_1)\cdots \phi_0(x_{m+n}) \int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
-		{\langle 0|T\int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle} \\
-	=& \prod_{i=1}^{m}\left[\frac{p_i^2-m_i^2}{i\sqrt{Z_\phi}}\right]
-		\prod_{j=m+1}^{m+n}\left[\frac{k_j^2-m_j^2}{i\sqrt{Z_\phi}}\right]
-		\tilde{G}(-p_1,\cdots,-p_n,k_1,\cdots,k_m).
+	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i}i(\partial^2+m_i^2)\right]
+	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}i(\partial^2+m_j^2)\right] iG(\{x\}).
 	\label{eq:K-G-LSZ}
 \end{aligned}
-\end{equation*}
-Note that in the second equality, we move the operator $\partial^2$ out of the time-ordering operator, which will actually create contact terms.
-The contact terms can be shown to have no contribution to the S-matrix.
-Also, the Green function is defined as
-\begin{equation*}
-\begin{aligned}
-	G(x_1,\cdots,x_{m+n}) 
-	&\equiv \langle \Omega|T \phi(x_1)\cdots \phi(x_{m+n})|\Omega\rangle \\
-	&= \frac{\langle 0| T \phi_0(x_1)\cdots \phi_0(x_{m+n}) \int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
-		{\langle 0|T\int d^dx \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}.
-\end{aligned}
-\end{equation*}
+\end{equation}
+In momentum space
+\begin{equation}
+	\mathcal M = \prod_{i=1}^{m}\left[\frac{p_i^2-m_i^2}{i\sqrt{Z_\phi}}\right]
+		\prod_{j=m+1}^{m+n}\left[\frac{k_j^2-m_j^2}{i\sqrt{Z_\phi}}\right]
+		\tilde{G}(\{p_i\};\{-k_j\}).
+\end{equation}
+We thus proved the LSZ reduction formula again.
 
-The extra factor before the momentum-space Green's function effectively cancel out the external propagator. 
-Thus the LSZ formula (\ref{eq:K-G-LSZ}) means that the S-matrix is the amputated Green's function.
-
-
-\begin{framedrmk}[Contact Terms]
-We first consider the time-ordered two-point function:
-\begin{equation*}
+Note that in the second equality, we move the operator $\partial^2$ out of the time-ordering operator, which will actually create \textit{contact terms}.
+We will show the contact term can be safely neglected.
+To see this, first consider the time-ordered two-point function:
+\begin{equation}
 	\langle 0|T\phi(x_1)\phi(x_2)|0\rangle
 	= \theta(t_1-t_2)\langle 0|\phi(x_1)\phi(x_2)|0\rangle -
 	\theta(t_2-t_1)\langle 0|\phi(x_2)\phi(x_1)|0\rangle.
-\end{equation*}	
+\end{equation}	
 Take time derivative on both side:
 \begin{equation*}
 \begin{aligned}
@@ -1296,24 +1425,26 @@ Take the the time derivative once more:
 \end{equation*}
 The second term on the right hand side is the contact term.
 For free theory, $\partial_{t_1}\phi(x_1)$ is the canonical momentum, meaning that
-\begin{equation*}
-	[\phi(\vec x_1, t),\partial_{t}\phi(\vec x_1,t)] = i \hbar \delta^{3}(\vec x_1-\vec x_2).
-\end{equation*}
-In general, for n-point correlation,
-\begin{equation*}
+\begin{equation}
+	[\phi(\vec x_1, t),\partial_{t}\phi(\vec x_1,t)] = i \delta^{3}(\vec x_1-\vec x_2).
+\end{equation}
+In general, for $n$-point correlation,
+\begin{equation}
 \begin{aligned}
-	 \partial_{t_1}^2 \langle 0|T\phi_{x_1}\cdots\phi_{x_n}|0\rangle 
-	=& \langle 0|T\partial_{t_1}^2\phi_{x_1}\cdots\phi_{x_n}|0\rangle \\
-	 &-i\hbar \sum_j \delta^4(x_1-x_j)\langle 0|T\phi_{x_2}\cdots\cancel{\phi_{x_j}}\cdots\phi_{x_n}|0\rangle.
+	 \partial_{t_1}^2 \langle T\phi_{x_1}\cdots\phi_{x_n} \rangle
+	= \langle T\partial_{t_1}^2\phi_{x_1}\cdots\phi_{x_n}\rangle -i \sum_j \delta^4(x_1-x_j)\langle T\phi_{x_2}\cdots\cancel{\phi_{x_j}}\cdots\phi_{x_n}\rangle.
 \end{aligned}
-\end{equation*}
+\end{equation}
 In the LSZ formula, the contact term do not have any singularity.
 When the external legs approach to momentum shell, these regular terms vanishes, so the contact will not contribute to the S-matrix.
-\end{framedrmk}
 
 
 
-\subsection{LSZ for Dirac Field}
+
+
+
+
+\subsubsection{LSZ for Dirac Field}
 Use the field expansion
 \begin{equation}
 \begin{aligned}
@@ -1401,14 +1532,16 @@ Consider the S-matrix for particles:
 \begin{equation}
 \begin{aligned}
 	& \langle p_1, \cdots, p_n| S |k_1, \cdots, k_m\rangle  \\
-	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i} u^{s_1}(p_i)\frac{i\cancel\partial-m_i}{i\sqrt{Z_\phi}}\right] iG(x)
-	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}\frac{-i\overleftarrow{\cancel\partial}-m_j}{i\sqrt{Z_\phi}}u^{s_j}(k_j)\right] \\
-	=& \prod_{i=1}^{m}\left[\frac{\cancel p-m_i}{i\sqrt{Z_\phi}}u^{s_i}(p_i)\right]
-		i\tilde{G}(p_1,\cdots,p_n,-k_1,\cdots,-k_m)
-		\prod_{j=m+1}^{m+n}\left[u^{s_j}(k_j)\frac{\cancel k-m_j}{i\sqrt{Z_\phi}}\right].
+	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i} u^{s_1}(p_i)\frac{i\cancel\partial-m_i}{i\sqrt{Z_\phi}}\right] iG(\{x\})
+	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}\frac{-i\overleftarrow{\cancel\partial}-m_j}{i\sqrt{Z_\phi}}u^{s_j}(k_j)\right].
 \end{aligned}
 \end{equation}
-
+In the momentum space:
+\begin{equation}
+	\mathcal M = \prod_{i=1}^{m}\left[\frac{\cancel p-m_i}{i\sqrt{Z_\phi}}u^{s_i}(p_i)\right]
+		\tilde{G}(\{p_i\};\{-k_j\})
+		\prod_{j=m+1}^{m+n}\left[u^{s_j}(k_j)\frac{\cancel k-m_j}{i\sqrt{Z_\phi}}\right].
+\end{equation}
 
 
 

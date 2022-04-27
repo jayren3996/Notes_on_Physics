@@ -2,7 +2,7 @@
 A general non-relativistic field theory is described by the action (with repeated indices automatically summed):
 \begin{equation}
 \begin{aligned}
-	S &= S_0 + S_{\mathrm{int}} = \int dt \int d^d x \mathcal{L}_0 + \int dt\ \mathcal{V}_{\mathrm{int}}, \\
+	S &= S_0 + S_{\mathrm{int}} = \int dt \int d^d x \mathcal{L}_0 - \int dt\ \mathcal{V}_{\mathrm{int}}, \\
 	\mathcal{L}_0 &= \bar\psi_a(x) (i\delta_{ab}\partial_t-\hat H_{ab})\psi_b(x).
 \end{aligned}
 \end{equation}
@@ -17,7 +17,7 @@ Note that the classical equation of motion for the free field satisfies the Schr
 	= - i\partial_t \psi_a(x) + \hat H_{ab}\psi_b(x) = 0.
 \end{equation}
 
-We are mostly work with finite system size $L^d$ with UV cutoff $\Lambda = 2\pi/a$ (where $a$ is the lattice spacing, and $L = Na$). The spatial Fourier transformation is
+We are mostly work with finite system size $L^d$ with UV cutoff $\Lambda = \pi/a$ (where $a$ is the lattice spacing, and $L = Na$). The spatial Fourier transformation is
 \begin{equation}
 	\tilde{\psi}_a(k) = \int_{L^d} d^dx e^{-i k \cdot x}\psi_a(x), \quad
 	\psi_a(x) = \frac{1}{L^d}\sum_{k} e^{i k \cdot x}\tilde{\psi}_a(k).
@@ -62,22 +62,34 @@ where the Coulomb potential in the momentum space is
 
 
 
-\section{Finite Temperature Field Theory}
+\section{Action in Euclidean Space}
 
 The original real-time partition function is defined as\footnote{As with the relativistic case, we introduce an auxiliary source $J$, which is bosonic/fermionic if the field $\psi$ is bosonic/fermionic.
 }
 \begin{equation}
 	Z[J] = \int D[\bar\psi,\psi] \exp\left\{i\int dt \int d^dx \left[\mathcal{L}+\bar{J}_a(x)\psi_a(x)+\bar{\psi}_a(x)J_a(x)\right]\right\}.
 \end{equation}
-For finite-temperature field theory, after making the wick rotation ($t \rightarrow -i\tau$), the partition function for a generic non-relativistic lattice theory is:
+If we make a analytic continuation of $t$ to the complex plane:\footnote{Note that in the frequency domain, the singularities for positive frequency lies below the complex plane, as we always include an infinitesimal $-i\epsilon$ to the energy (mass) term of the theory in ensure convergence. So, the rotation of the real axis anti-clock-wisely to the imaginary axis will not cross any singularity, and thus the can be analytically extended.}
 \begin{equation}
-	Z[J] = \int D[\bar\psi,\psi] e^{-S[\bar\psi,\psi]+\bar{J}\cdot\psi+\bar{\psi}\cdot J},
+	t \rightarrow -i\tau, \quad \omega \rightarrow i\omega.
 \end{equation}
-where the action is
+In this way the free action transforms as:
+\begin{equation*}
+	iS_0 = i \int dt dx\ \psi(\bm x, t) (i\partial_t - E) \psi(\bm x, t) \rightarrow 
+	-\int d\tau dx\ \psi(\bm x, \tau) (\partial_\tau + E) \psi(\bm x, \tau).
+\end{equation*}
+The partition function can then be written as:
 \begin{equation}
-	S = \int_0^\beta d\tau \left[\int d^dx\ \bar\psi_a(x) (\delta_{ab}\partial_\tau+\hat H_{ab})\psi_b(x) + \mathcal{V}_{\mathrm{int}}\right].
+	Z[J] = \int D[\bar\psi,\psi] e^{-S_0[\bar\psi,\psi]+\bar{J}\cdot\psi+\bar{\psi}\cdot J},
 \end{equation}
-The Fourier transformation on the imaginary time domain is defined as:
+where the Euclidean free action defined as:
+\begin{equation}
+	S = \int d\tau \left[\int d^dx\ \bar\psi_a(\bm x,\tau) (\delta_{ab}\partial_\tau+\hat H_{ab})\psi_b(\bm x,\tau) + \mathcal{V}_\mathrm{int}\right].
+\end{equation}
+
+The Euclidean action is suitable to describe the system both in zero temperature or finite temperature.
+For finite temperature case, the integral over the imaginary time $\tau$ is over $[0,\beta)$.
+The Fourier transformation of the field on the imaginary time domain is defined as:
 \begin{equation}
 	\tilde\psi(\omega_n) = \int_0^\beta d\tau e^{i\omega_n\tau} \psi(\tau),\quad
 	\psi(\tau) = \frac{1}{\beta}\sum_{\omega_n} e^{-i\omega_n\tau} \tilde\psi(\omega_n).
@@ -87,11 +99,8 @@ Under such convention, in the thermodynamic limit and zero-temperature limit, th
 
 
 \subsection{Free Field Theory}
-We first consider the action of free field
-\begin{equation}
-	S_0 = \int_0^\beta d\tau \int d^dx\ \bar\psi_a(x) (\delta_{ab}\partial_\tau+\hat H_{ab})\psi_b(x).
-\end{equation}
-The Fourier transformation
+
+The Fourier transformation of the free field action is
 \begin{equation}
 	S_0 = \frac{1}{\beta}\sum_{\omega_n} \int_{\Lambda} \frac{d^dk}{(2\pi)^d}
 	\tilde{\bar{\psi}}_a(k,\omega_n)\left[-i\omega_n + \tilde{H}_{ab}(k)\right]\tilde{\psi}_b(k,\omega_n).
@@ -105,7 +114,6 @@ where the Green's function is
 	\tilde{G}_{ab}(k,\omega_n) = \left[\frac{1}{i\omega_n - \tilde{H}(k)}\right]_{ab}.
 \end{equation}
 
-\begin{framedrmk}[Obtaining the Partition Function]
 Unlike the relativistic case, the value of the value of partition function without source $Z_0[0]$ is related to the free energy.
 We can express it formally as
 \begin{equation*}
@@ -120,7 +128,7 @@ Thus the free energy is
 	F = -\frac{1}{\beta} \ln Z_0
 	= \zeta \sum_{k,\omega_n} \ln\left\{\beta\det\left[-i\omega_n+\tilde{H}(k)\right]\right\}.
 \end{equation}
-\end{framedrmk}
+
 
 \subsection{Matsubara Summation}
 Now consider the summation on Matsubara frequency:

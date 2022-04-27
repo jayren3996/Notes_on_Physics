@@ -2,59 +2,49 @@
 
 In this chapter, we study the interacting scalar field theory
 \begin{equation}
-	\mathcal L = \mathcal L_0 + \mathcal L_{\mathrm{int}}, \quad
-	\mathcal L_0 =\frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2.
+\begin{aligned}
+	\mathcal L &= \mathcal L_0 + \mathcal L_{\mathrm{int}}, \\
+	\mathcal L_0 &=\frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2, \\
+	\mathcal L_{\mathrm{int}} &= -\frac{g}{4!}\phi^4.
+\end{aligned}
 \end{equation}
-We will study the case where the interaction is $\frac{g}{3!}\phi^3$ or $\frac{g}{4!}\phi^4$.
-To make the coupling constant marginal, as it is the physically interesting case, we assume the space-time dimension is 6 and 4 respectively.
+As we have discussed, because of the interaction, the field and coefficients will be renormalized:
+\begin{equation}
+\begin{aligned}
+	\phi &= \sqrt{Z_\phi} \phi_R, \\
+	m &= \sqrt{Z_m} m_R, \\
+	g &= Z_g g_R.
+\end{aligned}
+\end{equation}
+The renormalized Lagrangian becomes:
+\begin{equation}
+	\mathcal{L}
+	= Z_\phi \frac{1}{2} (\square\phi_R)^2 - Z_m Z_\phi \frac{m_R^2}{2} \phi_R^2 - Z_g Z_\phi^2 \frac{g_R}{4!}\phi_R^4.
+\end{equation}
+We can formally divided the renormalized theory into three parts: free theory part, interaction part, and the counter terms:
+\begin{equation}
+\begin{aligned}
+	\mathcal L &= \mathcal L_0 + \mathcal L_{\mathrm{int}} + \mathcal L_{\mathrm{ct}}, \\
+	\mathcal L_0 &= \frac{1}{2} (\square\phi_R)^2 - \frac{ m_R^2}{2} \phi_R^2, \\
+	\mathcal L_{\mathrm{int}} &= -\frac{g_R}{4}\phi_R^4, \\
+	\mathcal L_{\mathrm{ct}} &= A \frac{1}{2} (\square\phi_R)^2 - B\frac{ m_R^2}{2} \phi_R^2 - C \frac{g_R}{4!} \phi_R^4,
+\end{aligned}
+\end{equation}
+where the coefficients in the counter terms are:
+\begin{equation}
+	A = Z_\phi-1, \quad 
+	B = Z_m Z_\phi - 1, \quad 
+	C = Z_g Z_\phi^2 - 1.
+\end{equation}
+The counter terms come from the renormalization factors, which can be formally infinity but are perturbatively of order $O(g)$, and thus are regarded as additional perturbations to the free theory.
 
 
 
 
-\section{Turning on Interaction}
-\subsection{Lehmann Representation}
-The interacting Hamiltonian do not conserve particle number, and the ground state $|\Omega\rangle$ is no longer the vacuum $|0\rangle$.
-Consider the Green's function
-\begin{equation}
-	iG(x_1-x_2) = \langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle 
-\end{equation}
-We can insert a complete basis 
-\begin{equation}
-	1 = |\Omega\rangle\langle\Omega| + \sum_\lambda\int\frac{d^3 k}{(2\pi)^3}\frac{1}{2\omega_k}|\lambda_{\bm k}\rangle \langle\lambda_{\bm k}|
-\end{equation}
-into the correlation function,\footnote{Here we assume $\langle\Omega|\phi(x)|\Omega\rangle=0$ unless there is spontaneously symmetry breaking happening.} the Green's function takes the form (take K-G field as the example):
-\begin{equation*}
-	iG(x_1-x_2) = \sum_\lambda \int\frac{d^3 k}{(2\pi)^3}
-	\left[\theta(t_1-t_2)\langle\Omega|\phi(x_1)|\lambda_{\vec k}\rangle\langle\lambda_{\vec k}|\phi(x_2)|\Omega\rangle + (t_1\leftrightarrow t_2, x_1 \leftrightarrow x_2)\right].
-\end{equation*}
-Note that
-\begin{equation}
-	\langle\lambda_{\bm k}|\phi(x)|\Omega\rangle 
-	= \langle\lambda_{\bm k}|e^{iP\cdot x}\phi(0) e^{-iP\cdot x}|\Omega\rangle
-	= e^{ik\cdot x} \left.\langle\lambda_{0}|\phi(0)|\Omega\rangle\right|_{k^0=\omega_{\bm k}}.
-\end{equation}
-Following the same procedure as we do for the free field theory, 
-\begin{equation}
-	G(x_1-x_2) = \int_0^\infty \frac{dM^2}{2\pi} \rho(M^2) G_0(x_1-x_2;M^2),
-\end{equation}
-where the spectral function $\rho(M^2)$ is
-\begin{equation}
-	\rho(M^2) = \sum_\lambda(2\pi)\delta(M^2-m_\lambda^2)|\langle\Omega|\phi(0)|\lambda_0\rangle|^2.
-\end{equation}
-In particle, near the one-particle state the Green's function looks like:
-\begin{equation}
-	i\tilde G(k) = \frac{iZ_{\phi}}{k^2-m^2+i\epsilon} + \mathrm{regular\ terms}.
-\end{equation}
-If we renormalize the field strength 
-\begin{equation}
-	\phi_R(x) = \frac{1}{\sqrt{Z_\phi}}\phi_0(x),
-\end{equation}
-the Green's function then has exactly the same form as free theory.
-This normalization factor $Z_\phi$ is exactly what we obtained in the loop correction to the propagator.
+\section{Perturbation Theory}
 
-
-
-\subsection{Perturbation Theory}
+\subsection{Perturbative Expansion and Feynman Rules}
+\subsubsection{Real-space Formalism}
 For interaction theory, the partition function can be formally expressed as:
 \begin{equation}
 	Z[J] = \exp\left(i\int d^dx \mathcal{L}_{\mathrm{int}}\left[\frac{\delta}{i\delta J(x)}\right]\right)Z_0[J].
@@ -122,568 +112,244 @@ Following the same procedure,
 The connected correlation function automatically omit those disconnected components.
 
 
-
-
-
-\section{Real $\phi^3$ Theory}
-
-Now consider the interaction theory with additional Lagrangian
-\begin{equation}
-	\mathcal L_{\mathrm{int}}[\phi] = \frac{g}{3!}\phi^3.
-\end{equation}
-Note that the field $\phi$ has the mass dimension $[\frac{d-2}{2}]$. 
-The critical dimension is $d=6$ where the coupling constant $g$ is dimensionless. 
-In this section, we consider the real Klein-Gordon field with $\phi^3$ interaction on 6-dimensional space-time.
-
-
-For interaction theory, the renormalized Lagrangian has the form:
+\subsubsection{Momentum-space Formalism}
+In momentum space, the theory is expressed as
 \begin{equation}
 \begin{aligned}
-\mathcal L 
-&= Z_{\phi}\frac{1}{2} \partial^\mu\phi\partial_\mu\phi - 
-	Z_m \frac{m^2}{2}\phi^2 +
-	Z_g\frac{g}{3!}\phi^3 \\
-&= \mathcal L_0 + \mathcal L_{\mathrm{int}} + \mathcal L_{\mathrm{ct}},
+	S_0[\phi(k)] &= \frac{1}{2} \int\frac{d^4 k}{(2\pi)^4}\ \phi_R^*(k)(k^2-m_R^2) \phi_R(k), \\
+	S_\mathrm{int}[\phi(k)] &= \frac{g_R}{4!} \left(\prod_{i=1}^{4} \int \frac{d^4 k_i}{(2\pi)^4} \right) \left[\prod_{i=1}^4 \phi_R(k_i)\right] \delta^{(4)}\left(\sum_{i=1}^4 k_i\right), \\
+	S_{\mathrm{ct}}[\phi(k)] &= \frac{1}{2} \int\frac{d^4 k}{(2\pi)^4}\ \tilde\phi_R^*(k)(A k^2 - B m_R^2) \tilde\phi_R(k) - C \cdot S_\mathrm{int}.
 \end{aligned}
 \end{equation}
-where the counter terms are:
+For the free theory:
 \begin{equation}
 \begin{aligned}
-\mathcal L_{\mathrm{ct}}[\phi] 
-&= \frac{A}{2}\partial^\mu\phi\partial_\mu\phi - \frac{B}{2}m^2\phi^2+\frac{C}{3!}g\phi^3 \\
-&\simeq -\frac{A}{2}\phi\partial^2\phi - \frac{B}{2}m^2\phi^2+\frac{C}{3!}g\phi^3,
+	\frac{Z_0[J]}{Z_0[0]} &= \frac{1}{Z_0[0]}\int D[\phi] \exp\left\{ -S_0[\phi(k)] + i \int\frac{d^4 k}{(2\pi)^4} J_k^* \phi(k) \right\} \\
+	&= \exp\left\{ -i \int\frac{d^4 k}{(2\pi)^4} J^*_k \Delta(k) J_k \right\}.
+\end{aligned}
+\end{equation}
+Similarly, the expectation in momentum space is
+\begin{equation}
+	\langle O(\phi_k)\rangle
+	= \frac{1}{Z[0]} \left. O\left[\frac{\delta}{i\delta J^*_k}\right] Z[J] \right|_{J=0}.
+\end{equation}
+The Feynman diagrams in momentum space is the same as that in real space, just replace the propagator from the real space to the momentum space.
+Also, at each vertex, the momentum conservation is automatically satisfied.
+
+
+\subsection{Correction to the Propagator}
+Consider the first order perturbation to the propagator:
+\begin{equation}
+\begin{aligned}
+	i \Delta^{(1)}(k)
+	&= \includegraphics[align=c, width=0.4\linewidth]{pics/KG-3.png} \\
+	&= i\Delta_0(k) \left[-\frac{g}{2}\int \frac{d^4 q}{(2\pi)^4} \frac{1}{q^2-m_R^2} + i(Ak^2-Bm_R^2) \right] i\Delta_0(k).
+\end{aligned}
+\end{equation}
+Note that in the loop diagram, there is in total ($4 \times 3 = 12$) identical diagrams, and so gives the coefficients.
+A simpler counter rule is that if the diagram has no symmetry, there is in total $4!$ identical diagrams and the denominator cancels out exactly, while for any remaining symmetries, the symmetry factor will remain in the denominator.
+For the loop diagram we considered here, the symmetry factor is $2$.
+
+Note that the second order correction to the Green's function has one ``ingoing'' leg and one ``outgoing'' leg, the core (or the amputated Green's function) in this case is called the \textit{self-energy} $i\Sigma(k^2)$:
+\begin{equation}
+	i\Sigma(k^2) = -\frac{g}{2}\int \frac{d^4 q}{(2\pi)^4} \frac{1}{q^4-m_R^2} + i(Ak^2-Bm_R^2).
+\end{equation}
+The integral is divergent, that when the counter terms come to rescue.
+The divergent part of the integral can be absorbed into the coefficients, or be canceled by the counter terms.
+In the following, we will see that the divergent integral
+\begin{equation}
+	I \equiv -\frac{g}{2} \int \frac{d^4 q}{(2\pi)^4} \frac{1}{q^4-m_R^2}
+\end{equation}
+can be regularized.
+The regularization is typically controlled by a parameter which will recover the infinity when taking a specific limit.
+The physical observable shall not depend explicitly on the regularization parameter, so the final result is free from divergent even if we take the limit.
+
+
+\subsubsection{Regularization of the Divergent Integral}
+Consider the integral
+\begin{equation}
+	I = -\frac{g}{2} \int\frac{d \omega}{2\pi} \int\frac{d^3 q}{(2\pi)^3} \frac{1}{\omega^2 - \bm q^2-m_R^2 -i\epsilon}
+\end{equation}
+Since the singularity locates at $\pm(\sqrt{\bm q^2+m_R^2}-i\epsilon)$, we can analytically change the integral of $\omega$ from real axis to the imaginary axis anti-clock-wisely, the result is equivalent to the substitution $\omega \rightarrow i\omega$.
+The new integral is defined on the 4D Euclidean space:
+\begin{equation}
+\begin{aligned}
+	I &= i \frac{g}{2} \int \frac{d^4 q}{(2\pi)^4} \frac{1}{q^2 + m_R^2} \\
+	&= i\frac{g}{2} \frac{\Omega_4}{(2\pi)^4} \int_0^\infty dq \ \frac{q^3}{q^2 + m^2_R},
 \end{aligned}
 \end{equation}
 where 
-\begin{equation*}
-	A=Z_\phi-1, B=Z_m-1, C=Z_g-1.
-\end{equation*}
-The counter term for the the free field gives additional correction
+\begin{equation}
+	\Omega_d = \frac{2 \pi^{\frac{d}{2}}}{\Gamma\left(\frac{d}{2}\right)}
+\end{equation}
+is the $d$-dimensional spherical area.
+
+Till now the integral is essentially the same and thus still divergent.
+Now we are going to regularize the expression.
+One most frequently used regularization scheme is the \textit{dimensional regularization}.
+It take note of the fact that the divergence of the integral only happens at integer dimension.
+When we put the field theory to ($d=4-\varepsilon$)-dimensional space, the integral becomes:
+\begin{equation}
+	I_\varepsilon = i\frac{g\tilde{\mu}^\varepsilon}{2}\frac{\Omega_{4-\varepsilon}}{(2\pi)^{4-\varepsilon}} \int_0^\infty dq\ \frac{q^{3-\varepsilon}}{q^2+m_R^2}.
+\end{equation}
+Note that we have introduced a mass scale $\tilde\mu$ to get the correct dimensionality.
+The integral is now convergent.
+The specific form the the integral is not important, but we are concerned about the expansion near $\varepsilon = 0$. 
+All the computation here can be done automatically (in \texttt{Mathematica}), and the result is
 \begin{equation}
 \begin{aligned}
-	i\tilde{\Delta}^{(\mathrm{ct})}(k)
-	&= i\tilde{\Delta}_0(k)(Ak^2-Bm^2)i\tilde{\Delta}_0(k) \\
-	&= \includegraphics[align=c, width=0.2\linewidth]{pics/KG-ct.png}.
+	I_\varepsilon &= i\frac{g m_R^2}{32\pi^2} \left[\frac{2}{\varepsilon}+1+\log \left(\frac{4 \pi \tilde{\mu}^2 e^{-\gamma_E}}{m_R^2}\right)\right] + O(\varepsilon) \\
+	&\equiv i\frac{g m_R^2}{32\pi^2} \left[\frac{2}{\varepsilon}+1+\log \left(\frac{\mu^2}{m_R^2}\right)\right] + O(\varepsilon),
+\end{aligned}
+\end{equation}
+where $\gamma_E$ is the Euler constant. 
+We have seen that the integral is controlled by the parameter $\varepsilon$.
+In the $\varepsilon \rightarrow 0$ limit, the integral is divergent.
+
+
+\subsubsection{Renormalization Using the Counter Terms}
+We are now going to renormalize the theory.
+Note that in the self-energy definition
+\begin{equation}
+	\Sigma(k^2) = \frac{1}{i} I + A k^2-B^2 m_R^2,
+\end{equation}
+we have the freedom to choose the counter terms that cancel the infinity.
+To the first order, the coefficients can be
+\begin{equation}
+	A = O(g^2), \quad
+	B = \frac{g}{16\pi^2 \varepsilon} + O(g^2).
+\end{equation}
+The result is
+\begin{equation}
+	\Sigma(k^2) = \frac{g m_R^2}{16\pi^2} \log \left(\frac{\mu}{m_R}\right)
+	+\frac{g m_R^2}{32\pi^2}+O(\varepsilon).
+\end{equation}
+The one-loop correction also leads to a infinite \textit{Dyson series}:
+\begin{equation}
+\begin{aligned}
+	i\Delta(k) &= i\Delta_0(k) + i\Delta_0(k)\sum_{n=1}^\infty \left[i\Sigma(k^2)i\Delta_0(k)\right] \\
+	&= \frac{i}{k^2 -m_R^2 + \Sigma(k^2)}.
 \end{aligned}
 \end{equation}
 
 
 
-\subsection{Self Energy Correction}
-To second order, we consider the one-loop correction to the propagator: 
-\begin{equation}\label{eq:rkg-self-energy}
-\begin{aligned}
-	i\tilde{\Delta}^{(2)}(k) 
-	&= \includegraphics[align=c, width=0.2\linewidth]{pics/KG-1.png} \\
-	&= i\tilde\Delta_0(k)\left[i\Sigma^{(2)}(k^2)\right]i\tilde\Delta_0(k),
-\end{aligned}
-\end{equation}
-where the self energy term to the second order $i\Pi^{(2)}(k)$ is defined as:
+\subsubsection{Physical Observables}
+The physical observable here is the rest mass $m_0$, which is experimentally measurable.
+It equals to the pole of the propagator, i.e.,
 \begin{equation}
-	i\Sigma^{(2)}(k^2) 
-	\equiv \frac{g^2}{2} \int \frac{d^dq}{(2\pi)^d} \tilde{\Delta}_0(q)\tilde{\Delta}_0(k-q) + (Ak^2-Bm^2).
+	m_R^2 - \Sigma(m_0^2) = m_0^2.
 \end{equation}
-
-The coefficient $g^2/2$ comes from the symmetry factor in the diagram. We can also check the coefficient explicitly, by considering the expansion to the second order (we denote $\delta/\delta J(x_i)$ as $\delta_i$):
-\begin{equation*}
-\begin{aligned}
-	\delta_{1}\delta_{2}\frac{1}{2!4!}\left[\frac{ig}{3!}\int d^dy \left(\frac{\delta}{\delta J(y)}\right)^3 \right]^2
-	\left[-\frac{i}{2}\int d^dy_1 d^dy_2 J(y_1)\Delta(y_1-y_2)J(y_2)\right]^4.
-\end{aligned}
-\end{equation*}
-The expansion gives the coefficient
-\begin{equation*}
-	\left(\frac{ig}{6}\right)^2\times \frac{1}{2!\times 4! \times 2^4}.
-\end{equation*}
-Now consider the combinatorial factor, which comes from the exchange of $\phi(x_i)$ in the propagator, the exchange of $\phi(x_i)$ in the vertex, the exchange of propagator in the diagram, and the change of vertices in the diagram:
-\begin{equation*}
-	(2!)^4\times(3!)^2\times(4\times 3)\times2.
-\end{equation*}
-Those two factors produce a $-g^2/2$ coefficient.
-Note that in the self energy expressio, we put a $i$ factor in front of each propagator, which absorbs the minus sign.
+Depending on the mass scale $\mu$ we choose, the renormalized mass $m_R$ may or may not equal to the rest mass.
+Specifically, we can choose mass scale so that $m_R = m_0$, that is
+\begin{equation}
+	\Sigma(m_0^2) = 0 \quad \Longrightarrow \quad
+	\mu = e^{-\frac{1}{2}} m_0.
+\end{equation}
+To the first order, the self-energy has no momentum dependence, so there is no physical prediction.
 
 
-Once we obtain the self energy, the one-loop corrected propagator has the form:
+
+
+\subsection{Correction to the Vertex}
+
+Now consider the second order correction to the vertex function, which is the connected, amputated 4-point Green's function.
+The perturbation correspond to 3 different Feynman diagrams together with a vertex counter term.
+The explicit form is: 
 \begin{equation}
 \begin{aligned}
-	i\tilde{\Delta}(k) 
-	&= i\tilde{\Delta}_0(k) + i\tilde{\Delta}_0(k)\left[\sum_{n=1}^{\infty}i\Sigma(k^2)\right]i\tilde{\Delta}_0(k) \\
-	&= \frac{i}{\tilde{\Delta}^{-1}_0(k) - \Sigma(k^2)} \\
-	&= \frac{i}{k^2-m^2-\Sigma(k^2)}.
+	i\Gamma_4(k_1,k_2,k_3,k_4) 
+	&= \includegraphics[align=c, width=0.6\linewidth]{pics/KG-4.png}\\
+	&= \frac{g_R^2}{2} \left[iF(s)+iF(t)+iF(u)\right] -iCg_R,
 \end{aligned}
 \end{equation}
-Now we are going to evaluate the divergent integral in the self energy expression, using the Feynman parameters:
-\begin{equation*}
-\begin{aligned}
-&\int \frac{d^d q}{(2 \pi)^d} \frac{1}{q^{2}-m^2} \frac{1}{(k-q)^{2}-m^2} \\
-=&\int \frac{d^d q}{(2 \pi)^d} \int_{0}^{1} d x \frac{1}{\left[q^{2}-m^2+x\left((q-k)^{2}-q^{2}\right)\right]^{2}} \\
-=&\int_{0}^{1} d x \int \frac{d^d q}{(2 \pi)^d} \frac{1}{\left[(q-kx)^{2}-D\right]^{2}},
-\end{aligned}
-\end{equation*}
-where $D=m^2-k^{2} x(1-x)$. Then we can shift $q \rightarrow q+kx$ leaving an integral that only depends on $q^{2}$. In this way,
-\begin{equation*}
-\Sigma(k^2) = \int_0^1 I(x)dx.
-\end{equation*}
-To evaluate the self-energy, it suffices to obtain the integral
-\begin{equation*}
-I(x) = \frac{g^2}{2i}\int \frac{d^d q}{(2 \pi)^d} \frac{1}{\left[q^{2}-D\right]^{2}}.
-\end{equation*}
-
-\begin{framedrmk}[Feyman Parameters]
-We use Feynman's formula to combine denominators,
+where we have introduced three momentum parameters $s$, $t$, and $u$: 
 \begin{equation}
-\frac{1}{A_{1} \ldots A_{n}}=\int d F_{n}\left(x_{1} A_{1}+\ldots+x_{n} A_{n}\right)^{-n},
+	s = (k_1+k_2)^2,\quad
+	t = (k_1+k_3)^2,\quad
+	u = (k_1+k_4)^2.
+\end{equation}
+The loop integrals for three channels are the same, denoted by
+\begin{equation}
+	iF(k^2) = \int \frac{d^4 q}{(2\pi)^4} \Delta_0(q) \Delta_0(q+k).
+\end{equation}
+The integral is again divergent.
+
+
+
+\subsubsection{Regularization}
+The denominator in the integral
+\begin{equation}
+	iF(k^2) = \int \frac{d^4 q}{(2\pi)^4} \frac{i}{q^2-m_R^2} \frac{i}{(q+k)^2-m_R^2}
+\end{equation}
+involves multiplication of two polynomial.
+The expression can be simplified by the \textit{Feynman parametrization}, which is essentially the identity:
+\begin{equation}
+	\frac{1}{A_{1} \ldots A_{n}}=\int d F_{n}\left(x_{1} A_{1}+\ldots+x_{n} A_{n}\right)^{-n},
 \end{equation}
 where the integration measure over the Feynman parameters $x_{i}$ is
 \begin{equation}
-\int d F_{n}=(n-1) ! \int_{0}^{1} d x_{1} \ldots d x_{n} \delta\left(x_{1}+\ldots+x_{n}-1\right).
+	\int d F_{n}=(n-1) ! \int_{0}^{1} d x_{1} \ldots d x_{n} \delta\left(x_{1}+\ldots+x_{n}-1\right).
 \end{equation}
 This measure is normalized so that $\int d F_{n} =1$. 
 The simplest case is
 \begin{equation}
-\frac{1}{A B}=\int_{0}^{1} \frac{dx}{[A+(B-A) x]^{2}}
-=\int_{0}^{1} \frac{\delta(x+y-1)}{[x A+y B]^{2}} dx dy.
+	\frac{1}{A B}=\int_{0}^{1} \frac{dx}{[A+(B-A) x]^{2}}
+	=\int_{0}^{1} \frac{\delta(x+y-1)}{[x A+y B]^{2}} dx dy.
 \end{equation}
 Other useful identities are
 \begin{equation}
 \begin{aligned}
-\frac{1}{A B^{n}} &=\int_{0}^{1} dxdy\frac{\delta(x+y-1)n y^{n-1}}{[x A+y B]^{n+1}} , \\
-\frac{1}{A B C} &=\int_{0}^{1} dxdydz \frac{2\delta(x+y+z-1)}{[x A+y B+z C]^{3}} .
+	\frac{1}{A B^{n}} &=\int_{0}^{1} dxdy\frac{\delta(x+y-1)n y^{n-1}}{[x A+y B]^{n+1}} , \\
+	\frac{1}{A B C} &=\int_{0}^{1} dxdydz \frac{2\delta(x+y+z-1)}{[x A+y B+z C]^{3}} .
 \end{aligned}
 \end{equation}
-\end{framedrmk}
 
-
-By making the Wick rotation $q^0 \rightarrow i q_E^0$, the integral becomes:\footnote{
-	The $d$-dimensional solid angle is
-	\begin{equation}
-		\Omega_d = \frac{2\pi^{d/2}}{\Gamma(\frac{d}{2})},
-	\end{equation}
-	where $\Gamma(x)$ is the gamma function, satisfing
-	\begin{equation}
-		\Gamma(1+x) = x\Gamma(x),\ 
-		\Gamma(\epsilon) = \frac{1}{\epsilon}-\gamma_E + O(\epsilon).
-	\end{equation}
-	In particular, $\Gamma(n+1)=n!$.
-}
-\begin{equation*}
-I(x) = \frac{g}{2}\int \frac{d^d q_E}{(2 \pi)^d} \frac{1}{\left(q_E^{2}+D\right)^{2}}
-=\frac{g\Omega_d}{2(2\pi)^d} \int dq \frac{q^{d-1}}{\left(q^{2}+D\right)^{2}}.
-\end{equation*}
-
-
-\subsubsection*{Dimensional Regularization}
-We set the dimension to $d=6-\epsilon$, and rewrite the Lagrangian as
+Using the Feynman parameters, the integral is
 \begin{equation}
-	\mathcal L 
-	= Z_{\phi}\frac{1}{2} \partial^\mu\phi\partial_\mu\phi - 
-	Z_m \frac{m^2}{2}\phi^2 + Z_g\frac{g\tilde{\mu}^{\epsilon/2}}{3!}\phi^3.
+	iF(k^2) = \frac{i\Omega_4}{(2\pi)^4} \int_0^1 dx \int dq\ \frac{q^{3}}{\left[q^2+m_R^2+x(1-x)k^2\right]^2}.
 \end{equation}
-Note that the coupling constant should be changed to $g\rightarrow g\tilde\mu^{\epsilon/2}$ where $\mu$ is of mass dimension $[1]$ in order to get the correct dimensionality. 
-We then expand the expression to zeroth order of $\epsilon$.
-A useful identity is:
+Using the dimensional regularization, the integral is
 \begin{equation}
-\int d k \frac{k^{a}}{\left(k^{2}+D\right)^{b}}
-= D^{\frac{a+1}{2}-b} 
-\frac{\Gamma\left(\frac{a+1}{2}\right)\Gamma\left(b-\frac{a+1}{2}\right)}{2\Gamma(b)}.
+	iF_\varepsilon(k^2) = \frac{i\tilde{\mu}^{\varepsilon}\Omega_{4-\varepsilon}}{(2\pi)^{4-\varepsilon}} \int_0^1 dx \int dq\ \frac{q^{3-\varepsilon}}{\left[q^2+m_R^2+x(1-x)k^2\right]^2}.
 \end{equation}
-Actually, we can compute the integral and series expansion in \texttt{Mathematica} all together:
-\FrameTBStyle{mathematica}
-\begin{lstlisting}[style=mathematicaFrameTB]
-omg=(2*Pi^(d/2))/(Gamma[d/2]);
-cof=g^2*\[Mu]^(6-d)/2*omg/(2*Pi)^d;
-int=cof*Integrate[q^(d-1)/(q^2+D)^2,{q,0,Infinity}][[1]];
-map={g^2->\[Alpha]*(4*Pi)^3,EulerGamma->Subscript[\[Gamma],E]};
-ans=Series[int/.{d->6-\[Epsilon]},{\[Epsilon],0,0}];
-ans/.map//Simplify
-\end{lstlisting}
-The result is (where $\alpha\equiv g^2/(4\pi)^3$)
-\begin{equation*}
-I(x)= \frac{\alpha D}{2} \left[
-\ln \left(\frac{De^{\gamma_E}}{4\pi\tilde\mu^2}\right)-\left(\frac{2}{\epsilon}+1\right)
-\right]+O(\epsilon).
-\end{equation*}
-Now insert $D=m^2-k^{2} x(1-x)$. Note that
-\begin{equation*}
-\int_0^1 dx D = m^2-\frac{k^2}{6}.
-\end{equation*}
-This simplifies the result to
-\begin{equation}
-	\Sigma^{(2)}(k^2) = \frac{\alpha}{2}\left(\frac{2}{\epsilon}+1\right)\left(\frac{k^2}{2}-m^2\right)
-	+ \frac{\alpha}{2}\int_0^1 dx D(x)\ln\left(\frac{D(x)}{\mu^2}\right),
-\end{equation}
-where we have replace $\tilde\mu$ with
-\begin{equation}
-\mu \equiv \sqrt{\frac{4\pi}{e^{\gamma_E}}}\tilde\mu.
-\end{equation}
-
-
-
-\subsubsection*{Renormalization}
- 
-The counter terms also contribute to the perturbative correction,
-\begin{equation*}
-\begin{aligned}
-	\Sigma^{(2)}\left(k^{2}\right) 
-	=& \frac{\alpha}{2} \int_{0}^{1} dx D \ln\left(\frac{D}{m^{2}}\right) 
-	+\left\{\frac{\alpha}{6}\left[\frac{1}{\varepsilon}+\ln\left(\frac{\mu}{m}\right)+\frac{1}{2}\right]+A\right\} k^{2} \\
-	&-\left\{\alpha\left[\frac{1}{\varepsilon}+\ln\left(\frac{\mu}{m}\right)+\frac{1}{2}\right]+B\right\} m^{2}+O\left(\alpha^{2}\right) .
-\end{aligned}
-\end{equation*}
-Consider the on-shell condition for the subtraction:
-\begin{equation}
-	\Sigma(m^2) = \Sigma'(m^2)=0.
-\end{equation}
-Set $D_0 \equiv D(x)|_{k^2=m^2}=m^2(1-x+x^2)$, the self energy has the form:
-\begin{equation}
-	\Sigma^{(2)}(k^2)=\frac{\alpha}{2} \int_0^1dx D(x)\ln\left(\frac{D(x)}{D_0(x)}\right) + C_k k^2+C_m m^2.
-\end{equation}
-The condition $\Pi(m^2) =0$ requires
-\begin{equation*}
-	\Sigma^{(2)}(k^2)=\frac{\alpha}{2} \int_0^1dx D(x)\ln\left(\frac{D(x)}{D_0(x)}\right) + C_k (k^2-m^2).
-\end{equation*}
-The condition $\Pi'(m^2)=0$ requires
-\begin{equation*}
-\begin{aligned}
-	\left.\frac{d\Sigma^{(2)}(k^2)}{dk^2}\right|_{k^2=m^2}
-	&=\frac{\alpha}{2} \int_0^1dx \left.\left[
-	\frac{D(x)}{dk^2}\ln\left(\frac{D(x)}{D_0(x)}\right)+D_0(x)
-	\right]\right|_{q^2=m^2} + C_k  \\
-	&= \frac{\alpha}{2}\int_0^1dx (x^2-x) + C_k \\
-	&= C_k-\frac{\alpha}{12} = 0.
-\end{aligned}
-\end{equation*}
-In this way, we obtained the renormalized self-energy:
-\begin{equation}
-	\Sigma^{(2)}(k^2)=\frac{\alpha}{2} \int_0^1dx D(x)\ln\left(\frac{D(x)}{D_0(x)}\right) + \frac{\alpha}{12}(k^2-m^2).
-\end{equation}
-
-On the other hand, we chan choose the $\overline{\mathrm{MS}}$ subtraction scheme, i.e.,
-\begin{equation}
-	A = -\frac{\alpha}{6\epsilon},\ 
-	B = -\frac{\alpha}{\epsilon}.
-\end{equation}
-The self energy under $\overline{\mathrm{MS}}$ scheme will depend on the the mass scale $\mu$ we choose:
-\begin{equation}
-	\Sigma^{(2)}\left(k^{2}\right) 
-	= \frac{\alpha}{2} \int_{0}^{1} dx D \ln\left(\frac{D}{m^{2}}\right) 
-	+\alpha\left[\ln\left(\frac{\mu}{m}\right)+\frac{1}{2}\right]\left(\frac{k^2}{6}-m^2\right).
-\end{equation}
-
-
-\subsection{Vertex Correction}
-Now consider the simplest one-loop correction to the vertex function (together with the counter term):
+Then we carry out the calculation, the result is:
 \begin{equation}
 \begin{aligned}
-	i V_3^{(3)}(k_{1}, k_{2}, k_{3})
-	&= \includegraphics[align=c, width=0.4\linewidth]{pics/KG-2.png} \\
-	&= (ig)^3i^3 \int \frac{d^{a} q}{(2 \pi)^{d}} \tilde{\Delta}(q-k_{1}) \tilde{\Delta}(q+k_{2}) \tilde{\Delta}(q) + i Cg,
+	F_\varepsilon(s) &= \frac{1}{8\pi^2\varepsilon} + \frac{1}{16\pi^2}\int_0^1 dx \ln \left(\frac{4\pi \tilde{\mu}^2 e^{-\gamma_E}}{D_{s,x}}\right) \\
+	&= \frac{1}{8\pi^2\varepsilon} +\frac{1}{8\pi^2}\ln \left(\frac{\mu}{m_R}\right) - \frac{1}{16\pi^2}\int_0^1 dx \ln\left(\frac{D_{s,x}}{m_R^2}\right),
 \end{aligned}
 \end{equation}
-Using the Feynman parameter, the integrant is
-\begin{equation*}
-\tilde{\Delta}(q-k_{1}) \tilde{\Delta}(q+k_{2}) \tilde{\Delta}(q) 
-= \int d F_3\frac{1}{(q^2-D)^3}
-\end{equation*}
-where we have shift the value of $q$, and $D$ can be evaluate by the following code:
-\begin{lstlisting}[style=mathematicaFrameTB]
-A1=(l-k1)^2-m^2;
-A2=(l+k2)^2-m^2;
-A3=(l)^2-m^2;
-{c,b,a}=CoefficientList[x1*A1+x2*A2+(1-x1-x2)*A3,{l}];
--c+b^2/(4*a)//Expand
-\end{lstlisting}
-The result is
-\begin{equation*}
-D = m^2-k_1^2 x_1 (1- x_1)-k_2^2 x_2 (1- x_2)-2 k_1 k_2 x_1 x_2.
-\end{equation*}
-The same procedure gives:
+where we have denote
 \begin{equation}
-	V_3^{(3)}/g = \int dF_3 I(x_1,x_2,x_3) + C,
+	D_{k^2,x} \equiv m_R^2+x(1-x)k^2.
 \end{equation}
-where
-\begin{equation*}
-I(x_1,x_2,x_3) = \frac{g^2 \Omega_d}{(2\pi)^d} \int dq \frac{q^{d-1}}{(q^2+D)^3}.
-\end{equation*}
-The same regularization procedure in \texttt{Mathematica}:
-\begin{lstlisting}[style=mathematicaFrameTB]
-omg=(2*Pi^(d/2))/(Gamma[d/2]);
-cof=g^2*\[Mu]^(6-d)*omg/(2*Pi)^d;
-int=cof*Integrate[q^(d-1)/(q^2+D)^3,{q,0,Infinity}][[1]];
-map={g^2->\[Alpha]*(4*Pi)^3,EulerGamma->Subscript[\[Gamma],E]};
-ans=Series[int/.{d->6-\[Epsilon]},{\[Epsilon], 0, 0}];
-ans/.map//Simplify
-\end{lstlisting}
-The result is
+Now sum up the contribution from all channel, the result looks like:
 \begin{equation}
-\begin{aligned}
-	V_3^{(3)}/g 
-	&= \frac{\alpha}{\epsilon}
-	+ \frac{\alpha}{2}\int dF_3 \ln\left(\frac{4\pi\tilde{\mu}^2e^{-\gamma_E}}{D}\right) 
-	+ C + O(\epsilon) \\
-	&= \frac{\alpha}{\epsilon}
-	+ \alpha\ln\left(\frac{\mu}{m}\right)
-	- \frac{\alpha}{2}\int dF_3 \ln\left(\frac{D}{m}\right)
-	+C.
-\end{aligned}
-\end{equation}
-The on-shell subtraction requires 
-\begin{equation}
-V_3(0,0,0) = g,
-\end{equation}
-which gives
-\begin{equation}
-	C = -\frac{\alpha}{\epsilon}-\alpha \ln\left(\frac{\mu}{m}\right).
-\end{equation}
-So the vertex function to the third order is
-\begin{equation}
-	V_3(k_1,k_2,k_3) = g\left\{1-\frac{\alpha}{2} \int dF_3 \ln\left[\frac{D(x_1,x_2,x_3)}{m}\right] \right\}.
-\end{equation}
-The $\overline{\mathrm{MS}}$ scheme, on the other hand, sets
-\begin{equation}
-	C = -\frac{\alpha}{\epsilon}.
+	\Gamma^{(2)}_4 = \frac{3 g_R^2}{16\pi^2}\left[\frac{1}{\varepsilon} + \ln\left(\frac{\mu}{m_R}\right)\right] - \frac{g_R^2}{32\pi^2}\int_0^1 dx \ln\left(\frac{D_{s,x}D_{t,x}D_{u,x}}{m_R^6}\right)- C g_R.
 \end{equation}
 
 
+\subsubsection{Renormalization and Physical Observables}
 
-\subsection{Renormalization Group}
-We fist summarize the normalization factor obtained on the one-loop level (with $\overline{\mathrm{MS}}$ subtraction scheme):
+To absorb the divergence, we can choose the counter term coefficient as
 \begin{equation}
-\begin{aligned}
-	Z_{\phi} &= 1-\frac{\alpha}{6\epsilon} + O(\alpha^2), \\
-	Z_{m} &= 1-\frac{\alpha}{\epsilon}+ O(\alpha^2), \\
-	Z_{g} &= 1-\frac{\alpha}{\epsilon}+ O(\alpha^2).
-\end{aligned}
+	C = \frac{3g_R}{16\pi^2}.
 \end{equation}
-For the renormalized Lagrangian in ($6-\epsilon$)-dimension
+So, to the second order, the vertex function is:
 \begin{equation}
-	\mathcal L 
-	= Z_{\phi}\frac{1}{2} \partial^\mu\phi\partial_\mu\phi - 
-	Z_m \frac{m^2}{2}\phi^2 + Z_g\frac{g\tilde{\mu}^{\epsilon/2}}{3!}\phi^3,
+	\Gamma_4(k_1,k_2,k_3,k_4) = -g_R + \frac{g_R^2}{32\pi^2}\int_0^1 dx \ln\left(\frac{\mu^6}{D_{s,x}D_{t,x}D_{u,x}}\right).
 \end{equation}
-the factors relate the original field and bare coefficients
+The vertex function is directly related to the physical observables.
+It can be measured in the scattering experiment or just just by the repulsive force it generated.
+We can choose the scale $\mu_0$ so that
 \begin{equation}
-	\phi_0 = Z_\phi^{1/2}\phi,\ 
-	m_0 = Z_m^{1/2} Z_\phi^{-1/2}m,\ 
-	g_0 = Z_g Z_{\phi}^{-3/2} \tilde{\mu}^{\epsilon/2}g.
+	\Gamma(m_R,m_R,m_R,m_R) = -g_R.
 \end{equation}
-The renormalization group requires that the bare parameter is independent of the mass scale $\mu$ we choose, that is:
-\begin{equation}
-	\frac{d\phi_0}{d \ln \mu} 
-	= \frac{dm_0}{d \ln \mu}
-	= \frac{dg_0}{d \ln \mu}
-	= 0.
-\end{equation}
+Then the corrected vertex function gives the physical predictions, for example on the scattering amplitude for different $k_i$'s.
 
 
-\subsubsection*{Beta Function}
-Star with $g_0$, it is more convenient to use 
-\begin{equation}
-\alpha_0 
-\equiv \frac{g_0^2}{4\pi} 
-= Z_g^2 Z_{\phi}^{-3}\tilde{\mu}^{\epsilon}\alpha.
-\end{equation}
-Take logarithm on both side:
-\begin{equation}
-\ln \alpha_0 = \ln(Z_g^2 Z_{\phi}^{-3}) 
-+ \ln \alpha + \epsilon\ln{\tilde\mu}.
-\end{equation}
-The RG equation is
-\begin{equation}
-\frac{d \ln \alpha_0}{d \ln \mu} = 
-\frac{d \ln(Z_g^2 Z_{\phi}^{-3}) }{d \alpha}\frac{d \alpha}{d\ln \mu} +
-\frac{1}{\alpha}\frac{d \alpha}{d \ln \mu} + \epsilon
-=0.
-\end{equation}
-To the first order of $\alpha$:
-\begin{equation}
-\begin{aligned}
-	\frac{d \ln(Z_g^2 Z_{\phi}^{-3}) }{d \alpha}
-	=\frac{d}{d\alpha}\left(-\frac{2\alpha}{\epsilon}+\frac{\alpha}{2\epsilon}\right) 
-	= -\frac{3}{2\epsilon},
-\end{aligned}
-\end{equation}
-which leads to
-\begin{equation}
-	\frac{d\alpha}{d\ln \mu}\left(1-\frac{3\alpha}{2\epsilon}+O(\alpha^2)\right)+\epsilon\alpha = 0.
-\end{equation}
-The beta function is defined as
-\begin{equation}
-	\beta(\alpha) = \frac{d\alpha}{d\ln \mu} = \beta_1 \alpha + \beta_2 \alpha^2 + O(\alpha^3).
-\end{equation}
-Insert such definition into the original expression, and keep track of the order of $\alpha$, we get
-\begin{equation}
-	(\beta_1+\epsilon)\alpha + \left(\beta_2-\frac{3\beta_1}{2\epsilon}\right)\alpha^2 + O(\alpha^3) = 0.
-\end{equation}
-The beta function is
-\begin{equation}
-	\beta(\alpha) = -\epsilon \alpha -\frac{3}{2}\alpha^2 + O(\alpha^3).
-\end{equation}
-
-
-
-\subsubsection*{Anomalous Dimension}
-Consider the RG equation with bare mass:
-\begin{equation}
-\begin{aligned}
-\frac{d\ln m_0}{d\ln \mu} 
-&= \frac{1}{2}\frac{d(\ln Z_m - \ln Z_\phi)}{d\alpha}\frac{d\alpha}{d\ln\mu}
-	+\frac{1}{m}\frac{d m}{d\ln \mu} \\
-&= \frac{5\alpha}{12}+\frac{1}{m}\frac{d m}{d\ln \mu} + O(\alpha^2) = 0.
-\end{aligned}
-\end{equation}
-We get the anomalous dimension of the mass:
-\begin{equation}
-\gamma_m(\alpha) \equiv \frac{1}{m}\frac{d m}{d\ln \mu} 
-= -\frac{5\alpha}{12}+O(\alpha^2).
-\end{equation}
-Also, for the bare field
-\begin{equation}
-\frac{d\ln\phi_0}{d\ln\mu} = \frac{1}{2} \frac{d\ln Z_{\phi}}{d\ln\mu} 
-+ \frac{d\ln\phi}{d\ln\mu} = 0.
-\end{equation}
-We can define the anomalous dimension of the field as
-\begin{equation}
-\gamma_{\phi} \equiv \frac{1}{2}\frac{d \ln Z_\phi}{d\ln\mu}
-= \frac{1}{2}\frac{d \ln Z_\phi}{d\alpha}\frac{d\alpha}{d\ln\mu}
-= \frac{\alpha}{12} +O(\alpha^2).
-\end{equation}
-
-
-
-\subsubsection*{Callan-Symanzik Equation}
-Consider the bare propagator:
-\begin{equation}
-\tilde{\Delta}_0(k) = Z_\phi \tilde{\Delta}(k)
-\end{equation}
-The RG condition for the bare propagator gives:
-\begin{equation*}
-\frac{d\ln\tilde{\Delta}_0(k)}{d \ln\mu}
-=\frac{d\ln Z_\phi}{d\ln\mu}+\frac{1}{\tilde{\Delta}(k)}\left(
-	\frac{\partial}{\partial\ln\mu} +
-	\frac{d\alpha}{d\ln\mu}\frac{\partial}{\partial\alpha} +
-	\frac{dm}{d\ln\mu}\frac{\partial}{\partial m}
-\right)\tilde{\Delta}(k)=0.
-\end{equation*}
-The Callan-Symanzik equation is
-\begin{equation}
-	\left(
-	2\gamma_\phi+
-	\frac{\partial}{\partial\ln\mu} +
-	\beta(\alpha)\frac{\partial}{\partial\alpha} +
-	\gamma_m(\alpha)m\frac{\partial}{\partial m}
-\right)\tilde{\Delta}(k)=0.
-\end{equation}
-
-\section{Real $\phi^4$ Theory}
-In this section, we consider the real Klein-Gordon field with $\phi^4$ interaction.
-The field $\phi$ has mass dimension $[\frac{d-2}{2}]=[1]$, so the critical dimension is $d=4$, where the coupling constant $g$ is dimensionless.
-For dimensional regulation purpose, we write the renormalized Lagrangian on $(4-\epsilon)$-dimensional space-time as
-\begin{equation}
-	\mathcal{L}
-	= Z_{\phi}\frac{1}{2} \partial^\mu\phi\partial_\mu\phi - 
-	Z_m \frac{m^2}{2}\phi^2 - Z_g\frac{g \tilde{\mu}^\epsilon}{4!}\phi^4,
-\end{equation}
-where we have introduced a mass scale $\tilde \mu$.
-As the $\phi^3$ theory, we can rewrite the Lagrangian as:
-\begin{equation}
-	\mathcal L = \mathcal L_0 + \mathcal L_{\mathrm{int}} + \mathcal L_{\mathrm{ct}}.
-\end{equation}
-In the following we investigate the loop correction to the mass and the coupling constant.
-
-
-\subsection{One-loop Correction}
-\subsubsection*{Self-energy}
-Following the same procedure, the one-loop self-energy correction is (with counter terms):
-\begin{equation}
-\begin{aligned}
-	i\Sigma(k^2) 
-	&= \includegraphics[align=c, width=0.4\linewidth]{pics/KG-3.png} \\
-	&= -\frac{g\tilde{\mu}^\epsilon}{2}\int \frac{d^d q}{(2\pi)^d} \frac{1}{q^2-m^2} + i(Ak^2-Bm^2).
-\end{aligned}
-\end{equation}
-After the Wick rotation, 
-\begin{equation}
-	\Sigma(k^2) = -\frac{g\tilde{\mu}^\epsilon}{2}\frac{\Omega_d}{(2\pi)^d} \int \frac{q^{d-1} dq}{q^2+m^2} + (Ak^2-Bm^2).
-\end{equation}
-The dimensional regulation is carried out using the following code:
-\begin{lstlisting}[style=mathematicaFrameTB]
-omg=(2*Pi^(d/2))/(Gamma[d/2]);
-cof=g*\[Mu]^(4-d)/2*omg/(2*Pi)^d;
-int=cof*Integrate[q^(d-1)/(q^2+m^2),{q,0,Infinity}][[1]];
-map={EulerGamma->Subscript[\[Gamma],E]};
-ans=Series[int/.{d->4-\[Epsilon]},{\[Epsilon],0,0}];
-ans/.map//Simplify
-\end{lstlisting}
-The result is
-\begin{equation}
-	\Sigma(k^2) = \frac{g m^2}{32\pi^2} \left[\frac{2}{\epsilon}+1+\log \left(\frac{4 \pi \tilde{\mu}^2 e^{-\gamma_E}}{m^2}\right)\right]+(Ak^2-Bm^2)+O(\epsilon).
-\end{equation}
-Using the $\overline{\mathrm{MS}}$ renormalization scheme, we set
-\begin{equation}
-	A = 0,\ B = \frac{g}{16\pi^2\epsilon}.
-\end{equation}
-The result is
-\begin{equation}
-	\Sigma(k^2) = \frac{g m^2}{16\pi^2} \log \left(\frac{\mu}{m}\right)
-	+\frac{g m^2}{32\pi^2}+O(\epsilon).
-\end{equation}
-
-\subsubsection*{Vertex Correction}
-Now consider the vertex correction.
-The vertex correction to the lowest order (with the counter term) is
-\begin{equation}
-\begin{aligned}
-	iV_4^{(2)}(k_1,k_2,k_3,k_4) 
-	&= \includegraphics[align=c, width=0.6\linewidth]{pics/KG-4.png}\\
-	&= \frac{g^2}{2} \left[iF(s)+iF(t)+iF(u)\right] -iCg,
-\end{aligned}
-\end{equation}
-where
-\begin{equation}
-	s = (k_1+k_2)^2,\ 
-	t = (k_1+k_3)^2,\ 
-	u = (k_1+k_4)^2,
-\end{equation}
-and
-\begin{eqnarray}
-	iF(k^2) 
-	&=& \tilde{\mu}^{\epsilon}\int \frac{d^d q}{(2\pi)^d} \tilde{\Delta}_0(q)\tilde{\Delta}_0(q+k) \\
-	&=& \frac{i\tilde{\mu}^{\epsilon}\Omega_d}{(2\pi)^d} \int_0^1 dx \int \frac{q^{d-1}dq}{\left[q^2+m^2+x(1-x)k^2\right]^2}.
-\end{eqnarray}
-Then we carry out the calculation (set $D(k^2,x)=m^2+x(1-x)k^2$)
-\begin{lstlisting}[style=mathematicaFrameTB]
-omg=(2*Pi^(d/2))/(Gamma[d/2]);
-cof=g^2*\[Mu]^(4-d)/2*omg/(2*Pi)^d;
-int=cof*Integrate[q^(d-1)/(q^2+D)^2,{q,0,Infinity}][[1]];
-map={EulerGamma->Subscript[\[Gamma],E]};
-ans=Series[int/.{d->4-\[Epsilon]},{\[Epsilon],0,0}];
-ans/.map//Simplify
-\end{lstlisting}
-The result is:
-\begin{equation}
-\begin{aligned}
-	F(s) &= \frac{1}{8\pi^2\epsilon} + \frac{1}{16\pi^2}\int_0^1 dx \ln \left(\frac{4\pi \tilde{\mu}^2 e^{-\gamma_E}}{D}\right) \\
-	&= \frac{1}{8\pi^2\epsilon} +\frac{1}{8\pi^2}\ln \left(\frac{\mu}{m}\right) - \frac{1}{16\pi^2}\int_0^1 dx \ln\left(\frac{D(s,x)}{m^2}\right).
-\end{aligned}
-\end{equation}
-The $\overline{\mathrm{MS}}$ scheme absorbs the $\frac{1}{8\pi^2\epsilon}$ term, i.e.,
-\begin{equation}
-	C = \frac{3g}{16\pi^2}.
-\end{equation}
-The result is:
-\begin{equation}
-	V_4(k_1,k_2,k_3,k_4) = -g+\frac{g^2}{32\pi^2}\int_0^1 dx \ln\left(\frac{\mu^6}{D(s,x)D(t,x)D(u,x)}\right).
-\end{equation}
-To summarize, the normalization is:
-\begin{eqnarray}
-	Z_{\phi} &=& 1, \\
-	Z_{m} &=& 1+\frac{g}{16\pi^2 \epsilon}, \\
-	Z_{g} &=& 1+\frac{3g}{16\pi^2 \epsilon}.
-\end{eqnarray}
-
-
-\subsection{Renormalization Group}
+\section{Renormalization Group}
 Now consider the RG equation for the one-loop correction. 
 The bare parameters are:
 \begin{equation}
