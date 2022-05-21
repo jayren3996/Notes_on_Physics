@@ -41,103 +41,9 @@ The counter terms come from the renormalization factors, which can be formally i
 
 
 
-\section{Perturbation Theory}
+\section{Perturbative Renormalization}
 
-\subsection{Perturbative Expansion and Feynman Rules}
-\subsubsection{Real-space Formalism}
-For interaction theory, the partition function can be formally expressed as:
-\begin{equation}
-	Z[J] = \exp\left(i\int d^dx \mathcal{L}_{\mathrm{int}}\left[\frac{\delta}{i\delta J(x)}\right]\right)Z_0[J].
-\end{equation}
-The expectation values for a generic operator of the form $O(\phi)$ can be evaluated by the true partition function
-\begin{equation}\label{eq:ptb-exp-val}
-	\langle O(\phi)\rangle
-	= \frac{1}{Z[0]} \left. O\left[\frac{\delta}{i\delta J(x)}\right] Z[J] \right|_{J=0}.
-\end{equation}
-
-The expression (\ref{eq:ptb-exp-val}) can be expanded order by order using the Feynman diagram. 
-Since the unconnected diagram can be absorbed into $Z[0]$, we only need to calculate the connected diagram.
-
-The procedure of perturbative expansion with only connected diagrams can be formally represented by introducing the quantity
-\begin{equation}
-	Z[J] = Z[0]\exp\left(i W[J]\right).
-\end{equation}
-The perturbative expansion of $W[J]$ contain only the connected diagrams.
-Note that for the free theory,
-\begin{equation*}
-	\frac{Z_0[J]}{Z_0[0]} = \exp\left[-\frac{i}{2}\int d^d x_1 d^d x_2 J(x_1) \Delta(x_1-x_2)J(x_2)\right],
-\end{equation*}
-which means
-\begin{equation*}
-	W_0 = -\frac{1}{2}\int d^d x_1 d^d x_2 J(x_1) \Delta(x_1-x_2)J(x_2).
-\end{equation*}
-For the interaction theory, the expectation (\ref{eq:ptb-exp-val}) can then be replaced by the connected expectation:
-\begin{equation}
-	\langle O(\phi)\rangle_c
-	\equiv i\left. O\left[\frac{\delta}{i\delta J(x)}\right] W[J] \right|_{J=0}.
-\end{equation}
-
-
-Consider the two-point connected correlation (propagator):
-\begin{equation}
-\begin{aligned}
-	i\Delta(x_1-x_2)
-	&= \langle \mathcal{T}\phi(x_1) \phi(x_2)\rangle_c \\
-	&= i\left.\frac{\delta^2 W[J]}{i\delta J(x_1) i\delta J(x_2)}\right|_{J=0} \\
-	&= \left.\frac{\delta^2 \ln Z[J]}{i\delta J(x_1) i\delta J(x_2)}\right|_{J=0}\\
-	&= \frac{1}{Z[0]}\left.\frac{\delta^2 Z[J]}{i\delta J(x_1)i\delta J(x_2)}\right|_{J=0},
-\end{aligned}
-\end{equation}
-where we have used the fact that
-\begin{equation}
-	\frac{\delta Z^n[J]}{\delta J(x_1) \cdots \delta J(x_n)} = 0,\ \forall n = 1\ \mathrm{mod}\ 2.
-\end{equation}
-The result is the same as the original definition.
-
-Further, we can consider the four-point connected correlation:
-\begin{equation}
-	iV_4 \equiv \langle \mathcal{T}\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\rangle_c
-\end{equation}
-Following the same procedure,
-\begin{equation}
-\begin{aligned}
-	iV_4 
-	=&\ i\left.\frac{\delta^4 W[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
-	=&\ \frac{1}{Z[0]}\left.\frac{\delta^4 Z[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
-	& -i\Delta(x_1-x_2) i\Delta(x_3-x_4) \\
-	& -i\Delta(x_1-x_3) i\Delta(x_2-x_4) \\
-	& -i\Delta(x_1-x_4) i\Delta(x_2-x_3).
-\end{aligned}
-\end{equation}
-The connected correlation function automatically omit those disconnected components.
-
-
-\subsubsection{Momentum-space Formalism}
-In momentum space, the theory is expressed as
-\begin{equation}
-\begin{aligned}
-	S_0[\phi(k)] &= \frac{1}{2} \int\frac{d^4 k}{(2\pi)^4}\ \phi_R^*(k)(k^2-m_R^2) \phi_R(k), \\
-	S_\mathrm{int}[\phi(k)] &= \frac{g_R}{4!} \left(\prod_{i=1}^{4} \int \frac{d^4 k_i}{(2\pi)^4} \right) \left[\prod_{i=1}^4 \phi_R(k_i)\right] \delta^{(4)}\left(\sum_{i=1}^4 k_i\right), \\
-	S_{\mathrm{ct}}[\phi(k)] &= \frac{1}{2} \int\frac{d^4 k}{(2\pi)^4}\ \tilde\phi_R^*(k)(A k^2 - B m_R^2) \tilde\phi_R(k) - C \cdot S_\mathrm{int}.
-\end{aligned}
-\end{equation}
-For the free theory:
-\begin{equation}
-\begin{aligned}
-	\frac{Z_0[J]}{Z_0[0]} &= \frac{1}{Z_0[0]}\int D[\phi] \exp\left\{ -S_0[\phi(k)] + i \int\frac{d^4 k}{(2\pi)^4} J_k^* \phi(k) \right\} \\
-	&= \exp\left\{ -i \int\frac{d^4 k}{(2\pi)^4} J^*_k \Delta(k) J_k \right\}.
-\end{aligned}
-\end{equation}
-Similarly, the expectation in momentum space is
-\begin{equation}
-	\langle O(\phi_k)\rangle
-	= \frac{1}{Z[0]} \left. O\left[\frac{\delta}{i\delta J^*_k}\right] Z[J] \right|_{J=0}.
-\end{equation}
-The Feynman diagrams in momentum space is the same as that in real space, just replace the propagator from the real space to the momentum space.
-Also, at each vertex, the momentum conservation is automatically satisfied.
-
-
-\subsection{Correction to the Propagator}
+\subsection{First-order Correction to the Propagator}
 Consider the first order perturbation to the propagator:
 \begin{equation}
 \begin{aligned}
@@ -251,7 +157,7 @@ To the first order, the self-energy has no momentum dependence, so there is no p
 
 
 
-\subsection{Correction to the Vertex}
+\subsection{Second-order Correction to the Vertex}
 
 Now consider the second order correction to the vertex function, which is the connected, amputated 4-point Green's function.
 The perturbation correspond to 3 different Feynman diagrams together with a vertex counter term.
@@ -348,8 +254,7 @@ We can choose the scale $\mu_0$ so that
 \end{equation}
 Then the corrected vertex function gives the physical predictions, for example on the scattering amplitude for different $k_i$'s.
 
-
-\section{Renormalization Group}
+\subsection{Renormalization Group}
 Now consider the RG equation for the one-loop correction. 
 The bare parameters are:
 \begin{equation}
@@ -375,6 +280,62 @@ The anomalous dimension of mass is
 \begin{equation}
 	\gamma_m = \frac{1}{m}\frac{dm}{d \ln \mu} = \frac{g}{32\pi^2}+O(g^2)
 \end{equation}
+
+\section{Wilsonian Renormalization Group}
+Now we consider the two-loop correction to the self energy
+\begin{equation}
+\begin{aligned}
+	i\Sigma^{(2)}(k) 
+	&= -\frac{g_R^2}{3!} \int \frac{d^4 p_1}{(2\pi)^4}\frac{d^4 p_2}{(2\pi)^4} \frac{i}{p_1^2-m_R^2} \frac{i}{p_2^2-m_R^2} \frac{i}{(k-p_1-p_2)^2-m_R^2} \\
+	&= i\frac{g_R^2}{3!} \int \frac{d^4 p_1}{(2\pi)^4}\frac{d^4 p_2}{(2\pi)^4} \int_0^1 dx dy dz\  \frac{2 \delta(1-x-y-z) }{D_{x,y,z}^3},
+\end{aligned}
+\end{equation}
+where the denominator is a bilinear
+\begin{equation}
+	D = \left(\begin{array}{cc} p_1 & p_2 \end{array} \right) 
+		\left[\begin{array}{cc} x+z & z \\ z & y+z \end{array} \right]
+		\left(\begin{array}{c} p_1 \\ p_2 \end{array} \right) 
+		- 2kz (p_1 + p_2) + k^2z - m_R^2.
+\end{equation}
+
+For a generic bilinear, we can simplify it by shifting the variable and diagonalized the quadratic coefficient matrix (which is always symmetric):
+\begin{equation}
+\begin{aligned}
+	D &= \sum_{ij} A_{ij} p_i p_j + \sum_i B_i p_i - C \\
+	&= \sum_{ij} A_{ij}p'_i p'_j - C - \frac{1}{4} \sum_{ij} B_i A^{-1}_{ij} B_j \\
+	&= \sum_n a_n p''_n p''_n - C',
+\end{aligned}
+\end{equation}
+We do not really need to carry out the diagonalization explicitly, but the above general form tells tells us that the integral can be transformed to
+\begin{equation}
+\begin{aligned}
+	\frac{1}{D_{x,y,z}^3} 
+	&\rightarrow \frac{1}{(\det A)^2} \frac{1}{\left[p_1^2 + p_2^2 - C'\right]^3} \\
+	&= \frac{1}{[xy+yz+zx]^2} \frac{1}{\left[ p_1^2+p_2^2 - \left(-\frac{xyz}{xy+yz+zx}k^2+m_R^2\right)\right]^3}
+\end{aligned}
+\end{equation}
+The self energy is then
+\begin{equation}
+	\Sigma^{(2)}(k) = -\frac{g_R^2}{3!} \int_0^1 \frac{dF_3}{[xy+(x+y)z]^2} I(p_1^2,p_2^2), 
+\end{equation}
+where
+\begin{equation}
+	I_\varepsilon(p_1^2,p_2^2) = \frac{\tilde{\mu}^{2\varepsilon}\Omega_d^2}{(2\pi)^{2d}} \int dp_1 dp_2 \frac{p_1^{d-1} p_2^{d-2}}{(p_1^2+p_2^2+C')^3}
+\end{equation}
+
+\subsection{Regularization and Renormalization}
+The $\varepsilon$ expansion gives:
+\begin{equation}
+	I_\varepsilon(p_1^2,p_2^2) = -\frac{C'}{512 \pi^4 \varepsilon} + \text{finite part}.
+\end{equation}
+Back to the 
+\begin{equation}
+	\frac{g_R^2}{3\cdot 2^{10} \pi^4 \varepsilon} \int_0^1 dF_3\ \frac{xyz}{(xy+yz+zx)^3} k^2
+\end{equation}
+
+
+\section{Spontaneously Symmetry Breaking}
+
 
 
 

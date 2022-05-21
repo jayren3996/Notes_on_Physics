@@ -1,8 +1,8 @@
-\chapter{One Dimensional Fermi System}
+\chapter{Luttinger Liquid}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{pics/FL-linearize.png}
+	\includegraphics[width=0.4\linewidth]{pics/LL-linearize.png}
 	\caption{Linearized Model.}
 	\label{fig:bs-linearize}
 \end{figure}
@@ -124,7 +124,7 @@ Other couplings corresponding to the ($LL \rightarrow RR$) process are wiped out
 Consider the infinitesimal rescale $s=e^{dt}$. 
 The one-loop contribution to the quadratic term is\footnote{We include an infinitesimal $e^{i\omega\eta}$ to ensure convergence as we do the integral over $\omega$ by closing the upper half-plane.}
 \begin{equation}
-	\mu^{(2)}_{LL} = \includegraphics[align=c, width=0.125\linewidth]{pics/FL-1.png}
+	\mu^{(2)}_{LL} = \includegraphics[align=c, width=0.125\linewidth]{pics/LL-1.png}
 	= -u \int_{d\Lambda} \frac{dk}{2\pi}\int^\infty_{-\infty}\frac{d\omega}{2\pi}\frac{e^{i\omega \eta}}{i\omega - v_F k},
 \end{equation}
 where the integral on the momentum shell is
@@ -145,7 +145,7 @@ One is called ZS' (zero sound) channel:\footnote{There is actually another zero 
 \begin{equation}
 \begin{aligned}
 	u^{(2)}_{\mathrm{ZS'}} 
-	&= \includegraphics[align=c, width=0.2\linewidth]{pics/FL-2.png} \\
+	&= \includegraphics[align=c, width=0.2\linewidth]{pics/LL-2.png} \\
 	&= -u^2 \int^\infty_{-\infty}\int_{\Lambda/s<|k|<\Lambda} \frac{d\omega dk}{(2\pi)^2} \frac{e^{i\omega\eta}}{(i\omega+v_F k)(i\omega-v_F k)} \\
 	&= u^2\int_{\Lambda/s<|k|<\Lambda} \frac{dk}{2\pi} \frac{1}{2|k|} \\
 	&= \frac{u^2}{2\pi}\frac{d\Lambda}{\Lambda}.
@@ -162,7 +162,7 @@ The sign is obtained from contracting the Fermion field monomial:
 The other is called the BCS channel:\footnote{The $1/2$ factor comes from the symmetry factor of the diagram.}
 \begin{equation}
 	u^{(2)}_{\mathrm{BCS}} 
-	= \includegraphics[align=c, width=0.15\linewidth]{pics/FL-3.png} 
+	= \includegraphics[align=c, width=0.15\linewidth]{pics/LL-3.png} 
 	= -\frac{u^2}{2} \sum_{r=L/R}\int^\infty_{-\infty}\int_{d\Lambda} \frac{d\omega dk_i}{(2\pi)^2} \frac{e^{i\omega\eta}}{(i\omega-v_F k)(-i\omega-v_F k)}.
 \end{equation}
 The sign is obtained from the contraction:
@@ -187,7 +187,11 @@ The fixed point solution to the RG flow is:
 	\mu^* = \frac{u^*\Lambda}{2\pi},
 \end{equation}
 where the fixed-point value of $u^*$ is arbitrary. 
-The vanishing beta function predict that the ground state of one-dimensional weakly interacting Fermi gas remains gapless (rather than develops CDW order and becomes gapped).
+The vanishing beta function predict that at least for small interaction, the system does not immediately develop a CDW order.
+However, as the vertex function is marginal in the RG analysis, the fix points become a fixed line.
+When the coupling $u$ is nonzero, the analysis for the Gaussian fix point becomes untrustworthy.
+Actually when $u$ is getting sufficiently large, the umklapp process becomes relevant and the system flows to CDW phase.
+A more systematic analysis requires the bosonization techniques. 
 
 
 \section{Bosonization}
@@ -205,7 +209,7 @@ To simplify the discussion, here we consider only a single branch of Fermion, as
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.25\linewidth]{pics/FL-hilbert.png}
+	\includegraphics[width=0.25\linewidth]{pics/LL-hilbert.png}
 	\caption{The vacuum state $|0\rangle_0$ of a single fermion branch.}
 	\label{fig:bs-hilbert}
 \end{figure}
@@ -234,7 +238,7 @@ Consider for example the density operator for the right mover, the commutator of
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{pics/BS-k-shift}
+	\includegraphics[width=0.5\linewidth]{pics/LL-k-shift}
 	\caption{Shift of the right-moving modes.}
 	\label{fig:bs-k-shift}
 \end{figure}
@@ -847,7 +851,7 @@ The RG-flow is shown in Fig.~\ref{fig:FL-RG-flow}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{pics/FL-RG-flow}
+	\includegraphics[width=0.5\linewidth]{pics/LL-RG-flow}
 	\caption{KT RG-flow.}
 	\label{fig:FL-RG-flow}
 \end{figure}
