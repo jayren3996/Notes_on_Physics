@@ -1,6 +1,6 @@
 \chapter{Relativistic Free Field Theories}
 
-\section{The Lorentz Invariance}
+\section{The Lorentz Symmetry}
 
 The metric for ($3+1$)-dimensional flat space-time is chosen to be
 \begin{equation}
@@ -90,10 +90,10 @@ That is, the Lorentz algebra is isomorphic to two $\mathfrak{su}(2)$ algebra,
 	\mathfrak{so}(3,1) \approx \mathfrak{su}_L(2)\oplus\mathfrak{su}_R(2).
 	\label{eq:Lorentz-alg-decomp}
 \end{equation}
-From Eq.~(\ref{eq:Lorentz-alg-decomp}), we know that the representation of the Lorentz algebra can be labelled by $j_L$ and $j_R$.
+From Eq.~(\ref{eq:Lorentz-alg-decomp}), we know that the representation of the Lorentz algebra can be labelled by $(2 j_L+1)$ and $(2 j_R+1)$.
 Note that the fundamental representation correspond to
 \begin{equation*}
-	\left(j_L=\frac{1}{2},j_R=\frac{1}{2}\right).
+	\left( 2, 2 \right).
 \end{equation*}
 The specific form of the group is
 \begin{equation}
@@ -129,115 +129,83 @@ For this reason, the left-hand and right-hand spinor can be interchanged by
 
 
 \subsection{The Invariant Symbols}
-The invariant symbols can be thought as the Clebsch-Gordan coefficients that help to form singlets.
-The first singlet comes from the decomposition
+The invariant symbols can be thought as the Clebsch-Gordan coefficients that help to form singlets under Lorentz transformation: 
 \begin{equation*}
-	\frac{1}{2}\otimes \frac{1}{2} \approx 0 \oplus 1.
+\begin{tabular}{ccc}
+	\hline \hline 
+	Symbol & Representation  & Invariant \\ \hline
+	$1$ & $(0,0)$ & $a_\mu b^\mu/\psi_L^\dagger \chi_R/\psi_R^\dagger \chi_L$\\
+	$\varepsilon^{ab}$ & $(2,0)\otimes (2,0)$ & $\psi_L \cdot \chi_L$ \\
+	$\varepsilon^{\dot a \dot b}$ & $(0,2)\otimes (0,2)$ & $\psi_R \cdot \chi_R$ \\
+	$\sigma^\mu_{\dot ab}$ & $(2,2)\otimes (0,2)\otimes(2,0)$ & $a_\mu \psi_R^\dagger \sigma^\mu \chi_L$ \\
+	$\bar \sigma^\mu_{a \dot b}$ & $(2,2)\otimes (2,0)\otimes(0,2)$ & $a_\mu \psi_L^\dagger \bar\sigma^\mu \chi_R$ \\
+	$\varepsilon^{\mu\nu\rho\sigma}$ & $(2,2)^{\otimes 4}$ & $\varepsilon^{\mu\nu\rho\sigma}a_\mu b_\nu c_\rho d_\sigma$ \\
+	\hline \hline
+\end{tabular}
 \end{equation*}
-Correspondingly, we can check that for each-hand-side spinor, the quadratic forms
+
+The identity is the trivial symbol.
+It correspond to some automatic Lorentz invariant terms, such as a constant, vector inner product $a_\mu b^\nu$, or spinor inner product $\psi_L^\dagger \chi_R/\psi_R^\dagger \chi_L$.
+The second and third symbol can combine two fermion field with the same chirality to form an invariant, which corresponds to the decomposition 
 \begin{equation}
-	\psi_L^T\sigma^2\chi_L \quad \text{or} \quad 
-	\psi_R^T\sigma^2\chi_R
-	\label{eq:inner-product-inv-symbol}
+	2 \otimes 2 = 1 \oplus 3.
 \end{equation}
-are singlets.
-We can define the first invariant symbol as\footnote{We use the dotted symbol to denote the right-hand spinor indices.}
+The two $\varepsilon$ symbols, defined as\footnote{We use the dotted symbol to denote the right-hand spinor indices.}
 \begin{equation}
-	\varepsilon^{ab} = \varepsilon^{\dot a \dot b} = i(\sigma^2)_{ab}, \quad
-	\varepsilon_{ab} = \varepsilon_{\dot a \dot b} = -i(\sigma^2)_{ab}.
+	\varepsilon^{ab} = \varepsilon^{\dot a \dot b} = i\sigma^2, \quad
+	\varepsilon_{ab} = \varepsilon_{\dot a \dot b} = -i\sigma^2,
 \end{equation}
-The symbol $\varepsilon^{ab}$ or $\varepsilon_{ab}$ also serve as the index raising/lowering symbol, i.e.,
-\begin{equation}
-	\varepsilon^{ab}\psi_b = \psi^a,\ 
-	\varepsilon_{ab}\psi^b = \psi_a.
-\end{equation}
-The singlet (\ref{eq:inner-product-inv-symbol}) is then defined as the inner product of two spinors:
+is the Clebsch-Gordan coefficient.
+For the notational simplicity, we defined the ``inner product'' of two left-handed spinors as:
 \begin{equation}
 	\psi\cdot\chi 
 	\equiv \varepsilon_{ab}\psi^a\chi^b
-	= \psi^a\chi_{a}
+	\equiv \psi^a\chi_{a}
 	= -\varepsilon_{ba}\psi^a\chi^b
 	= -\psi_b\chi^b.
 \end{equation}
-In addition, because of (\ref{eq:left-right-spinor-rel}), the expressions
-\begin{equation*}
-	\psi_L^\dagger \chi_R \quad \text{and} \quad \psi_R^\dagger \chi_L
-\end{equation*}
-are also singlets.
 
-Besides, we know there should be another invariant symbol from the decomposition
-\begin{equation*}
-	\left(\frac{1}{2}, 0\right) \otimes \left(0,\frac{1}{2}\right)
-	\approx \left(0, 0\right) \oplus \cdots.
-\end{equation*}
-For this reason, we are searching for the symbol $M$ that the expression
-\begin{equation*}
-	M^\mu_{a\dot b} \psi^a_L \chi^{\dot b}_R
-\end{equation*}
-transforms as the Lorentz vector.
-The matrix $M^\mu$ should transform as
-\begin{equation*}
-	M^\mu \longrightarrow \Lambda_L^T \cdot M^\mu \cdot \Lambda_R = {\Lambda^\mu}_\nu M^\nu.
-\end{equation*}
-Use the fact that $\sigma^2 \cdot \Lambda_L^T \cdot \sigma^2 = \Lambda_L^{-1}$, the above equation transforms to
-\begin{equation*}
-	\left(\sigma^2 M^\mu\right) \longrightarrow \Lambda_L^{-1} \cdot \left(\sigma^2 M^\mu\right)\cdot \Lambda_R.
-\end{equation*}
-We then show the matrices $\sigma^\mu = (\sigma^0,\vec\sigma)$ satisfies the requirement.
-Firstly, for the spatial rotation,
+The third and fourth symbol comes from the decomposition
 \begin{equation}
-	\Lambda_L(\vec\theta,\vec 0) = \Lambda_R(\theta,\vec 0) = \exp\left(i\vec\theta\cdot \frac{\vec\sigma}{2}\right)
+	\left(2, 1\right) \otimes \left(1,2\right) \otimes \left(2, 2\right)
+	= \left(1, 1\right) \oplus \cdots.
 \end{equation}
-The Pauli matrix transform as
-\begin{equation*}
-	\left(1-i\delta\vec\theta\cdot\frac{\vec\sigma}{2}\right)\sigma^j\left(1+i\delta\vec\theta\cdot \frac{\vec\sigma}{2}\right)
-	= \sigma^j + i\delta\theta_i \left(-i \varepsilon_{ijk}\sigma^k \right)
-\end{equation*}
-Secondly, for the boosts,
+We can explicitly check that the symbol $\sigma^\mu = (1, \vec \sigma)$ converts the combination of left- and right- handed spinor representations to the defining representation of the Lorentz group:
 \begin{equation}
-	\Lambda_{L/R}(\vec 0, \vec\beta) = 
-	\exp\left(\mp\vec\beta\cdot \frac{\vec\sigma}{2}\right).
+	\Lambda_L^T(\bm \theta, \bm \beta) \sigma^\mu \Lambda_R(\bm \theta, \bm \beta)
+	= {\Lambda^\mu}_\nu(\bm \theta,\bm \beta) \sigma^\nu.
 \end{equation}
-The Pauli matrix transform as
-\begin{equation*}
-	\left(1+\delta\vec\beta\cdot\frac{\vec\sigma}{2}\right)\sigma^\mu \left(1+\delta\vec\beta\cdot \frac{\vec\sigma}{2}\right) = \begin{cases}
+Firstly, for the spatial rotation, $\Lambda_L(\vec\theta,\vec 0) = \Lambda_R(\theta,\vec 0) = \exp(i\bm\theta\cdot \bm\sigma/2)$, the Pauli matrices transform as the defining SO(3) rotation
+\begin{equation}
+	\left(1-\frac{i}{2}\delta\vec\theta\cdot \vec\sigma \right)\sigma^j\left(1+\frac{i}{2}\delta\vec\theta\cdot \vec\sigma\right)
+	= \sigma^j + i\delta\theta_i \left(-i \varepsilon_{ijk}\sigma^k \right).
+\end{equation}
+Secondly, for the boost $\Lambda_{L/R}(0, \bm\beta) = \exp\left(\mp \bm\beta\cdot \bm\sigma /2 \right)$, the Pauli matrices transform like a boost in the defining representation of the Lorentz group:
+\begin{equation}
+	\left(1+\frac{1}{2}\delta\vec\beta\cdot \vec\sigma\right) \sigma^\mu 
+	\left(1+\frac{1}{2}\delta\vec\beta\cdot \vec\sigma\right) = \begin{cases}
 		 \sigma^0 + i\delta\beta_i \cdot (-i\sigma^i), & \mu = 0 \\
 		 \sigma^j + i\delta\beta_j (-i\sigma^0), & \mu = j
 	\end{cases}.
-\end{equation*}
-We thus have shown indeed that
-\begin{equation}
-	\psi_L^T \sigma^2 \sigma^\mu \chi_R
 \end{equation}
-is a Lorentz vector.
-Further more, from (\ref{eq:left-right-spinor-rel}), we know that
+The story for the $\bar\sigma^\mu=(1,-\vec\sigma)$ is basically the same, which gives
 \begin{equation}
-	\eta_R^\dagger \sigma^\mu \chi_R
+	\Lambda_R^T(\bm \theta, \bm \beta) \bar\sigma^\mu \Lambda_L(\bm \theta, \bm \beta)
+	= {\Lambda^\mu}_\nu(\bm \theta,\bm \beta) \bar\sigma^\nu.
 \end{equation}
-is also a Lorentz vector.
-Similarly, consider the Lorentz vector 
-\begin{equation*}
-	N^\mu_{\dot a b} \psi^{\dot a}_R \chi^{b}_R,
-\end{equation*}
-which together with $\sigma^2$ should transforms as
-\begin{equation*}
-	\left(\sigma^2 N^\mu\right) \longrightarrow 
-	\Lambda_R^{-1} \cdot \left(\sigma^2 N^\mu\right)\cdot \Lambda_L.
-\end{equation*}
-We can check that $\bar\sigma^\mu = (\sigma^0,-\vec\sigma)$ satisfies the requirement, and thus 
-\begin{equation}
-	\eta_L^\dagger \bar\sigma^\mu \chi_L
-\end{equation}
-is also a Lorentz vector.
+
+Finally, we note that the Levi-Civita symbol $\varepsilon^{\mu\nu\rho\sigma}$ can also be useful.
+One invariant involving this is $\varepsilon^{\mu\nu\rho\sigma} F_{\mu\nu} F_{\rho\sigma}$, where $F_{\mu\nu}$ is antisymmetry for ($\mu \leftrightarrow \nu$).
 
 
 
-\subsection{Lorentz-invariant Lagrangian}
+
+
+\section{Scalar Field}
 In relativistic quantum field theory, the Lagrangian should be a singlet under Lorentz transformation.
 Different free fields correspond to different representation of the Lorentz algebra.
 The symmetry under Lorentz transformation also restrict the possible terms that can appear in the Lagrangian.
 
-\subsubsection{Scalar Field}
 The simplest case is when $j_L=j_R = 0$, corresponding to the scalar field, which we denote as $\phi(x)$.
 Since the field it self is singlet, any polynomial of the field in principle can appear in the theory.
 When considering the free theory, we restrict our attention to the quadratic terms.
@@ -266,110 +234,15 @@ The action can be expressed as
 	S_{\mathrm{KG}} = \int \frac{d^d k}{(2\pi)^d} \frac{1}{2} \tilde{\phi}^*(k)(k^2-m^2)\tilde{\phi}(k).
 \end{equation}
 
-\subsubsection{Vector Field}
-If we can choose $j_L=j_R=1/2$, the field is transformed as Lorentz vector.
-We denote the field as $A^\mu(x)$.
-Some possible quadratic forms for the vector field that forms singlets are
+
+Besides the field field Lagrangian $\mathcal L_{\mathrm{KG}}$, there is more general Lorentz-invariant terms that can be added to the Lagrangian, which describe the interaction of the theory.
+One of the simplest interacting scalar field theory is the $\phi^4$ theory:
 \begin{equation}
-	A^\mu A_\mu,\ (\partial_\mu A^\mu)^2,\ A^\nu \partial^2 A_\nu,\ 
-	\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda.
-\end{equation}
-For the field theory describe the electromagnetic field, we require the theory to further have gauge symmetry, i.e., invariant under
-\begin{equation}
-	A^\mu(x) \rightarrow A^\mu(x) + \partial^\mu \alpha(x).
-\end{equation}
-The gauge invariant forbids the first term, and forces the second and third term to combine as
-\begin{equation*}
-	(\partial_\mu A^\mu)^2 - A^\nu \partial^2 A_\nu
-	\sim \frac{1}{2}(\partial^\mu A^\nu - \partial^\nu A^\mu)(\partial_\mu A^\nu-\partial_\nu A_\mu)
-	\equiv \frac{1}{2} F^{\mu\nu}F_{\mu\nu}.
-\end{equation*}
-where we have define a field-strength tensor
-\begin{equation}
-	F^{\mu\nu}\equiv (\partial^\mu A^\nu - \partial^\nu A^\mu)
-	= \left[\begin{array}{cccc}
-		0 & -E_1 & -E_2 & -E_3 \\
-		E_1 & 0 & -B_3 & B_2 \\
-		E_2 & B_3 & 0 & -B_1 \\
-		E_3 & -B_2 & B_1 & 0
-	\end{array} \right],
-\end{equation}
-where we notice that from Maxwell equations:
-\begin{equation}
-	E^i = \partial_t \vec A = -\vec\nabla A^0, \quad B^i = \nabla \times \vec A.
-\end{equation}
-Note that the fourth term is called the \textit{theta term}, which can be written as a boundary term
-\begin{equation}
-	\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda
-	= \partial^\mu (\varepsilon_{\mu\nu\rho\lambda} A^\nu \partial^\rho A^\lambda).
-\end{equation}
-The Lagrangian describing the electromagnetic field is given by
-\begin{equation}
-	\mathcal{L}_{\mathrm{Maxwell}} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}.
+	\mathcal L = \mathcal L_{\mathrm{KG}} - \frac{g}{4!}\phi^4.
 \end{equation}
 
 
-\subsubsection{Spinor Field}
-
-Based on previous discussion, the Lagrangian for spinor field can have
-\begin{equation}
-	\psi_L^\dagger \bar\sigma^\mu \partial_\mu \psi_L,\ 
-	\psi_R^\dagger \sigma^\mu \partial_\mu \psi_R,\ 
-	\psi_L^\dagger \psi_R,\ \psi_R^\dagger \psi_L,\ 
-	\psi_L \cdot \psi_L,\ \psi_R \cdot \psi_R.
-\end{equation}
-The Dirac field describe the theory with both left-hand and right-hand spinors.
-The Lagrangian is
-\begin{equation}
-	\mathcal{L}_{\mathrm{Dirac}}
-	= \bar\psi \left(i\gamma^\mu \partial_\mu - m\right)\psi,
-\end{equation}
-where
-\begin{eqnarray}
-	\psi = \left(\begin{array}{c}
-		\psi_L \\ \psi_R
-	\end{array}\right),\ 
-	\bar\psi = \left(\begin{array}{cc}
-		\psi_R^\dagger & \psi_L^\dagger
-	\end{array}\right),\ 
-	\gamma^\mu = \left(\begin{array}{cc}
-		0 & \sigma^\mu \\
-		\bar\sigma^\mu & 0
-	\end{array}\right).
-\end{eqnarray}
-In addition, we could consider using the last two terms as the mass, the result theory is the \textit{Majorana field theory}:
-\begin{equation}
-\begin{aligned}
-	\mathcal{L}^{L}_{\mathrm{Majorana}}
-	&= \psi_L^\dagger \left(i\bar\sigma^\mu \partial_\mu -m \sigma^2 \right) \psi_L, \\
-	\mathcal{L}^{R}_{\mathrm{Majorana}}
-	&= \psi_R^\dagger \left(i\sigma^\mu \partial_\mu -m \sigma^2 \right) \psi_R. 
-\end{aligned}
-\end{equation} 
-For the spinor basis, the Dirac Algebra is generated by
-\begin{equation}\label{eq:qft-diract-generator}
-	S^{\mu\nu} = \frac{i}{4}[\gamma^\mu, \gamma^\nu].
-\end{equation}
-The Lorentz group is represented by
-\begin{equation}\label{eq:qft-dirac-rep}
-	\Lambda_{\frac{1}{2}} = \exp\left(\frac{i}{2}\omega_{\mu\nu} S^{\mu\nu}\right).
-\end{equation}
-Using the familiar parametrization,
-\begin{equation}
-	S^{i0} = \frac{i}{2}\left[\begin{array}{cc}
-		\sigma^i & 0 \\ 0 & -\sigma^i
-	\end{array}\right], \quad 
-	S^{ij} = \frac{1}{2}\epsilon^{ijk} \left[\begin{array}{cc}
-		\sigma^k & 0 \\ 0 & -\sigma^k
-	\end{array}\right],
-\end{equation}
-which agree with the transformation property (\ref{eq:qft-left-right-spinor-rep}).
-
-
-
-\section{Canonical Quantization}
-
-\subsection{Scalar Field}
+\subsection{Canonical Quantization of Free Field}
 
 For the Klein-Gordon Lagrangian
 \begin{equation}
@@ -541,393 +414,10 @@ Any final result shall take the ($\epsilon \rightarrow 0^+$) limit.
 Sometimes the infinitesimal $\epsilon$ will be absorbed into the mass, i.e., $m^2 \rightarrow m^2-i\epsilon$.
 
 
-\subsection{Vector Field}
 
-Although forbid by gauge invariance, we consider a vector field with nonzero mass term.
-Actually the vector field can obtain mass from the spontaneous symmetry breaking.
-For example the W and Z boson in the week interaction have nonzero mass.
-The action with mass term is:
-\begin{equation}
-	S = \int \frac{d^4 k}{(2\pi)^4} \tilde{A}^{\mu *}(k) \left(-k^2 g_{\mu\nu}+k_\mu k_\nu + m^2 \right) \tilde{A}^\nu(k).
-\end{equation}
-The equation of motion for the action is
-\begin{equation}
-\begin{aligned}
-	\frac{\delta S}{\delta \tilde{A}^{\mu *}(k)} = 0 
-	\quad \Longrightarrow \quad 
-	\left(-k^2 g_{\mu\nu}+k_\mu k_\nu + m^2 \right) \tilde{A}^\nu(k) = 0.
-\end{aligned}
-\end{equation}
-Such equation is sometimes called the \textit{Proca equation}.
-Note that the Proca equation implies
-\begin{equation}
-	\partial_\mu A^\mu = k_\nu \tilde{A}^\nu = 0.
-\end{equation}
-So the Proca equation becomes
-\begin{equation}
-	\left(-k^2 g_{\mu\nu} + m^2 \right) \tilde{A}^\nu(k) = 0,
-\end{equation}
-which is similar to the Klein-Gordon field with multiple components.
+\subsection{Path Integral Formalism}
 
-\subsubsection{Polarization Vectors}
-Since we are now dealing with a field with space-time indices, it is helpful to introduce a set of basis vectors.
-The general solution to the Proca equation is also a plane wave labelled by momentum $\bm k$.
-For each momentum, we introduce a \textit{longitudinal polarization vector}
-\begin{equation}
-	\epsilon(\bm k,3) \equiv \left(\frac{|\bm k|}{m}, \frac{\bm k}{|\bm k|}\frac{k_0}{m} \right)
-\end{equation}
-and two \textit{transverse polarization vectors}
-\begin{equation}
-	\epsilon(\bm k, 1) \equiv (0, \bm \epsilon(\bm k, 1)), \quad
-	\epsilon(\bm k, 2) \equiv (0, \bm \epsilon(\bm k, 2)),
-\end{equation}
-satisfying the orthogonal relation
-\begin{equation}
-	\bm \epsilon(\bm k, 1)\cdot \bm k = \bm \epsilon(\bm k, 2)\cdot \bm k = k^\mu \epsilon_\mu(\bm k, 3) = 0.
-\end{equation}
-So these three polarization vector together with 4-momentum $k$ form a basis for the space-time.
-For the notational convenience, we define
-\begin{equation}
-	\epsilon(\bm k,0) \equiv \frac{k}{m}.
-\end{equation}
-The vector field can be 
-\begin{equation}
-	A_\mu(\bm k, \lambda; x) \propto e^{-i\omega_k t + \bm k \cdot \bm x} \epsilon_\mu(\bm k, \lambda)
-\end{equation}
-
-The condition $k \cdot \tilde A = 0$ is satisfied if we require no mode in the $\epsilon(\bm k, 0)$ polarization.
-Then the vector field is basically three independent scalar field, leading to the  field expansion:
-\begin{equation}
-	A^\mu(x) = \int \frac{d^{3} k}{(2\pi)^{3}}\frac{1}{\sqrt{2\omega_k}}
-	\sum_{j=1}^3 \left[\epsilon^\mu(\bm k, j) a_{k,j} e^{-ik\cdot x} + 
-	\epsilon^{\mu}(\bm k, j) a^\dagger_{k,j} e^{ik\cdot x}\right].
-\end{equation}
-A single-particle state with polarization vector $\epsilon(\bm k, j)$ is defined as
-\begin{equation}
-	|k,\epsilon_j\rangle = \epsilon(\bm k, j) \sqrt{2\omega_k} a^\dagger_{j}|0\rangle.
-\end{equation}
-
-
-\subsubsection{Massless Polarization Vectors}
-
-For the massless vector field, the polarization $\epsilon(\bm k, 3)$ is not well-defined.
-We modify the definition to
-\begin{equation}
-\begin{aligned}
-	\epsilon(\bm k, 0) &\equiv (1,0,0,0), \\
-	\epsilon(\bm k, 3) &\equiv (0,0,0,1).
-\end{aligned}
-\end{equation}
-Note that we have choose the spatial direction so that the momentum point to the z-direction.
-
-We can add two types of virtual particles generated by $a^\dagger_{k,0}$ and $a^\dagger_{k,3}$ respectively, which are usually called the \textit{scalar photons} and \textit{longitudinal photons}.
-However, the gauge fixing condition requires
-\begin{equation}
-	\partial_\mu A^\mu(x)|\psi\rangle = 0 \quad \Longrightarrow \quad
-	(a_{k,0}-a_{k,3})|\psi\rangle = 0
-\end{equation}
-for all state $|\psi\rangle$ in the gauge-fixed Hilbert space.
-
-We can show that the scalar and longitudinal modes are just the result of gauge transformation.
-The physical polarization are the transverse polarization modes, and the field expansion is
-\begin{equation}
-	A^\mu(x) = \int \frac{d^{3} k}{(2\pi)^{3}}\frac{1}{\sqrt{2\omega_k}}
-	\sum_{j=1}^2 \left[\epsilon^\mu(\bm k, j) a_{k,j} e^{-ik\cdot x} + 
-	\epsilon^{\mu}(\bm k, j) a^\dagger_{k,j} e^{ik\cdot x}\right].
-\end{equation}
-
-
-\subsubsection{Correlation Function}
-To obtain the correlation for the massless vector field, we consider a modified Lagrangian:
-\begin{equation}
-	\mathcal L = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}-\frac{\xi}{2}(\partial_\mu A^\mu)^2.
-\end{equation}
-In the momentum space:
-\begin{equation}
-	\tilde{\mathcal L}_k = \tilde{A}^\mu(-k)\left(-k^2 g_{\mu\nu}+(1-\xi)k_\mu k_\nu\right) \tilde{A}^\nu(k)
-\end{equation}
-To construct the inverse matrix we make a general symmetric ansatz
-\begin{equation}
-	(G_\gamma^{-1})^{\mu\nu}(k)=A\left(k^{2}\right) g^{\mu\nu}+B\left(k^{2}\right) k^{\mu} k^{\nu}.
-\end{equation}
-Requiring that
-\begin{equation}
-	(G_\gamma)_{\mu\sigma}(k)(G_\gamma^{-1})^{\sigma\nu}(k) = \delta_\mu^\nu,
-\end{equation}
-and comparing the coefficients, we get the conditions
-\begin{equation}\label{eq:qft-propagator-equation}
-\begin{aligned}
-	-k^{2} A\left(k^{2}\right) &=1, \\
-	\xi k^{2} B\left(k^{2}\right) &=(\xi-1) A\left(k^{2}\right).
-\end{aligned}
-\end{equation}
-In the case $\xi=0$ these equations are not compatible. Without the gauge-fixing term the matrix $(G_\gamma)_{\mu \nu}$ cannot be inverted (since the determinant vanishes) and the Feynman propagator cannot be constructed. If $\xi \neq 0$, however, no problems arise and the system of equations (\ref{eq:qft-propagator-equation}) is solved by
-\begin{equation}
-	A\left(k^{2}\right)=-\frac{1}{k^{2}}, \quad B\left(k^{2}\right)=\frac{\xi-1}{\xi} \frac{1}{\left(k^{2}\right)^{2}},
-\end{equation}
-which leads to
-\begin{equation}
-	G_\gamma(k) = \frac{-g^{\mu\nu}+(1-\xi)k^\mu k^\nu}{k^2}.
-\end{equation}
-Different choice of $\xi$ correspond to different gauge fixing.
-The Landau gauge choose $\xi=1$, and the propagator has the simplest form
-\begin{equation}
-	G_\gamma(k) = \frac{-g_{\mu\nu}}{k^2}.
-\end{equation}
-
-
-
-\subsection{Spinor Field}
-The equation of motion for Dirac field is
-\begin{equation}
-\begin{aligned}
-	\partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi)} - \frac{\partial \mathcal L}{\partial \psi} = 0 
-	\quad &\Longrightarrow \quad
-	\bar\psi(i\overleftarrow{\cancel \partial}-m) = 0, \\
-	\partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\bar\psi)} - \frac{\partial \mathcal L}{\partial \bar\psi} = 0 
-	\quad &\Longrightarrow \quad
-	(i\overrightarrow{\cancel \partial}-m)\psi = 0.
-\end{aligned}
-\end{equation}
-This EOM is a matrix equation.
-The general solution of the Dirac equation can be written as a linear combination of plane waves (with positive and negative energy):\footnote{Note that we have chosen to put the $+$ sign into the exponential, rather than having $p^{0}<0$.}
-\begin{equation}
-	\psi_p(x) = \begin{cases}
-		u(p) e^{-i p \cdot x} & p^{0}>0 \\
-		v(p) e^{+i p \cdot x} & p^{0}<0
-	\end{cases}, \quad p^{2}=m^{2}.
-\end{equation}
-In momentum space, $u(p)$ and $v(p)$ satisfies:
-\begin{equation}
-	\left[\begin{array}{cc}
-		-m & p \cdot \sigma \\ p\cdot \bar\sigma & -m
-	\end{array} \right] u_s(p) = 
-	\left[\begin{array}{cc}
-		-m & -p \cdot \sigma \\ -p\cdot \bar\sigma & -m
-	\end{array} \right] v_s(p) = 0
-\end{equation}
-For massive Dirac field, we can choose the rest frame where $p = (m,0,0,0)$, the matrix equation is\footnote{We first consider the case where there is only one spatial dimension. It correspond to the choice of coordinate such that the momentum point to the $z$ direction.}
-\begin{equation}
-\begin{aligned}
-	\left[\begin{array}{cc}
-		-m & m \\
-		m & -m
-	\end{array}\right] u_s = 0 
-	\quad &\Longrightarrow \quad
-	u_s = \sqrt{m}\left[\begin{array}{c}
-		\xi_s \\ \xi_s
-	\end{array}\right], \\
-	\left[\begin{array}{cc}
-		m & m \\
-		m & m
-	\end{array}\right] v_s = 0 
-	\quad &\Longrightarrow \quad
-	v_s = \sqrt{m}\left[\begin{array}{c}
-		\eta_s \\ -\eta_s
-	\end{array}\right],
-\end{aligned}
-\end{equation}
-where $\xi$ and $\eta$ has two independent solutions.
-For example, four linearly independent solutions are
-\begin{equation}
-	u_{\uparrow} = \left[\begin{array}{c} 1 \\ 0 \\ 1 \\ 0 \end{array}\right], \quad
-	u_{\downarrow} = \left[\begin{array}{c} 0 \\ 1 \\ 0 \\ 1 \end{array}\right], \quad
-	v_{\uparrow} = \left[\begin{array}{c} -1 \\ 0 \\ 1 \\ 0 \end{array}\right], \quad
-	v_{\downarrow} = \left[\begin{array}{c} 0 \\ 1 \\ 0 \\ -1 \end{array}\right].
-\end{equation}
-The Dirac spinor is a complex four-component object, with eight real degrees of freedom. 
-The equations of motion reduce it to four degrees of freedom, which, as we will see, can be interpreted as spin up and spin down for particle and antiparticle.
-
-
-\subsubsection{Solution in General Frame}
-To derive a more general expression, we can solve the equations again in the boosted frame and match the normalization. 
-If $p=(E,0,0,p_z)$ then
-\begin{equation}
-	p \cdot \sigma=\left[\begin{array}{cc}
-		E-p_{z} & 0 \\
-		0 & E+p_{z}
-	\end{array}\right], \quad 
-	p \cdot \bar{\sigma}=\left[\begin{array}{cc}
-		E+p_{z} & 0 \\
-		0 & E-p_{z}
-	\end{array}\right].
-\end{equation}
-Let $a=\sqrt{E-p_{z}}$ and $b=\sqrt{E+p_{z}}$, then $m^{2}=\left(E-p_{z}\right)\left(E+p_{z}\right)=a^{2} b^{2}$ and Dirac equation becomes
-\begin{equation}
-	\left[\begin{array}{cccc}
-		-a b & 0 & a^{2} & 0 \\
-		0 & -a b & 0 & b^{2} \\
-		b^{2} & 0 & -a b & 0 \\
-		0 & a^{2} & 0 & -a b
-	\end{array}\right] u_{s}(p) = 
-	\left[\begin{array}{cccc}
-		a b & 0 & a^{2} & 0 \\
-		0 & a b & 0 & b^{2} \\
-		b^{2} & 0 & a b & 0 \\
-		0 & a^{2} & 0 & a b
-	\end{array}\right] v_{s}(p) = 0.
-\end{equation}
-
-The solutions are
-\begin{equation}
-	u_{s}=\left(\begin{array}{ll}
-	\left[\begin{array}{ll}
-		a & 0 \\
-		0 & b
-	\end{array}\right] \xi_{s} \\
-	\left[\begin{array}{ll}
-		b & 0 \\
-		0 & a
-	\end{array}\right] \xi_{s}
-	\end{array}\right), \quad 
-	v_{s}=\left(\begin{array}{ll}
-	\left[\begin{array}{ll}
-		a & 0 \\
-		0 & b
-	\end{array}\right] \eta_{s} \\
-	-\left[\begin{array}{ll}
-		b & 0 \\
-		0 & a
-	\end{array}\right] \eta_{s}
-	\end{array}\right).
-\end{equation}
-Using
-\begin{equation}
-	\sqrt{p \cdot \sigma}=\left[\begin{array}{cc}
-		\sqrt{E-p_{z}} & 0 \\
-		0 & \sqrt{E+p_{z}}
-	\end{array}\right], \quad 
-	\sqrt{p \cdot \bar{\sigma}}=\left[\begin{array}{cc}
-		\sqrt{E+p_{z}} & 0 \\
-		0 & \sqrt{E-p_{z}}
-	\end{array}\right],
-\end{equation}
-we can write more generally
-\begin{equation}
-	u_{s}(p) = \left(\begin{array}{c}
-		\sqrt{p \cdot \sigma} \xi_{s} \\
-		\sqrt{p \cdot \bar{\sigma}} \xi_{s}
-	\end{array}\right), \quad 
-	v_{s}(p) = \left(\begin{array}{c}
-		\sqrt{p \cdot \sigma} \eta_{s} \\
-		-\sqrt{p \cdot \bar{\sigma}} \eta_{s}
-	\end{array}\right),
-\end{equation}
-where the square root of a matrix can be defined by changing to the diagonal basis, taking the square root of the eigenvalues, then changing back to the original basis. 
-In practice, we will usually pick $p$ along the $z$ axis, so we do not need to know how to make sense of $\sqrt{p \cdot \sigma}$. Then the four solutions are
-\begin{equation}\label{eq:qft-dirac-solutions}
-\begin{aligned}
-	u^{1}(p) &= \left(\begin{array}{c}
-		\sqrt{E-p_{z}} \\ 0 \\
-		\sqrt{E+p_{z}} \\ 0
-	\end{array}\right), & 
-	u^{2}(p) &= \left(\begin{array}{c}
-		0 \\ \sqrt{E-p_{z}} \\
-		0 \\ \sqrt{E+p_{z}}
-	\end{array}\right), \\
-	v^{1}(p) &= \left(\begin{array}{c}
-		\sqrt{E-p_{z}} \\ 0 \\
-		-\sqrt{E+p_{z}} \\ 0
-	\end{array}\right), & 
-	v^{2}(p) &= \left(\begin{array}{c}
-		0 \\ \sqrt{E-p_{z}} \\
-		0 \\ -\sqrt{E+p_{z}}
-	\end{array}\right).
-\end{aligned}
-\end{equation}
-In any frame $u^{s}$ are the positive frequency electrons, and the $v^{s}$ are negative frequency electrons, or equivalently, positive frequency positrons.
-
-For massless spinors, $p_{z}=\pm E$ and the explicit solutions in Eq. (\ref{eq:qft-dirac-solutions}) are 4-vectors with one non-zero component describing spinors with fixed helicity. 
-The spinor solutions for massless electrons are sometimes called polarizations, and are useful for computing polarized electron scattering amplitudes.
-
-For Weyl spinors, there are only four real degrees of freedom off-shell and two real degrees of freedom on-shell. 
-Recalling that the Dirac equation splits up into separate equations for $\psi_{L}$ and $\psi_{R}$, the Dirac spinors with zeros in the bottom two rows will be $\psi_{L}$ and those with zeros in the top two rows will be $\psi_{R}$. 
-Since $\psi_{L}$ and $\psi_{R}$ have two degrees of freedom each, these must be particle and antiparticle for the same helicity. 
-The embedding of Weyl spinors into fields this way induces irreducible unitary representations of the Poincare group for $m=0$.
-
-\subsubsection{Normalization and Spin Sum}
-The normalization chosen this way gives the orthogonal relation:
-\begin{equation}\label{eq:qft-dirac-otho-1}
-\begin{aligned}
-	\bar{u}^{r}(p) u^{s}(p) &= +2 m \delta^{r s}, \\
-	\bar{v}^{r}(p) v^{s}(p) &= -2 m \delta^{r s}.
-\end{aligned}
-\end{equation} 
-This is the (conventional) normalization for the spinor inner product for massive Dirac spinors. 
-It is also easy to check that
-\begin{equation}
-	\bar u_s(p) v_{s'}(p) = \bar v_s(p) u_{s'}(p) = 0.
-\end{equation}
-We can further check that an additional orthogonal relation hold
-\begin{equation}
-\begin{aligned}
-	u^{r \dagger}(p) u^{s}(p) &= -2 \omega_{\bm p} \delta^{r s}, \\
-	v^{r \dagger}(p) v^{s}(p) &= +2 \omega_{\bm p} \delta^{r s}.
-\end{aligned}
-\end{equation}
-And if we define $\bar p \equiv (E,-\vec p)$, there is another set of orthogonal relation:
-\begin{equation}
-	u^{r\dagger}(p) v^{s}(\bar p) = 
-	v^{r\dagger}(p) u^{s}(\bar p) =0.
-\end{equation}
-A useful identity is the spin sum identity:
-\begin{equation}
-\begin{aligned}
-	\sum_{s} u^{s}(p) \bar{u}^{s}(p) &= \cancel p+m, \\
-	\sum_{s} v^{s}(p) \bar{v}^{s}(p) &= \cancel p-m.
-\end{aligned}
-\end{equation}
-
-
-\subsubsection{Field Expansion and Correlation}
-The Dirac field expansion is
-\begin{equation}
-\begin{aligned}
-	\psi(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
-		\sum_{s}\left(a_{\mathbf{p}}^{s} u^{s}(p) e^{-i p \cdot x}
-		+b_{\mathbf{p}}^{s \dagger} v^{s}(p) e^{i p \cdot x}\right), \\
-	\bar{\psi}(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
-		\sum_{s}\left(b_{\mathbf{p}}^{s} \bar{v}^{s}(p) e^{-i p \cdot x}
-		+a_{\mathbf{p}}^{s \dagger} \bar{u}^{s}(p) e^{i p \cdot x}\right).
-\end{aligned}
-\end{equation}
-Now let us investigate the propagator
-\begin{equation}
-\begin{aligned}
-	iD_{F,\alpha\beta}(x_1-x_2) &= \langle0|T\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle \\
-	&= \theta(\tau) \langle0|\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle - \theta(-\tau) \langle0|\bar\psi_\beta(x_2)\psi_\alpha(x_1)|0\rangle.
-\end{aligned}
-\end{equation}
-On the RHS, the first term is
-\begin{equation*}
-\begin{aligned}
-	\langle0|\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle 
-	&= \int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \left[\sum_s u_\alpha^s(p)\bar u_\beta^s(p)\right]e^{-i p\cdot (x_1-x_2)} \\
-	&= (i\cancel \partial+m)_{\alpha\beta}\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} e^{-i p\cdot (x_1-x_2)}.
-\end{aligned}
-\end{equation*}
-For the second term:
-\begin{equation*}
-\begin{aligned}
-	\langle0|\bar\psi_\beta(x_2)\psi_\alpha(x_1)|0\rangle
-	&= \int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \left[\sum_s \bar v_\beta^s(p)v_\alpha^s(p)\right]e^{i p\cdot (x_1-x_2)} \\
-	&= -(i\cancel \partial + m)_{\alpha\beta}\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} e^{i p\cdot (x_1-x_2)}.
-\end{aligned}
-\end{equation*}
-Together, the Dirac propagator is:
-\begin{equation}
-\begin{aligned}
-	iD_F(x_1-x_2) &= (i\cancel \partial+m)i\Delta(x_1-x_2) \\
-	&= \int\frac{d^{4} p}{(2\pi)^{4}} e^{-i p\cdot (x_1-x_2)}\frac{i(\cancel p+m)}{p^2-m^2+i\epsilon}.
-\end{aligned}
-\end{equation}
-
-
-
-
-\section{Path-integral Quantization}
-
-\subsection{Scalar Field}
+\subsubsection{Generating Functional}
 Consider the action for free field with source
 \begin{equation}
 	S_0[\phi,J]
@@ -1080,7 +570,184 @@ and the attractive force is
 We see that in the massless case, the force gives the long-range Coulomb force $F \propto 1/r^2$, while in the massful field theory, the force is short-ranged, with the decay length proportional to the mass.
 
 
-\subsection{Vector Field}
+
+\section{Vector Field}
+If we can choose $j_L=j_R=1/2$, the field is transformed as Lorentz vector.
+We denote the field as $A^\mu(x)$.
+Some possible quadratic forms for the vector field that forms singlets are
+\begin{equation}
+	A^\mu A_\mu,\ (\partial_\mu A^\mu)^2,\ A^\nu \partial^2 A_\nu,\ 
+	\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda.
+\end{equation}
+For the field theory describe the electromagnetic field, we require the theory to further have gauge symmetry, i.e., invariant under
+\begin{equation}
+	A^\mu(x) \rightarrow A^\mu(x) + \partial^\mu \alpha(x).
+\end{equation}
+The gauge invariant forbids the first term, and forces the second and third term to combine as
+\begin{equation*}
+	(\partial_\mu A^\mu)^2 - A^\nu \partial^2 A_\nu
+	\sim \frac{1}{2}(\partial^\mu A^\nu - \partial^\nu A^\mu)(\partial_\mu A^\nu-\partial_\nu A_\mu)
+	\equiv \frac{1}{2} F^{\mu\nu}F_{\mu\nu}.
+\end{equation*}
+where we have define a field-strength tensor
+\begin{equation}
+	F^{\mu\nu}\equiv (\partial^\mu A^\nu - \partial^\nu A^\mu)
+	= \left[\begin{array}{cccc}
+		0 & -E_1 & -E_2 & -E_3 \\
+		E_1 & 0 & -B_3 & B_2 \\
+		E_2 & B_3 & 0 & -B_1 \\
+		E_3 & -B_2 & B_1 & 0
+	\end{array} \right],
+\end{equation}
+where we notice that from Maxwell equations:
+\begin{equation}
+	E^i = \partial_t \vec A = -\vec\nabla A^0, \quad B^i = \nabla \times \vec A.
+\end{equation}
+Note that the fourth term is called the \textit{theta term}, which can be written as a boundary term
+\begin{equation}
+	\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda
+	= \partial^\mu (\varepsilon_{\mu\nu\rho\lambda} A^\nu \partial^\rho A^\lambda).
+\end{equation}
+The Lagrangian describing the electromagnetic field is given by
+\begin{equation}
+	\mathcal{L}_{\mathrm{Maxwell}} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}.
+\end{equation}
+
+Although forbid by gauge invariance, we consider a vector field with nonzero mass term.
+Actually the vector field can obtain mass from the spontaneous symmetry breaking.
+For example the W and Z boson in the week interaction have nonzero mass.
+The action with mass term is:
+\begin{equation}
+	S = \int \frac{d^4 k}{(2\pi)^4} \tilde{A}^{\mu *}(k) \left(-k^2 g_{\mu\nu}+k_\mu k_\nu + m^2 \right) \tilde{A}^\nu(k).
+\end{equation}
+The equation of motion for the action is
+\begin{equation}
+\begin{aligned}
+	\frac{\delta S}{\delta \tilde{A}^{\mu *}(k)} = 0 
+	\quad \Longrightarrow \quad 
+	\left(-k^2 g_{\mu\nu}+k_\mu k_\nu + m^2 \right) \tilde{A}^\nu(k) = 0.
+\end{aligned}
+\end{equation}
+Such equation is sometimes called the \textit{Proca equation}.
+Note that the Proca equation implies
+\begin{equation}
+	\partial_\mu A^\mu = k_\nu \tilde{A}^\nu = 0.
+\end{equation}
+So the Proca equation becomes
+\begin{equation}
+	\left(-k^2 g_{\mu\nu} + m^2 \right) \tilde{A}^\nu(k) = 0,
+\end{equation}
+which is similar to the Klein-Gordon field with multiple components.
+
+\subsection{Polarization Vectors}
+\subsubsection{Massive Polarization}
+Since we are now dealing with a field with space-time indices, it is helpful to introduce a set of basis vectors.
+The general solution to the Proca equation is also a plane wave labelled by momentum $\bm k$.
+For each momentum, we introduce a \textit{longitudinal polarization vector}
+\begin{equation}
+	\epsilon(\bm k,3) \equiv \left(\frac{|\bm k|}{m}, \frac{\bm k}{|\bm k|}\frac{k_0}{m} \right)
+\end{equation}
+and two \textit{transverse polarization vectors}
+\begin{equation}
+	\epsilon(\bm k, 1) \equiv (0, \bm \epsilon(\bm k, 1)), \quad
+	\epsilon(\bm k, 2) \equiv (0, \bm \epsilon(\bm k, 2)),
+\end{equation}
+satisfying the orthogonal relation
+\begin{equation}
+	\bm \epsilon(\bm k, 1)\cdot \bm k = \bm \epsilon(\bm k, 2)\cdot \bm k = k^\mu \epsilon_\mu(\bm k, 3) = 0.
+\end{equation}
+So these three polarization vector together with 4-momentum $k$ form a basis for the space-time.
+For the notational convenience, we define
+\begin{equation}
+	\epsilon(\bm k,0) \equiv \frac{k}{m}.
+\end{equation}
+The vector field can be 
+\begin{equation}
+	A_\mu(\bm k, \lambda; x) \propto e^{-i\omega_k t + \bm k \cdot \bm x} \epsilon_\mu(\bm k, \lambda)
+\end{equation}
+
+The condition $k \cdot \tilde A = 0$ is satisfied if we require no mode in the $\epsilon(\bm k, 0)$ polarization.
+Then the vector field is basically three independent scalar field, leading to the  field expansion:
+\begin{equation}
+	A^\mu(x) = \int \frac{d^{3} k}{(2\pi)^{3}}\frac{1}{\sqrt{2\omega_k}}
+	\sum_{j=1}^3 \left[\epsilon^\mu(\bm k, j) a_{k,j} e^{-ik\cdot x} + 
+	\epsilon^{\mu}(\bm k, j) a^\dagger_{k,j} e^{ik\cdot x}\right].
+\end{equation}
+A single-particle state with polarization vector $\epsilon(\bm k, j)$ is defined as
+\begin{equation}
+	|k,\epsilon_j\rangle = \epsilon(\bm k, j) \sqrt{2\omega_k} a^\dagger_{j}|0\rangle.
+\end{equation}
+
+
+\subsubsection{Massless Polarization}
+
+For the massless vector field, the polarization $\epsilon(\bm k, 3)$ is not well-defined.
+We modify the definition to
+\begin{equation}
+\begin{aligned}
+	\epsilon(\bm k, 0) &\equiv (1,0,0,0), \\
+	\epsilon(\bm k, 3) &\equiv (0,0,0,1).
+\end{aligned}
+\end{equation}
+Note that we have choose the spatial direction so that the momentum point to the z-direction.
+
+We can add two types of virtual particles generated by $a^\dagger_{k,0}$ and $a^\dagger_{k,3}$ respectively, which are usually called the \textit{scalar photons} and \textit{longitudinal photons}.
+However, the gauge fixing condition requires
+\begin{equation}
+	\partial_\mu A^\mu(x)|\psi\rangle = 0 \quad \Longrightarrow \quad
+	(a_{k,0}-a_{k,3})|\psi\rangle = 0
+\end{equation}
+for all state $|\psi\rangle$ in the gauge-fixed Hilbert space.
+
+We can show that the scalar and longitudinal modes are just the result of gauge transformation.
+The physical polarization are the transverse polarization modes, and the field expansion is
+\begin{equation}
+	A^\mu(x) = \int \frac{d^{3} k}{(2\pi)^{3}}\frac{1}{\sqrt{2\omega_k}}
+	\sum_{j=1}^2 \left[\epsilon^\mu(\bm k, j) a_{k,j} e^{-ik\cdot x} + 
+	\epsilon^{\mu}(\bm k, j) a^\dagger_{k,j} e^{ik\cdot x}\right].
+\end{equation}
+
+
+\subsubsection{Correlation Function}
+To obtain the correlation for the massless vector field, we consider a modified Lagrangian:
+\begin{equation}
+	\mathcal L = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}-\frac{\xi}{2}(\partial_\mu A^\mu)^2.
+\end{equation}
+In the momentum space:
+\begin{equation}
+	\tilde{\mathcal L}_k = \tilde{A}^\mu(-k)\left(-k^2 g_{\mu\nu}+(1-\xi)k_\mu k_\nu\right) \tilde{A}^\nu(k)
+\end{equation}
+To construct the inverse matrix we make a general symmetric ansatz
+\begin{equation}
+	(G_\gamma^{-1})^{\mu\nu}(k)=A\left(k^{2}\right) g^{\mu\nu}+B\left(k^{2}\right) k^{\mu} k^{\nu}.
+\end{equation}
+Requiring that
+\begin{equation}
+	(G_\gamma)_{\mu\sigma}(k)(G_\gamma^{-1})^{\sigma\nu}(k) = \delta_\mu^\nu,
+\end{equation}
+and comparing the coefficients, we get the conditions
+\begin{equation}\label{eq:qft-propagator-equation}
+\begin{aligned}
+	-k^{2} A\left(k^{2}\right) &=1, \\
+	\xi k^{2} B\left(k^{2}\right) &=(\xi-1) A\left(k^{2}\right).
+\end{aligned}
+\end{equation}
+In the case $\xi=0$ these equations are not compatible. Without the gauge-fixing term the matrix $(G_\gamma)_{\mu \nu}$ cannot be inverted (since the determinant vanishes) and the Feynman propagator cannot be constructed. If $\xi \neq 0$, however, no problems arise and the system of equations (\ref{eq:qft-propagator-equation}) is solved by
+\begin{equation}
+	A\left(k^{2}\right)=-\frac{1}{k^{2}}, \quad B\left(k^{2}\right)=\frac{\xi-1}{\xi} \frac{1}{\left(k^{2}\right)^{2}},
+\end{equation}
+which leads to
+\begin{equation}
+	G_\gamma(k) = \frac{-g^{\mu\nu}+(1-\xi)k^\mu k^\nu}{k^2}.
+\end{equation}
+Different choice of $\xi$ correspond to different gauge fixing.
+The Landau gauge choose $\xi=1$, and the propagator has the simplest form
+\begin{equation}
+	G_\gamma(k) = \frac{-g_{\mu\nu}}{k^2}.
+\end{equation}
+
+
+\subsection{Path Integral Formalism}
 We define the gauge fixing function
 \begin{equation*}
 	G(A) = \partial_\mu A^\mu(x) -\omega(x) = 0
@@ -1141,7 +808,312 @@ Note that the propagator is related to the two-point correaltion:
 \end{equation}
 
 
-\subsection{Spinor Field}
+\section{Spinor Field}
+
+Based on previous discussion, the Lagrangian for spinor field can have
+\begin{equation}
+	\psi_L^\dagger \bar\sigma^\mu \partial_\mu \psi_L,\ 
+	\psi_R^\dagger \sigma^\mu \partial_\mu \psi_R,\ 
+	\psi_L^\dagger \psi_R,\ \psi_R^\dagger \psi_L,\ 
+	\psi_L \cdot \psi_L + \psi_L^\dagger \cdot \psi_L^\dagger,\ 
+	\psi_R \cdot \psi_R + \psi_R^\dagger \cdot \psi_R^\dagger.
+\end{equation}
+The Dirac field describe the theory with both left-hand and right-hand spinors.
+The Lagrangian is
+\begin{equation}
+	\mathcal{L}_{\mathrm{Dirac}}
+	= \bar\psi \left(i\gamma^\mu \partial_\mu - m\right)\psi,
+\end{equation}
+where
+\begin{eqnarray}
+	\psi = \begin{pmatrix}
+		\psi_L \\ \psi_R
+	\end{pmatrix},\ 
+	\bar\psi = \begin{pmatrix}
+		\psi_R^\dagger & \psi_L^\dagger
+	\end{pmatrix},\ 
+	\gamma^\mu = \begin{bmatrix}
+		0 & \sigma^\mu \\
+		\bar\sigma^\mu & 0
+	\end{bmatrix}.
+\end{eqnarray}
+In addition, we could consider using the last two terms as the mass, the result theory is the \textit{Majorana field theory}:
+\begin{equation}
+\begin{aligned}
+	\mathcal{L}_{\mathrm{Maj}}
+	= i \psi_L^\dagger \bar\sigma^\mu \partial_\mu  \psi_L -m(\psi_L \cdot \psi_L + \psi_L^\dagger \cdot \psi_L^\dagger).
+\end{aligned}
+\end{equation} 
+For the spinor basis, the Dirac Algebra is generated by
+\begin{equation}\label{eq:qft-diract-generator}
+	S^{\mu\nu} = \frac{i}{4}[\gamma^\mu, \gamma^\nu].
+\end{equation}
+The Lorentz group is represented by
+\begin{equation}\label{eq:qft-dirac-rep}
+	\Lambda_{\frac{1}{2}} = \exp\left(\frac{i}{2}\omega_{\mu\nu} S^{\mu\nu}\right).
+\end{equation}
+Using the familiar parametrization,
+\begin{equation}
+	S^{i0} = \frac{i}{2}\left[\begin{array}{cc}
+		\sigma^i & 0 \\ 0 & -\sigma^i
+	\end{array}\right], \quad 
+	S^{ij} = \frac{1}{2}\epsilon^{ijk} \left[\begin{array}{cc}
+		\sigma^k & 0 \\ 0 & -\sigma^k
+	\end{array}\right],
+\end{equation}
+which agree with the transformation property (\ref{eq:qft-left-right-spinor-rep}).
+
+
+\subsection{Canonical Quantization}
+The equation of motion for Dirac field is
+\begin{equation}
+\begin{aligned}
+	\partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi)} - \frac{\partial \mathcal L}{\partial \psi} = 0 
+	\quad &\Longrightarrow \quad
+	\bar\psi(i\overleftarrow{\cancel \partial}-m) = 0, \\
+	\partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\bar\psi)} - \frac{\partial \mathcal L}{\partial \bar\psi} = 0 
+	\quad &\Longrightarrow \quad
+	(i\overrightarrow{\cancel \partial}-m)\psi = 0.
+\end{aligned}
+\end{equation}
+This EOM is a matrix equation.
+The general solution of the Dirac equation can be written as a linear combination of plane waves (with positive and negative energy):\footnote{Note that we have chosen to put the $+$ sign into the exponential, rather than having $p^{0}<0$.}
+\begin{equation}
+	\psi_p(x) = \begin{cases}
+		u(p) e^{-i p \cdot x} & p^{0}>0 \\
+		v(p) e^{+i p \cdot x} & p^{0}<0
+	\end{cases}, \quad p^{2}=m^{2}.
+\end{equation}
+In momentum space, $u(p)$ and $v(p)$ satisfies:
+\begin{equation}
+	\begin{bmatrix}
+		-m & p \cdot \sigma \\ p\cdot \bar\sigma & -m
+	\end{bmatrix} u_s(p) = 
+	\begin{bmatrix}
+		-m & -p \cdot \sigma \\ -p\cdot \bar\sigma & -m
+	\end{bmatrix} v_s(p) = 0
+\end{equation}
+For massive Dirac field, we can choose the rest frame where $p = (m,0,0,0)$, the matrix equation is\footnote{We first consider the case where there is only one spatial dimension. It correspond to the choice of coordinate such that the momentum point to the $z$ direction.}
+\begin{equation}
+\begin{aligned}
+	\begin{bmatrix}
+		-m & m \\
+		m & -m
+	\end{bmatrix} u_s = 0 
+	\quad &\Longrightarrow \quad
+	u_s = \sqrt{m}\begin{pmatrix}
+		\xi_s \\ \xi_s
+	\end{pmatrix}, \\
+	\begin{bmatrix}
+		m & m \\
+		m & m
+	\end{bmatrix} v_s = 0 
+	\quad &\Longrightarrow \quad
+	v_s = \sqrt{m}\begin{pmatrix}
+		\eta_s \\ -\eta_s
+	\end{pmatrix},
+\end{aligned}
+\end{equation}
+where $\xi$ and $\eta$ has two independent solutions.
+For example, four linearly independent solutions are
+\begin{equation}
+	u_{\uparrow} = \begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}, \quad
+	u_{\downarrow} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 1 \end{pmatrix}, \quad
+	v_{\uparrow} = \begin{pmatrix} -1 \\ 0 \\ 1 \\ 0 \end{pmatrix}, \quad
+	v_{\downarrow} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ -1 \end{pmatrix}.
+\end{equation}
+The Dirac spinor is a complex four-component object, with eight real degrees of freedom. 
+The equations of motion reduce it to four degrees of freedom, which, as we will see, can be interpreted as spin up and spin down for particle and antiparticle.
+
+
+\subsubsection{Solution in General Frame}
+To derive a more general expression, we can solve the equations again in the boosted frame and match the normalization. 
+If $p=(E,0,0,p_z)$ then
+\begin{equation}
+	p \cdot \sigma=\left[\begin{array}{cc}
+		E-p_{z} & 0 \\
+		0 & E+p_{z}
+	\end{array}\right], \quad 
+	p \cdot \bar{\sigma}=\left[\begin{array}{cc}
+		E+p_{z} & 0 \\
+		0 & E-p_{z}
+	\end{array}\right].
+\end{equation}
+Let $a=\sqrt{E-p_{z}}$ and $b=\sqrt{E+p_{z}}$, then $m^{2}=\left(E-p_{z}\right)\left(E+p_{z}\right)=a^{2} b^{2}$ and Dirac equation becomes
+\begin{equation}
+	\left[\begin{array}{cccc}
+		-a b & 0 & a^{2} & 0 \\
+		0 & -a b & 0 & b^{2} \\
+		b^{2} & 0 & -a b & 0 \\
+		0 & a^{2} & 0 & -a b
+	\end{array}\right] u_{s}(p) = 
+	\left[\begin{array}{cccc}
+		a b & 0 & a^{2} & 0 \\
+		0 & a b & 0 & b^{2} \\
+		b^{2} & 0 & a b & 0 \\
+		0 & a^{2} & 0 & a b
+	\end{array}\right] v_{s}(p) = 0.
+\end{equation}
+
+The solutions are
+\begin{equation}
+	u_{s}=\begin{pmatrix}
+	\left[\begin{array}{ll}
+		a & 0 \\
+		0 & b
+	\end{array}\right] \xi_{s} \\
+	\left[\begin{array}{ll}
+		b & 0 \\
+		0 & a
+	\end{array}\right] \xi_{s}
+	\end{pmatrix}, \quad 
+	v_{s}=\begin{pmatrix}
+	\left[\begin{array}{ll}
+		a & 0 \\
+		0 & b
+	\end{array}\right] \eta_{s} \\
+	-\left[\begin{array}{ll}
+		b & 0 \\
+		0 & a
+	\end{array}\right] \eta_{s}
+	\end{pmatrix}.
+\end{equation}
+Using
+\begin{equation}
+	\sqrt{p \cdot \sigma}=\left[\begin{array}{cc}
+		\sqrt{E-p_{z}} & 0 \\
+		0 & \sqrt{E+p_{z}}
+	\end{array}\right], \quad 
+	\sqrt{p \cdot \bar{\sigma}}=\left[\begin{array}{cc}
+		\sqrt{E+p_{z}} & 0 \\
+		0 & \sqrt{E-p_{z}}
+	\end{array}\right],
+\end{equation}
+we can write more generally
+\begin{equation}
+	u_{s}(p) = \begin{pmatrix}
+		\sqrt{p \cdot \sigma} \xi_{s} \\
+		\sqrt{p \cdot \bar{\sigma}} \xi_{s}
+	\end{pmatrix}, \quad 
+	v_{s}(p) = \begin{pmatrix}
+		\sqrt{p \cdot \sigma} \eta_{s} \\
+		-\sqrt{p \cdot \bar{\sigma}} \eta_{s}
+	\end{pmatrix},
+\end{equation}
+where the square root of a matrix can be defined by changing to the diagonal basis, taking the square root of the eigenvalues, then changing back to the original basis. 
+In practice, we will usually pick $p$ along the $z$ axis, so we do not need to know how to make sense of $\sqrt{p \cdot \sigma}$. Then the four solutions are
+\begin{equation}\label{eq:qft-dirac-solutions}
+\begin{aligned}
+	u^{1}(p) &= \begin{pmatrix}
+		\sqrt{E-p_{z}} \\ 0 \\
+		\sqrt{E+p_{z}} \\ 0
+	\end{pmatrix}, & 
+	u^{2}(p) &= \begin{pmatrix}
+		0 \\ \sqrt{E-p_{z}} \\
+		0 \\ \sqrt{E+p_{z}}
+	\end{pmatrix}, \\
+	v^{1}(p) &= \begin{pmatrix}
+		\sqrt{E-p_{z}} \\ 0 \\
+		-\sqrt{E+p_{z}} \\ 0
+	\end{pmatrix}, & 
+	v^{2}(p) &= \begin{pmatrix}
+		0 \\ \sqrt{E-p_{z}} \\
+		0 \\ -\sqrt{E+p_{z}}
+	\end{pmatrix}.
+\end{aligned}
+\end{equation}
+In any frame $u^{s}$ are the positive frequency electrons, and the $v^{s}$ are negative frequency electrons, or equivalently, positive frequency positrons.
+
+For massless spinors, $p_{z}=\pm E$ and the explicit solutions in Eq. (\ref{eq:qft-dirac-solutions}) are 4-vectors with one non-zero component describing spinors with fixed helicity. 
+The spinor solutions for massless electrons are sometimes called polarizations, and are useful for computing polarized electron scattering amplitudes.
+
+For Weyl spinors, there are only four real degrees of freedom off-shell and two real degrees of freedom on-shell. 
+Recalling that the Dirac equation splits up into separate equations for $\psi_{L}$ and $\psi_{R}$, the Dirac spinors with zeros in the bottom two rows will be $\psi_{L}$ and those with zeros in the top two rows will be $\psi_{R}$. 
+Since $\psi_{L}$ and $\psi_{R}$ have two degrees of freedom each, these must be particle and antiparticle for the same helicity. 
+The embedding of Weyl spinors into fields this way induces irreducible unitary representations of the Poincare group for $m=0$.
+
+\subsubsection{Normalization and Spin Sum}
+The normalization chosen this way gives the orthogonal relation:
+\begin{equation}\label{eq:qft-dirac-otho-1}
+\begin{aligned}
+	\bar{u}^{r}(p) u^{s}(p) &= +2 m \delta^{r s}, \\
+	\bar{v}^{r}(p) v^{s}(p) &= -2 m \delta^{r s}.
+\end{aligned}
+\end{equation} 
+This is the (conventional) normalization for the spinor inner product for massive Dirac spinors. 
+It is also easy to check that
+\begin{equation}
+	\bar u_s(p) v_{s'}(p) = \bar v_s(p) u_{s'}(p) = 0.
+\end{equation}
+We can further check that an additional orthogonal relation hold
+\begin{equation}
+\begin{aligned}
+	u^{r \dagger}(p) u^{s}(p) &= -2 \omega_{\bm p} \delta^{r s}, \\
+	v^{r \dagger}(p) v^{s}(p) &= +2 \omega_{\bm p} \delta^{r s}.
+\end{aligned}
+\end{equation}
+And if we define $\bar p \equiv (E,-\vec p)$, there is another set of orthogonal relation:
+\begin{equation}
+	u^{r\dagger}(p) v^{s}(\bar p) = 
+	v^{r\dagger}(p) u^{s}(\bar p) =0.
+\end{equation}
+A useful identity is the spin sum identity:
+\begin{equation}
+\begin{aligned}
+	\sum_{s} u^{s}(p) \bar{u}^{s}(p) &= \cancel p+m, \\
+	\sum_{s} v^{s}(p) \bar{v}^{s}(p) &= \cancel p-m.
+\end{aligned}
+\end{equation}
+
+
+\subsubsection{Field Expansion and Correlation}
+The Dirac field expansion is
+\begin{equation}
+\begin{aligned}
+	\psi(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
+		\sum_{s}\left(a_{\mathbf{p}}^{s} u^{s}(p) e^{-i p \cdot x}
+		+b_{\mathbf{p}}^{s \dagger} v^{s}(p) e^{i p \cdot x}\right), \\
+	\bar{\psi}(x) &=\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} 
+		\sum_{s}\left(b_{\mathbf{p}}^{s} \bar{v}^{s}(p) e^{-i p \cdot x}
+		+a_{\mathbf{p}}^{s \dagger} \bar{u}^{s}(p) e^{i p \cdot x}\right).
+\end{aligned}
+\end{equation}
+Now let us investigate the propagator
+\begin{equation}
+\begin{aligned}
+	iD_{F,\alpha\beta}(x_1-x_2) &= \langle0|T\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle \\
+	&= \theta(\tau) \langle0|\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle - \theta(-\tau) \langle0|\bar\psi_\beta(x_2)\psi_\alpha(x_1)|0\rangle.
+\end{aligned}
+\end{equation}
+On the RHS, the first term is
+\begin{equation*}
+\begin{aligned}
+	\langle0|\psi_\alpha(x_1)\bar\psi_\beta(x_2)|0\rangle 
+	&= \int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \left[\sum_s u_\alpha^s(p)\bar u_\beta^s(p)\right]e^{-i p\cdot (x_1-x_2)} \\
+	&= (i\cancel \partial+m)_{\alpha\beta}\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} e^{-i p\cdot (x_1-x_2)}.
+\end{aligned}
+\end{equation*}
+For the second term:
+\begin{equation*}
+\begin{aligned}
+	\langle0|\bar\psi_\beta(x_2)\psi_\alpha(x_1)|0\rangle
+	&= \int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \left[\sum_s \bar v_\beta^s(p)v_\alpha^s(p)\right]e^{i p\cdot (x_1-x_2)} \\
+	&= -(i\cancel \partial + m)_{\alpha\beta}\int \frac{d^{3} p}{(2 \pi)^{3}} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} e^{i p\cdot (x_1-x_2)}.
+\end{aligned}
+\end{equation*}
+Together, the Dirac propagator is:
+\begin{equation}
+\begin{aligned}
+	iD_F(x_1-x_2) &= (i\cancel \partial+m)i\Delta(x_1-x_2) \\
+	&= \int\frac{d^{4} p}{(2\pi)^{4}} e^{-i p\cdot (x_1-x_2)}\frac{i(\cancel p+m)}{p^2-m^2+i\epsilon}.
+\end{aligned}
+\end{equation}
+
+
+
+
+\subsection{Path-integral Quantization}
+
 Consider the partition function with source
 \begin{equation}
 	Z_{\mathrm{Dirac}}[J]
