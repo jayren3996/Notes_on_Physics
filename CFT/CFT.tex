@@ -1,0 +1,840 @@
+\documentclass[aps,prb,superscriptaddress,nofootinbib]{revtex4}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphbox}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,bookmarks=true,citecolor=blue,linkcolor=red,urlcolor=blue]{hyperref}
+\usepackage{simpler-wick}
+\usepackage{appendix}
+\usepackage{float}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[export]{adjustbox}
+\setlength{\parindent}{10 pt}
+\setlength{\parskip}{2 pt}
+\setcounter{MaxMatrixCols}{30}
+\bibliographystyle{apsrev}
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\normord}[1]{{:\mathrel{#1}:}}
+\def\tbs{\textbackslash}
+\def \tr{\operatorname{tr}}
+\def \Tr{\operatorname{Tr}}
+
+
+\begin{document}
+\title{Conformal Field Theory}
+\author{Jie Ren}
+
+
+\maketitle
+
+
+\tableofcontents
+
+\section{Conformal Invariance}
+
+A \textit{conformal transformation} is a coordinate transformation such that the metric changes by $g_{\mu\nu}(x) \rightarrow \Omega(x) g_{\mu\nu}(x)$.\footnote{We mostly focus on the flat Euclidean space, where we use the $\eta_{\mu\nu} = \delta_{\mu\nu}$ to denote the metric.}
+For an infinitesimal coordinate transformation $x^\mu \rightarrow x^\mu + \epsilon^\mu(x)$, the metric transforms as
+\begin{equation}
+	g_{\mu\nu}x^\mu x^\nu = g'_{\mu\nu}{x'}^\mu {x'}^\nu = g'_{\mu\nu}[x^\mu+\epsilon^\mu(x)][x^\nu+\epsilon^\nu(x)],
+\end{equation}
+meaning that $g'_{\mu\nu} = g_{\mu\nu}-\partial_\mu \epsilon_\nu - \partial_\nu \epsilon_\mu$.
+The conformal requirement is then
+\begin{equation}
+	\partial_\mu \epsilon_\nu + \partial_\nu \epsilon_\mu = f(x) g_{\mu\nu}.
+\end{equation}
+By taking the trace on both side, 
+\begin{equation}
+	f(x) = \frac{2}{d}\partial_\rho \epsilon^\rho.
+\end{equation}
+Also, by taking the extra derivative, permuting the indices and taking linear combination, we arrive at
+\begin{equation}
+	2\partial_\mu \partial_\nu \epsilon_\rho = \eta_{\mu\rho}\partial_\nu f +\eta_{\nu\rho}\partial_{\mu}f-\eta_{\mu\nu}\partial_\rho f.
+\end{equation}
+Contracting with $\eta^{\mu\nu}$, we get 
+\begin{equation}
+	2\partial^2 \epsilon_\mu=(2-d)\partial_\mu f.
+\end{equation}
+We then know 
+\begin{equation}
+	(2-d)\partial_\mu\partial_\nu f = \eta_{\mu\nu}\partial^2 f.
+\end{equation}
+Further contraction leads to 
+\begin{equation}
+	(d-1)\partial^2 f=0.
+\end{equation}
+From this analysis, we know for the case $d \ge 3$, 
+\begin{equation}
+	\partial_\mu\partial_\nu f = 0.
+\end{equation}
+That is, $f$ is at most linear in the coordinates.
+We therefore can write the general form for the coordinate transformation
+\begin{equation}
+	\epsilon_\mu = a_\mu + b_{\mu\nu} x^\nu + c_{\mu\nu\rho} x^\nu x^\rho, \quad c_{\mu\nu\rho} = c_{\mu\rho\nu}.
+\end{equation}
+Further analysis shows there are only four types of conformal transformations: translations, rotations, dilations, and the special conformal transformations (SCT):
+\begin{equation}
+	{x'}^\mu = \frac{x^\mu - b^\nu x^2}{1- 2 b\cdot x +b^2 x^2}.
+\end{equation}
+For the case of $d=2$, the coordinate can be mapped to the complex plane by $z = x^0 + i x^1$.
+The global conformal transformation is the same as the higher-dimensional cases, while those four transformations in the complex plane can be put in a nicer form:
+\begin{equation}
+	z \rightarrow f(z) = \frac{a z + b}{c z + d},\quad ad-bc = 1.
+\end{equation}
+This mappings are called \textit{projective transformations}, and to each of them we can associate a $2\times2$ matrix:
+\begin{equation}
+	A = \begin{pmatrix}
+		a & b \\ c & d
+	\end{pmatrix},
+\end{equation}
+Composition of two maps $f_1 \circ f_2$ correspond to matrix multiplication $A_2 A_1$.
+All such transformation form the group $\mathrm{SL}(2, \mathbb C)$.
+Specifically, the SCT on the complex plane is associated with the matrix
+\begin{equation}
+	A_{\mathrm{SCT}}(b) = \begin{pmatrix}
+		1 & 0 \\ b & 1
+	\end{pmatrix}.
+\end{equation}
+
+
+While the global conformal transformation is still very restricted, in $2d$ we can instead consider the local conformation transformation
+\begin{equation}
+\begin{aligned}
+	z &\rightarrow z + \epsilon(z) = z + \sum_n c_n z^{n+1}, \\
+	\bar z &\rightarrow \bar z + \bar\epsilon(\bar z) = \bar z + \sum_n c_n^* \bar z^{n+1}.
+\end{aligned}
+\end{equation}
+For infinitesimal local conformal transformation, the field transforms as
+\begin{equation}
+	\delta_{\epsilon,\bar\epsilon} \phi(z,\bar z) = -\epsilon(z)\partial \phi - \bar\epsilon(\bar z)\bar\partial\phi = \sum_n \left[c_n l_n + \bar c_n \bar l_n \right] \phi(z,\bar z),
+\end{equation}
+where we have introduced the conformal generators
+\begin{equation}
+	l_n= -z^{n+1}\partial_z, \quad \bar l_n = -\bar z^{n+1} \partial_{\bar z},
+\end{equation}
+where the holomorphic/antiholomorphic derivative is defined as
+\begin{equation}
+	\partial_z = \frac{1}{2}(\partial_0 - i\partial_1),\quad
+	\partial_{\bar z} = \frac{1}{2}(\partial_0 + i\partial_1).
+\end{equation}
+The generators satisfy the algebra
+\begin{equation}
+	\left[l_n , l_m\right] = (n-m) l_{n+m}, \quad
+	\left[\bar l_n , \bar l_m\right] = (n-m) \bar l_{n+m}, \quad
+	\left[l_n , \bar l_m\right] = 0.
+\end{equation}
+We remark here that we usually regard $z$ and $\bar z$ as independent variables, and sometimes we would just omit the antiholomorphic part. 
+This correspond to the analytic continuation of the real coordinate to complex values.
+The physical space is the two-dimensional submanifold (the real surface) defined by $z^* = \bar z$.
+
+
+
+\subsection{Conformal Algebra}
+The global conformal group is generated by
+\begin{equation}
+\begin{aligned}
+	P_{\mu} &=-i \partial_{\mu}, &
+	L_{\mu \nu} &= i\left(x_{\mu} \partial_{\nu}-x_{\nu} \partial_{\mu}\right), \\
+	D &= -i x^{\mu} \partial_{\mu}, &
+	K_{\mu} &= -i\left(2 x_{\mu} x^{\nu} \partial_{\nu}-x^{2} \partial_{\mu}\right),
+\end{aligned}
+\end{equation}
+satisfying the algebra
+\begin{equation}
+\begin{aligned}
+	{\left[D, P_{\mu}\right] } &=i P_{\mu}, \quad
+	{\left[D, K_{\mu}\right] } =-i K_{\mu}, \\
+	{\left[K_{\mu}, P_{\nu}\right] } &=2 i\left(\eta_{\mu \nu} D-L_{\mu \nu}\right), \quad
+	{\left[K_{\rho}, L_{\mu \nu}\right] } =i\left(\eta_{\rho \mu} K_{\nu}-\eta_{\rho \nu} K_{\mu}\right), \\
+	{\left[P_{\rho}, L_{\mu \nu}\right] } &=i\left(\eta_{\rho \mu} P_{\nu}-\eta_{\rho \nu} P_{\mu}\right), \\
+	{\left[L_{\mu \nu}, L_{\rho \sigma}\right] } &=i\left(\eta_{\nu \rho} L_{\mu \sigma}+\eta_{\mu \sigma} L_{\nu \rho}-\eta_{\mu \rho} L_{\nu \sigma}-\eta_{\nu \sigma} L_{\mu \rho}\right).
+\end{aligned}
+\end{equation}
+Similar as the case of Lorentz invariant quantum field theory, where the building blocks of the theory is the fields that form a representation of the Lorentz (or Poincare) group, here we are consider the case where the field gives the representation of the conformal group.
+                                                                                                      
+We start with consider the subgroup that keep the origin fixed.
+Consider the field as an irreducible representation of the Lorentz group:
+\begin{equation}
+	L_{\mu\nu} \Phi(0) = S_{\mu\nu}\Phi(0),
+\end{equation}
+where $S_{\mu \nu}$ is the spin operator associated with the field $\Phi$. 
+Next, by use of the commutation relations of the Poincare group, we translate the generator $L_{\mu \nu}$ to a nonzero value of $x$ :
+\begin{equation}
+	e^{i x^{\rho} P_{\rho}} L_{\mu \nu} e^{-i x^{\rho} P_{\rho}}=S_{\mu \nu}-x_{\mu} P_{\nu}+x_{\nu} P_{\mu}.
+\end{equation}
+The above translation is explicitly calculated by use of the BCH formula:
+\begin{equation}
+	e^{-A} B e^{A}=B+[B, A]+\frac{1}{2 !}[[B, A], A]+\frac{1}{3 !}[[[B, A], A], A]+\cdots.
+\end{equation}
+This allows us to write the action of the generators:
+\begin{equation}
+\begin{aligned}
+	P_{\mu} \Phi(x) &=-i \partial_{\mu} \Phi(x), \\
+	L_{\mu \nu} \Phi(x) &=i\left(x_{\mu} \partial_{\nu}-x_{\nu} \partial_{\mu}\right) \Phi(x)+S_{\mu \nu} \Phi(x).
+\end{aligned}
+\end{equation}
+We then denote by $S_{\mu\nu}$, $\tilde \Delta$, and $\kappa$ the respective representation of 	the generators $L_{\mu\nu}$, $D$, and $K_\mu$ at $x=0$, which satisfy the relation:
+\begin{equation}
+\begin{aligned}
+	{\left[\tilde{\Delta}, S_{\mu \nu}\right] } &=0, \quad
+	{\left[\tilde{\Delta}, \kappa_{\mu}\right] } =-i \kappa_{\mu}, \\
+	{\left[\kappa_{\nu}, \kappa_{\mu}\right] } &=0, \quad
+	{\left[\kappa_{\rho}, S_{\mu \nu}\right] } =i\left(\eta_{\rho \mu} \kappa_{\nu}-\eta_{\rho \nu} \kappa_{\mu}\right), \\
+	{\left[S_{\mu \nu}, S_{\rho \sigma}\right] } &=i\left(\eta_{\nu \rho} S_{\mu \sigma}+\eta_{\mu \sigma} S_{\nu \rho}-\eta_{\mu \rho} S_{\nu \sigma}-\eta_{\nu \sigma} S_{\mu \rho}\right).
+\end{aligned}
+\end{equation}
+Using the BCH formula
+\begin{equation}
+\begin{aligned}
+	e^{i x^{\rho} P_{\rho}} D e^{-i x^{\rho} P_{\rho}} &=D+x^{\nu} P_{v}, \\
+	e^{i x^{\rho} P_{\rho}} K_{\mu} e^{-i x^{\rho} P_{\rho}} &=K_{\mu}+2 x_{\mu} D-2 x^{\nu} L_{\mu \nu}+2 x_{\mu}\left(x^{\nu} P_{\nu}\right)-x^{2} P_{\mu},
+\end{aligned}
+\end{equation}
+from which we arrive finally at the following extra transformation rules:
+\begin{equation}
+\begin{aligned}
+	D \Phi(x) &=\left(-i x^{\nu} \partial_{\nu}+\tilde{\Delta}\right) \Phi(x), \\
+	K_{\mu} \Phi(x) &=\left\{\kappa_{\mu}+2 x_{\mu} \tilde{\Delta}-x^{\nu} S_{\mu \nu}-2 i x_{\mu} x^{\nu} \partial_{\nu}+i x^{2} \partial_{\mu}\right\} \Phi(x).
+\end{aligned}
+\end{equation}
+
+If we demand that the field $\Phi(x)$ belong to an irreducible representation of the Lorentz algebra, by Schur's lemma, $\tilde \Delta$ is proportional to identity.
+We then denoted it as $\tilde \Delta = -i\Delta$, where $\Delta$ is the scaling dimension of the field.
+Also $\kappa_\mu$ will automatically vanishes.
+For a field $\phi_a(x)$, the projective (global) conformal transformation is then
+\begin{equation}
+	\phi_a(x) \rightarrow \phi'_a(x') = \left|\frac{\partial x'}{\partial x}\right|^{-\Delta/d} \Lambda_{ab} \phi_b(x),
+\end{equation}
+where $\Lambda_{ab}$ is the representation of the Lorentz transformation, and $|\partial x'/\partial x|$ is the Jacobian of the conformal transformation of the coordinates, related to the scale factor $\Omega(x)$ by
+\begin{equation}
+	\left|\frac{\partial x'}{\partial x}\right| = \Omega(x)^{-d/2}.
+\end{equation}
+A field transforming like the above is called \textit{quasi-primary}.
+
+In $2d$, we can map the coordinate to the complex plane.
+A generic conformal mapping is $z \rightarrow w(z)$.
+A quasi-primary field transforms as
+\begin{equation}
+	\phi^{\prime}(w, \tilde{w})=\left(\frac{d w}{d z}\right)^{-h}\left(\frac{d \bar{w}}{d \bar{z}}\right)^{-\bar{h}} \phi(z, \bar{z}),
+\end{equation}
+where $h$/$\bar h$ is called the \textit{holomorphic/antiholomorphic dimension}.
+The scaling dimension and spin is given by
+\begin{equation}
+	\Delta = h + \bar h, \quad
+	s = h - \bar h.
+\end{equation}
+If the transformation property continues to hold for local conformal transformation, the field is called the \textit{primary field}.
+
+
+\subsection{Correlation Function}
+The correlation function for primary field is of special form.
+Consider first the two-point function $\langle \phi_1(z_1,\bar z_1) \phi_2(z_2, \bar z_2) \rangle$.
+The translational and rotational symmetry requires that
+\begin{equation}
+	\langle \phi_1(z_1,\bar z_1) \phi_2(z_2, \bar z_2) \rangle = F(z_1-z_2,\bar z_1-\bar z_2).
+\end{equation}
+Let $w_1 = \lambda z_1$, $w_2 = \lambda z_2$, we have\footnote{We assume $\omega$ and $\bar\omega$ are independent.}
+\begin{equation}
+	F(\lambda z_1-\lambda z_2, \bar z_1 - \bar z_2)
+	= \lambda^{-h_1-h_2} F(z_1-z_2,\bar z_1-\bar z_2),
+\end{equation}
+which implies:
+\begin{equation}
+	\langle \phi_1(x_1) \phi_2(x_2) \rangle = \frac{C_{12}}{z_{12}^{2h} \bar z^{2\bar h}_{12}},
+\end{equation}
+where $z_{1i} \equiv z_i - z_j$.
+Note that $C_{12} \ne 0$ only if $h_1=h_2=h$ and $\bar h_1=\bar h_2=\bar h$.
+
+For three-point correlation, the translational and rotational invariance requires
+\begin{equation}
+\begin{aligned}
+	\langle \phi_1(x_1)\phi_2(x_2)\phi_3(x_3)\rangle
+	&= F(z_{12}, z_{23}, z_{13};\bar z_{12},\bar z_{23},\bar z_{13}) \\
+	&= \frac{C_{123}}{z_{12}^a z_{23}^b z_{13}^c \bar z_{12}^d \bar z_{23}^e \bar z_{13}^f}.
+\end{aligned}
+\end{equation}
+The dilatational symmetry requires
+\begin{equation}
+\begin{aligned}
+	a + b + c &= h_1 + h_2 + h_3, \\
+	c + d + e &= \bar h_1 + \bar h_2 + \bar h_3. 
+\end{aligned}
+\end{equation}
+Under SCT $z_i \rightarrow z_i/\gamma_i$ where $\gamma_i \equiv 1+s z_i$, we have the equation (for holomorphic part)
+\begin{equation}
+	(\gamma_1\gamma_2)^a (\gamma_2\gamma_3)^b (\gamma_1\gamma_3)^c = \gamma_1^{2h_1} \gamma_2^{2h_2} \gamma_3^{2h_3},
+\end{equation}
+which implies
+\begin{equation}
+	a + b = 2h_2, \quad
+	b + c = 2h_3, \quad
+	a + c = 2h_1.
+\end{equation}
+The only invariant form for the three-point function is:
+\begin{equation}
+\begin{aligned}
+	\langle \phi_1(x_1)\phi_2(x_2)\phi_3(x_3)\rangle 
+	=&\ C_{123} \times \frac{1}{z_{12}^{h_{1}+h_{2}-h_{3}} z_{23}^{h_{2}+h_{3}-h_{1}} z_{13}^{h_{3}+h_{1}-h_{2}}} \\
+	&\ \times \frac{1}{\bar{z}_{12}^{\bar{h}_{1}+\bar{h}_{2}-\bar{h}_{3}} \bar{z}_{23}^{\bar{h}_{2}+\bar{h}_{3}-\bar{h}_{1}} \bar{z}_{13}^{\bar{h}_{3}+\bar{h}_{1}-\bar{h}_{2}}}.
+\end{aligned}
+\end{equation} 
+
+For four-point function, there is no close form.
+However from the symmetry requirement, the correlation function should depend on the invariance (cross ratio):
+\begin{equation}
+	\eta = \frac{z_{12} z_{34}}{z_{13} z_{24}}.
+\end{equation}
+The four-point function is then
+\begin{equation}
+	\langle\phi_1(x_1)\phi_2(x_2)\phi_3(x_3)\phi_4(x_4)\rangle
+	= f(\eta,\bar\eta) \prod_{i<j}^4 z_{ij}^{h/3-h_i-h_j} \bar z_{ij}^{\bar h/3-\bar h_i -\bar h_j},
+\end{equation}
+where $h = \sum_{i=1}^4 h_i$ and $\bar h = \sum_{i=1}^4 \bar h_i$.
+
+
+\subsection{Holomorphic Ward Identity}
+The conserved current of conformal transformation is given by:
+\begin{equation}
+	j^\mu(x) = T^{\mu\nu}(x) \epsilon_\nu(x).
+\end{equation}
+We assume that the stress tensor $T^{\mu\nu}$ is symmetric and traceless.
+The Ward identity for conformal transformation is
+\begin{equation}\label{eq:CFT-CFI-wardid}
+	\partial_\mu \langle j^\mu(x) \phi_1(x_1)\cdots \phi_n(x_n)\rangle = \sum_{i=1}^n \delta(x-x_i)\langle \phi_1(x_1)\cdots \delta_{\epsilon,\bar\epsilon} \phi_i(x_i)\cdots \phi_n(x_n)\rangle.
+\end{equation}
+We are now going to express the Ward identity in the holomorphic way.
+First, we assume the fields $\phi_i$'s are primary, and the infinitesimal transformation is
+\begin{equation}
+	\delta_{\epsilon,\bar\epsilon} \phi(z,\bar z) = -(h \partial_z \epsilon + \epsilon \partial_z)\phi - (\bar h \partial_{\bar z}\bar\epsilon+\bar\epsilon \partial_{\bar z})\bar\phi.
+\end{equation}
+We replace the coordinate indices like $\mu$ to $z/\bar z$, according to the rule
+\begin{equation}
+	f^z \equiv f^0 + i f^1, \quad
+	f^{\bar z} \equiv f^0 - i f^1.
+\end{equation}
+For stress tensor, we have
+\begin{equation}
+\begin{aligned}
+	T^{zz} &= T^{00} + 2i T^{10} - T^{11}, \\
+	T^{\bar z\bar z} &= T^{00} - 2i T^{10} - T^{11}, \\
+	T^{z\bar z} &= T^{\bar z z} = T^{00} + T^{11}.
+\end{aligned}
+\end{equation}
+The traceless condition requires $T^{z\bar z} = T^{\bar z z}=0$.
+Also, note that the ``metric'' for the holomorphic variables is defined by requiring the line element $g_{\mu\nu} dx^\mu dx^\nu$ remains the same form, i.e.,
+\begin{equation}
+	g_{z\bar z} dz d \bar z + g_{\bar z z} d\bar z dz = (dx^0)^2 + (dx^1)^2 \ \Longrightarrow \ g_{z\bar z} = g_{\bar z z} = \frac{1}{2}.
+\end{equation}
+Using the metric, we know
+\begin{equation}
+\begin{aligned}
+	T_{zz} &= \frac{1}{4}\left(T^{00} - 2i T^{10} - T^{11}\right) \equiv -\frac{1}{2\pi} T(z), \\
+	T_{\bar z\bar z} &= \frac{1}{4}\left(T^{00} + 2i T^{10} - T^{11}\right) \equiv -\frac{1}{2\pi} \bar T(\bar z).
+\end{aligned}
+\end{equation}
+Note that $T(z)$ does not have the antiholomorphic dependence.
+This comes from the condition $\partial_\mu T^{\mu\nu} = 0$, which leads to
+\begin{equation}
+	\partial_{\bar z} T^{\bar z \bar z} = 4 \partial_{\bar z} T = 0.
+\end{equation}
+That is, $T$ is holomorphic.
+Similar analysis shows $\bar T$ is antiholomorphic.
+The ``Levi-Civita symbol'' is defined by requiring $\varepsilon_{\mu\nu} u^\mu v^\nu = \varepsilon_{z\bar z} u^z v^{\bar z} + \varepsilon_{\bar z z} u^{\bar z} v^{z}$:
+\begin{equation}
+	\varepsilon_{z\bar z} = -\varepsilon_{\bar z z} = \frac{i}{2}.
+\end{equation}
+A useful fact is the Gauss's law:
+\begin{equation}
+	\int_M d^2 x \partial_\mu f^\mu = \frac{i}{2} \int_{\partial M}\left(- dz f^{\bar z} + d\bar z f^{z}\right).
+\end{equation}
+To proof this, note that for ordinary coordinate, the Gauss's law is
+\begin{equation}
+	\int_M d^2 x \partial_\mu f^\mu = \int_{\partial M} \varepsilon_{\mu\rho} d s^\rho f^\mu
+	= \int_{\partial M} \left(- dx^0 f^1 + dx^1 f^0 \right).
+\end{equation}
+The holomorphic form of Gauss's law can then be check straightforwardly.
+We then integrate the both hand side of Eq.~(\ref{eq:CFT-CFI-wardid}) over the region containing all $x_i$'s, and use the Gauss's law:
+\begin{equation}
+\begin{aligned}
+	\delta_{\epsilon,\bar\epsilon} \langle X \rangle 
+	&= \frac{i}{2}\oint \left[-dz \langle T^{\bar z \bar z} \epsilon_{\bar z} X \rangle + d\bar z \langle T^{z z}\epsilon_{z} X\rangle \right] \\
+	&= \frac{1}{2\pi i}\oint \left[-dz \epsilon(z)\langle T(z) X \rangle + d\bar z \bar\epsilon(\bar z) \langle \bar T(\bar z) X\rangle \right],
+\end{aligned}
+\end{equation}
+where $X = \phi_1(x_1) \cdots \phi_n(x_n)$.
+
+
+
+
+
+\section{Canonical Quantization}
+
+In this section, we are going to construct the Hilbert space of the conformal field theory.
+The operator formalism distinguishes a time direction from a space direction.
+Note that for Euclidean space, the direction of ``time'' is not a strictly defined.
+We can choose the radial direction as the ``time direction''.
+
+To make this choice of time direction nature in the Minkowski space point of view, we may first define our theory on an infinite spacetime cylinder, with time $-\infty$ to $+\infty$, and space from $0$ to $L$ (on a circle). 
+We define the complex variable $\xi = t + ix$, and map it to the complex plane by
+\begin{equation}
+	z = \exp\left(\frac{2\pi \xi}{L}\right).
+\end{equation} 
+The remote past is situated at $z=0$, whereas the remote future lies on the point at infinity (in the Riemann sphere sense).
+
+In this section, we adopt the convention commonly used in CFT that omit all bracket - all bare operators really mean the expectation (with time ordering).
+
+
+\subsection{Radial Quantization}
+
+The Hilbert space is generated from a vacuum state and field operators.
+For a primary field $\phi(z,\bar z)$ with dimension $(h,\bar h)$, the state it generate is
+\begin{equation}
+	\phi(z,\bar z)|0\rangle.
+\end{equation}
+The physical requirement is that in the remote past, the state 
+\begin{equation}
+	|\phi_{\mathrm{in}}\rangle = \lim_{z,\bar z\rightarrow 0} \phi(z,\bar z)|0\rangle
+\end{equation}
+is well-defined.
+To see what this requirement leads to, we consider the mode expansion of the field $\phi$:
+\begin{equation}
+\begin{aligned}
+	\phi(z,\bar z) &= \sum_{mn} \frac{1}{z^{m+h}} \frac{1}{\bar z^{n+\bar h}} \phi_{m,n}.
+\end{aligned}
+\end{equation}
+This means that
+\begin{equation}
+	\phi_{m,n}|0\rangle = 0,\quad \forall m > -h,\ n>-\bar h.
+\end{equation}
+In the following, we will show that the algebra of the holomorphic and antiholomorphic part is decoupled.
+We can think of the mode as $\phi_{m,n} = \phi_m \otimes \phi_n$.
+To lighten the notation a little bit, we will focus only on the holomorphic part when there is no confusion.
+
+A Hilbert space also need a proper definition of inner product.
+Here we defined the out state in the remote future as $\langle\phi_{\mathrm{out}}| = \langle 0| \phi^\dagger(z,\bar z)$, and we define
+\begin{equation}
+	\phi^\dagger(z,\bar z) =  \bar z^{-2h} z^{-2\bar h} \phi\left(1/\bar z, 1/z\right).
+\end{equation}
+We remark that the conjugate result in a time reversal for Euclidean time $\tau = it$, which map the point $(z,\bar z)$ to $(1/\bar z, 1/z)$.
+Also, the additional factor is introduced in order to make the inner product
+\begin{equation}
+	\langle \phi_{\mathrm{out}}|\phi_{\mathrm{in}}\rangle = \lim_{z,\bar z,w,\bar w \rightarrow 0} \langle \phi(z,\bar z)^\dagger \phi(w,\bar w)\rangle
+	= \lim_{\xi,\bar \xi\rightarrow \infty} \bar\xi^{2h}\xi^{2\bar h} \langle \phi(\bar\xi,\xi)^\dagger \phi(0,0)\rangle
+\end{equation}
+well-defined.
+The mode expansion for conjugate field is
+\begin{equation}
+	\phi(z, \bar{z})^{\dagger}=\sum_{m \in \mathbb{Z}} \sum_{n \in \mathbb{Z}} \bar{z}^{-m-h} z^{-n-\bar{h}} \phi_{m, n}^{\dagger}.
+\end{equation}
+Note that fact
+\begin{equation}
+\begin{aligned}
+	\phi(z, \bar{z})^{\dagger} &=\bar{z}^{-2 h} z^{-2 \bar{h}} \phi(1 / \bar{z}, 1 / z) \\
+	&=\bar{z}^{-2 h} z^{-2 \bar{h}} \sum_{m \in \mathbf{Z}} \sum_{n \in \mathbf{Z}} \phi_{m, n} \bar{z}^{m+h} z^{n+\bar{h}} \\
+	&=\sum_{m \in \mathbf{Z}} \sum_{n \in \mathbf{Z}} \phi_{-m,-n} \bar{z}^{-m-h} z^{-n-\bar{h}},
+\end{aligned}
+\end{equation}
+which means $\phi^\dagger_{m,n} = \phi_{-m,-n}$.
+
+\subsubsection{Operator Product Expansions}
+We introduce the radial ordering operator denoted by $\mathcal R$.
+Now consider the Ward identity for the holomorphic part of $\phi$:
+\begin{equation}
+	\delta_{\epsilon}\phi(w) = -\frac{1}{2\pi i}\oint dz\ \epsilon(z) T(z) \phi(w)
+\end{equation}
+We can choose the contour of two infinitesimally close circles that contain $\omega$.
+\begin{equation}
+\begin{aligned}
+	\delta_{\epsilon}\phi(w) 
+	&= -\frac{1}{2\pi i} \left(\oint_{|z|>|w|}-\oint_{|z|<|w|}\right) dz\ \epsilon(z) \mathcal R \left[T(z) \phi(w)\right]  \\
+	&= -[Q_\epsilon, \phi(w)],
+\end{aligned}
+\end{equation}
+where we have defined the charge
+\begin{equation}
+	Q_\epsilon \equiv \frac{1}{2\pi i} \oint dz\ T(z) \epsilon(z).
+\end{equation}
+On the other hand, the integral contour can be chosen such as it circles around $w$, the Ward identity is then:\footnote{Here we have use the convention omitting the time ordering and bracket.}
+\begin{equation}
+	\frac{1}{2\pi i} \oint_{w} dz\ \epsilon(z)  T(z) \phi(w)
+	= h \partial \epsilon(w)\phi(w) + h \epsilon(w) \partial \phi(w).
+\end{equation}
+It leads to the operator product expansion (OPE):
+\begin{equation}
+	T(z)\phi(w) \sim \frac{\partial \phi(\omega)}{z-w} + \frac{h\phi(w)}{(z-w)^2}.
+\end{equation}
+The OPE of $A(z)$ and $B(w)$ should be think of as the singular behavior of two fields when $z\rightarrow w$.
+The $\sim$ symbol is the equivalence up to regular terms.
+
+The operator expansion for stress tensor has the general form:
+\begin{equation}
+\begin{aligned}
+	T(z) T(w) &\sim \frac{c/2}{(z-w)^4} + \frac{2T(w)}{(z-w)^2} + \frac{\partial T(w)}{z-w}, \\
+	\bar T(\bar z) \bar T(\bar w) &\sim \frac{\bar c/2}{(\bar z-\bar w)^4} + \frac{2\bar T(\bar w)}{(\bar z-\bar w)^2} + \frac{\partial \bar{T}(\bar w)}{\bar z-\bar w}, \\
+	T(z) \bar{T}(\bar w) &= \bar{T}(\bar z) T(w) = 0.
+\end{aligned}
+\end{equation}
+where $c/\bar c$ is the \textit{central charge}.\footnote{Actually modular invariance constrains $c = \bar c \mod 24$. In most of the cases we assume $c=\bar c$.}
+
+\subsubsection{Virasoro Algebra}
+We expand stress tensor as
+\begin{equation}
+	T(z) = \sum_n \frac{1}{z^{n+2}} L_n, \quad
+	L_n = \frac{1}{2\pi i}\oint dz\ z^{n+1} T(z).
+\end{equation}
+The commutation relation is
+\begin{equation}
+\begin{aligned}
+	\left[L_n, L_m\right]
+	&= \oint_0 \frac{dw}{2\pi i}\ w^{m+1}\oint_w \frac{dz}{2\pi i}\ z^{n+1} \left[\frac{c/2}{(z-w)^4} + \frac{2T(w)}{(z-w)^2} + \frac{\partial T(w)}{z-w}\right] \\
+	&= \oint_0 \frac{dw}{2\pi i}\ w^{m+n-1}\left[\frac{cn(n^2-1)}{12} + 2(n+1)T(w)w^2 + w^3 \partial T(w) \right] \\
+	&= \frac{cn(n^2-1)}{12} \delta_{m+n,0} + (n-m) L_{m+n}.
+\end{aligned}
+\end{equation}
+We require that $T(z)|0\rangle$ and $\bar T(\bar z)|0\rangle$ are well-defined as $z,\bar z \rightarrow 0$, this leads to 
+\begin{equation}
+	L_n|0\rangle = \bar L_n|0\rangle = 0, \quad n \ge -1.
+\end{equation}
+Now consider the commutation relation ($n > -1$)
+\begin{equation}\label{eq:CFT-OP-comm-1}
+\begin{aligned}
+	{\left[L_{n}, \phi(w)\right] } &=\frac{1}{2 \pi i} \oint_{w} d z\ z^{n+1} T(z) \phi(w) \\
+	&=\frac{1}{2 \pi i} \oint_{w} d z\ z^{n+1}\left[\frac{h \phi(w)}{(z-w)^{2}}+\frac{\partial \phi(w)}{z-w}\right] \\
+	&=h(n+1) w^{n} \phi(w)+w^{n+1} \partial \phi(w).
+\end{aligned}
+\end{equation}
+Eq.~(\ref{eq:CFT-OP-comm-1}) has many important consequences. 
+We define the in state $|h,\bar h\rangle \equiv \phi(0,0)|0\rangle$.
+The commutation relation (\ref{eq:CFT-OP-comm-1}) gives
+\begin{equation}
+	L_0 |h\rangle = h|h\rangle, \quad 
+	\bar L_0 |\bar h\rangle = \bar h |\bar h\rangle.
+\end{equation}
+In this way $L_0/\bar L_0$ labels the state $|h,\bar h\rangle$.
+Also, we can easily check that $L_n|h,\bar h\rangle = 0$ for $n>0$.
+We then consider the following commutation relation 
+\begin{equation}
+\begin{aligned}
+	\left[L_n, \phi_m\right]
+	&= \oint \frac{dw}{2\pi i}\ \left[h(n+1) w^{n+m+h-1} \phi(w)+w^{n+m+h} \partial \phi(w) \right] \\
+	&= h(n+1) \phi_{n+m} - (n+m+h)\phi_{n+m} \\
+	&= [nh-n-m] \phi_{n+m},
+\end{aligned}
+\end{equation}
+of which the special case is 
+\begin{equation}
+	[L_0, \phi_m] = -m \phi_m.
+\end{equation}
+This means the operator $\phi_m$'s act like raising and lowering operators for the eigenstates of $L_0$.
+The generator $L_{-m}$ ($m>0$) also increase the conformal dimension, by the virtue of Virasoro algebra 
+\begin{equation}
+	[L_0, L_{-m}] = m L_{-m}.
+\end{equation}
+This means we can generate a tower of states by successive applications of these operators on $|h\rangle$:
+\begin{equation}
+	|h'\rangle = L_{-k_{1}} L_{-k_{2}} \cdots L_{-k_{n}}|h\rangle \quad\left(1 \leq k_{1} \leq \cdots \leq k_{n}\right),
+\end{equation}
+where $h^{\prime}=h+k_{1}+k_{2}+\cdots+k_{n} \equiv h+N$, and the integer $N$ is called the level of the descendent. 
+
+\subsection{Free Scalar Field}
+The simplest example of CFT is the free scalar field $\varphi$, with the action
+\begin{equation}
+	S = \frac{g}{2}\int d^2x\ \partial_\mu\varphi \partial^\mu \varphi.
+\end{equation}
+The propagator for 2D free boson, denoted by $K(x,y) = K(x-y)$, satisfies the differential equation:
+\begin{equation}
+	-g \frac{\partial^2 K(r)}{\partial r^2}  = \delta(r).
+\end{equation}
+Integrating over $x$ within a disk with radius $\rho$,
+\begin{equation}
+	1 = -2\pi g \int _0^D d r \ r \left[\frac{1}{r} \frac{\partial}{\partial r}  r \frac{\partial K(r)}{\partial r}\right]
+	= -2\pi g \rho K'(\rho).
+\end{equation}
+The propagator is then solved by
+\begin{equation}
+	K(x,y) = -\frac{1}{4\pi g} \ln(x-y)^2 + \text{const}.
+\end{equation}
+In complex coordinate,
+\begin{equation}
+	\langle\varphi(z,\bar z)\varphi(w,\bar w)\rangle = -\frac{1}{4\pi g}\left[\ln(z-w) + \ln(\bar z- \bar w)\right] + \text{const}. 
+\end{equation}
+Concentrating on the holomorphic part, we note that
+\begin{equation}
+	\langle\partial\varphi(z)\partial\varphi(w)\rangle = -\frac{1}{4\pi g}\frac{1}{(z-w)^2}.
+\end{equation}
+The stress tensor for free boson is\footnote{Note that there is a minus sign compared to ordinary definition of Noether current. It is a commonly used convention for the stress tensor.}
+\begin{equation}
+\begin{aligned}
+	T_{\mu\nu} 
+	&= -\left(\eta_{\mu\nu} \mathcal L - \frac{\partial\mathcal L}{\partial(\partial^\mu\phi)}\partial_\nu \phi \right) \\
+	&= g\left(\partial_\mu\varphi\partial_\nu\varphi - \frac{1}{2} \eta_{\mu\nu}\partial_\rho\varphi\partial^\rho\varphi \right).
+\end{aligned}
+\end{equation}
+The holomorphic part of it is
+\begin{equation}
+	T(z) = \frac{1}{4}(T_{00} - 2iT_{01} - T_{11}) = -2\pi g \partial_z\varphi \partial_z\varphi.
+\end{equation}
+Now we are considering the quantum version of the stress tensor.
+We shall use the normal-ordered form
+\begin{equation}
+	T(z) = -2\pi g \normord{\partial_z\varphi(z) \partial_z\varphi(z)}.
+\end{equation}
+For free field, it is just
+\begin{equation}
+	T(z) = -2\pi g \lim_{w\rightarrow z}\left[\partial\varphi(z)\partial\varphi(w)-\langle\partial\varphi(z)\partial\varphi(w)\rangle\right].
+\end{equation}
+To compute the OPE for stress tensors, consider
+\begin{equation}
+\begin{aligned}
+	T(z)T(w) 
+	&= (2\pi g)^2 \normord{\partial_z\varphi(z) \partial_z\varphi(z)} \normord{\partial_z\varphi(w) \partial_z\varphi(w)} \\
+	&\sim (2\pi g)^2 \left[\frac{2}{(4\pi g)^2}\frac{1}{(z-w)^4} - \frac{4}{4\pi g}\frac{\normord{\partial_z\varphi(z)\partial_z\varphi(w)}}{(z-w)^2}\right] \\
+	&= \frac{1/2}{(z-w)^4} + \frac{4\pi g}{(z-w)^2}\normord{\partial_z\varphi(z)\partial_z\varphi(w)}.
+\end{aligned}
+\end{equation}
+In the second equation, the first term is the result of two contractions, and the second the result of single contraction.
+
+\subsubsection{Normal Ordering}
+We digress a little bit to discuss the normal ordering.
+The normal ordering handles the divergent comes from the contact of two field.
+In general, the OPE for $A(z)$ and $B(w)$ has the form
+\begin{equation}
+	A(z) B(w) = \sum_{n=-\infty}^N \frac{\{AB\}_n(w)}{(z-w)^n}
+\end{equation}
+The order ordering result is $\normord{AB}=\{AB\}_0$.
+Our definition of the contraction is generalized to include all the singular terms of the OPE:
+\begin{equation}
+	\wick{\c1{A}(z) \c1{B} (w)} \equiv \sum_{n=1}^{N} \frac{\{A B\}_{n}(w)}{(z-w)^{n}}.
+\end{equation}
+Hence the above expression for $\normord{A B}(w)$ may be rewritten as
+\begin{equation}
+	\normord{A B}(w) = \lim _{z \rightarrow w}[A(z) B(w)- \wick{\c1 A(z) \c1 B}(w)],
+\end{equation}
+and the OPE of $A(z)$ with $B(w)$ is expressed as
+\begin{equation}
+	A(z) B(w) = \wick{\c1 A(z) \c1 B}(w)+ \normord{A(z) B(w)},
+\end{equation}
+where $\normord{A(z) B(w)}$ stands for the complete sequence of regular terms whose explicit forms can be extracted from the Taylor expansion of $A(z)$ around $w$ :
+\begin{equation}
+	\normord{A(z) B(w)} = \sum_{k \geq 0} \frac{(z-w)^{k}}{k !}\normord{\partial^{k} A B}(w).
+\end{equation}
+Now if we take $A=B=\partial\varphi$, we have
+\begin{equation}
+\begin{aligned}
+	 \frac{4\pi g}{(z-w)^2} \normord{\partial\varphi(z) \partial\phi(w)} 
+	 &= 4\pi g \sum_{k \geq 0} \frac{(z-w)^{k-2}}{k !}\normord{\partial^{k} \partial\varphi \partial\varphi}(w) \\
+	 &\sim - \frac{2T(w)}{(z-w)^2} + \frac{4\pi g \normord{\partial^2\varphi \partial\varphi}(w)}{z-w} \\
+	 &= - \frac{2T(w)}{(z-w)^2} - \frac{\partial T(w)}{z-w}
+\end{aligned}
+\end{equation}
+We thus know the OPE for free boson:
+\begin{equation}
+	T(z) T(w) = \frac{1/2}{(z-w)^4} - \frac{2T(w)}{(z-w)^2} - \frac{\partial T(w)}{z-w}.
+\end{equation}
+The central charge for free boson is $1$.
+
+
+\subsubsection{Quantization on the Cylinder}
+Now we adopt the normalization $g = 1/4\pi$, the Fourier expansion of the field is
+\begin{equation}
+\begin{aligned}
+	\varphi(x, t) &=\sum_{n} e^{2 \pi i n x / L} \varphi_{n}(t), \\
+	\varphi_{n}(t) &=\frac{1}{L} \int d x e^{-2 \pi i n x / L} \varphi(x, t).
+\end{aligned}
+\end{equation}
+The Lagrangian becomes
+\begin{equation}
+	\frac{L}{8\pi} \sum_{n}\left[\dot{\varphi}_{n} \dot{\varphi}_{-n}-\left(\frac{2 \pi n}{L}\right)^{2} \varphi_{n} \varphi_{-n}\right],
+\end{equation}
+Introduce the momentum
+\begin{equation}
+	\pi_{n}= \frac{L \dot{\varphi}_{-n}}{4\pi}, \quad
+	\left[\varphi_{n}, \pi_{m}\right]=i \delta_{n m},
+\end{equation}
+and the Hamiltonian is
+\begin{equation}
+	H=\frac{2\pi}{L} \sum_{n}\left[\pi_{n} \pi_{-n}+ \left(\frac{n}{2}\right)^2 \varphi_{n} \varphi_{-n}\right].
+\end{equation}
+The canonical ladder operators are
+\begin{equation}
+	\tilde a_n = \frac{1}{\sqrt{|n|}}\left(\frac{|n|}{2}\varphi_n + i\pi_{-n}\right), \quad
+	\tilde a_n^\dagger = \frac{1}{\sqrt{|n|}}\left(\frac{|n|}{2}\varphi_{-n} - i\pi_{n}\right),
+\end{equation}
+which satisfies the canonical commutation relation $[\tilde a_n, \tilde a_m^\dagger] = \delta_{mn}$, and the Hamiltonian becomes the diagonal form
+\begin{equation}
+	H = \frac{2\pi}{L} \sum_n |n| \left(\tilde a_n^\dagger \tilde a_n + \frac{1}{2} \right).
+\end{equation}
+However, ladder operator does not work for the zero modes.
+We can instead define the operator
+\begin{equation}
+\begin{aligned}
+	a_{n} &= \begin{cases}
+		-i \sqrt{n} \tilde{a}_{n} & (n>0) \\
+		i \sqrt{-n} \tilde{a}_{-n}^{\dagger} & (n<0)
+	\end{cases}
+	= -i\frac{n}{2} \varphi_n + \pi_{-n}, \\
+	\bar a_{n} &= \begin{cases}
+		-i \sqrt{n} \tilde{a}_{-n} & (n>0) \\
+		i \sqrt{-n} \tilde{a}_{n}^{\dagger} & (n<0)
+	\end{cases}
+	= -i\frac{n}{2} \varphi_{-n} + \pi_{n}.
+\end{aligned}
+\end{equation}
+The commutation relation is
+\begin{equation}
+	\left[a_{n}, a_{m}\right]=n \delta_{n+m}, \quad
+	\left[a_{n}, \bar{a}_{m}\right]=0, \quad
+	\left[\bar{a}_{n}, \bar{a}_{m}\right]=n \delta_{n+m}.
+\end{equation}
+The Hamiltonian is then expressible as
+\begin{equation}
+	H=\frac{2\pi}{L} \pi_{0}^{2}+\frac{2 \pi}{L} \sum_{n > 0}\left(a_{-n} a_{n}+\bar{a}_{-n} \bar{a}_{n}\right).
+\end{equation}
+The field mode $\varphi_n$ for $n\ne 0$ is
+\begin{equation}
+	\varphi_n = \frac{i}{n} (a_n-\bar a_{-n}).
+\end{equation}
+The field $\varphi(x,t)$ is
+\begin{equation}
+	\varphi(x,t) = \varphi_0(t) + \sum_{n\ne 0} \frac{i}{n} \left[a_n(t)-\bar a_{-n}(t)\right] e^{-2\pi i n x/L}.
+\end{equation}
+Note that
+\begin{equation}
+\begin{aligned}
+	\partial_t \phi_0 &= i [H,\varphi_0] = -i\frac{4\pi}{L} \pi_0 [\phi_0, \pi_0] = \frac{4\pi}{L}\pi_0, \\
+	\partial_t a_n &= i[H, a_n] = -i \frac{2\pi}{L} n a_n, \\
+	\partial_t \bar a_n &= i[H, \bar a_n] = -i \frac{2\pi}{L} n \bar a_n.
+\end{aligned}
+\end{equation}
+We thus have
+\begin{equation}
+	\varphi(x, t)=\varphi_{0}+\frac{4\pi}{L} \pi_{0} t + \sum_{n \neq 0} \frac{i}{n}\left[a_{n} e^{2 \pi i n(x-t) / L}-\bar{a}_{-n} e^{2 \pi i n(x+t) / L}\right].
+\end{equation}
+We can now first go to Euclidean space ($it \rightarrow \tau$), and then change to the complex variables
+\begin{equation}
+	z = e^{2\pi(\tau-ix)/L},\quad
+	\bar z = e^{2\pi(\tau+ix)/L}.
+\end{equation}
+We then obtain the expression
+\begin{equation}
+	\varphi(z, \bar{z})=\varphi_{0}-\frac{i}{4 \pi g} \pi_{0} \ln (z \bar{z})+\frac{i}{\sqrt{4 \pi g}} \sum_{n \neq 0} \frac{1}{n}\left(a_{n} z^{-n}+\bar{a}_{n} \bar{z}^{-n}\right),
+\end{equation}
+where the holomorphic part and antiholomorphic part decouples.
+We know $\varphi$ itself is not a primary field, but the $i\partial\varphi$ is:
+\begin{equation}
+	i\partial\varphi(z) = \frac{\pi_0}{z} + \sum_{n\ne 0} a_n z^{-n-1}.
+\end{equation}
+If we define $a_0 \equiv \bar a_0 \equiv \pi_0$,
+\begin{equation}
+	i\partial\varphi(z) = \sum_n a_n z^{-n-1}.
+\end{equation}
+
+
+
+\subsection{Conformal Families}
+The descendent state $L_{-n}|h\rangle$ can be viewed as the result of application on the vacuum of a descendent field.
+Consider the descendent state
+\begin{equation}
+	L_{-n}|h\rangle=L_{-n} \phi(0)|0\rangle=\frac{1}{2 \pi i} \oint d z\ z^{1-n} T(z) \phi(0)|0\rangle.
+\end{equation}
+The descendent field is
+\begin{equation}
+	\phi^{(-n)}(w) \equiv (L_{-n}\phi)(w) \equiv \frac{1}{2 \pi i} \oint_{w} d z\ \frac{1}{(z-w)^{n-1}} T(z) \phi(w).
+\end{equation}
+The correlation of the descendent fields can be obtained from the correlation of its ancestor field:
+\begin{equation}
+\begin{aligned}
+	\left\langle\phi^{(-n)}(w) X\right\rangle
+	&=  \oint_{w} \frac{dz}{2 \pi i} (z-w)^{1-n}\langle T(z) \phi(w) X\rangle \\
+	&= - \oint_{\left(w_{i}\right\}} \frac{d z}{2\pi i}(z-w)^{1-n} \sum_{i}\left\{\frac{\partial_{w_{i}}\langle\phi(w) X\rangle}{z-w_{i}} + \frac{h_{i} \langle\phi(w) X\rangle}{\left(z-w_{i}\right)^{2}}\right\} \\
+	& \equiv \mathcal{L}_{-n}\langle\phi(w) X\rangle,
+\end{aligned}
+\end{equation}
+where in the second equation, we reverse the integral contour to circle $w_i$'s, and we have defined the operator
+\begin{equation}
+	\mathcal{L}_{-n}=\sum_{i}\left\{\frac{(n-1) h_{i}}{\left(w_{i}-w\right)^{n}}-\frac{1}{\left(w_{i}-w\right)^{n-1}} \partial_{w_{i}}\right\}.
+\end{equation}
+It can be shown without difficulty that
+\begin{equation}
+	\left\langle\phi^{\left(-k_{1}, \ldots,-k_{n}\right)}(w) X\right\rangle=\mathcal{L}_{-k_{1}} \cdots \mathcal{L}_{-k_{n}}\langle\phi(w) X\rangle.
+\end{equation}
+That is, we simply need to apply the differential operators in succession. We may also consider correlators containing more than one descendant field, but at the end the result is the same: Correlation functions of descendant fields may be reduced to correlation functions of primary fields.
+
+The set comprising a primary field $\phi$ and all of its descendants is called a \textit{conformal family}, and is sometimes denoted $[\phi]$. 
+The members of a family transform among themselves under a conformal transformation. 
+Equivalently, we can say that the OPE of $T(z)$ with any member of the family will be composed solely of other members of the same family.
+For instance, we calculate the OPE of $T(z)$ with $\phi^{(-n)}$:
+\begin{equation}
+\begin{aligned}
+	T(z) \phi^{(-n)}(w)=\sum_{k \geq 0} &(z-w)^{k-2}\left(L_{-k} \phi^{(-n)}\right)(w) 
+	+\sum_{k>0} \frac{\left(L_{k} \phi^{(-n)}\right)(w)}{(z-w)^{k+2}}.
+\end{aligned}
+\end{equation}
+The first sum contains more complex descendant fields, $\phi^{(-k,-n)}$, of the same family. The second sum is made of the most singular terms, and may be calculated by considering the singular part of the OPE of $T$ with itself:
+\begin{equation}
+\begin{aligned}
+	T(z) \phi^{(-n)}(w) 
+	&=\frac{1}{2 \pi i} \oint_{w} d x \frac{1}{(x-w)^{n-1}} T(z) T(x) \phi(w) \\
+	&\sim \frac{1}{2 \pi i} \oint_{w} d x \frac{1}{(x-w)^{n-1}}\left\{\frac{c / 2}{(z-x)^{4}}+\frac{2 T(x)}{(z-x)^{2}}+\frac{\partial T(x)}{z-x}\right\} \phi(w) \\
+	&= \frac{c n\left(n^{2}-1\right) / 12}{(z-w)^{n+2}} \phi(w)+\oint_{w} d x \frac{1}{(x-w)^{n-1}} \sum_{l=0}^{\infty} \phi^{(-l)}(w) \\
+	&\quad \times\left\{\frac{2(x-w)^{l-2}}{(z-x)^{2}}+\frac{(l-2)(x-w)^{l-3}}{z-x}\right\} \\
+	&= \frac{c n\left(n^{2}-1\right) / 12}{(z-w)^{n+2}} \phi(w)+\sum_{l=0}^{n+1} \frac{2 n-l}{(z-w)^{n+2-l}} \phi^{(-l)}(w),
+\end{aligned}
+\end{equation}
+where we have used the identity
+\begin{equation}
+	\frac{1}{2 \pi i} \oint_{w} \frac{d x}{(x-w)^{n}} \frac{F(w)}{(z-x)^{m}}=\frac{(n+m-2) !}{(n-1) !(m-1) !} \frac{F(w)}{(z-w)^{n+m-1}}.
+\end{equation}
+We are now going to show that correlations of the CFT can be obtained by the operator algebra.
+First consider
+\begin{equation}
+	\left\langle\phi_{\alpha}(w, \bar{w}) \phi_{\beta}(z, \bar{z})\right\rangle=\frac{C_{\alpha \beta}}{(w-z)^{2 h}(\bar{w}-\bar{z})^{2 \bar{h}}}
+\end{equation}
+Since the coefficients $C_{\alpha \beta}$ are symmetric, we are free to choose a basis of primary fields such that $C_{\alpha \beta}=\delta_{\alpha \beta}$; it is a simple matter of normalization. 
+We shall adopt this convention in the remainder of this work, unless otherwise indicated.
+By a suitable global conformal transformation, we can always bring the points $w$ and $z$ of a correlator to $w=\infty$ and $z=0$ respectively. 
+The fields are then asymptotic and the two-point function becomes a bilinear product on the Hilbert space:
+\begin{equation}
+	\lim_{w, \bar{w} \rightarrow \infty} w^{2 h} \bar{w}^{2 \bar{h}}\left\langle\phi(w, \bar{w}) \phi^{\prime}(0,0)\right\rangle 
+	= \left\langle h | h^{\prime}\right\rangle\left\langle\bar{h} | \bar{h}^{\prime}\right\rangle
+\end{equation}
+The orthogonality of the highest weight states implies the orthogonality of all the descendants of the two fields.
+
+Invariance under scaling transformations clearly requires the operator algebra to have the following form:
+\begin{equation}
+	\phi_{1}(z, \bar{z}) \phi_{2}(0,0)=\sum_{p} \sum_{\{k, \bar{k}\}} C_{12}^{p\{k, \bar{k}\}} z^{h_{p}-h_{1}-h_{2}+K} \bar{z}^{-\bar{h}_{p}-\bar{h}_{1}-\bar{h}_{2}+\bar{K}} 
+	\phi^{\{k, \bar{k}\}}_p(0,0),
+\end{equation}
+where $K=\sum_{i} k_{i}$ and $\bar{K}=\sum_{i} \bar{k}_{i}$; the expression $\{k\}$ means a collection of indices $k_{i}$
+
+We take the correlator of this relation with a third primary field $\phi_{r}(w, \bar{w})$ of dimensions $h_{r}, \bar{h}_{r}$. 
+Sending $w \rightarrow \infty$, we have, on the l.h.s.,
+\begin{equation}
+\begin{aligned}
+	\left\langle\phi_{r}\left|\phi_{1}(z, \bar{z})\right| \phi_{2}\right\rangle &=\lim _{w, \bar{w} \rightarrow \infty} w^{2 h_{r}} w^{2 \bar{h}_{r}}\left\langle\phi_{r}(w, \bar{w}) \phi_{1}(z, \bar{z}) \phi_{2}(0,0)\right\rangle \\
+	&=\frac{C_{r 12}}{z^{h_{1}+h_{2}-h_{r}} \bar{z}^{\bar{h}_{1}+\bar{h}_{2}-\bar{h}_{r}}}.
+\end{aligned}
+\end{equation}
+The last equality is obtained simply by applying the limit $w \rightarrow \infty$ for the three-point function. 
+On the OPE side, the only contributing term is $p\{k, \bar{k}\}=r\{0,0\}$, because of the orthogonality of the Verma modules. 
+We conclude that
+\begin{equation}
+	C_{12}^{p(0,0)} \equiv C_{12}^{p}=C_{p 12}.
+\end{equation}
+Since the correlations of descendants are built on the correlation of primaries, we expect the coefficients $C_{12}^{p(k, \bar{k}\}}$ to have the following form:
+\begin{equation}
+	C_{12}^{p \{ k, \bar{k}\}}=C_{12}^{p} \beta_{12}^{p\{k\}} \bar{\beta}_{12}^{p(\bar{k}\}}.
+\end{equation}
+
+
+
+\end{document}
+
+
