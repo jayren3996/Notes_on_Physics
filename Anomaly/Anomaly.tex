@@ -36,6 +36,244 @@
 
 \maketitle
 
+\tableofcontents
+
+
+
+\section{Symmetries}
+
+A (classical) symmetry means that the equation of motion dictated by a Lagrangian is invariant under the (usually infinitesimal) transformation (denoted as $\Lambda$, but not necessarily the Lorentz transformation), the coordinate and the field transform as
+\begin{equation}
+\begin{aligned}
+	x^\mu\rightarrow {x'}^\mu = x^\mu + \omega_a \frac{\delta x^\mu}{\delta \omega_a}, \quad
+	\phi(x) \rightarrow \phi'(x') = \phi(x) + \omega_a \frac{\delta \mathcal F}{\delta \omega_a}(x).
+\end{aligned}
+\end{equation}
+Here the field $\phi$ may contain additional internal degrees of freedom. 
+Also here we adopt the active view of the field transformation, meaning that for a fixed coordinate $x$, the transformation of the field is
+\begin{equation}
+	\delta_\omega \phi(x) \equiv \phi'(x) - \phi(x) = - i\omega_a \hat G_a \phi(x),
+\end{equation}
+where by comparing the definitions, we know
+\begin{equation}
+	\hat G_a\phi(x) = \frac{\delta x^\mu}{\delta\omega_a} \partial_\mu \phi(x) - \frac{\delta\mathcal F}{\delta\omega_a}.
+\end{equation}
+
+\subsection{Noether's Theorem}
+The action under the above transformation becomes
+\begin{equation}
+	S' = \int d^d x' \mathcal L\left(\phi'(x'),\frac{\partial \phi'}{\partial {x'}^\mu}(x')\right).
+\end{equation}
+We are going to expand the expression to the first order of $\omega_a$'s.
+Note that there are two contributions to the change of action: one from the coordinate change and the other from the Lagrangian.
+For the coordinate part, we have
+\begin{equation}
+	\frac{\partial {x'}^\mu}{\partial x^\nu}
+	= \delta^\mu_\nu + \partial_\nu\left(\omega_a \frac{\delta x^\mu}{\delta \omega_a}\right).
+\end{equation}
+Using the relation $\det(1+E) = 1 + \Tr E$ for small $E$, we know by changing the variable $x' \rightarrow x$, we get a contribution
+\begin{equation}
+	\delta S 
+	= \int d^d x \left|\det \frac{\partial {x'}^\mu}{\partial x^\nu}\right|\left(\mathcal L + \omega_a \frac{\delta x^\mu}{\delta \omega_a} \partial_\mu \mathcal L \right)  
+	= \int d^d x \ \partial_\mu \left(\mathcal L \omega_a \frac{\delta x^\mu}{\delta \omega_a}\right).
+\end{equation}
+On the other hand, the change of Lagrangian is
+\begin{equation}
+	{\delta} \mathcal L =
+	\left[\frac{\partial \mathcal L}{\partial \phi} -\partial_\mu \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)} \right]\delta_\omega \phi + \partial_\mu \left(\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)} \delta_\omega \phi \right).
+\end{equation}
+The first term vanishes as the result of classical EOM.
+Together, the change of action is
+\begin{equation}
+\begin{aligned}
+	\delta S 
+	&= \int d^d x \ \partial_\mu \left(\mathcal L \omega_a \frac{\delta x^\mu}{\delta \omega_a}+\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)} \delta_\omega \phi \right) \\
+	&= \int d^d x \ \partial_\mu \left[\left(\delta^\mu_\nu \mathcal L - \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\partial_\nu \phi(x) \right)\frac{\delta x^\nu}{\delta\omega_a}  + \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\frac{\delta\mathcal F}{\delta\omega_a}\right] \omega_a \\
+	&\equiv \int d^d x \ \omega_a  \partial_\mu J^\mu_a.
+\end{aligned} 
+\end{equation}
+The symmetry requires that the action is invariant over arbitrary spacetime region, so that $J_a^\mu$ is conserved current.
+Note that we can freely add a derivative of an anti-symmetric tensor to the current:
+\begin{equation}
+	J^\mu_a \rightarrow J^\mu_a + \partial_\nu B^{\nu\mu}_a,\quad
+	B^{\mu\nu} = -B^{\nu\mu}.
+\end{equation}
+The above discussion gives the Noether's theorem, which says that symmetries in classical field theory imply conserved quantities.
+
+\subsection{Ward Identity}
+The quantum version of the Noether's theorem is the Ward identity.
+From the above discussion, we consider a \textit{local} transformation, i.e., $\omega_a(x)$ now depend on coordinate $x$.
+The action under such transformation becomes:
+\begin{equation}
+\begin{aligned}
+	S &\rightarrow \int d^d x \left[\mathcal L(x) + \partial_\mu\left( \omega_a(x) J_a^\mu \right) + \omega_a(x) F_a(x)\right] \\
+	&= \int d^d x \left[\mathcal L(x) + \omega_a(x) \partial_\mu J_a^\mu + \omega_a(x) (F_a+\partial_\mu J^\mu)\right],
+\end{aligned}
+\end{equation}
+where $\omega_a(x) F_a(x)$ comes from the classical EOM term that no longer vanishes automatically.
+However, using the fact that when $\omega_a(x)$ is constant, the action is invariant (over arbitrary region), any term involving $\omega(x)$ should be zero. 
+We thus know the action only depend on the derivative of $\omega_a(x)$, i.e.,
+\begin{equation}
+	S \rightarrow \int d^d x \left[\mathcal L(x) + J_a^\mu \partial_\mu \omega_a(x)  \right],
+\end{equation}
+Consider the quantum partition function $Z = \int D[\phi] e^{iS[\phi]}$.
+After the infinitesimal transformation, the partition function becomes
+\begin{equation}
+	Z = \int D[\phi'] e^{iS[\phi]} \exp\left[-i\int d^d x \ \omega_a(x) \partial_\mu J_a^\mu (x)\right].
+\end{equation}
+Note that the infinitesimal transformation for path-integral is nothing but a change of variable.
+If we assume the transformation does not change the measure: $D[\phi'] = D[\phi]$, then the quantum partition function is invariant under the local transformation.
+This implies the operator identity:
+\begin{equation}
+	\partial_\mu J_a^\mu(x) = 0.
+\end{equation}
+Note that the operator identity should be understood as a set of identity for correlation function.
+Consider the generating functional $Z[K] =\int D[\phi] \exp(iS[\phi]+ i \int d^d x K \phi)$, where we denote the auxiliary current as $K$ to avoid confusion with conserved current.
+For arbitrary infinitesimal (local) symmetry transformation, the generating functional
+\begin{equation}
+	Z[K] = \int D[\phi] e^{iS[\phi]+ i \int d^d x K \phi} \left[1-i\int d^d x\ \omega_a(x)\left(\partial_\mu J^\mu + K \hat G \phi \right) \right]
+\end{equation}
+remains the same, which means
+\begin{equation}
+	\int D[\phi] e^{iS[\phi]+ i \int d^d x K \phi} \left(\partial_\mu J^\mu(x) + K(x) \hat G \phi(x) \right) = 0.
+\end{equation}
+By taking derivative on $K(x_i)$ for $n$ times, and then set $K=0$, we get the Ward identity:
+\begin{equation}
+	\partial_\mu \langle J_a^\mu(x) \phi(x_1) \cdots \phi(x_n)\rangle = -i\delta(x-x_i) \sum_{i=1}^n \langle \phi_1 \cdots \hat G\phi(x_i)\cdots \phi_n\rangle.
+\end{equation}
+The right-hand side can be viewed as the contact due to the time-ordering;
+It vanishes if $x \ne x_i$ for all $i$'s. 
+
+
+\section{Axial Anomaly}
+In this section, we consider the axial anomaly apearing in the $(1+1)$D fermion field theory.
+Note that the gamma matrices in this dimension are
+\begin{equation}
+	\gamma^0 = \begin{bmatrix}
+		0 & -i \\ i & 0
+	\end{bmatrix} ,\quad
+	\gamma^1 = \begin{bmatrix}
+		0 & i \\ i & 0
+	\end{bmatrix},\quad
+	\gamma^3 = \gamma^0 \gamma^1 = \begin{bmatrix}
+		1 & 0 \\ 0 & -1
+	\end{bmatrix}.
+\end{equation}
+Consider a massless fermion field described by the Lagrangian 
+\begin{equation}
+\begin{aligned}
+	\mathcal L &= \bar\psi(t,x) \gamma^\mu(i\partial_\mu+eA_\mu)\psi(t,x) \\
+	&= \bar\psi \begin{bmatrix}
+		0 & \partial_t -ieA_t - \partial_x +ieA_x \\
+		-\partial_t +ieA_t - \partial_x +ieA_x
+	\end{bmatrix} \psi \\
+	&= \psi^\dagger \begin{bmatrix}
+		i\partial_t +eA_t +i \partial_x + eA_x \\
+		0 & i\partial_t +eA_t - i\partial_x - eA_x
+	\end{bmatrix} \psi,
+\end{aligned}
+\end{equation}
+which is invariant under the axial rotation $\psi \rightarrow e^{i\theta\gamma^3}\psi$.
+That is, for massless field, different chiralities are separated; we can thus define the right/left mover as
+\begin{equation}
+	\psi_\pm = P_\pm \psi \equiv \frac{1 \pm \gamma^3}{2}\psi.
+\end{equation}
+Note that the field theory has the gauge redundency
+\begin{equation}
+	\psi(t,x) \rightarrow e^{i\lambda(t,x)}\psi(t,x),\quad
+	A_\mu(t,x) \rightarrow A_\mu(t,x)+\partial_\mu \lambda(t,x).
+\end{equation}
+Thus, we can choose the gauge $\lambda = -\int dt A_t$ so that $A_t=0$.
+We also assume that $A_x$ is independent of $x$.
+This can always be acheive by choosing a suitable gauge since thjere is no magnetic field in 1D.
+
+
+\subsection{Canonical Quantization}
+The canonical quantization start from the commutation relation $\{\psi_\pm(t,x),\psi^\dagger_\pm(t,y)\} = \delta(x-y)$.
+The Hamiltonian density is then
+\begin{equation}
+	\mathcal H = \psi^\dagger \begin{bmatrix}
+		-i\partial_x - eA_x & 0 \\
+		0 & i\partial_x + eA_x
+	\end{bmatrix} \psi.
+\end{equation}
+Now define the theory on a circle with radius $R$, and impose the boundary condition:
+\begin{equation}
+	\psi_\pm(t,0) = -\psi_\pm(t,2\pi R),\quad
+	A_x(t,0) = A_x(t,2\pi R).
+\end{equation}
+For Dirac theory, the spectrum linearly depends on the canonical momentum, i.e., 
+\begin{equation}
+	E_n^{(\pm)} = \pm(p_n-A_x).
+\end{equation}
+The finite size system allows $p$ taking the discrete values: 
+\begin{equation}
+	2(2\pi R) p_n = (2n+1)2\pi \quad \Longrightarrow \quad
+	p_n = \left(n-\frac{1}{2}\right)\frac{1}{R}.
+\end{equation}
+For notational convenience, we adopt the convention 
+\begin{equation}
+	E_{n_\pm} = \pm \left(n_\pm \mp \frac{1}{2} \right) \frac{1}{R} \mp A_x
+\end{equation}
+so that for $A_x=0$, the ground state occupies the modes $n_\pm \le 0$.
+From this expression we already see the anomaly: if we adiabatically incert a unit flux such that $A_x = 1/R$, the spectrum is the same as the $A_x=0$ case, while the state will become an excited state.
+We define the charge for left and right fermions:
+\begin{equation}
+	\hat Q_\pm \equiv \int dx \bar\psi_\pm \gamma^0 \psi_\pm.
+\end{equation}
+The electric charge is then $\hat Q = \hat Q_+ + \hat Q_-$, and the axial charge is $\hat Q_3 = \hat Q_+ - \hat Q_-$.
+During the insertion of the unit flux, the ground state will be altered, and thus axial charge $\hat Q_3$ will change.
+But since the charge is infinity in the field theory, we shall consider a suitable regularization scheme.
+
+\subsection{Point-Splitting Regularization}
+The expansion of $\psi(t,x)$ in terms of eigen modes is:
+\begin{equation}
+\begin{aligned}
+	\psi_\pm(t,x) &= \sum_n \varphi_{\pm,n} \hat c_{\pm, n}, \\
+	\varphi(t,x) &= \frac{1}{\sqrt{L}}\exp\left[\frac{i}{R}\left(n\mp \frac{1}{2}\right)(x\mp t)\pm iA_x t\right].
+\end{aligned}
+\end{equation}
+The charge is then evaluated as
+\begin{equation}
+\begin{aligned}
+Q_{+} &= \left\langle\Omega\left|\hat{Q}_{+}\right| \Omega\right\rangle=\sum_{n=-\infty}^0 \int_0^L d x \varphi_{+, n}^{\dagger}(x) \varphi_{+, n}(x), \\
+Q_{-} &= \left\langle\Omega\left|\hat{Q}_{-}\right| \Omega\right\rangle=\sum_{n=0}^{\infty} \int_0^L d x \varphi_{-, n}^{\dagger}(x) \varphi_{-, n}(x).
+\end{aligned}
+\end{equation}
+The summation appears to be infinite.
+We use the point-splitting regulation scheme, i.e.,
+\begin{equation}
+	\psi_{\pm}^{\dagger}(t,x) \psi_{\pm}(t,x) \rightarrow \psi_{\pm}^{\dagger}(t,x) \exp \left(-i \int_x^{x+\varepsilon} d x^{\prime} A_x\left(x^{\prime}\right)\right) \psi_{\pm}(t,x+\varepsilon)
+\end{equation}
+Using the exact form of $\psi_\pm$, and the orthogonal relation, we get the regularized expression:
+\begin{equation}
+	Q_{+}^r=\sum_{n=0}^{\infty} \exp \left[-i\left(n+\frac{1}{2}\right) \frac{\varepsilon}{R}-i \varepsilon A_x\right], \quad Q_{-}^r=\sum_{n=0}^{\infty} \exp \left[i\left(n+\frac{1}{2}\right) \frac{\varepsilon}{R}-i \varepsilon A_x\right].
+\end{equation}
+The series does not converge, but we could add a small imaginary part to $\varepsilon$ to remedy this.
+Formally, we have
+\begin{equation}
+	Q^r_+ = \frac{e^{-i\varepsilon A_x}}{e^{+i \varepsilon/2R}-e^{-i \epsilon/2R}} 
+	\simeq \frac{R}{i \varepsilon}-R A_x, \quad
+	Q_{-}^r=-\frac{R}{i \varepsilon}+R A_x
+\end{equation}
+After subtracting the infinity, we have $Q_5 = - 2R A_x$.
+This leads to the expression of the axial anomaly:
+\begin{equation}
+	\dot Q_5 = -2R \dot A_x = -\oint \frac{dx}{\pi} E^x(x,t) = \int \frac{dx}{2\pi}\epsilon^{\mu\nu}F_{\mu\nu} = \int dx\ \partial_\mu J_3^\mu \quad \Longrightarrow \quad
+	\partial_\mu J_3^\mu = \frac{\epsilon^{\mu\nu}}{2\pi} F_{\mu\nu}.
+\end{equation}
+If we consider an adiabatic insertion of a unit flux, by identifying $\pm T$, the amount of axial charge difference is a topological quantity, given by the \textit{first Chern class}:
+\begin{equation}
+	\Delta Q_5 = 2I[A], \quad
+	I[A] = \int \frac{d^2 x}{4\pi} \epsilon^{\mu\nu}F_{\mu\nu} \in \mathbbm Z.
+\end{equation}
+
+
+
+
+
+
+\section{Chiral Anomaly}
 
 
 Most of the time, a classical symmetry is also a symmetry of the quantum theory based on the same Lagrangian.
@@ -63,16 +301,10 @@ The action is
 	\delta S = \int d^d x \delta \mathcal L 
 	= -\int d^d x\ \epsilon(x) \partial_\mu J^\mu(x),
 \end{equation}
-which is true for all $\epsilon(x)$ configuration, which implies
-\begin{equation}
-	\partial_\mu J^\mu(x) = 0.
-\end{equation}
-This statement is the Noether's theorem, saying that symmetries lead to conserved current.
+which is true for all $\epsilon(x)$ configuration, which implies $\partial_\mu J^\mu(x) = 0$.
+This statement is Noether's theorem, saying that symmetries lead to conserved currents.
 For quantum field theory, $J^\mu(x)$ is an operator, not a number.
-To see what the Noether's theorem means, consider the quantum partition functional:
-\begin{equation}
-	Z = \int D[\phi] e^{iS[\phi]}.
-\end{equation}
+To see what Noether's theorem means, consider the quantum partition functional $Z = \int D[\phi] e^{iS[\phi]}$.
 After the infinitesimal axial transformation, the partition function becomes
 \begin{equation}\label{eq:AN-partition-1}
 	Z = \int D[\phi'] e^{iS[\phi]} \exp\left[-i\int d^d x \ \epsilon(x) \partial_\mu J^\mu (x)\right].
@@ -82,25 +314,17 @@ If we assume the transformation does not change the measure, i.e.,
 \begin{equation}\label{eq:AN-measure-eq}
 	D[\phi'] = D[\phi],
 \end{equation}
-then, since Eq.~(\ref{eq:AN-partition-1}) stands for any $\epsilon(x)$, we must have the operator identity:
-\begin{equation}
-	\partial_\mu J^\mu(x) = 0.
-\end{equation}
+then, since Eq.~(\ref{eq:AN-partition-1}) stands for any $\epsilon(x)$, we must have the operator identity: $\partial_\mu J^\mu(x) = 0$.
 For the case of anomalies, however, Eq.~(\ref{eq:AN-measure-eq}) is no longer true.
 The change of measure will break the classical symmetries.
 
-\tableofcontents
-
-
-
-\section{Chiral Anomaly}
-The first anomaly being discovered is the chiral anomaly for the massless Dirac field Lagrangian $\mathcal L = i\bar\psi \cancel D \psi$.
-It is the symmetry of of chiral (axial) rotation 
+For the massless Dirac field Lagrangian $\mathcal L = i\bar\psi \cancel D \psi$, the chiral (axial) rotation 
 \begin{equation}
 	\psi \rightarrow e^{i\epsilon \gamma^5}\psi, \quad
-	\bar\psi \rightarrow \bar\psi e^{i\epsilon \gamma^5}.
+	\bar\psi \rightarrow \bar\psi e^{i\epsilon \gamma^5}
 \end{equation}
-The Noether's theorem gives the conserved current
+is a classical symmetry of the action.
+Noether's theorem gives the conserved current
 \begin{equation}
 	J^\mu_5 = \frac{\partial \mathcal L}{\partial(\partial_\mu \psi)} i\gamma^5\psi = \bar\psi \gamma^\mu \gamma^5\psi.
 \end{equation}
@@ -116,7 +340,7 @@ where $\mathcal J$ is the Jacobian:
 \begin{equation}
 	\mathcal J = \det\left(\frac{D[\bar\psi']}{D[\bar\psi]}\right)^{-1}=\det\left(\frac{D[\psi']}{D[\psi]}\right)^{-1}.
 \end{equation}
-Note that in contract to the c-number calculus, since the integration of a Grassmann variable is algebraically identical to differentiation, the Jacobian for the change of variable is the inverse of the determinant.
+Note that in contrast to the c-number calculus, since the integration of a Grassmann variable is algebraically identical to differentiation, the Jacobian for the change of variable is the inverse of the determinant.
 
 
 \subsection{Anomaly in the Measure}
@@ -145,13 +369,13 @@ The integral (\ref{eq:AN-tr-1}) is divergent, the simplest regulation would be p
 	\exp\left(\frac{\cancel{\Pi}^2}{\Lambda^2}\right)
 	= \exp\left[\frac{(\cancel{k}-e\cancel{A})^2}{\Lambda^2}\right].
 \end{equation}
-Such Gaussian regulator, when the functional integral is converted to Euclidean space, provide a Gaussian suppression for large momenta.
+Such a Gaussian regulator, when the functional integral is converted to Euclidean space, provides a Gaussian suppression for large momenta.
 Here, to preserve the gauge invariance, the canonical momentum $\Pi$ as the eigenvalue of the covariant derivative should be used instead of mechanical momentum. 
 Note that
 \begin{equation}
 \begin{aligned}
-	(\cancel D)^2 &= \gamma^\mu \gamma^\nu {D}_\mu {D}_\nu \\
-	&= \frac{1}{2} \{\gamma^\mu,\gamma^\nu\} {D}_\mu {D}_\nu + [\gamma^\mu,\gamma^\nu] {D}_\mu {D}_\nu \\
+	(\cancel D)^2 &= \gamma^\mu \gamma^\nu {D}_\mu {D}_\nu 
+	= \frac{1}{2} \{\gamma^\mu,\gamma^\nu\} {D}_\mu {D}_\nu + [\gamma^\mu,\gamma^\nu] {D}_\mu {D}_\nu \\
 	&= \left(\partial_\mu+ie A_\mu \right)^2 + \frac{1}{2} \gamma^\mu \gamma^\nu \left[\partial_\mu+ie A_\mu, \partial_\nu+ie A_\nu \right] \\
 	&= \left(\partial_\mu+ie A_\mu \right)^2 + \frac{ie}{2}\gamma^\mu \gamma^\nu F_{\mu\nu},
 \end{aligned}
@@ -162,11 +386,9 @@ which implies
 \end{equation}
 The trace of $\gamma^5$ with the Gaussian regulator is
 \begin{equation}
-\begin{aligned}
 	\Tr\left[\gamma^5\right] 
-	&= \int \frac{d^d k}{(2\pi)^d} \tr\left[\bar\eta_k \gamma^5 e^{\cancel{\Pi}^2/\Lambda^2}\xi_k \right] \\
-	&= \int \frac{d^d k}{(2\pi)^d} e^{(k-eA)^2/\Lambda^2}\tr\left[\gamma^5 \exp\left(-\frac{ie}{2\Lambda^2} \gamma^\mu \gamma^\nu F_{\mu\nu}\right)\right].
-\end{aligned}
+	= \int \frac{d^d k}{(2\pi)^d} \tr\left[\bar\eta_k \gamma^5 e^{\cancel{\Pi}^2/\Lambda^2}\xi_k \right] 
+	= \int \frac{d^d k}{(2\pi)^d} e^{(k-eA)^2/\Lambda^2}\tr\left[\gamma^5 \exp\left(-\frac{ie}{2\Lambda^2} \gamma^\mu \gamma^\nu F_{\mu\nu}\right)\right].
 \end{equation}
 Shift $k \rightarrow k + e A$, and then expand the exponential according to the order of $\Lambda^{-1}$:
 \begin{equation}
@@ -187,10 +409,8 @@ The trace formula (\ref{eq:AN-tr-1}) is then
 Now we do the Wick rotation $k^0 \rightarrow -k^0$. 
 The trace then becomes
 \begin{equation}
-\begin{aligned}
-	\Tr[\gamma^5] &= \lim_{\Lambda\rightarrow\infty} \frac{-e^2}{2\Lambda^4} \int \frac{\Omega_4 k^3_E dk_E}{(2\pi)^4} e^{-\frac{k_E^2}{\Lambda^2}}  \varepsilon^{\mu\nu\rho\sigma}F_{\mu\nu} F_{\rho\sigma} \\
-	&= -\frac{e^2}{32\pi^2} \varepsilon^{\mu\nu\rho\sigma}F_{\mu\nu} F_{\rho\sigma}.
-\end{aligned}
+	\Tr[\gamma^5] = \lim_{\Lambda\rightarrow\infty} \frac{-e^2}{2\Lambda^4} \int \frac{\Omega_4 k^3_E dk_E}{(2\pi)^4} e^{-\frac{k_E^2}{\Lambda^2}}  \varepsilon^{\mu\nu\rho\sigma}F_{\mu\nu} F_{\rho\sigma} 
+	= -\frac{e^2}{32\pi^2} \varepsilon^{\mu\nu\rho\sigma}F_{\mu\nu} F_{\rho\sigma}.
 \end{equation}
 Now return to Eq.~(\ref{eq:AN-CH-partition}), the final result is
 \begin{equation}
@@ -225,9 +445,9 @@ In general, for $d=2n$ case,
 The crucial part of the calculation is
 \begin{equation}
 \begin{aligned}
-	&\ \tr\left[\gamma^5 \exp\left(-\frac{ie}{2\Lambda^2} \gamma^\mu \gamma^\nu F_{\mu\nu}\right)\right] \\
-	=&\ \frac{1}{n!}\left(-\frac{ie}{2\Lambda^2}\right)^n \tr[\gamma^5 \gamma^{\mu_1}\cdots \gamma^{\mu_{2n}}] F_{\mu_1\mu_2}\cdots F_{\mu_{2n-1}\mu_{2n}} \\
-	=&\ (-1)^n i \frac{e^n}{n! \Lambda^{2n}} \varepsilon^{\gamma^{\mu_1}\cdots \gamma^{\mu_{2n}}} F_{\mu_1\mu_2}\cdots F_{\mu_{2n-1}\mu_{2n}}
+	\tr\left[\gamma^5 \exp\left(-\frac{ie}{2\Lambda^2} \gamma^\mu \gamma^\nu F_{\mu\nu}\right)\right] 
+	&=\frac{1}{n!}\left(-\frac{ie}{2\Lambda^2}\right)^n \tr[\gamma^5 \gamma^{\mu_1}\cdots \gamma^{\mu_{2n}}] F_{\mu_1\mu_2}\cdots F_{\mu_{2n-1}\mu_{2n}} \\
+	&=(-1)^n i \frac{e^n}{n! \Lambda^{2n}} \varepsilon^{\gamma^{\mu_1}\cdots \gamma^{\mu_{2n}}} F_{\mu_1\mu_2}\cdots F_{\mu_{2n-1}\mu_{2n}}
 \end{aligned}
 \end{equation}
 The trace is then
@@ -249,10 +469,7 @@ which leads to
 
 
 \subsection{Triangle Diagram}
-The trace (\ref{eq:AN-tr-1}) can be rewritten as 
-\begin{equation}
-	\Tr[\gamma^5] = -\mathrm{tr}[\gamma^5 iG_F(x,x)].
-\end{equation}
+The trace (\ref{eq:AN-tr-1}) can be rewritten as $\Tr[\gamma^5] = -\mathrm{tr}[\gamma^5 iG_F(x,x)]$.
 The Fermion propagator in the presence of the background field is
 \begin{equation}
 \begin{aligned}
@@ -265,7 +482,7 @@ We thus consider the second order one-loop diagram (sometimes known as the trian
 \begin{equation}
 \begin{aligned}
 	i\mathcal{M}^{\mu\nu\rho}(p_1,p_2,q)
-	=&\ \includegraphics[width=0.5\linewidth,align=c]{pics/AN-Tri.png} \\
+	=&\ \includegraphics[width=0.4\linewidth,align=c]{pics/AN-Tri.png} \\
 	=&\ -\int \frac{d^{4} k}{(2 \pi)^{4}} \tr\left[\frac{i}{\cancel k} \gamma^{\rho} \gamma^{5} \frac{i}{\cancel k-\cancel q} \gamma^{\nu} \frac{i}{\cancel k+\cancel p_{1}} \gamma^{\mu} \right]  \\
 	&\ -\int \frac{d^{4} k}{(2 \pi)^{4}} \tr\left[\frac{i}{\cancel k + \cancel \beta} \gamma^{\rho} \gamma^{5} \frac{i}{\cancel k-\cancel q +\cancel \beta} \gamma^{\mu} \frac{i}{\cancel k+\cancel p_{2}+\cancel \beta} \gamma^{\nu}\right]
 \end{aligned}
@@ -294,7 +511,7 @@ where we define
 	\right].
 \end{aligned}
 \end{equation}
-We come cross a similar situation where the expression, although naively appears to be zero, is actually (linearly) divergent and may produce a finite number when introducing a regulator.
+We come across a similar situation where the expression, although naively appears to be zero, is actually (linearly) divergent and may produce a finite number when introducing a regulator.
 However, usual regulators fail in this specific case.
 The dimensional regularization is not suitable since the chiral fermions are a feature of four dimensions.
 Pauli-Villars, which would introduce a heavy fermion, will not work either, since the fermion mass explicitly breaks the chiral symmetry we are trying to verify. 
@@ -311,28 +528,24 @@ We can evaluate the integral by Taylor expansion:
 	= a\left[f(+\infty)-f(-\infty)\right],
 \end{equation}
 where the higher-derivative terms do not contribute since $f(\pm\infty)\rightarrow \text{const}$. 
-In four dimensions, we can do the similar thing.
-In this case, we are evaluate the integral
+In four dimensions, we can do a similar thing.
+In this case, we are evaluating the integral
 \begin{equation}
-\begin{aligned}
 	\Delta(a) 
-	&= \int \frac{d^4k}{(2\pi)^4} \left[F(k+a)-F(k)\right] \\
-	&= i\int \frac{d^4k_E}{(2\pi)^4} \left[\frac{\partial F}{\partial k_E^\rho} a^\rho + \frac{1}{2} \frac{\partial^2 F}{\partial k_E^\rho \partial k_E^\sigma} a^\rho a^\sigma + \cdots\right].
-\end{aligned}
+	= \int \frac{d^4k}{(2\pi)^4} \left[F(k+a)-F(k)\right] 
+	= i\int \frac{d^4k_E}{(2\pi)^4} \left[\frac{\partial F}{\partial k_E^\rho} a^\rho + \frac{1}{2} \frac{\partial^2 F}{\partial k_E^\rho \partial k_E^\sigma} a^\rho a^\sigma + \cdots\right].
 \end{equation}
-If the integral of $F(k)$ is linear divergent, only the first term contributes, and the result is just the integral over the surface:
+If the integral of $F(k)$ is linearly divergent, only the first term contributes, and the result is just the integral over the surface:
 \begin{equation}
-\begin{aligned}
-	\Delta(a) &= a^\rho \lim_{k\rightarrow \infty} \int \frac{d^3 S_\rho}{(2\pi)^4} F(k_E) \\
-	&= a^\rho \lim_{k\rightarrow \infty} \int \frac{k^2_E k_{E\rho} d \Omega_4}{(2\pi)^4} F(k_E).
-\end{aligned}
+	\Delta(a) = a^\rho \lim_{k\rightarrow \infty} \int \frac{d^3 S_\rho}{(2\pi)^4} F(k_E) 
+	= a^\rho \lim_{k\rightarrow \infty} \int \frac{k^2_E k_{E\rho} d \Omega_4}{(2\pi)^4} F(k_E).
 \end{equation}
 To evaluate the integrals (\ref{eq:AN-Tri-div-int}), we just need to consider the function
 \begin{equation}
 \begin{aligned}
 	\lim_{k\rightarrow \infty} F 
-	&= \lim_{k\rightarrow \infty} \tr\left[\gamma^{5} \frac{1}{\cancel k + \cancel p} \gamma^\mu \frac{1}{\cancel k+\cancel q}\gamma^{\nu}\right] \\
-	&= -4i \varepsilon^{\rho\mu\sigma\nu} \lim_{k\rightarrow \infty} \frac{k_\rho q_\sigma + p_\rho k_\sigma + p_\rho q_\sigma}{(k+p)^2 k^2} \\
+	&= \lim_{k\rightarrow \infty} \tr\left[\gamma^{5} \frac{1}{\cancel k + \cancel p} \gamma^\mu \frac{1}{\cancel k+\cancel q}\gamma^{\nu}\right]
+	= -4i \varepsilon^{\rho\mu\sigma\nu} \lim_{k\rightarrow \infty} \frac{k_\rho q_\sigma + p_\rho k_\sigma + p_\rho q_\sigma}{(k+p)^2 k^2} \\
 	&= -4i \varepsilon^{\rho\mu\sigma\nu} \frac{k_\rho q_\sigma + p_\rho k_\sigma + p_\rho q_\sigma}{k^4}.
 \end{aligned}
 \end{equation}
@@ -340,8 +553,8 @@ We then have
 \begin{equation}\label{eq:AN-CH-int-form}
 \begin{aligned}
 	\Delta(a) 
-	&= 4 \varepsilon^{\rho\mu\sigma\nu} a^\tau \int \frac{d \Omega_4}{(2\pi)^4} \frac{k_\tau (k_\rho q_\sigma + p_\rho k_\sigma + p_\rho q_\sigma)}{k^2} \\
-	&= 4 \varepsilon^{\rho\mu\sigma\nu} a^\tau \frac{\Omega_4}{(2\pi)^4} \frac{\delta_{\tau\rho}q_\sigma + \delta_{\tau\sigma}p_\rho}{4} \\
+	&= 4 \varepsilon^{\rho\mu\sigma\nu} a^\tau \int \frac{d \Omega_4}{(2\pi)^4} \frac{k_\tau (k_\rho q_\sigma + p_\rho k_\sigma + p_\rho q_\sigma)}{k^2} 
+	= 4 \varepsilon^{\rho\mu\sigma\nu} a^\tau \frac{\Omega_4}{(2\pi)^4} \frac{\delta_{\tau\rho}q_\sigma + \delta_{\tau\sigma}p_\rho}{4} \\
 	&= \frac{1}{8\pi^2} \varepsilon^{\mu\nu\rho\sigma} (p-q)_\rho a_\sigma.
 \end{aligned}
 \end{equation}
@@ -405,15 +618,11 @@ We immediately get
 \begin{equation}
 	p_{2\nu} \mathcal{M}^{\mu\nu\rho}(p_1,p_2,q) = -\frac{1}{8\pi^2} \varepsilon^{\mu\nu\rho\sigma} p_{2\rho}(p_{1}+\beta)_\sigma.
 \end{equation}
-Note that the sum of three terms is in dependent of $\beta$:
+Note that the sum of three terms is independent of $\beta$:
 \begin{equation}
 	(p_{1\mu}+p_{2\nu}+q_{\rho}) \mathcal M^{\mu\nu\rho}(p_1,p_2,q) = \frac{1}{2\pi^2} \varepsilon^{\mu\nu\rho\sigma} p_{1\rho} p_{2\sigma}.
 \end{equation}
-To enforce Ward identity, the only choice we have is
-\begin{equation}
-	\beta = p_2-p_1,
-\end{equation}
-which lead to
+To enforce Ward identity, the only choice we have is $\beta = p_2-p_1$, which lead to
 \begin{equation}
 	q_\rho \mathcal{M}^{\mu\nu\rho}(p_1,p_2,q) = \frac{1}{2\pi^2} \varepsilon^{\mu\nu\rho\sigma} p_{1\rho} p_{2\sigma}.
 \end{equation}
@@ -479,7 +688,7 @@ The anomalous-free condition is thus
 	\sum_{i=1}^{N_L} q_{Li}^3 = \sum_{j=1}^{N_R} q_{Rj}^3.
 \end{equation}
 In standard model, the $\mathrm{U}(1)_{\mathrm{Y}}^3$ anomaly cancels out.
-To see this, consider the first generation fermions:
+To see this, consider the first-generation fermions:
 \begin{equation}
 \begin{tabular}{c|cc|cccc}
 	\hline
@@ -488,24 +697,22 @@ To see this, consider the first generation fermions:
 	\hline
 \end{tabular}
 \end{equation}
-Here we write the hyperchage in the unit of $1/6$, the difference between left and right hand spinor is
+Here we write the hypercharge in the unit of $1/6$, the difference between left and right-hand spinor is
 \begin{equation}
-\begin{aligned}
 	\sum_{i=1}^{N_L} (6Y_{Li})^3 - \sum_{j=1}^{N_R} (6Y_{Rj})^3 
-	&= \left[1^3 \times 6 + (-3)^3 \times 2 \right] -
-	\left[4^3 \times 3 + (-2)^3 \times 3 + (-6)^3 \right] \\
-	&= 0.
-\end{aligned}
+	= \left[1^3 \times 6 + (-3)^3 \times 2 \right] -
+	\left[4^3 \times 3 + (-2)^3 \times 3 + (-6)^3 \right] 
+	= 0.
 \end{equation}
 We remark that the quark sector or lepton sector alone will lead to $\mathrm{U}(1)_{\mathrm{Y}}^3$ anomaly.
-It is the combination of them that make the gauge theory consistent.
+It is the combination of them that makes the gauge theory consistent.
 
 
 
 
 \subsection{Nonabelian Gauge}
 
-We are now consider the nonabelian gauge anomaly.
+We are now considering the nonabelian gauge anomaly.
 As a convention, we absorb the coupling constant into the Lie algebra $A^a T^a_R$.
 The perturbative anomaly still comes from the triangle diagram.
 We have seen that the outcome 3-point vertex is symmetric under changing the external legs.
@@ -529,8 +736,8 @@ A real or pseudoreal representation means $T^a \sim \bar T^a$, which leads to
 \begin{equation}
 \begin{aligned}
 	d^{abc}(R) 
-	&= \tr\left[T^a_R \left\{T^b_R, T^c_R \right\} \right] \\
-	&= \tr\left[\bar T_R^a \left\{\bar T_R^b, \bar T_R^c \right\} \right] \\
+	&= \tr\left[T^a_R \left\{T^b_R, T^c_R \right\} \right] 
+	= \tr\left[\bar T_R^a \left\{\bar T_R^b, \bar T_R^c \right\} \right] \\
 	&= -\tr\left[(T_R^a)^T \left\{(T_R^b)^T,(T_R^c)^T \right\} \right] \\
 	&= -\tr\left[T_R^a \left\{T_R^b,T_R^c \right\} \right] = 0.
 \end{aligned}

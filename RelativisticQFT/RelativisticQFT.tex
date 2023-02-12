@@ -33,50 +33,28 @@
 
 \maketitle
 
-\tableofcontents
-
-\section{The Lorentz Invariance}
 
 The Lorentz invariance is the fundamental symmetry for relativistic field theory.
-The spacetime transformation preserving the metric form a group, for generic $(d+1)$-dimensional spacetime, such group is denoted as $\mathrm{SO}(d,1)$.
-For the most of the cases, we consider the ($3+1$)-dimensional (flat) spacetime, of which the metric is conventionally chosen as
-\begin{equation}
-	g_{\mu\nu}=g^{\mu\nu} = \operatorname{diag}(+1,-1,-1,-1).
-\end{equation}
-If we consider a more general $d$-dimensional space time, we also choose the first diagonal element of the metric to be positive, and the rest to be negative.
-Note that under such convention, the inner product of two $d$-vectors is defined as $a \cdot b = a^0 b^b - \bm a \cdot \bm b$.
-The space-time Fourier transformation is defined as:
-\begin{equation}
-	\tilde{f}(k) = \int d^{d}x\ e^{ik\cdot x} f(x), \quad
-	f(x) = \int \frac{d^{d}k}{(2\pi)^{d}}\ e^{-ik\cdot x}\tilde{f}(k).
-\end{equation}
+For generic $(d+1)$-dimensional spacetime, the Minkowski metric is $g_{\mu\nu}=g^{\mu\nu} = \operatorname{diag}(+1,-1,\cdots,-1)$.
 A Lorentz transformation ${\Lambda^{\mu}}_{\nu}$ preserves the metric: ${\Lambda^{\mu}}_{\alpha}{\Lambda^{\nu}}_{\beta} g^{\alpha\beta} = g^{\mu\nu}$.
 We can multiply a $g^{\gamma\alpha}$ on both sides to get: $g^{\gamma\alpha}{\Lambda^{\mu}}_{\alpha}{\Lambda^{\nu}}_{\beta} g_{\mu\nu} = g^{\gamma\alpha}g_{\alpha\beta}$, which leads to ${\Lambda_{\nu}}^{\gamma}{\Lambda^{\nu}}_{\beta} = {\delta^{\gamma}}_{\beta}$.
 The inverse Lorentz transformation satisfies ${(\Lambda^{-1})^{\mu}}_{\nu} = {\Lambda_{\nu}}^{\mu}$.
-The infinitesimal transformation is denoted as
-\begin{equation}
-	{\Lambda^{\mu}}_{\nu} = \delta^{\mu}_{\nu}+\delta{\omega^{\mu}}_{\nu}, \quad
-	{(\Lambda^{-1})^\mu}_\nu = \delta^{\mu}_{\nu}-\delta{\omega^\mu}_\nu,
-\end{equation}
-which means $\delta {\omega^\mu}_\nu = -\delta {\omega_\nu}^\mu$.
-We can further use the metric tensor $g_{\mu\nu}$ to lower the indices and get $\delta\omega_{\alpha\beta} = -\delta\omega_{\beta\alpha}$, i.e., the infinitesimal parameter $\delta \omega_{\mu\nu}$ is anti-symmetric for ($\mu \leftrightarrow \nu$).
 
-In general, a representation of Lorentz group $U_R(\Lambda)$ can be parametrized as:
-\begin{equation}
-	U_R(\Lambda) = \exp\left(\frac{i}{2}\omega_{\mu\nu}M_R^{\mu\nu}\right)
-	= \exp\left(i \theta_i J_i +i\beta_i K_i\right),
-\end{equation}
-where the matrices $M_R^{\mu\nu}$ is the representation of the Lorentz algebra, and in the second equality, we have used another useful parametrization:
-\begin{equation}
-\begin{aligned}
-	\theta_i &\equiv \frac{1}{2}\varepsilon_{ijk}\omega_{jk}, & 
-	\beta_i &\equiv \omega_{i0}, \\
-	J_i &\equiv \frac{1}{2}\varepsilon_{ijk}M^{jk}, & 
-	K_i &\equiv M^{i0},
-\end{aligned}
-\end{equation}
-where $J_i$'s are the generators of the spatial rotations, and $K_i$'s are the generators of Lorentz boosts.
+Consider the infinitesimal Lorentz transformation ${\Lambda^{\mu}}_{\nu} = \delta^{\mu}_{\nu}+\delta{\omega^{\mu}}_{\nu}$, its inverse is ${(\Lambda^{-1})^\mu}_\nu = \delta^{\mu}_{\nu}-\delta{\omega^\mu}_\nu$, which means $\delta {\omega^\mu}_\nu = -\delta {\omega_\nu}^\mu$.
+We can further use the metric tensor $g_{\mu\nu}$ to lower the indices and get $\delta\omega_{\alpha\beta} = -\delta\omega_{\beta\alpha}$, i.e., the infinitesimal parameter $\delta \omega_{\mu\nu}$ is anti-symmetric under the swap of indices $\mu \leftrightarrow \nu$.
+In general, given a representation $M_R$ of the Lie algebra, we can exponentiate the $\delta \omega_{\mu\nu}$ to obtain the representation of the Lorentz group as $U_R(\Lambda) = \exp\left(\frac{i}{2}\omega_{\mu\nu}M_R^{\mu\nu}\right)$, where the anti-symmetric $\omega_{\mu\nu}$'s are the finite group parameters.
 
+
+\tableofcontents
+
+\section{(3+1)D Lorentz Invariance}
+For the $(3+1)$D spacetime, the Lorentz group can be represented as 
+\begin{equation}\label{eq:lorentz-parameter}
+	\Lambda(\bm \theta,\bm \beta) = \exp\left(i \theta_i J_i +i\beta_i K_i\right), \quad
+	\theta_i \equiv \frac{1}{2}\varepsilon_{ijk}\omega_{jk},\quad
+	\beta_i \equiv \omega_{i0},
+\end{equation}
+where the Lie algebra contains 3 rotational generators $J_i \equiv \frac{1}{2}\varepsilon_{ijk}M^{jk}$ and 3 boost generators $K_i \equiv M^{i0}$. 
 In the fundamental representation, the generators are represented by
 \begin{equation}
 \begin{aligned}
@@ -91,105 +69,40 @@ In the fundamental representation, the generators are represented by
 The Lie algebra of the Lorentz algebra can be explicitly done using the fundamental representation. 
 The result is
 \begin{equation}
-\begin{aligned}
-	\left[J_i, J_j\right] &= i \varepsilon_{ijk} J_k, \\
-	\left[J_i, K_j\right] &= i \varepsilon_{ijk} K_k, \\
-	\left[K_i, K_j\right] &= -i\varepsilon_{ijk} J_k.
-\end{aligned}
+	\left[J_i, J_j\right] = i \varepsilon_{ijk} J_k, \quad
+	\left[J_i, K_j\right] = i \varepsilon_{ijk} K_k, \quad
+	\left[K_i, K_j\right] = -i\varepsilon_{ijk} J_k.
 \end{equation}
-A special combination of those generators,
-\begin{equation}
-	N_i^{L} \equiv \frac{J_i - i K_i}{2}, \quad
-	N_i^{R} \equiv \frac{J_i + i K_i}{2},
-\end{equation}
-will create two independent algebra:
+A special combination of those generators $N_i^{L/R} \equiv \frac{1}{2}(J_i \mp i K_i)$ will create two independent algebras:
 \begin{equation}\label{eq:RFT-LG-Alg}
 \begin{aligned}
-	\left[N_i^L, N_j^L \right] &= i\varepsilon_{ijk}N_k^L, \\
-	\left[N_i^R, N_j^R \right] &= i\varepsilon_{ijk}N_k^R, \\
+	\left[N_i^L, N_j^L \right] &= i\varepsilon_{ijk}N_k^L, \quad
+	\left[N_i^R, N_j^R \right] &= i\varepsilon_{ijk}N_k^R, \quad
 	\left[N_i^L, N_j^R \right] &= 0.
 \end{aligned}
 \end{equation}
-In the following, we show such generator gives all irreducible representations of the Lorentz group $\mathrm{SO}(3,1)$, which are the building blocks of the relativistic field theory.
+In the following, we show such generators give all irreducible representations of the Lorentz group $\mathrm{SO}(3,1)$, which are the building blocks of the relativistic field theory.
 
 
-\subsection{Spinor Representation of Lorentz Group}
+
 
 We see from (\ref{eq:RFT-LG-Alg}) that after the recombination, the Lorentz algebra breaks into two independent $\mathfrak{su}(2)$ algebra.
 Mathematically it means $\mathfrak{so}(3,1) \simeq \mathfrak{su}(2) \oplus \mathfrak{su}(2)$.
-We know that the representation of the Lorentz algebra can be labelled by $(2 j_L+1)$ and $(2 j_R+1)$.
-Note that the fundamental representation correspond to $(2,2)$.
-The specific form of the group is
+That is,
 \begin{equation}
-	\Lambda(\bm\theta,\bm\beta)
-	=\exp\left[i(\bm\theta+i\bm\beta)\cdot \bm N^L + i(\bm\theta-i\bm\beta)\cdot \bm N^R\right].
+	U_{j_L,j_R}(\Lambda)
+	= \exp\left[i(\bm\theta+i\bm\beta)\cdot \bm N^L_{j_L} + i(\bm\theta-i\bm\beta)\cdot \bm N^R_{j_R}\right],
 \end{equation}
-The spinor representations are those with $j_L=1/2$ or $j_R=1/2$. 
-Specifically, we define the left-hand spinor $\psi_L$ and right-hand spinor $\psi_R$ that transform as:
-\begin{equation}\label{eq:qft-left-right-spinor-rep}
-\begin{aligned}
-	\Lambda(\bm\theta,\bm\beta)\psi_L 
-	&= \exp\left(\frac{i}{2}\bm\theta\cdot\bm\sigma-\frac{1}{2}\bm\beta\cdot\bm\sigma \right) \psi_L \equiv \Lambda_L(\bm \theta, \bm \beta)\psi_L, \\
-	\Lambda(\bm\theta,\bm\beta)\psi_R 
-	&= \exp\left(\frac{i}{2}\bm\theta\cdot\bm\sigma+\frac{1}{2}\bm\beta\cdot\bm\sigma \right) \psi_R \equiv \Lambda_L(\bm \theta, -\bm \beta)\psi_R.
-\end{aligned}
-\end{equation}
-The spinor field can be regarded as a two component vector:
-\begin{equation}
-	\psi_L = \begin{pmatrix}
-		\psi_L^1 \\ \psi_L^2
-	\end{pmatrix}, \quad
-	\psi_R = \begin{pmatrix}
-		\psi_R^1 \\ \psi_R^2
-	\end{pmatrix}.
-\end{equation}
-We can create ``scalar-like'' object by inner product of the spinors.
-Note that the $\psi_L^\dagger \psi_R$ and $\psi_R^\dagger \psi_L$ are Lorentz invariant object.
-The product of single-handed spinor like $\psi_L^\dagger \psi_L$ is not Lorentz invariant.
-However, note that $\sigma^2 \psi_L^*$ transforms like
-\begin{equation}
-	\sigma^2 \psi_L^*
-	\rightarrow \sigma^2 \exp\left(-\frac{i}{2}\bm\theta\cdot\bm\sigma^*-\frac{1}{2}\bm\beta\cdot\bm\sigma^* \right) \sigma^2 \sigma^2 \psi_L^* 
-	= \Lambda_L(\bm \theta, -\bm\beta) \sigma^2 \psi_L^*.
-\end{equation}
-(We have used the identity $\sigma^2 \cdot \bm\sigma^* \cdot\sigma^2 = -\bm\sigma$ in the second equation.) This means that $\sigma^2 \psi_L^*$ transforms like a right-handed spinor.
-For this reason, the left-hand and right-hand spinor can be interchanged by the action of $\sigma^2 \mathcal K$ ($\mathcal K$ is complex conjugation).
-In this way we get new invariants $\psi_L^T \sigma^2 \psi_L$ and $\psi_R^T \sigma^2 \psi_R$.
-To simplify the notation here, we introduce two set of spinor indices $a$ and $\dot a$, where the undotted index transforms as $(2,1)$, and the dotted index transforms as $(1,2)$:
-\begin{equation}
-	\Lambda(\bm\theta,\bm\beta) \psi^a \equiv {[\Lambda_L(\bm\theta,\bm\beta)]^a}_b \psi^b, \quad
-	\Lambda(\bm\theta,\bm\beta) \psi^{\dot a} \equiv {[\Lambda_L(\bm\theta,-\bm\beta)]^{\dot a}}_{\dot b} \psi^{\dot b}.
-\end{equation}
-We see working on this set of indices, we no longer need to specify the chirality.
-Moreover, we have seen from the above discussion that the left- and right- handed spinors are interchangeable, it is the representation that matters.
-To relate to the invariants we get, we introduce two invariant symbols
-\begin{equation}
-	\varepsilon^{ab} = \varepsilon^{\dot a \dot b} = i\sigma^2, \quad
-	\varepsilon_{ab} = \varepsilon_{\dot a \dot b} = -i\sigma^2.
-\end{equation}
-The symbols are used to raise or lower the spinor indices, for example, $\psi_a = \varepsilon_{ab}\psi^b$, and $\psi^a = \varepsilon^{ab}\psi_b$.
-The lower indices transform as
-\begin{equation}
-	\psi_a \rightarrow \psi_b {[\Lambda_L(-\bm\theta,-\bm\beta)]^b}_a.
-\end{equation}
-In this way, the contracting of superscript and subscript ensures the Lorentz invariance.
-The invariant we got can be expressed as $-i\psi_L^T \sigma^2 \psi_L = \varepsilon_{ab}\psi_L^a \psi_L^b \equiv \psi_L\cdot \psi_L$ and $-i\psi_R^T \sigma^2 \psi_R = \varepsilon_{\dot a \dot b}\psi_R^{\dot a} \psi_R^{\dot b} \equiv \psi_R\cdot \psi_R$.
-Also, note that fact that the conjugate field $\psi^\dagger_L$ transforms like $\psi_{\dot a}^\dagger$, i.e.,
-\begin{equation}
-	\psi_{\dot a}^\dagger \rightarrow \psi_{\dot b}^\dagger {[\Lambda_L(-\bm\theta,+\bm\beta)]^{\dot b}}_{\dot a}.
-\end{equation}
-This produce $\psi^\dagger_R \psi_L$ as Lorentz invariant.
+where we see that the representation of the Lorentz algebra can be labeled by $j_L$ and $ j_R$.
 
-
-
-
-\subsection{The Invariant Symbols}
-The invariant symbols can be thought as the Clebsch-Gordan coefficients that help to form singlets under Lorentz transformation: 
+In relativistic QFT, the Lorentz symmetry restricts the possible terms that can appear in the Lagrangian.
+Different free fields correspond to different representations of the Lorentz algebra, and the Lagrangian should be singlet under the Lorentz transformations.
+In the following, we will introduce the invariant symbols, which can be regarded as the Clebsch-Gordan coefficients, to help construct the singlets: 
 \begin{equation*}
 \begin{tabular}{ccc}
 	\hline \hline 
 	Symbol & Representation  & Invariant \\ \hline
-	$1$ & $(0,0)$ & $a^\mu b_\mu /\psi_L^\dagger \chi_R/\psi_R^\dagger \chi_L$\\
+	$1$ & $(0,0)$ & $\phi$\\
 	$\varepsilon^{ab}$ & $(2,0)\otimes (2,0)$ & $\psi_L \cdot \chi_L$ \\
 	$\varepsilon^{\dot a \dot b}$ & $(0,2)\otimes (0,2)$ & $\psi_R \cdot \chi_R$ \\
 	$\sigma^\mu_{\dot ab}$ & $(2,2)\otimes (0,2)\otimes(2,0)$ & $a_\mu \psi_L^\dagger \sigma^\mu \chi_L$ \\
@@ -199,29 +112,111 @@ The invariant symbols can be thought as the Clebsch-Gordan coefficients that hel
 \end{tabular}
 \end{equation*}
 
-The identity is the trivial symbol.
-It correspond to some automatic Lorentz invariant terms, such as a constant, vector inner product $a_\mu b^\mu$, or spinor inner product $\psi_L^\dagger \chi_R/\psi_R^\dagger \chi_L$.
-The second and third symbol can combine two fermion field with the same chirality to form an invariant, which corresponds to the decomposition 
+\subsection{Trivial representation.}
+The $(j_L,j_R) = (0,0)$ representation corresponds to the scalar field denoted as $\phi(x)$.
+Since the field itself is singlet, any polynomial of the field in principle can appear in the theory.
+When considering the free theory, we restrict our attention to the quadratic terms, therefore the allowed free theory can only be
 \begin{equation}
-	2 \otimes 2 = 1 \oplus 3.
+	\mathcal L_{\mathrm{KG}} = \frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 
+	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
 \end{equation}
-The two $\varepsilon$ symbols is the Clebsch-Gordan coefficient.
-The third and fourth symbol comes from the decomposition
+Besides the field Lagrangian $\mathcal L_{\mathrm{KG}}$, there are more general Lorentz-invariant terms that can be added to the Lagrangian, which describe the interaction of the theory.
+One of the simplest interacting scalar field theories is the $\phi^4$ theory $\mathcal L = \mathcal L_{\mathrm{KG}} - \frac{g}{4!}\phi^4$.
+
+\subsection{Spinor representation.}
+The spinor representations are those with $j_L=1/2$ or $j_R=1/2$. 
+Specifically, we define the left-hand spinor $\psi_L = (\psi_L^1, \psi_L^2)^T$ and right-hand spinor $\psi_R = (\psi_R^1, \psi_R^2)^T$ whose transformations define $\Lambda_L$ and $\Lambda_R$:
+\begin{equation}\label{eq:qft-left-right-spinor-rep}
+	\Lambda_L(\bm\theta,\bm\beta) = \exp\left(\frac{i}{2}\bm\theta\cdot\bm\sigma-\frac{1}{2}\bm\beta\cdot\bm\sigma \right), \quad
+	\Lambda_R(\bm\theta,\bm\beta) = \exp\left(\frac{i}{2}\bm\theta\cdot\bm\sigma+\frac{1}{2}\bm\beta\cdot\bm\sigma \right) = \Lambda_L(\bm \theta, -\bm \beta).
+\end{equation}
+We can create a ``scalar-like'' object by the inner product of the spinors.
+Note that the $\psi_L^\dagger \psi_R$ and $\psi_R^\dagger \psi_L$ are Lorentz invariant object.
+The product of two single-handed spinors like $\psi_L^\dagger \psi_L$ is not Lorentz invariant.
+However, note that $\sigma^2 \psi_L^*$ transforms like a right-handed spinor:\footnote{We use the identity $\sigma^2 \cdot \bm\sigma^* \cdot\sigma^2 = -\bm\sigma$ in the second equation.}
 \begin{equation}
-	\left(2, 1\right) \otimes \left(1,2\right) \otimes \left(2, 2\right)
-	= \left(1, 1\right) \oplus \cdots.
+	\sigma^2 \psi_L^*
+	\rightarrow \sigma^2 \exp\left(-\frac{i}{2}\bm\theta\cdot\bm\sigma^*-\frac{1}{2}\bm\beta\cdot\bm\sigma^* \right) \sigma^2 \sigma^2 \psi_L^* 
+	= \Lambda_L(\bm \theta, -\bm\beta) \sigma^2 \psi_L^*.
 \end{equation}
-The symbol $\sigma^\mu = (1, \bm \sigma)^\mu$ converts the combination of two spinor field to the defining representation of the Lorentz group.
-Specifically, $\sigma^\mu_{\dot a b}$ transforms as:
+For this reason, the left-hand and right-hand spinor can be interchanged by the action of $\sigma^2 \mathcal K$ ($\mathcal K$ is complex conjugation).
+In this way, we get new invariants $\psi_L^T \sigma^2 \psi_L$ and $\psi_R^T \sigma^2 \psi_R$.
+To simplify the notation here, we introduce two sets of spinor indices $a$ and $\dot a$, where the undotted index transforms as $(2,1)$, and the dotted index transforms as $(1,2)$:
+\begin{equation}
+	\Lambda(\bm\theta,\bm\beta) \psi^a \equiv {[\Lambda_L(\bm\theta,\bm\beta)]^a}_b \psi^b, \quad
+	\Lambda(\bm\theta,\bm\beta) \psi^{\dot a} \equiv {[\Lambda_L(\bm\theta,-\bm\beta)]^{\dot a}}_{\dot b} \psi^{\dot b}.
+\end{equation}
+We see working on this set of indices, we no longer need to specify the chirality.
+Moreover, we have seen from the above discussion that the left- and right-handed spinors are interchangeable, it is the representation that matters.
+To relate to the invariants we get, we introduce two invariant symbols, corresponding to the decomposition $2 \otimes 2 = 1 \oplus 3$:
+\begin{equation}
+	\varepsilon^{ab} = \varepsilon^{\dot a \dot b} = i\sigma^2, \quad
+	\varepsilon_{ab} = \varepsilon_{\dot a \dot b} = -i\sigma^2.
+\end{equation}
+The symbols are used to raise or lower the spinor indices, for example, $\psi_a = \varepsilon_{ab}\psi^b$, and $\psi^a = \varepsilon^{ab}\psi_b$.
+The lower indices transform as $\psi_a \rightarrow \psi_b {[\Lambda_L(-\bm\theta,-\bm\beta)]^b}_a$.
+In this way, contracting superscript and subscript ensures the Lorentz invariance.
+The invariant we got can be expressed as 
+\begin{equation}
+	-i\psi_L^T \sigma^2 \psi_L = \varepsilon_{ab}\psi_L^a \psi_L^b \equiv \psi_L\cdot \psi_L,\quad
+	-i\psi_R^T \sigma^2 \psi_R = \varepsilon_{\dot a \dot b}\psi_R^{\dot a} \psi_R^{\dot b} \equiv \psi_R\cdot \psi_R.
+\end{equation}
+Also, note that fact that the conjugate field $\psi^\dagger_L$ transforms like $\psi_{\dot a}^\dagger$, i.e., $\psi_{\dot a}^\dagger \rightarrow \psi_{\dot b}^\dagger {[\Lambda_L(-\bm\theta,+\bm\beta)]^{\dot b}}_{\dot a}$.
+This produces $\psi^\dagger_R \psi_L$ as Lorentz invariant.
+The free (quadratic) Lagrangian for spinor field can have the following terms:
+\begin{equation}
+	\psi_L^\dagger \bar\sigma^\mu \partial_\mu \psi_L,\ 
+	\psi_R^\dagger \sigma^\mu \partial_\mu \psi_R,\ 
+	\psi_L^\dagger \psi_R,\ \psi_R^\dagger \psi_L,\ 
+	\psi_L \cdot \psi_L + \psi_L^\dagger \cdot \psi_L^\dagger,\ 
+	\psi_R \cdot \psi_R + \psi_R^\dagger \cdot \psi_R^\dagger.
+\end{equation}
+The Dirac field describes the theory with both left-hand and right-hand spinors.
+The Lagrangian is $\mathcal{L}_{\mathrm{Dirac}} = \bar\psi \left(i\gamma^\mu \partial_\mu - m\right)\psi$, where the Dirac spinor contains left- and right-handed Weyl spinors:
+\begin{eqnarray}
+	\psi = \begin{pmatrix}
+		\psi_L \\ \psi_R
+	\end{pmatrix},\ 
+	\bar\psi = \begin{pmatrix}
+		\psi_R^\dagger & \psi_L^\dagger
+	\end{pmatrix},\ 
+	\gamma^\mu = \begin{bmatrix}
+		0 & \sigma^\mu \\
+		\bar\sigma^\mu & 0
+	\end{bmatrix}.
+\end{eqnarray}
+In addition, we could consider using the last two terms as the mass, the result theory is the \textit{Majorana field theory}:
+\begin{equation}
+\begin{aligned}
+	\mathcal{L}_{\mathrm{Maj}}
+	= i \psi_L^\dagger \bar\sigma^\mu \partial_\mu  \psi_L -m(\psi_L \cdot \psi_L + \psi_L^\dagger \cdot \psi_L^\dagger).
+\end{aligned}
+\end{equation} 
+For the spinor basis, the Dirac Algebra is generated by $M^{\mu\nu} = \frac{i}{4}[\gamma^\mu, \gamma^\nu]$.
+Using the familiar parametrization (\ref{eq:lorentz-parameter}), 
+\begin{equation}
+	J_i = \begin{bmatrix}
+		\sigma^i & 0 \\ 0 & -\sigma^i
+	\end{bmatrix}, \quad 
+	K_i = \frac{i}{2}\begin{bmatrix}
+		\sigma^i & 0 \\ 0 & -\sigma^i
+	\end{bmatrix},
+\end{equation}
+which agree with the transformation property (\ref{eq:qft-left-right-spinor-rep}).
+
+
+\subsection{Vector representation.}
+The symbols $\sigma^\mu = (1, \bm \sigma)^\mu$ and $\bar\sigma^\mu=(1,-\bm\sigma)$ comes from the decomposition $\left(2, 1\right) \otimes \left(1,2\right) \otimes \left(2, 2\right) = \left(1, 1\right) \oplus \cdots$.
+The symbol $\sigma^\mu_{\dot a b}$ transforms as:
 \begin{equation}\label{eq:RFT-sigma_symbol}
 	\sigma^\mu_{\dot a b} \rightarrow
 	{\Lambda^\mu}_\nu(\bm\theta,\bm\beta) \sigma^\nu_{\dot c d}
-	{\left[\Lambda_L(-\bm\theta, \bm\beta)\right]^{\dot c}}_{\dot a} {\left[\Lambda_L(-\bm\theta, -\bm\beta)\right]^d}_b.
+	{\left[\Lambda_L(-\bm\theta, \bm\beta)\right]^{\dot c}}_{\dot a} {\left[\Lambda_L(-\bm\theta, -\bm\beta)\right]^d}_b,
 \end{equation}
-The spinor part cancel the transformations of the left- and right- handed spinor fields, leaving the combination $\psi_L^\dagger \sigma^\mu \psi_L$ transforms like a Lorentz vector.
+The spinor part cancels the transformations of the left- and right-handed spinor fields, leaving the combination $\psi_L^\dagger \sigma^\mu \psi_L$ transform like a Lorentz vector.
 
 Now we explicitly check the symbol $\sigma^\mu$ indeed transforms like (\ref{eq:RFT-sigma_symbol}).
-Here we temporarily drop the index notation, and adopt the view that only spinor field transform.
+Here we temporarily drop the index notation and adopt the view that only the spinor field transform.
 We then absorb the transformation matrix from the spinors to the $\sigma^\mu$ symbol.
 Firstly, for the spatial rotation, $\Lambda_L(\bm\theta,\bm 0) = \exp(i\bm\theta\cdot \bm\sigma/2)$, the Pauli matrices transform as the defining SO(3) rotation
 \begin{equation}
@@ -242,90 +237,8 @@ The story for the $\bar\sigma^\mu=(1,-\bm\sigma)$ is basically the same, which t
 	{\Lambda^\mu}_\nu(\bm\theta,\bm\beta) \bar\sigma^\nu_{c \dot d}
 	{\left[\Lambda_L(-\bm\theta, -\bm\beta)\right]^{c}}_{a} {\left[\Lambda_L(-\bm\theta, \bm\beta)\right]^{\dot d}}_{\dot b}.
 \end{equation}
-
 Finally, we note that the Levi-Civita symbol $\varepsilon^{\mu\nu\rho\sigma}$ can also be useful.
-One invariant involving this is $\varepsilon^{\mu\nu\rho\sigma} F_{\mu\nu} F_{\rho\sigma}$, where $F_{\mu\nu}$ is antisymmetry for ($\mu \leftrightarrow \nu$).
-
-
-
-\subsection{Relativistic Lagrangians}
-In relativistic quantum field theory, the Lagrangian should be a singlet under Lorentz transformation.
-Different free fields correspond to different representation of the Lorentz algebra.
-The symmetry under Lorentz transformation also restrict the possible terms that can appear in the Lagrangian.
-
-The simplest case is when $(j_L=j_R = 0)$, corresponding to the scalar field, which we denote as $\phi(x)$.
-Since the field it self is singlet, any polynomial of the field in principle can appear in the theory.
-When considering the free theory, we restrict our attention to the quadratic terms.
-We require the field theory to have a dynamical term, which contains derivative the the field.
-The derivative operator $\partial^\mu$ transforms as the fundamental representation.
-To be Lorentz invariant, the allowed free theory can only be
-\begin{equation}
-	\mathcal L_{\mathrm{KG}} = \frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 
-	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
-\end{equation}
-
-Besides the field field Lagrangian $\mathcal L_{\mathrm{KG}}$, there is more general Lorentz-invariant terms that can be added to the Lagrangian, which describe the interaction of the theory.
-One of the simplest interacting scalar field theory is the $\phi^4$ theory:
-\begin{equation}
-	\mathcal L = \mathcal L_{\mathrm{KG}} - \frac{g}{4!}\phi^4.
-\end{equation}
-
-
-If we choose the $(j_L=1/2,\ j_R=0)$ or $(j_L=0,\ j_R=1/2)$, the representing field is called the \textit{spinor field}.
-The free (quadratic) Lagrangian for spinor field can have the following terms:
-\begin{equation}
-	\psi_L^\dagger \bar\sigma^\mu \partial_\mu \psi_L,\ 
-	\psi_R^\dagger \sigma^\mu \partial_\mu \psi_R,\ 
-	\psi_L^\dagger \psi_R,\ \psi_R^\dagger \psi_L,\ 
-	\psi_L \cdot \psi_L + \psi_L^\dagger \cdot \psi_L^\dagger,\ 
-	\psi_R \cdot \psi_R + \psi_R^\dagger \cdot \psi_R^\dagger.
-\end{equation}
-The Dirac field describe the theory with both left-hand and right-hand spinors.
-The Lagrangian is
-\begin{equation}
-	\mathcal{L}_{\mathrm{Dirac}}
-	= \bar\psi \left(i\gamma^\mu \partial_\mu - m\right)\psi,
-\end{equation}
-where the Dirac spinor contains a left- and right- handed Weyl spinors:
-\begin{eqnarray}
-	\psi = \begin{pmatrix}
-		\psi_L \\ \psi_R
-	\end{pmatrix},\ 
-	\bar\psi = \begin{pmatrix}
-		\psi_R^\dagger & \psi_L^\dagger
-	\end{pmatrix},\ 
-	\gamma^\mu = \begin{bmatrix}
-		0 & \sigma^\mu \\
-		\bar\sigma^\mu & 0
-	\end{bmatrix}.
-\end{eqnarray}
-In addition, we could consider using the last two terms as the mass, the result theory is the \textit{Majorana field theory}:
-\begin{equation}
-\begin{aligned}
-	\mathcal{L}_{\mathrm{Maj}}
-	= i \psi_L^\dagger \bar\sigma^\mu \partial_\mu  \psi_L -m(\psi_L \cdot \psi_L + \psi_L^\dagger \cdot \psi_L^\dagger).
-\end{aligned}
-\end{equation} 
-For the spinor basis, the Dirac Algebra is generated by
-\begin{equation}\label{eq:qft-diract-generator}
-	S^{\mu\nu} = \frac{i}{4}[\gamma^\mu, \gamma^\nu].
-\end{equation}
-The Lorentz group is represented by
-\begin{equation}\label{eq:qft-dirac-rep}
-	\Lambda_{\frac{1}{2}} = \exp\left(\frac{i}{2}\omega_{\mu\nu} S^{\mu\nu}\right).
-\end{equation}
-Using the familiar parametrization,
-\begin{equation}
-	S^{i0} = \frac{i}{2}\left[\begin{array}{cc}
-		\sigma^i & 0 \\ 0 & -\sigma^i
-	\end{array}\right], \quad 
-	S^{ij} = \frac{1}{2}\epsilon^{ijk} \left[\begin{array}{cc}
-		\sigma^k & 0 \\ 0 & -\sigma^k
-	\end{array}\right],
-\end{equation}
-which agree with the transformation property (\ref{eq:qft-left-right-spinor-rep}).
-
-
+One invariant involving this is $\varepsilon^{\mu\nu\rho\sigma} F_{\mu\nu} F_{\rho\sigma}$, where $F_{\mu\nu}$ is antisymmetry under ($\mu \leftrightarrow \nu$).
 
 If we choose $(j_L=j_R=1/2)$, the field is transformed as Lorentz vector.
 We denote the field as $A^\mu(x)$.
@@ -369,241 +282,6 @@ The Lagrangian describing the electromagnetic field is given by
 \end{equation}
 
 
-\section{Canonical Quantization}
-
-In this section, we discuss the quantization of the classical fields.
-We will focus on the scalar field, as it reveal the essence of the the procedure.
-
-
-\subsection{Quantization of Classical Modes}
-First, the equation of motion (EOM) for classical field is
-\begin{equation}
-	\partial_\mu \left[\frac{\partial \mathcal L}{\partial(\partial_\mu \phi)}\right] - \frac{\partial \mathcal L}{\partial \phi} = 0.
-\end{equation}
-For the Klein-Gordon Lagrangian $\mathcal L = -\frac{1}{2}\phi(\partial^2+m^2)\phi$, the EOM is:
-\begin{equation}\label{eq:rkg-eom}
-	(\partial_t^2-\nabla^2+m^2)\phi(\bm x,t) = 0.
-\end{equation}
-The (classical) solution to Eq.~(\ref{eq:rkg-eom}) is proportional to the plane wave:
-\begin{equation}
-	\phi_{\bm k}(\bm x, t) \propto e^{-i\omega_{\bm{k}}t+i\bm{k}\cdot\bm{x}} + e^{i\omega_{\bm{k}}t-i\bm{k}\cdot\bm{x}},
-\end{equation}
-where the energy is $\omega_{\bm{k}}=\bm{k}^2+m^2$ and $\bm k$ is the momentum as the conserved quantity.
-The general solution to Eq.~(\ref{eq:rkg-eom}) is
-\begin{equation}
-	\phi(\bm x,t) = \int \frac{d^{3} k}{(2\pi)^{3}} \left(
-		a_{k}e^{-i\omega_{\bm{k}}t+i\bm{k}\cdot\bm{x}} + 
-		a^*_{k}e^{i\omega_{\bm{k}}t-i\bm{k}\cdot\bm{x}} 
-	\right),
-\end{equation}
-where $a_k$'s are arbitrary c-numbers.
-The \textit{quantization} is the procedure to discretize the coefficient $a_k$'s.
-The \textit{canonical} way to do it is to promote the coefficient $a_{k}/a_{k}^*$ to the particle annihilation/creation operator $a_{k}/a_{k}^\dagger$, with the commutation relation
-\begin{equation}
-	[a_{k}, a_{p}^\dagger] = (2\pi)^{3} \delta^{3}(\bm{k}-\bm{p}).
-\end{equation}
-The single-particle state with momentum $\bm k$ is created by $a_{k}^{\dagger}$ operators acting on the vacuum:
-\begin{equation}
-	|\bm{k}\rangle \equiv \sqrt{2\omega_{\bm k}} a_{k}^{\dagger}|0\rangle,
-	\label{eq:rel-single-particle}
-\end{equation}
-where $|\bm{k}\rangle$ is a state with a single particle of momentum $\bm{k}$.
-The factor of $\sqrt{2 \omega_{\bm k}}$ in (\ref{eq:rel-single-particle}) is a convention to ensure Lorenz invariant.
-To compute the normalization of one-particle states, we start by requiring the vacuum state to be of unit norm:
-\begin{equation}
-	\langle 0|0\rangle=1,
-\end{equation}
-which, together with the canonical commutation relation of particle annihilation and creation operators leads to
-\begin{equation}
-	\langle\bm{p}|\bm{k}\rangle 
-	= 2\sqrt{\omega_{\bm p} \omega_{\bm k}}\left\langle 0\left|a_{p} a_{k}^{\dagger}\right| 0\right\rangle
-	= 2 \omega_{\bm p}(2\pi)^{3} \delta^{3}(\bm{p}-\bm{k}).
-\end{equation}
-The identity operator for one-particle states under such norm is
-\begin{equation}
-	1=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}}|\bm{p}\rangle\langle\bm{p}|, \label{eq:rel-identity}
-\end{equation}
-which we can check with
-\begin{equation*}
-	|\bm{k}\rangle
-	=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}}|\bm{p}\rangle\langle\bm{p}|\bm{k}\rangle
-	=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}} 2\omega_{\bm p}(2\pi)^3 \delta^3(\bm{p}-\bm{k})|\bm{p}\rangle
-	=|\bm{k}\rangle.
-\end{equation*}
-We see that the identity operator (\ref{eq:rel-identity}) under such convention is Lorentz invariant, since it can be expressed as
-\begin{equation}
-	1 = 2\pi \int \frac{d^{3} p d\omega}{(2\pi)^{4}} \delta(\omega^2-{\bm{p}}^2-m^2) |\bm p\rangle\langle \bm p|.
-\end{equation}
-
-The single-particle defined above can be used to fix the normalization:
-\begin{equation}
-	\langle \bm k|\phi(\bm x,0)|0\rangle = e^{-i \bm k\cdot \bm x},
-\end{equation}
-leading to the field expansion
-\begin{equation}
-	\phi(x)
-	=\int \frac{d^{3} k}{(2\pi)^{3}} \frac{1}{\sqrt{2\omega_{\bm k}}}\left(a_k 
-		e^{-i k \cdot x}+a_k^{\dagger} e^{i k \cdot x}\right).
-\end{equation}
-
-
-
-
-\subsection{Observables from Field Operators}
-
-We can obtain the Hamiltonian for the Klein-Gordon field using the Legendre transformation:
-\begin{equation}
-\begin{aligned}
-	H &= \int d^4 x\ \left[\pi(x) \dot{\phi}(x) - \mathcal L(x) \right] \\
-	&= \int d^4 x\ \frac{1}{2} \left[\pi^2 + (\nabla \phi)^2 + m^2 \phi^2 \right]
-\end{aligned}
-\end{equation}
-where the canonical momentum is defined as
-\begin{equation}
-\begin{aligned}
-	\pi(x) &= \frac{\partial \mathcal L}{\partial \dot{\phi}} = \dot{\phi}(x) \\
-	&= -i\int \frac{d^{3} k}{(2\pi)^{3}} \sqrt{\frac{\omega_{k}}{2}}\left(a_k 
-		e^{-i k \cdot x} - a_k^{\dagger} e^{i k \cdot x}\right).
-\end{aligned}
-\end{equation}
-The $\pi^2$ term expands as
-\begin{equation}
-	\pi^2(x) = \int \frac{d^{3} k_1}{(2\pi)^{3}} \frac{d^{3} k_2}{(2\pi)^{3}}
-		\frac{\sqrt{\omega_{k_1} \omega_{k_2}}}{2} \left(a^\dagger_{k_1}a_{k_2}e^{i(k_1-k_2)x} - a^\dagger_{k_1} a^\dagger_{k_2} e^{i(k_1+k_2)x} + h.c.\right).
-\end{equation}
-We note that after integrate over $x$, the phase factor $e^{i(k_1-k_2)x}$ produce a delta function for $k_1$ and $k_2$.
-The $a^\dagger_{k_1} a^\dagger_{k_2}$ terms will finally be cancelled by other terms.
-We temporally ignore such term.
-The contribution from the first term is then
-\begin{equation}
-	\int d^4 x\ \pi^2(x) = \int \frac{d^3 k}{(2\pi)^3} \frac{\omega_k}{2} a_k^\dagger a_k + h.c.
-\end{equation}
-The second term is
-\begin{equation}
-	(\nabla \phi)^2 = \int \frac{d^{3} k_1}{(2\pi)^{3}} \frac{d^{3} k_2}{(2\pi)^{3}}
-		\frac{\bm k_1 \bm k_2}{2\sqrt{\omega_{k_1}\omega_{k_2}}} \left(a^\dagger_{k_1}a_{k_2}e^{i(k_1-k_2)x} - a^\dagger_{k_1} a^\dagger_{k_2} e^{i(k_1+k_2)x} + h.c.\right).
-\end{equation}
-The third term is
-\begin{equation}
-	m^2 \phi^2 = \int \frac{d^{3} k_1}{(2\pi)^{3}} \frac{d^{3} k_2}{(2\pi)^{3}}
-		\frac{m^2}{2\sqrt{\omega_{k_1}\omega_{k_2}}} \left(a^\dagger_{k_1}a_{k_2}e^{i(k_1-k_2)x} + a^\dagger_{k_1} a^\dagger_{k_2} e^{i(k_1+k_2)x} + h.c.\right).
-\end{equation}
-All three contributions sum up as
-\begin{equation}
-\begin{aligned}
-	H &= \int \frac{d^3 k}{(2\pi)^3} \frac{1}{2}\left(\frac{\omega_k}{2} + \frac{\bm k^2+m^2}{2 \omega_k}\right) \left(a_k^\dagger a_k + h.c. \right) \\
-	&= \int \frac{d^3 k}{(2\pi)^3} \omega_k \left(a_k^\dagger a_k +\frac{1}{2} \right).
-\end{aligned}
-\end{equation}
-
-We can now check that the $a^\dagger a^\dagger$ terms indeed have no contributions, as the total contribution for each momentum $k$ is
-\begin{equation}
-	-\frac{\omega_k}{2} + \frac{\bm k^2}{2\omega_k} + \frac{m^2}{2\omega_k} = 0.
-\end{equation}
-
-The Hamiltonian in the operator form also make it manifest that
-\begin{equation}
-	H |\bm k\rangle = \omega_k |\bm k\rangle.
-\end{equation}
-
-Consider the two-point correlation (propagator):
-\begin{equation}
-\begin{aligned}
-	i\Delta(x_1-x_2) &\equiv \langle 0|T \phi(x_1) \phi(x_2) |0\rangle \\
-	&= \theta(t_1-t_2) \langle 0|\phi(x_1) \phi(x_2) |0\rangle 
-	+ \theta(t_2-t_1) \langle 0|\phi(x_2) \phi(x_1) |0\rangle.
-\end{aligned}
-\end{equation}
-Note that
-\begin{equation}
-	\langle 0|\phi(x_1) \phi(x_2) |0\rangle
-	= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\bm k\cdot (\bm x_1-\bm x_2)-i\omega_{\bm k}\tau},
-\end{equation}
-where $\tau =t_1-t_2$.
-The propagator can be written as
-\begin{equation}
-\begin{aligned}
-	i\Delta(x_1-x_2) 
-	&= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\bm k\cdot (\bm x_1-\bm x_2)}\left[e^{-i\omega_{\bm k}\tau}\theta(\tau)+e^{i\omega_{\bm k}\tau}\theta(-\tau)\right] \\
-	&= \int\frac{d^{3} k}{(2\pi)^{3}} e^{i\bm k\cdot (\bm x_1-\bm x_2)}\int \frac{d\omega}{2\pi i}\frac{-e^{i\omega\tau}}{\omega^2-\omega_k^2+i\epsilon} \\
-	&= \int\frac{d^{4} k}{(2\pi)^{4}} e^{-i k\cdot (x_1-x_2)}\frac{i}{k^2-m^2+i\epsilon}.
-\end{aligned}
-\end{equation}
-We have used the identity
-\begin{equation*}
-	\frac{1}{2\omega_k} \left[e^{-i\omega_{\bm k}\tau}\theta(\tau)+e^{i\omega_{\bm k}\tau}\theta(-\tau)\right] 
-	= \int \frac{d\omega}{2\pi i} \frac{-e^{i\omega\tau}}{\omega^2-\omega_k^2+i\epsilon},
-\end{equation*}
-where an infinitesimal number $\epsilon$ is included to move the singularities away from the real axis.
-Any final result shall take the ($\epsilon \rightarrow 0^+$) limit.
-Sometimes the infinitesimal $\epsilon$ will be absorbed into the mass, i.e., $m^2 \rightarrow m^2-i\epsilon$.
-
-
-\subsection{Renormalized Field Theory}
-
-For the interacting scalar field, the Hamiltonian do not conserve particle number any more, and the ground state $|\Omega\rangle$ is no longer the vacuum $|0\rangle$.
-Consider the Green's function
-\begin{equation}
-	iG(x_1-x_2) = \langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle 
-\end{equation}
-We can insert a complete basis into the correlation function:\footnote{Here we assume $\langle\Omega|\phi(x)|\Omega\rangle=0$ unless there is spontaneously symmetry breaking happening.}
-\begin{equation}
-	1 = |\Omega\rangle\langle\Omega| + \sum_\lambda\int\frac{d^3 k}{(2\pi)^3}\frac{1}{2\omega_k}|\lambda_{\bm k}\rangle \langle\lambda_{\bm k}|,
-\end{equation}
-and the Green's function takes the form:
-\begin{equation*}
-	iG(x_1-x_2) = \sum_\lambda \int\frac{d^3 k}{(2\pi)^3}
-	\left[\theta(t_1-t_2)\langle\Omega|\phi(x_1)|\lambda_{\bm k}\rangle\langle\lambda_{\bm k}|\phi(x_2)|\Omega\rangle + (t_1\leftrightarrow t_2, x_1 \leftrightarrow x_2)\right].
-\end{equation*}
-Note that $\phi(x)=e^{iP\cdot x}\phi(0) e^{-iP\cdot x}$, so that
-\begin{equation}
-	\langle\lambda_{\bm k}|\phi(x)|\Omega\rangle 
-	= e^{ik\cdot x} \left.\langle\lambda_{0}|\phi(0)|\Omega\rangle\right|_{k^0=\omega_{\bm k}}.
-\end{equation}
-Following the same procedure as we do for the free field theory, 
-\begin{equation}
-	G(x_1-x_2) = \int_0^\infty \frac{dM^2}{2\pi} \rho(M^2) G_0(x_1-x_2;M^2),
-\end{equation}
-where the \textit{spectral function} $\rho(M^2)$ is
-\begin{equation}
-	\rho(M^2) = \sum_\lambda(2\pi)\delta(M^2-m_\lambda^2)|\langle\Omega|\phi(0)|\lambda_0\rangle|^2.
-\end{equation}
-In particle, near the one-particle state the Green's function looks like:
-\begin{equation}\label{eq:scalar-prop-lehmann}
-	i\tilde G(k) = \frac{iZ_{\phi}}{k^2-m^2+i\epsilon} + \mathrm{regular\ terms}.
-\end{equation}
-Physically, Eq.~(\ref{eq:scalar-prop-lehmann}) states that in the interacting theory, the field operator $\tilde\phi(k)$ acting on the vacuum only only generate a single particle state, but also multi-particle states with total momentum $k$.
-However, those multi-particle state have different singularity structure in the Greens function, as they only contribute regular terms.
-If we only care about the propagator of the single particle states, we simply need to extract the singular part of of the Green's function.
-That is, the singularity of $\tilde{G}(k)$ gives the (addresses) mass, and the residue 
-\begin{equation*}
-	\lim_{k^2 \rightarrow m^2} (k^2-m^2)\tilde{G}(k)
-\end{equation*}
-gives the wave-function normalization factor $Z_\phi$.
-Trying to restore the original form of the free theory, we consider a renormalized field:
-\begin{equation}
-	\phi_R(x) = \frac{1}{\sqrt{Z_\phi}}\phi_0(x).
-\end{equation}
-The Green's function of $\phi_R$ has the same form as free theory.
-For this reason, we generate the asymptotic single-particle state using the renormalized field operator:
-\begin{equation}\label{eq:scalar-field-generate-particle}
-	\phi_R(k)|\Omega\rangle = \frac{1}{2\omega_{\bm k}}|k\rangle + \text{multi-particle states}.
-\end{equation}
-
-If we want to create a single-particle state, say at time $t=0$.
-We can do this by acting the operator $\tilde{\phi}(k)$ on the vacuum state at time $-T$, then we know when the system evolves for time $T$, it becomes:
-\begin{equation}
-	e^{-i E_{\bm k} T}|k\rangle + e^{-iHT} \cdot \text{multi-particle states}.
-\end{equation}
-Here comes the trick.
-Assuming the theory is gapped (with mass $m^2>0$), the multi-particle states have higher energy than the single particle states.
-We then replace the $t$ by $(1-i\epsilon)t$, which effectives impose a suppression factor $e^{-\epsilon H T}$ to the state.
-In the $T\rightarrow \infty$ limit, the amplitude of the multi-particle states vanishes.
-
-The story for the spinor field is exactly the same as the scalar field (also assume the particle has nonzero mass).
-However, the story for the photon field is different, since the photon is massless.
-A quick escape from the conundrum is to assume the photon has a small mass $m_\gamma$, and latter set $m_\gamma \rightarrow 0$.
-
 
 
 \section{Path Integral Formalism}
@@ -615,10 +293,7 @@ Consider the action for free field with source
 	S[\phi,J]
 	= \int d^dx\left[\mathcal{L}(\phi) + J(x)\cdot\phi(x) \right].
 \end{equation}
-In the path integral formalism, we consider the partition function with source:
-\begin{equation}
-	Z[J] = \int D[\phi]\ e^{iS[\phi,J]}.
-\end{equation}
+In the path integral formalism, we consider the partition function with source: $Z[J] = \int D[\phi]\ e^{iS[\phi,J]}$.
 The central quantity a field theory produces is the correlation function of field values at different spacetime points:
 \begin{equation}
 	C(x_1,\cdots,x_n) \equiv \langle \phi(x_1)\cdots \phi(x_n)\rangle,
@@ -627,7 +302,7 @@ where $\langle \cdots \rangle$ denotes the (time-ordered) average defined by the
 \begin{equation}
 	\langle \cdots \rangle \equiv \frac{1}{Z[0]}\int D[\phi]\ e^{-iS[\phi]} (\cdots).
 \end{equation}
-We see that the partition function produce all possible correlation functions:
+We see that the partition function produces all possible correlation functions:
 \begin{equation}
 	C(x_1,\cdots,x_n) = \left. \prod_{i=1}^n \left[\frac{\delta}{i\delta J(x_i)}\right] Z[J] \right|_{J=0}.
 \end{equation}
@@ -637,62 +312,58 @@ For interaction theory, the perturbation approach is that we first evaluate the 
 	Z[J] = \exp\left(i\int d^dx \mathcal{L}_{\mathrm{int}}\left[\frac{\delta}{i\delta J(x)}\right]\right)Z_0[J],
 \end{equation}
 which can then be Taylor expanded order by order.
-Since the unconnected diagram can be absorbed into $Z[0]$, we only need to calculate the connected diagram.
-The procedure of perturbative expansion with only connected diagrams can be formally represented by introducing the quantity $Z[J] = Z[0]\exp\left(i W[J]\right)$.
-The perturbative expansion of $W[J]$ contain only the connected diagrams.
+Since the unconnected diagram can be absorbed into $Z[0]$, we only need to calculate the connected diagrams.
+The procedure of perturbative expansion with only connected diagrams can be formally represented by introducing the quantity 
+\begin{equation}
+	Z[J] = Z[0]\exp\left(i W[J]\right).
+\end{equation}
+The perturbative expansion of $W[J]$ contains only the connected diagrams.
 Note that for the free theory,
 \begin{equation*}
 	\frac{Z_0[J]}{Z_0[0]} = \exp\left[-\frac{i}{2}\int d^d x_1 d^d x_2 J(x_1) \Delta(x_1-x_2)J(x_2)\right],
 \end{equation*}
-which means
-\begin{equation*}
-	W_0 = -\frac{1}{2}\int d^d x_1 d^d x_2 J(x_1) \Delta(x_1-x_2)J(x_2).
-\end{equation*}
+which means $W_0 = -\frac{1}{2}\int d^d x_1 d^d x_2 J(x_1) \Delta(x_1-x_2)J(x_2)$.
 
-Consider the four-point connected correlation:
-\begin{equation}
-	iV_4 \equiv \langle \mathcal{T}\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\rangle_c
-\end{equation}
+
+Consider the four-point connected correlation $iV_4 \equiv \langle \mathcal{T}\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\rangle_c$.
 Following the same procedure,
 \begin{equation}
 \begin{aligned}
 	iV_4 
-	=&\ i\left.\frac{\delta^4 W[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
-	=&\ \frac{1}{Z[0]}\left.\frac{\delta^4 Z[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
-	&-i\Delta(x_1-x_2) i\Delta(x_3-x_4) -i\Delta(x_1-x_3) i\Delta(x_2-x_4) -i\Delta(x_1-x_4) i\Delta(x_2-x_3).
+	&= i\left.\frac{\delta^4 W[J]}{i\delta J(x_1)i\delta J(x_2)i\delta J(x_3)i\delta J(x_4)}\right|_{J=0} \\
+	&= \frac{1}{Z[0]}\left.\frac{\delta^4 Z[J]}{i\delta J_1 i\delta J_2 i\delta J_3 i\delta J_4}\right|_{J=0} 
+	-i\Delta_{1,2} i\Delta_{3,4} -i\Delta_{1,3} i\Delta_{2,4} -i\Delta_{1,4} i\Delta_{2,3}.
 \end{aligned}
 \end{equation}
-The connected correlation function automatically omit those disconnected components.
+The connected correlation function automatically omits those disconnected components.
 
 \subsection{Free Scalar Field}
 
 Now we evaluate the propagator in the path-integral formalism.
-In momentum space, the free action (with source) is 
+In momentum space, the free action (with source) is\footnote{The space-time Fourier transformation is: 
+\begin{equation*}
+	\tilde{f}(k) = \int d^{d}x\ e^{ik\cdot x} f(x),\quad
+	f(x) = \int \frac{d^{d}k}{(2\pi)^{d}}\ e^{-ik\cdot x}\tilde{f}(k),
+\end{equation*}
+where the inner product of two $d$-vectors is defined as $a \cdot b = a^0 b^b - \bm a \cdot \bm b$.}
 \begin{equation*}
 	\frac{1}{V}\sum_k \left[\frac{1}{2}\tilde\phi^*(k)( k^2-m^2)\tilde\phi(k)+\tilde J^*(k)\cdot\tilde\phi(k)+\tilde\phi^*(k)\cdot\tilde J(k)\right].
 \end{equation*}
 For real field, $\tilde\phi^*(k) = \tilde\phi(-k)$.
 For our convenience, we have expressed the momentum integral as summation.
-Actually, consider the $d$-dimensional box of size $L^d$, the momentum along each axis is multiple of $2\pi/L$, so when $L\rightarrow \infty$, the summation approaches in integral,
-\begin{equation*}
-	\frac{1}{V}\sum_k \rightarrow \int \frac{d^d k}{(2\pi)^d}.
-\end{equation*}
-Let us omit the $1/V$ factor, the summation can be formally expressed as
-\begin{equation}
-	\frac{1}{4}\mathbf{v}^T \cdot \mathbf M\cdot \mathbf{v} + \frac{1}{2}\mathbf{j}^T \cdot \mathbf{v}
-\end{equation}
-where
+Actually, consider the $d$-dimensional box of size $L^d$, the momentum along each axis is multiple of $2\pi/L$, so when $L\rightarrow \infty$, the summation approaches in integral, $\frac{1}{V}\sum_k \rightarrow \int \frac{d^d k}{(2\pi)^d}$.
+Let us omit the $1/V$ factor, the summation can be formally expressed as $\frac{1}{4}\mathbf{v}^T \cdot \mathbf M\cdot \mathbf{v} + \frac{1}{2}\mathbf{j}^T \cdot \mathbf{v}$, where
 \begin{equation*}
 	\mathbf v = \bigoplus_{|\mathbf k|} \left[
 	\begin{array}{c}
 		\tilde{\phi}(k) \\ 
 		\tilde{\phi}^*(k) 
-	\end{array}\right],\ 
+	\end{array}\right], \quad
 	\mathbf M = \bigoplus_{|\mathbf k|} \left[
 	\begin{array}{cc} 
 		0 & k^2-m^2 \\ 
 		k^2-m^2 & 0 
-	\end{array}\right],\ 
+	\end{array}\right], \quad
 	\mathbf j = \bigoplus_{|\mathbf k|} \left[
 	\begin{array}{c}
 		\tilde{J}^*(k) \\ 
@@ -745,10 +416,7 @@ This gives the propagator in the momentum space:
 
 
 \subsection{From Field to Force}
-Consider two separate particle described by the delta function $J_a(x) = \delta^{(3)}(\bm x - \bm x_a)$, together the source is
-\begin{equation}
-	J(x) = J_1(x) + J_2(x).
-\end{equation}
+Consider two separate particle described by the delta function $J_a(x) = \delta^{(3)}(\bm x - \bm x_a)$, together the source is $J(x) = J_1(x) + J_2(x)$.
 Adding the source,
 \begin{equation*}
 	W_0[J] = -\frac{1}{2}\int d^4x_1 d^4 x_2 J(x_1) \Delta_0(x_1-x_2) J(x_2)
@@ -769,18 +437,14 @@ Recall that the partition function is actually infinite:
 where $E$ is the energy.
 Writing $\bm r \equiv \bm y_1 - \bm y_2$, and $u \equiv \cos\theta$ with $\theta$ the angle between $\bm k$ and $\bm r$, the volume form is $dk \cdot kd\theta \cdot  2\pi k \sin \theta = 2\pi k^2 dk du$, and the integral is
 \begin{equation}
-\begin{aligned}
-	E &= -\int \frac{d^3 k}{(2\pi)^3} \frac{e^{i k r u}}{k^2 + m^2} \\
-	&= - \frac{1}{(2\pi)^2} \int_0^\infty k^2 dk \int_{-1}^1 du \frac{e^{ikru}}{k^2 +m^2} \\
-	&= -\frac{1}{2\pi^2 r} \int_0^\infty k  \frac{\sin kr}{k^2 +m^2} dk.
-\end{aligned}
+	E = -\int \frac{d^3 k}{(2\pi)^3} \frac{e^{i k r u}}{k^2 + m^2} 
+	= - \frac{1}{(2\pi)^2} \int_0^\infty k^2 dk \int_{-1}^1 du \frac{e^{ikru}}{k^2 +m^2} 
+	= -\frac{1}{2\pi^2 r} \int_0^\infty k  \frac{\sin kr}{k^2 +m^2} dk.
 \end{equation}
 Since the integral is even, we can extend the integral to
 \begin{equation}
-\begin{aligned}
-	E &= -\frac{1}{4\pi^2 r} \int_{-\infty}^\infty k  \frac{\sin kr}{k^2 +m^2} dk \\
-	&= \frac{i}{4\pi^2 r} \int_{-\infty}^\infty \frac{k e^{ikr}}{k^2 +m^2} dk
-\end{aligned}
+	E = -\frac{1}{4\pi^2 r} \int_{-\infty}^\infty k  \frac{\sin kr}{k^2 +m^2} dk 
+	= \frac{i}{4\pi^2 r} \int_{-\infty}^\infty \frac{k e^{ikr}}{k^2 +m^2} dk
 \end{equation}
 The residue theorem gives
 \begin{equation}
@@ -797,424 +461,7 @@ and the attractive force is
 We see that in the massless case, the force gives the long-range Coulomb force $F \propto 1/r^2$, while in the massive field theory, the force is short-ranged, with the decay length proportional to the mass.
 
 
-\subsection{Symmetries}
 
-A (classical) symmetry means that the equation of motion dictated by a Lagrangian is invariant under the (usually infinitesimal) transformation (denoted as $\Lambda$, but not necessarily the Lorentz transformation), the coordinate and the field transform as
-\begin{equation}
-\begin{aligned}
-	x^\mu &\rightarrow {x'}^\mu = x^\mu + \omega_a \frac{\delta x^\mu}{\delta \omega_a}, \\
-	\phi(x) &\rightarrow \phi'(x') = \phi(x) + \omega_a \frac{\delta \mathcal F}{\delta \omega_a}(x).
-\end{aligned}
-\end{equation}
-Here the field $\phi$ may contain additional internal degrees of freedom. 
-Also here we adopt the active view of the field transformation, meaning that for a fixed coordinate $x$, the transformation of the field is
-\begin{equation}
-	\delta_\omega \phi(x) \equiv \phi'(x) - \phi(x) = - i\omega_a \hat G_a \phi(x),
-\end{equation}
-where by comparing the definitions, we know
-\begin{equation}
-	\hat G_a\phi(x) = \frac{\delta x^\mu}{\delta\omega_a} \partial_\mu \phi(x) - \frac{\delta\mathcal F}{\delta\omega_a}.
-\end{equation}
-
-\subsubsection{Noether's Theorem}
-The action under the above transformation becomes
-\begin{equation}
-	S' = \int d^d x' \mathcal L\left(\phi'(x'),\frac{\partial \phi'}{\partial {x'}^\mu}(x')\right).
-\end{equation}
-We are going to expand the expression to the first order of $\omega_a$'s.
-Note that there are two contributions to the change of action: one from the coordinate change and the other from the Lagrangian.
-For the coordinate part, we have
-\begin{equation}
-	\frac{\partial {x'}^\mu}{\partial x^\nu}
-	= \delta^\mu_\nu + \partial_\nu\left(\omega_a \frac{\delta x^\mu}{\delta \omega_a}\right).
-\end{equation}
-Using the relation 
-\begin{equation}
-	\det(1+E) = 1 + \Tr E, \quad E\text{ small},
-\end{equation}
-we know by changing the variable $x' \rightarrow x$, we get a contribution
-\begin{equation}
-\begin{aligned}
-	\delta S 
-	&= \int d^d x \left|\det \frac{\partial {x'}^\mu}{\partial x^\nu}\right|\left(\mathcal L + \omega_a \frac{\delta x^\mu}{\delta \omega_a} \partial_\mu \mathcal L \right)  \\
-	&= \int d^d x \ \partial_\mu \left(\mathcal L \omega_a \frac{\delta x^\mu}{\delta \omega_a}\right).
-\end{aligned}
-\end{equation}
-On the other hand, the change of Lagrangian is
-\begin{equation}
-	{\delta} \mathcal L =
-	\left[\frac{\partial \mathcal L}{\partial \phi} -\partial_\mu \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)} \right]\delta_\omega \phi + \partial_\mu \left(\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)} \delta_\omega \phi \right).
-\end{equation}
-The first term vanishes as the result of classical EOM.
-Together, the change of action is
-\begin{equation}
-\begin{aligned}
-	\delta S 
-	&= \int d^d x \ \partial_\mu \left(\mathcal L \omega_a \frac{\delta x^\mu}{\delta \omega_a}+\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)} \delta_\omega \phi \right) \\
-	&= \int d^d x \ \partial_\mu \left[\left(\delta^\mu_\nu \mathcal L - \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\partial_\nu \phi(x) \right)\frac{\delta x^\nu}{\delta\omega_a}  + \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\frac{\delta\mathcal F}{\delta\omega_a}\right] \omega_a \\
-	&\equiv \int d^d x \ \omega_a  \partial_\mu J^\mu_a.
-\end{aligned} 
-\end{equation}
-The symmetry requires that the action is invariant over arbitrary spacetime region, so that $J_a^\mu$ is conserved current.
-Note that we can freely add a derivative of an anti-symmetric tensor to the current:
-\begin{equation}
-	J^\mu_a \rightarrow J^\mu_a + \partial_\nu B^{\nu\mu}_a,\quad
-	B^{\mu\nu} = -B^{\nu\mu}.
-\end{equation}
-The above discussion gives the Noether's theorem, which says that symmetries in classical field theory imply conserved quantities.
-
-\subsubsection{Ward Identity}
-The quantum version of the Noether's theorem is the Ward identity.
-From the above discussion, we consider a \textit{local} transformation, i.e., $\omega_a(x)$ now depend on coordinate $x$.
-The action under such transformation becomes:
-\begin{equation}
-\begin{aligned}
-	S &\rightarrow \int d^d x \left[\mathcal L(x) + \partial_\mu\left( \omega_a(x) J_a^\mu \right) + \omega_a(x) F_a(x)\right] \\
-	&= \int d^d x \left[\mathcal L(x) + \omega_a(x) \partial_\mu J_a^\mu + \omega_a(x) (F_a+\partial_\mu J^\mu)\right],
-\end{aligned}
-\end{equation}
-where $\omega_a(x) F_a(x)$ comes from the classical EOM term that no longer vanishes automatically.
-However, using the fact that when $\omega_a(x)$ is constant, the action is invariant (over arbitrary region), any term involving $\omega(x)$ should be zero. 
-We thus know the action only depend on the derivative of $\omega_a(x)$, i.e.,
-\begin{equation}
-	S \rightarrow \int d^d x \left[\mathcal L(x) + J_a^\mu \partial_\mu \omega_a(x)  \right],
-\end{equation}
-Consider the quantum partition function $Z = \int D[\phi] e^{iS[\phi]}$.
-After the infinitesimal transformation, the partition function becomes
-\begin{equation}
-	Z = \int D[\phi'] e^{iS[\phi]} \exp\left[-i\int d^d x \ \omega_a(x) \partial_\mu J_a^\mu (x)\right].
-\end{equation}
-Note that the infinitesimal transformation for path-integral is nothing but a change of variable.
-If we assume the transformation does not change the measure: $D[\phi'] = D[\phi]$, then the quantum partition function is invariant under the local transformation.
-This implies the operator identity:
-\begin{equation}
-	\partial_\mu J_a^\mu(x) = 0.
-\end{equation}
-Note that the operator identity should be understood as a set of identity for correlation function.
-Consider the generating functional $Z[K] =\int D[\phi] \exp(iS[\phi]+ i \int d^d x K \phi)$, where we denote the auxiliary current as $K$ to avoid confusion with conserved current.
-For arbitrary infinitesimal (local) symmetry transformation, the generating functional
-\begin{equation}
-	Z[K] = \int D[\phi] e^{iS[\phi]+ i \int d^d x K \phi} \left[1-i\int d^d x\ \omega_a(x)\left(\partial_\mu J^\mu + K \hat G \phi \right) \right]
-\end{equation}
-remains the same, which means
-\begin{equation}
-	\int D[\phi] e^{iS[\phi]+ i \int d^d x K \phi} \left(\partial_\mu J^\mu(x) + K(x) \hat G \phi(x) \right) = 0.
-\end{equation}
-By taking derivative on $K(x_i)$ for $n$ times, and then set $K=0$, we get the Ward identity:
-\begin{equation}
-	\partial_\mu \langle J_a^\mu(x) \phi(x_1) \cdots \phi(x_n)\rangle = -i\delta(x-x_i) \sum_{i=1}^n \langle \phi_1 \cdots \hat G\phi(x_i)\cdots \phi_n\rangle.
-\end{equation}
-The right-hand side can be viewed as the contact due to the time-ordering;
-It vanishes if $x \ne x_i$ for all $i$'s. 
-
-
-
-
-\section{Scattering}
-
-In this section, we discuss the calculation of the central observable in quantum field theory, the transition amplitudes from one set of separated particles to another.
-The amplitude is related to the cross section in the scattering experiment, or decay rate for unstable particles.
-
-
-\subsection{Cross Section and Decay Rates}
-
-In the scattering experiment, the initial and final states are assumed to be free.
-For this reason, we can think of the process as start from $t=-\infty$ to $t=+\infty$, where free states at $t=\pm \infty$ are known as \textit{asymptotic states}.
-We give the time-evolution operator a special name: the \textit{S-matrix}, defined as:
-\begin{equation}
-	\langle f|S| i\rangle_{\text{Heisenberg}} \equiv \langle f ; \infty \mid i ;-\infty\rangle.
-\end{equation}
-The S-matrix is related to quantities experimentally measurable, for example the cross sections or decay rates, as discussed in the following.
-
-\subsubsection{Cross Sections}
-The \textit{cross section} is an analogy from classical scattering experiment.
-Imagine there is just a single nucleus. 
-Then the \textit{cross-sectional area} is given by
-\begin{equation}
-	\sigma=\frac{\text { number of particles scattered }}{\text { time } \times \text { number density in beam } \times \text { velocity of beam }}=\frac{1}{T} \frac{1}{\Phi} N,
-\end{equation}
-where $T$ is the time for the experiment, $\Phi$ the incoming flux, and $N$ the number of particles scattered.
-In quantum mechanical generalization of the notion of cross-sectional area is the \textit{cross section}, which still has units of area, but has a more abstract meaning as a measure of the interaction strength. 
-While classically a particle either scatters off the nucleus or it does not scatter, quantum mechanically it has a probability for scattering. 
-The classical differential probability is $P=N/N_{\text{inc}}$, where $N$ is the number of particles scattering into a given area and $N_{\text {inc }}$ is the number of incident particles. 
-So the quantum mechanical cross section is then naturally
-\begin{equation}
-	d \sigma=\frac{1}{T} \frac{1}{\Phi} d P,
-\end{equation}
-where $\Phi$ is the flux, now normalized as if the beam has just one particle, and $P$ is now the quantum mechanical probability of scattering. 
-The differential quantities $d \sigma$ and $d P$ are differential in kinematical variables, such as the angles and energies of the final state particles.  
-
-Now let us relate the formula for the differential cross section to S-matrix elements. 
-From a practical point of view it is impossible to collide more than two particles at a time, thus we can focus on the special case of S-matrix elements where $|i\rangle$ is a two-particle state. 
-So, we are interested in the differential cross section for the ($2 \rightarrow n$) process:
-\begin{equation}
-	p_{1}+p_{2} \rightarrow\left\{p_{j}\right\}.
-\end{equation}
-In the rest frame of one of the colliding particles, the flux is just the magnitude of the velocity of the incoming particle divided by the total volume: $\Phi=|\vec{v}| / V$. 
-In a different frame, such as the center-of-mass frame, beams of particles come in from both sides, and the flux is then determined by the difference between the particles' velocities. 
-So, $\Phi=$ $\left|\vec{v}_{1}-\vec{v}_{2}\right| / V$. 
-This should be familiar from classical scattering. 
-Thus,
-\begin{equation}
-	d \sigma=\frac{V}{T} \frac{1}{\left|\vec{v}_{1}-\vec{v}_{2}\right|} d P.
-\end{equation}
-From quantum mechanics we know that probabilities are given by the square of amplitudes. 
-Since quantum field theory is just quantum mechanics with a lot of fields, the normalized differential probability is
-\begin{equation}
-	dP=\frac{|\langle f|S| i\rangle|^{2}}{\langle f | f\rangle\langle i | i\rangle} d \Pi.
-\end{equation}
-Here, $d \Pi$ is the region of final state momenta at which we are looking. 
-It is proportional to the product of the differential momentum, $d^{3} p_{j}$, of each final state and must integrate to 1. 
-So
-\begin{equation}
-	d \Pi=\prod_{j} \frac{V}{(2 \pi)^{3}} d^{3} p_{j}.
-\end{equation}
-This has $\int d \Pi=1$, since $\int \frac{d p}{2 \pi}=\frac{1}{L}$ (by dimensional analysis and our $2 \pi$ convention).
-According to our normalization convention for single-particle state,
-\begin{equation}
-	\langle p|p\rangle = (2\omega_p)(2\pi)^3\delta^{(3)}(0) = 2\omega_p V.
-\end{equation}
-Now let us turn to the S-matrix element $\langle f|S| i\rangle$. 
-We usually calculate S-matrix elements perturbatively. 
-In a free theory, where there are no interactions, the S-matrix is simply the identity matrix. 
-We can therefore write
-\begin{equation}
-	S=1+i \mathcal{T},
-\end{equation}
-where $\mathcal{T}$ is called the transfer matrix and describes deviations from the free theory. 
-Since the S-matrix should vanish unless the initial and final states have the same total 4-momentum, it is helpful to factor an overall momentum-conserving $\delta$-function:
-\begin{equation}
-	\mathcal{T}=(2 \pi)^{4} \delta^{4}(\Sigma p) \mathcal{M}
-\end{equation}
-Here, $\delta^{4}(\Sigma p)$ is shorthand for $\delta^{4}\left(\Sigma p_{i}-\Sigma p_{f}\right)$, where $p_{i}$ are the initial particles' momenta and $p_{f}$ are the final particles' momenta. 
-In this way, we can focus on computing the nontrivial part of the S-matrix, $\mathcal{M}$. 
-In quantum field theory, ``matrix elements'' usually means $\langle f|\mathcal{M}| i\rangle$. Thus we have
-\begin{equation}
-	\langle f|\mathcal T| i\rangle=(2 \pi)^{4} \delta^{4}(\Sigma p)\langle f|\mathcal{M}| i\rangle.
-\end{equation}
-So,
-\begin{equation}
-\begin{aligned}
-	d P &=\frac{\delta^{4}(\Sigma p) T V(2 \pi)^{4}}{\left(2 E_{1} V\right)\left(2 E_{2} V\right)} \frac{|\mathcal{M}|^{2}}{\prod_{j}\left(2 E_{j} V\right)} \prod_{j} \frac{V}{(2 \pi)^{3}} d^{3} p_{j} \\
-	&=\frac{T}{V} \frac{1}{\left(2 E_{1}\right)\left(2 E_{2}\right)}|\mathcal{M}|^{2} d \Pi_{\mathrm{LIPS}}
-\end{aligned}
-\end{equation}
-where
-\begin{equation}
-	d \Pi_{\text {LIPS }} \equiv \prod_{\text {final states } j} \frac{d^{3} p_{j}}{(2 \pi)^{3}} \frac{1}{2 E_{p_{j}}}(2 \pi)^{4} \delta^{4}(\Sigma p)
-\end{equation}
-is called the \textit{Lorentz-invariant phase space} (LIPS).
-Putting everything together, we have
-\begin{equation}
-	d \sigma=\frac{1}{\left(2 E_{1}\right)\left(2 E_{2}\right)\left|\vec{v}_{1}-\vec{v}_{2}\right|}|\mathcal{M}|^{2} d \Pi_{\text {LIPS }}
-\end{equation}
-All the factors of $V$ and $T$ have dropped out, so now it is trivial to take $V \rightarrow \infty$ and $T \rightarrow \infty$. Recall also that velocity is related to momentum by $\vec{v}=\vec{p} / p_{0}$.
-
-
-\subsubsection{Decay Rates}
-An unstable particle may decays to other particle(s), the rate of which is called the \textit{decay rate}.
-A \textit{differential decay rate} is the probability that a one-particle state with momentum $p_{1}$ turns into a multi-particle state with momenta $\left\{p_{j}\right\}$ over a time $T$:
-\begin{equation}
-	d \Gamma=\frac{1}{T} d P .
-\end{equation}
-Of course, it is impossible for the incoming particle to be an asymptotic state at $-\infty$ if it is to decay, and so we should not be able to use the $S$-matrix to describe decays. 
-The reason this is not a problem is that we calculate the decay rate in perturbation theory assuming the interactions happen only over a finite time $T$. 
-Thus, a decay is really just like a ($1 \rightarrow n$) scattering process.
-
-Following the same steps as for the differential cross section, the decay rate can be written as
-\begin{equation}
-	d \Gamma=\frac{1}{2 E_{1}}|\mathcal{M}|^{2} d \Pi_{\text {LIPS }}
-\end{equation}
-Note that this is the decay rate in the rest frame of the particle. 
-If the particle is moving at relativistic velocities, it will decay much slower due to time dilation. 
-The rate in the boosted frame can be calculated from the rest-frame decay rate using special relativity.
-
-
-
-
-
-\subsection{LSZ Reduction Formula}
-
-The LSZ reduction formula is used to simplify the calculation of the S-matrix in the momentum space.
-It essentially states that for the S-matrix of an ($n \rightarrow m$) process, the matrix element equals to the \textit{amputated Green's function}, which is the Green's function with in and out states propagators amputated:
-\begin{equation}
-	\tilde{G}(k_1,\cdots,k_n) = \left[\prod_{i=1}^n \tilde{G}(k_i) \right] \tilde{G}_{\mathrm{amp}}(k_1,\cdots,k_n).
-\end{equation}
-Or, in the coordinate space (for scalar field), 
-\begin{equation}
-	\tilde{G}_{\mathrm{amp}}(k_1,\cdots,k_n) = \left[\prod_{i=1}^n \int d x_i e^{-i k_i x_i} \frac{-\partial^2-m^2}{i\sqrt Z} \right] G(x_1,\cdots,x_n).
-\end{equation}
-Note that since the in and out states are on-shell, the factor $-\partial^2-m^2$ effectively filter out the singularity $\frac{i}{k^2-m^2}$, and any regular term without singularity will not affect the result.
-
-\subsubsection{Asymptotic Process}
-To get the basis idea how it happens, consider the correlation function
-\begin{equation}
-	iG(y_m,\cdots,y_1,x_1,\cdots,x_n) = \langle\Omega|\phi(y_m)\cdots\phi(y_1) \phi(x_1)\cdots\phi(x_n)|\Omega\rangle.
-\end{equation}
-Now we are going to Fourier transform this function for the variable $x_1$.
-First we split the time to three domains: $(-\infty,T_-]$, $(T_-,T_+)$, and $[T_+,+\infty)$ such that at time $T_{\pm}$ the particles are well-separated.
-Consider first the integral over the first domain:
-\begin{equation}
-	\int_{-\infty}^{T_-} dx_1^0 \int d^3 x\ e^{i k\cdot x_1} \int \frac{d^3q}{(2\pi)^3}\frac{1}{2\omega_q}\langle \Omega|\phi(y_m)\cdots\phi(y_1) \phi(x_2)\cdots\phi(x_n)|q\rangle \langle q|\phi(x_1) |\Omega\rangle,
-\end{equation}
-where we have inserted the complete set of intermediate states.\footnote{Note that the multi-particle state are discarded as discussed. Also, the single particle state $|k\rangle$ shall be think as a concentrated wave packet near the particle at $\bm x_1$, so that it has negligible overlap with other particle states.}
-Then use the fact $\langle q|\phi(x_1)|\Omega\rangle = \sqrt{Z_\phi} e^{i q \cdot x_1}$, 
-\begin{equation}
-	\int_{-\infty}^{T_-} dx_1^0 \ e^{i (k^0+\omega_q-i\epsilon)\cdot x_1^0}\frac{\sqrt{Z_\phi}}{2\omega_k}\langle \Omega|\phi(y_m)\cdots\phi(y_1) \phi(x_2)\cdots\phi(x_n)|k\rangle,
-\end{equation}
-The time integral gives the singularity at $k^0=-\omega_k$:
-\begin{equation}
-	\frac{1}{2\omega_k} \frac{i}{\omega_k+k^0 + i\epsilon} = \frac{i\sqrt{Z_\phi}}{k^2-m^2+i\epsilon} + \text{regular terms}.
-\end{equation}
-
-Now consider the integral over the third time domain.
-The calculation is basically the same, the difference is the insertion gives
-\begin{equation*}
-	\langle\Omega| \phi(x_1) |q\rangle = \sqrt{Z_\phi} e^{i q \cdot x_1},
-\end{equation*}
-which leads to a singularity at $k^0=\omega_k$:
-\begin{equation}
-	\frac{1}{2\omega_k} \frac{i}{\omega_k-k^0 + i\epsilon} = \frac{i\sqrt{Z_\phi}}{k^2-m^2+i\epsilon} + \text{regular terms}.
-\end{equation}
-Note that although for the above two cases, the final singular expression can be brought to the same form, the location of the singularity is different, which indicate whether it is the in or out state.
-Specific frequency filter can be chosen to select out the component accordingly.
-
-Finally, consider the integral over time interval $(T_-,T_+)$, where the particle are interacting and single particles are not well defined.
-On this interval the correlation will not have any singularity.\footnote{some branch cuts are possible, but they will also be annihilated by $k^2-m^2$ term.}
-We then know that if we choose $\phi(x_1)$ to create the in state, and we only care about the singular structure, then the Fourier transformation produce the factor
-\begin{equation}
-	\frac{i\sqrt{Z_\phi}}{k_1^2-m_1^2}.
-\end{equation}
-The same procedure applies to every field operator, and the final result is
-\begin{equation}
-\begin{aligned}
-	S &= \langle p_1,\cdots,p_1;T_+|k_1,\cdots,k_n;T_-\rangle \\
-	&= i\tilde{G}_{\mathrm{amp}}(p_m,\cdots,p_1;-k_1,\cdots,-k_n) \delta^{(4)}\left(\sum p-\sum k \right).
-\end{aligned}
-\end{equation}
-Or, the matrix element satisfies
-\begin{equation}
-	\mathcal M_{fi} = \tilde{G}_{\mathrm{amp}}(p_m,\cdots,p_1;-k_1,\cdots,-k_n).
-\end{equation}
-
-
-\subsubsection{Operator Proof}
-Here we choose another way to prove the LSZ formula.
-We think a single-particle state to be created by the particle creation operator $a^\dagger$.
-For free theory, we have
-\begin{equation}
-\begin{aligned}
-	\sqrt{2\omega_k} a_k &= i \int d^3 x\ e^{ik\cdot x}(-i\omega_k+\partial_t)\phi(x), \\
-	\sqrt{2\omega_k} a^\dagger_k &= -i \int d^3 x\ e^{-ik\cdot x}(i\omega_k+\partial_t)\phi(x).
-\end{aligned}
-\end{equation}
-When interaction is turned on, the field operator $\phi(x)$ is renormalized as
-\begin{equation*}
-	\phi_R(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{in}}(x) \sim \sqrt{Z_{\phi}} \phi_{\mathrm{out}}(x),
-\end{equation*}
-so we define the particle creation operator as
-\begin{equation}
-	a_R^\dagger \equiv -i \int d^3 x\ e^{-ik\cdot x}(i\omega_k+\partial_t)\phi_R(x).
-\end{equation}
-When acting on the vacuum:
-\begin{equation}
-	\sqrt{2\omega_k} a_R^\dagger(k) |\Omega\rangle = |k\rangle + \text{multi-particle states}.
-\end{equation}
-On may wonder why $a_{\mathrm{in}}(k)$ do not contribute to the single-particle state. 
-To see that, one can think of the original particle-creation operator $a^\dagger(k)$ in the frequency domain to have a delta function peak at $\omega_k$.
-While for the $a(k)$ in the interacting theory, although it can have weight at the frequency $\omega_k$, there will be no delta-function-like peak.
-
-The in and out state are though to be created by the operator $a_R^\dagger(k)$.
-Note that as discussed, the multi-particle contribution is discarded.
-In the Heisenberg picture, the particle-creation operator satisfies:
-\begin{equation}
-\begin{aligned}
-	a_{R}^\dagger(-\infty) - a_{R}^\dagger(+\infty)
-	&= \frac{i}{\sqrt{2\omega_k}} \int dt\ \partial_t \left[\int d^{3}x\ e^{-ikx}(i\omega_k+\partial_t)\phi_R(x)\right] \\
-	&= \frac{i}{\sqrt{2\omega_k}} \int d^4 x e^{-ik\cdot x}(\omega_k^2+\partial_t^2)\phi_R(x) \\
-	&= \frac{i}{\sqrt{2\omega_k}} \int d^4 x e^{-ik\cdot x}\partial_t^2\phi_0(x) + \phi_R(x)(-\nabla^2+m^2)e^{-i k\cdot x} \\
-	&= \frac{i}{\sqrt{2\omega_k}} \int d^4 x e^{-ik\cdot x}(\partial^2+m^2)\phi_R(x)
-\end{aligned}
-\end{equation}
-The initial and final states are:
-\begin{equation}
-\begin{aligned}
-	|k_1, \cdots, k_m; \mathrm{in}\rangle &= \left[\prod_{j=1}^m \sqrt{2\omega_{k_j}} a^\dagger_{R}(k_j;-\infty)\right] |\Omega\rangle, \\
-	|p_1, \cdots, p_n, \mathrm{out}\rangle &= \left[\prod_{j=1}^n \sqrt{2\omega_{p_j}}a^\dagger_{R}(p_j;+\infty)\right] |\Omega\rangle.
-\end{aligned}
-\end{equation}
-The S-matrix is
-\begin{equation*}
-\begin{aligned}
-	S_{fi} &= \langle p_1, \cdots, p_n;\mathrm{out}| S |k_1, \cdots, k_m; \mathrm{in}\rangle \\
-	&= \frac{\langle 0|T 
-		\left(\prod \sqrt{2\omega_{p_j}} a_{p_j;\mathrm{out}} \right)
-		\int d^4 x \exp(i\mathcal{L}_{\mathrm{int}})
-		\left(\prod \sqrt{2\omega_{k_j}} a^\dagger_{k_j;\mathrm{in}} \right)|0\rangle}
-		{\langle 0|T\int d^4 x \exp(i\mathcal{L}_{\mathrm{int}})|0\rangle}
-\end{aligned}
-\end{equation*}
-Since the scattering process correspond to the connected diagram, meaning that the initial and final state has distinct momentum particles.
-We are free to make the substitution
-\begin{equation*}
-	a^\dagger_{\mathrm{in}} \rightarrow (a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger),\ 
-	a_{\mathrm{out}} \rightarrow -(a_{\mathrm{in}}^\dagger - a_{\mathrm{out}}^\dagger)^\dagger.
-\end{equation*}
-In this way, the S-matrix is
-\begin{equation}
-\begin{aligned}
-	& \langle p_1, \cdots, p_n| S |k_1, \cdots, k_m\rangle  \\
-	=& \prod_{i=1}^{m}\left[ \int d^dx_i \ e^{ip_i\cdot x_i}i(\partial^2+m_i^2)\right]
-	\prod_{j=m+1}^{m+n}\left[\int d^dx_j \ e^{-ik_j\cdot x_j}i(\partial^2+m_j^2)\right] iG(\{x\}).
-	\label{eq:K-G-LSZ}
-\end{aligned}
-\end{equation}
-In momentum space
-\begin{equation}
-	\mathcal M = \prod_{i=1}^{m}\left[\frac{p_i^2-m_i^2}{i\sqrt{Z_\phi}}\right]
-		\prod_{j=m+1}^{m+n}\left[\frac{k_j^2-m_j^2}{i\sqrt{Z_\phi}}\right]
-		\tilde{G}(\{p_i\};\{-k_j\}).
-\end{equation}
-We thus proved the LSZ reduction formula again.
-
-Note that in the second equality, we move the operator $\partial^2$ out of the time-ordering operator, which will actually create \textit{contact terms}.
-We will show the contact term can be safely neglected.
-To see this, first consider the time-ordered two-point function:
-\begin{equation}
-	\langle 0|T\phi(x_1)\phi(x_2)|0\rangle
-	= \theta(t_1-t_2)\langle 0|\phi(x_1)\phi(x_2)|0\rangle -
-	\theta(t_2-t_1)\langle 0|\phi(x_2)\phi(x_1)|0\rangle.
-\end{equation}	
-Take time derivative on both side:
-\begin{equation*}
-\begin{aligned}
-	\partial_{t_1} \langle 0|T\phi(x_1)\phi(x_2)|0\rangle
-	&= \langle 0|T\partial_{t_1}\phi(x_1)\phi(x_2)|0\rangle +
-	\delta(t_1-t_2)\langle 0|[\phi(x_1),\phi(x_2)]|0\rangle \\
-	&= \langle 0|T\partial_{t_1}\phi(x_1)\phi(x_2)|0\rangle.
-\end{aligned}
-\end{equation*}
-The second equality follows from the fact that $x_1,x_2$ is equal-time.
-Take the the time derivative once more:
-\begin{equation*}
-	\partial^2_{t_1} \langle 0|T\phi(x_1)\phi(x_2)|0\rangle
-	= \langle 0|T\partial^2_{t_1}\phi(x_1)\phi(x_2)|0\rangle +
-	\delta(t_1-t_2)\langle 0|[\partial_{t_1}\phi(x_1),\phi(x_2)]|0\rangle.
-\end{equation*}
-The second term on the right hand side is the contact term.
-For free theory, $\partial_{t_1}\phi(x_1)$ is the canonical momentum, meaning that
-\begin{equation}
-	[\phi(\vec x_1, t),\partial_{t}\phi(\vec x_1,t)] = i \delta^{3}(\vec x_1-\vec x_2).
-\end{equation}
-In general, for $n$-point correlation,
-\begin{equation}
-\begin{aligned}
-	 \partial_{t_1}^2 \langle T\phi_{x_1}\cdots\phi_{x_n} \rangle
-	= \langle T\partial_{t_1}^2\phi_{x_1}\cdots\phi_{x_n}\rangle -i \sum_j \delta^4(x_1-x_j) \langle T \phi_{x_2}\cdots\cancel{\phi_{x_j}}\cdots\phi_{x_n} \rangle.
-\end{aligned}
-\end{equation}
-In the LSZ formula, the contact term do not have any singularity.
-When the external legs approach to momentum shell, these regular terms vanishes, so the contact will not contribute to the S-matrix.
 
 
 

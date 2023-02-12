@@ -1,0 +1,151 @@
+\documentclass[aps,prb,superscriptaddress,nofootinbib]{revtex4}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,bookmarks=true,citecolor=blue,linkcolor=red,urlcolor=blue]{hyperref}
+\usepackage{appendix}
+\usepackage{float}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\parindent}{10 pt}
+\setlength{\parskip}{2 pt}
+\setcounter{MaxMatrixCols}{30}
+\bibliographystyle{apsrev}
+
+\newcommand{\normord}[1]{{:\mathrel{#1}:}}
+\def\tbs{\textbackslash}
+\def \tr{\operatorname{tr}}
+\def \Tr{\operatorname{Tr}}
+
+
+\begin{document}
+\title{Nonrelativistic Electrons}
+\author{Jie Ren}
+
+
+
+\maketitle
+
+\tableofcontents
+
+
+
+\section{Homogeneous Electron Gas}
+
+
+In this section, we consider the finite temperature electron system.
+A general non-relativistic field theory is described by the action (with repeated indices automatically summed):
+\begin{equation}
+	S = S_0 + S_{\mathrm{int}} = \int dt \int d^d x\ \mathcal{L}_0 - \int dt\ \mathcal{V}_{\mathrm{int}}[\bar\psi,\psi],
+\end{equation}
+where the free theory is described by a quadratic Lagrangian $\mathcal{L}_0 = \bar\psi (i\partial_t-\hat H)\psi$.
+The classical equation of motion for the free field satisfies the Schr\"{o}dinger equation:
+\begin{equation}
+	\partial_\mu \frac{\partial \mathcal L_0}{\partial(\partial_\mu \bar\psi_a)} - \frac{\partial \mathcal L_0}{\partial\bar{\psi}_a} 
+	= - i\partial_t \psi_a + \hat H_{ab}\psi_b = 0.
+\end{equation}
+For the homogeneous electron gas, we will mostly work in the momentum and frequency domain.
+To obtain a similar form as the relativistic field theory, we use the similar definition of the Fourier transformation:
+\begin{equation}
+\begin{aligned}
+	\psi_a(k,\omega) &= \int dt\int_{L^d} d^dx\ e^{-i k \cdot x+i\omega t}\psi_a(x,t), \\
+	\psi_a(x,t) &= \frac{1}{L^d}\sum_{k} e^{i k \cdot x} \int \frac{d\omega}{2\pi} e^{-i\omega t} \psi_a(k,\omega) 
+	\sim \int\frac{d\omega}{2\pi}\int_{|k|<\Lambda}\frac{d^d k}{(2\pi)^d} e^{i k \cdot x-i\omega t} \psi_a(k,\omega).
+\end{aligned}
+\end{equation}
+Note that in condensed matter system, we usually use the lattice regularization: we think of the system as a finite $d$-dimensional cubic with length $L = N a$.
+The lattice spacing $a$ impose a natural UV cutoff $\Lambda = \pi/a$.
+In the thermodynamic limit, the summation becomes the integral: 
+\begin{equation}
+	\frac{1}{L^d}\sum_k \longrightarrow \int_{|k|<\Lambda} \frac{d^d k}{(2\pi)^d}.
+\end{equation}
+In the momentum space, the free theory can be simplified:
+\begin{equation}
+	S_0[\bar\psi,\psi] = \int dt \int \frac{d^d k}{(2\pi)^d} \bar\psi(k) [i\partial_t-\hat H(k)]\psi_b(k)
+	= \int\frac{d\omega}{2\pi}\int\frac{d^d k}{(2\pi)^d} \bar\psi(k, \omega)[\omega - \hat H(k)]\psi(k, \omega),
+\end{equation}
+which gives the real-time Green's function
+\begin{equation}
+	iG_0(k,\omega) = \frac{1}{\omega - \hat H(k)}
+\end{equation}
+
+
+
+\subsection{Finite Temperature Formalism}
+
+The original real-time partition function is defined as\footnote{As with the relativistic case, we introduce an auxiliary source $J$, which is bosonic/fermionic if the field $\psi$ is bosonic/fermionic.
+}
+\begin{equation}
+	Z[J] = \int D[\bar\psi,\psi] \exp\left\{i\int dt \int d^dx \left[\mathcal{L}+\bar{J}_a(x)\psi_a(x)+\bar{\psi}_a(x)J_a(x)\right]\right\}.
+\end{equation}
+If we make a analytic continuation of $t$ to the complex plane: $t \rightarrow -i\tau, \ \omega \rightarrow i\omega$, the free action transforms as:
+\begin{equation}
+	iS_0 = i \int dt dx\ \psi(\bm x, t) (i\partial_t - E) \psi(\bm x, t) \ \longrightarrow \ 
+	-\int d\tau dx\ \psi(\bm x, \tau) (\partial_\tau + E) \psi(\bm x, \tau).
+\end{equation}
+Note that in the frequency domain, the singularities for positive frequency lies below the complex plane, as we always include an infinitesimal $-i\epsilon$ to the energy (mass) term of the theory in ensure convergence. So, the rotation of the real axis anti-clock-wisely to the imaginary axis will not cross any singularity, and thus the can be analytically extended.
+The partition function can then be written as $Z[J] = \int D[\bar\psi,\psi] e^{-S_0[\bar\psi,\psi]+\bar{J}\cdot\psi+\bar{\psi}\cdot J}$, where the Euclidean free action defined as:
+\begin{equation}
+	S = \int d\tau \left[\int d^dx\ \bar\psi_a(\bm x,\tau) (\delta_{ab}\partial_\tau+\hat H_{ab})\psi_b(\bm x,\tau) + \mathcal{V}_\mathrm{int}\right].
+\end{equation}
+The Euclidean action is suitable to describe the system both in zero temperature or finite temperature.
+For finite temperature case, the integral over the imaginary time $\tau$ is over $[0,\beta)$.
+The Fourier transformation of the field on the imaginary time domain is defined as:\footnote{Note that the fermion field satisfies the anti-periodic boundary condition on the interval $[0,\beta)$: it change sign when crossing the boundary. The Matsubara frequencies for fermions are $\omega_n = (2n+1)\pi/\beta$ for $n \ge 0$.}
+\begin{equation}
+	\psi(\omega_n) = \int_0^\beta d\tau e^{i\omega_n\tau} \psi(\tau),\quad
+	\psi(\tau) = \frac{1}{\beta}\sum_{\omega_n} e^{-i\omega_n\tau} \psi(\omega_n).
+\end{equation}
+Under such convention, in the thermodynamic limit and zero-temperature limit, the spatial-temporal Fourier transformation agrees with the relativistic case (up to a Wick rotation).
+The Fourier transformation of the free field action is
+\begin{equation}
+	S_0 = \frac{1}{\beta}\sum_{\omega_n} \int_{\Lambda} \frac{d^dk}{(2\pi)^d}
+	\bar{\psi}_a(k,\omega_n)\left[-i\omega_n + \hat{H}_{ab}(k)\right]\psi_b(k,\omega_n).
+\end{equation}
+The partition function with source is
+\begin{equation}
+	\frac{Z_0[J]}{Z_0[0]} = \exp\left[-\frac{1}{\beta}\sum_{\omega_n} \int_{\Lambda} \frac{d^dk}{(2\pi)^d}\bar J_a(k,\omega_n) G_{ab}(k,\omega_n) J_b(k,\omega_n) \right],
+\end{equation}
+where the Green's function is 
+\begin{equation}
+	G_{ab}(k,\omega_n) = \frac{1}{i\omega_n - \hat H(k)}.
+\end{equation}
+Unlike the relativistic case, the value of the value of partition function without source $Z_0[0]$ is related to the free energy.
+We can express it formally as $Z_0[0]= \det (-G_{ab})$.
+To get the correct dimensionality, we set the determinant as 
+\begin{equation}
+	Z_0[0] \equiv \prod_{k,\omega_n}\left\{\beta \det\left[-i\omega_n+\tilde{H}(k)\right]\right\}.
+\end{equation}
+The summation on Matsubara frequencies is capture by the singularities of the density function of the states:
+\begin{equation}
+	\rho(z) = \frac{1}{e^{\beta z}+1}.
+\end{equation}
+The residue on imaginary frequency $i\omega_n$ is alway $\frac{1}{\beta}$. In this way, the summation is:
+\begin{equation}
+	\frac{1}{\beta}\sum_{\omega_n} f(i\omega_n) 
+	= \frac{1}{2\pi i} \oint \rho(z)f(z).
+\end{equation}
+The right-hand side can usually be evaluated using the residue theorem.
+
+
+
+\subsection{RPA Correction to Photon Propagator}
+Under the random phase approximation, the photon 
+\begin{equation}
+	\Pi(p,\omega) 
+\end{equation}
+
+
+
+
+
+
+\end{document}
+
+

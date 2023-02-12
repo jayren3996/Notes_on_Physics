@@ -1,0 +1,113 @@
+\documentclass[aps,prb,superscriptaddress,nofootinbib]{revtex4}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphbox}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,bookmarks=true,citecolor=blue,linkcolor=red,urlcolor=blue]{hyperref}
+\usepackage{simpler-wick}
+\usepackage{appendix}
+\usepackage{float}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[export]{adjustbox}
+\setlength{\parindent}{10 pt}
+\setlength{\parskip}{2 pt}
+\setcounter{MaxMatrixCols}{30}
+\bibliographystyle{apsrev}
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\normord}[1]{{:\mathrel{#1}:}}
+\def\tbs{\textbackslash}
+\def \tr{\operatorname{tr}}
+\def \Tr{\operatorname{Tr}}
+
+
+\begin{document}
+\title{Gravity}
+\author{Jie Ren}
+
+
+\maketitle
+
+
+\tableofcontents
+
+\section{Riemann Geometry}
+
+\subsection{Connection}
+For a general coordinate system, we can choose a coordinate basis $\{e_\mu \equiv \frac{\partial}{\partial x^\mu}\}$ and define the connection: 
+\begin{equation}\label{eq:connection}
+	\nabla_\mu e_\nu = e_\lambda{\Gamma^\lambda}_{\mu\nu}.
+\end{equation}
+We immediately know the covariant derivative for vector field:
+\begin{equation}
+	\nabla_\mu (W^\nu e_\nu) = \frac{\partial W^\nu}{\partial x^\mu} e_\nu + W^\nu e_\lambda {\Gamma^\lambda}_{\mu\nu} = \left(\frac{\partial W^\lambda}{\partial x^\mu} +{\Gamma^\lambda}_{\mu\nu} W^\nu \right) e_\lambda,  
+\end{equation}
+For the dual vector, consider the equation:
+\begin{equation}
+	\nabla_\mu (W^\nu V_\nu) = (\partial_\mu W^\nu) V_\nu + W^\nu (\partial_\mu V_\nu)
+	= \left(\frac{\partial W^\lambda}{\partial x^\mu} +{\Gamma^\lambda}_{\mu\nu} W^\nu \right)V_\lambda + W^\nu (\nabla_\mu V)_\nu,
+\end{equation}
+which leads to $\nabla_\mu V_\nu = \partial_\mu V_\nu -V_\lambda {\Gamma^\lambda}_{\mu\nu}$.
+The covariant derivative is used to defined the \textit{parallel transport}: let $X$ be a vector field defined along curve $c(t)$.
+$X$ is said to be parallel transported if
+\begin{equation}
+	\nabla_V X = 0 \quad \Longrightarrow \quad 
+	\frac{d x^\mu}{dt}\left(\frac{\partial X^\lambda}{\partial x^\mu} +{\Gamma^\lambda}_{\mu\nu} X^\nu \right) = \frac{d X^\lambda}{dt} +{\Gamma^\lambda}_{\mu\nu} \frac{dx^\mu}{dt} X^\nu = 0.
+\end{equation}
+where $V^\mu = \frac{d}{dt} x^\mu|_{c(t)}$.
+Further, a curve $c(t)$ is a geodesic if
+\begin{equation}
+	\nabla_V V = 0 \quad \Longrightarrow \quad
+	\frac{d^2 x^\mu}{dt^2} + {\Gamma^\mu}_{\nu\lambda} \frac{dx^\nu}{dt}\frac{dx^\lambda}{dt} = 0.
+\end{equation}
+Note that the connection is not a tensor: for a coordinate transformation $x \rightarrow \tilde x$, the basis transforms as $\tilde e_\nu = (\partial x^\mu/\partial \tilde x^\nu) e_\mu$.
+According to (\ref{eq:connection}), the new connection is
+\begin{equation}
+	\nabla_{\tilde e_\mu} \tilde e_\nu 
+	= \tilde{e}_\lambda {\tilde \Gamma^\lambda}_{\mu\nu} 
+	= \frac{\partial x^\sigma}{\partial \tilde{x}^\mu} \nabla_\sigma \left(\frac{\partial x^\tau}{\partial\tilde x^\nu} e_\tau\right)
+	= \frac{\partial x^\sigma}{\partial \tilde{x}^\mu} \left(\frac{\partial}{\partial x^\sigma}\frac{\partial x^\tau}{\partial\tilde x^\nu} e_\tau + {\Gamma^\rho}_{\sigma\tau}\frac{\partial x^\tau}{\partial\tilde x^\nu}e_\rho\right)
+\end{equation}
+Therefore, the connection transforms as:
+\begin{equation}
+	{\tilde \Gamma^\lambda}_{\mu\nu}
+	= {\Gamma^\rho}_{\sigma\tau} \frac{\partial \tilde x^\lambda}{\partial x^\rho} \frac{\partial x^\sigma}{\partial \tilde{x}^\mu} \frac{\partial x^\tau}{\partial\tilde x^\nu} + \frac{\partial \tilde x^\lambda}{\partial x^\tau} \frac{\partial^2 x^\tau}{\partial \tilde x^\mu \partial \tilde x^\nu}.
+\end{equation}
+
+
+
+\subsection{Curvature}
+
+
+\subsection{Vielbeins}
+
+
+
+\section{The Einstein Equations}
+
+
+\subsection{The Einstein-Hilbert Action}
+
+Given a Ricci scalar $R$, the action for gravitational field is
+\begin{equation}
+	S = \frac{M^2_\mathrm{pl}}{2} \int d^4 x \sqrt{-g} R.
+\end{equation}
+
+\subsection{Schwarzschild Spacetime}
+
+\subsection{de Sitter Space}
+
+
+
+
+
+\end{document}
+
+

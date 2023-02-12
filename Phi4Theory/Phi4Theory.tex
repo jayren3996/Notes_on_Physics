@@ -43,13 +43,226 @@ The free field part is assumed to be Klein-Gordon field
 \begin{equation}
 	\mathcal L_0 =\frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2.
 \end{equation}
-Assuming the theory has the reflection symmetry: $\phi \rightarrow -\phi$, the simplest form of interaction is the quartic term $\mathcal L_{\mathrm{int}} = -\frac{g}{4!}\phi^4$.
+Assuming the theory has the $Z_2$ symmetry: $\phi \rightarrow -\phi$, the simplest form of interaction is the quartic term $\mathcal L_{\mathrm{int}} = -\frac{g}{4!}\phi^4$.
 Such theory is called the $\phi^4$ theory.
 In this note, we discuss two renormalization scheme for the $\phi^4$ theory, and discuss the spontaneous symmetry breaking.
 
 
 \tableofcontents
 
+\section{Quantization of Klein-Gordon Field}
+
+\subsection{Quantization of Classical Modes}
+First, the equation of motion (EOM) for classical field is
+\begin{equation}
+	\partial_\mu \left[\frac{\partial \mathcal L}{\partial(\partial_\mu \phi)}\right] - \frac{\partial \mathcal L}{\partial \phi} = 0.
+\end{equation}
+For the Klein-Gordon Lagrangian, the EOM is:
+\begin{equation}\label{eq:rkg-eom}
+	(\partial_t^2-\nabla^2+m^2)\phi(\bm x,t) = 0.
+\end{equation}
+The (classical) solution to Eq.~(\ref{eq:rkg-eom}) is proportional to the plane wave: $\phi_{\bm k}(\bm x, t) \propto e^{-i\omega_{\bm{k}}t+i\bm{k}\cdot\bm{x}} + e^{i\omega_{\bm{k}}t-i\bm{k}\cdot\bm{x}}$, where the energy is $\omega_{\bm{k}}=\bm{k}^2+m^2$ and $\bm k$ is the momentum as the conserved quantity.
+The general solution to Eq.~(\ref{eq:rkg-eom}) is
+\begin{equation}
+	\phi(\bm x,t) = \int \frac{d^{3} k}{(2\pi)^{3}} \left(
+		a_{k}e^{-i\omega_{\bm{k}}t+i\bm{k}\cdot\bm{x}} + 
+		a^*_{k}e^{i\omega_{\bm{k}}t-i\bm{k}\cdot\bm{x}} 
+	\right),
+\end{equation}
+where $a_k$'s are arbitrary c-numbers.
+The \textit{quantization} is the procedure to discretize the coefficient $a_k$'s.
+The \textit{canonical} way to do it is to promote the coefficient $a_{k}/a_{k}^*$ to the particle annihilation/creation operator $a_{k}/a_{k}^\dagger$, with the commutation relation
+\begin{equation}
+	[a_{k}, a_{p}^\dagger] = (2\pi)^{3} \delta^{3}(\bm{k}-\bm{p}).
+\end{equation}
+The single-particle state with momentum $\bm k$ is created by $a_{k}^{\dagger}$ operators acting on the vacuum:
+\begin{equation}
+	|\bm{k}\rangle \equiv \sqrt{2\omega_{\bm k}} a_{k}^{\dagger}|0\rangle,
+	\label{eq:rel-single-particle}
+\end{equation}
+where $|\bm{k}\rangle$ is a state with a single particle of momentum $\bm{k}$.
+The factor of $\sqrt{2 \omega_{\bm k}}$ in (\ref{eq:rel-single-particle}) is a convention to ensure Lorenz invariant.
+To compute the normalization of one-particle states, we start by requiring the vacuum state to be of unit norm: $\langle 0|0\rangle=1$, which, together with the canonical commutation relation of particle annihilation and creation operators leads to
+\begin{equation}
+	\langle\bm{p}|\bm{k}\rangle 
+	= 2\sqrt{\omega_{\bm p} \omega_{\bm k}}\left\langle 0\left|a_{p} a_{k}^{\dagger}\right| 0\right\rangle
+	= 2 \omega_{\bm p}(2\pi)^{3} \delta^{3}(\bm{p}-\bm{k}).
+\end{equation}
+The identity operator for one-particle states under such norm is
+\begin{equation}
+	1=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}}|\bm{p}\rangle\langle\bm{p}|, \label{eq:rel-identity}
+\end{equation}
+which we can check with
+\begin{equation*}
+	|\bm{k}\rangle
+	=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}}|\bm{p}\rangle\langle\bm{p}|\bm{k}\rangle
+	=\int \frac{d^{3} p}{(2\pi)^{3}} \frac{1}{2\omega_{\bm p}} 2\omega_{\bm p}(2\pi)^3 \delta^3(\bm{p}-\bm{k})|\bm{p}\rangle
+	=|\bm{k}\rangle.
+\end{equation*}
+We see that the identity operator (\ref{eq:rel-identity}) under such convention is Lorentz invariant, since it can be expressed as
+\begin{equation}
+	1 = 2\pi \int \frac{d^{3} p d\omega}{(2\pi)^{4}} \delta(\omega^2-{\bm{p}}^2-m^2) |\bm p\rangle\langle \bm p|.
+\end{equation}
+
+The single-particle defined above can be used to fix the normalization:
+\begin{equation}
+	\langle \bm k|\phi(\bm x,0)|0\rangle = e^{-i \bm k\cdot \bm x},
+\end{equation}
+leading to the field expansion
+\begin{equation}
+	\phi(x)
+	=\int \frac{d^{3} k}{(2\pi)^{3}} \frac{1}{\sqrt{2\omega_{\bm k}}}\left(a_k 
+		e^{-i k \cdot x}+a_k^{\dagger} e^{i k \cdot x}\right).
+\end{equation}
+
+
+
+
+\subsection{Hamiltonian Formalism}
+
+We can obtain the Hamiltonian for the Klein-Gordon field using the Legendre transformation:
+\begin{equation}
+	H = \int d^4 x\ \left[\pi(x) \dot{\phi}(x) - \mathcal L(x) \right] 
+	= \int d^4 x\ \frac{1}{2} \left[\pi^2 + (\nabla \phi)^2 + m^2 \phi^2 \right],
+\end{equation}
+where the canonical momentum is defined as
+\begin{equation}
+	\pi(x) = \frac{\partial \mathcal L}{\partial \dot{\phi}} = \dot{\phi}(x) 
+	= -i\int \frac{d^{3} k}{(2\pi)^{3}} \sqrt{\frac{\omega_{k}}{2}}\left(a_k 
+		e^{-i k \cdot x} - a_k^{\dagger} e^{i k \cdot x}\right).
+\end{equation}
+The $\pi^2$ term expands as
+\begin{equation}
+	\pi^2(x) = \int \frac{d^{3} k_1}{(2\pi)^{3}} \frac{d^{3} k_2}{(2\pi)^{3}}
+		\frac{\sqrt{\omega_{k_1} \omega_{k_2}}}{2} \left(a^\dagger_{k_1}a_{k_2}e^{i(k_1-k_2)x} - a^\dagger_{k_1} a^\dagger_{k_2} e^{i(k_1+k_2)x} + h.c.\right).
+\end{equation}
+We note that after integrate over $x$, the phase factor $e^{i(k_1-k_2)x}$ produce a delta function for $k_1$ and $k_2$.
+The $a^\dagger_{k_1} a^\dagger_{k_2}$ terms will finally be cancelled by other terms.
+We temporally ignore such term.
+The contribution from the first term is then
+\begin{equation}
+	\int d^4 x\ \pi^2(x) = \int \frac{d^3 k}{(2\pi)^3} \frac{\omega_k}{2} a_k^\dagger a_k + h.c.
+\end{equation}
+The second term is
+\begin{equation}
+	(\nabla \phi)^2 = \int \frac{d^{3} k_1}{(2\pi)^{3}} \frac{d^{3} k_2}{(2\pi)^{3}}
+		\frac{\bm k_1 \bm k_2}{2\sqrt{\omega_{k_1}\omega_{k_2}}} \left(a^\dagger_{k_1}a_{k_2}e^{i(k_1-k_2)x} - a^\dagger_{k_1} a^\dagger_{k_2} e^{i(k_1+k_2)x} + h.c.\right).
+\end{equation}
+The third term is
+\begin{equation}
+	m^2 \phi^2 = \int \frac{d^{3} k_1}{(2\pi)^{3}} \frac{d^{3} k_2}{(2\pi)^{3}}
+		\frac{m^2}{2\sqrt{\omega_{k_1}\omega_{k_2}}} \left(a^\dagger_{k_1}a_{k_2}e^{i(k_1-k_2)x} + a^\dagger_{k_1} a^\dagger_{k_2} e^{i(k_1+k_2)x} + h.c.\right).
+\end{equation}
+All three contributions sum up as
+\begin{equation}
+\begin{aligned}
+	H &= \int \frac{d^3 k}{(2\pi)^3} \frac{1}{2}\left(\frac{\omega_k}{2} + \frac{\bm k^2+m^2}{2 \omega_k}\right) \left(a_k^\dagger a_k + h.c. \right) \\
+	&= \int \frac{d^3 k}{(2\pi)^3} \omega_k \left(a_k^\dagger a_k +\frac{1}{2} \right).
+\end{aligned}
+\end{equation}
+
+We can now check that the $a^\dagger a^\dagger$ terms indeed have no contributions, as the total contribution for each momentum $k$ is
+\begin{equation}
+	-\frac{\omega_k}{2} + \frac{\bm k^2}{2\omega_k} + \frac{m^2}{2\omega_k} = 0.
+\end{equation}
+The Hamiltonian in the operator form also make it manifest that
+\begin{equation}
+	H |\bm k\rangle = \omega_k |\bm k\rangle.
+\end{equation}
+
+
+\subsection{Correlation Function}
+Consider the two-point correlation (propagator):
+\begin{equation}
+	i\Delta(x_1-x_2) \equiv \langle 0|T \phi(x_1) \phi(x_2) |0\rangle 
+	= \theta(t_1-t_2) \langle 0|\phi(x_1) \phi(x_2) |0\rangle 
+	+ \theta(t_2-t_1) \langle 0|\phi(x_2) \phi(x_1) |0\rangle.
+\end{equation}
+Note that
+\begin{equation}
+	\langle 0|\phi(x_1) \phi(x_2) |0\rangle
+	= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\bm k\cdot (\bm x_1-\bm x_2)-i\omega_{\bm k}\tau},
+\end{equation}
+where $\tau =t_1-t_2$.
+The propagator can be written as
+\begin{equation}
+\begin{aligned}
+	i\Delta(x_1-x_2) 
+	&= \int\frac{d^{3} k}{(2\pi)^{3}}\frac{1}{2\omega_k} e^{i\bm k\cdot (\bm x_1-\bm x_2)}\left[e^{-i\omega_{\bm k}\tau}\theta(\tau)+e^{i\omega_{\bm k}\tau}\theta(-\tau)\right] \\
+	&= \int\frac{d^{3} k}{(2\pi)^{3}} e^{i\bm k\cdot (\bm x_1-\bm x_2)}\int \frac{d\omega}{2\pi i}\frac{-e^{i\omega\tau}}{\omega^2-\omega_k^2+i\epsilon} \\
+	&= \int\frac{d^{4} k}{(2\pi)^{4}} e^{-i k\cdot (x_1-x_2)}\frac{i}{k^2-m^2+i\epsilon}.
+\end{aligned}
+\end{equation}
+We have used the identity
+\begin{equation*}
+	\frac{1}{2\omega_k} \left[e^{-i\omega_{\bm k}\tau}\theta(\tau)+e^{i\omega_{\bm k}\tau}\theta(-\tau)\right] 
+	= \int \frac{d\omega}{2\pi i} \frac{-e^{i\omega\tau}}{\omega^2-\omega_k^2+i\epsilon},
+\end{equation*}
+where an infinitesimal number $\epsilon$ is included to move the singularities away from the real axis.
+Any final result shall take the ($\epsilon \rightarrow 0^+$) limit.
+Sometimes the infinitesimal $\epsilon$ will be absorbed into the mass, i.e., $m^2 \rightarrow m^2-i\epsilon$.
+
+
+\subsection{Renormalized Field Theory}
+
+For the interacting scalar field, the Hamiltonian do not conserve particle number any more, and the ground state $|\Omega\rangle$ is no longer the vacuum $|0\rangle$.
+Consider the Green's function
+\begin{equation}
+	iG(x_1-x_2) = \langle\Omega|T\phi(x_1)\phi(x_2)|\Omega\rangle 
+\end{equation}
+We can insert a complete basis into the correlation function:\footnote{Here we assume $\langle\Omega|\phi(x)|\Omega\rangle=0$ unless there is spontaneously symmetry breaking happening.}
+\begin{equation}
+	1 = |\Omega\rangle\langle\Omega| + \sum_\lambda\int\frac{d^3 k}{(2\pi)^3}\frac{1}{2\omega_k}|\lambda_{\bm k}\rangle \langle\lambda_{\bm k}|,
+\end{equation}
+and the Green's function takes the form:
+\begin{equation*}
+	iG(x_1-x_2) = \sum_\lambda \int\frac{d^3 k}{(2\pi)^3}
+	\left[\theta(t_1-t_2)\langle\Omega|\phi(x_1)|\lambda_{\bm k}\rangle\langle\lambda_{\bm k}|\phi(x_2)|\Omega\rangle + (t_1\leftrightarrow t_2, x_1 \leftrightarrow x_2)\right].
+\end{equation*}
+Note that $\phi(x)=e^{iP\cdot x}\phi(0) e^{-iP\cdot x}$, so that
+\begin{equation}
+	\langle\lambda_{\bm k}|\phi(x)|\Omega\rangle 
+	= e^{ik\cdot x} \left.\langle\lambda_{0}|\phi(0)|\Omega\rangle\right|_{k^0=\omega_{\bm k}}.
+\end{equation}
+Following the same procedure as we do for the free field theory, 
+\begin{equation}
+	G(x_1-x_2) = \int_0^\infty \frac{dM^2}{2\pi} \rho(M^2) G_0(x_1-x_2;M^2),
+\end{equation}
+where the \textit{spectral function} $\rho(M^2)$ is
+\begin{equation}
+	\rho(M^2) = \sum_\lambda(2\pi)\delta(M^2-m_\lambda^2)|\langle\Omega|\phi(0)|\lambda_0\rangle|^2.
+\end{equation}
+In particle, near the one-particle state the Green's function looks like:
+\begin{equation}\label{eq:scalar-prop-lehmann}
+	i\tilde G(k) = \frac{iZ_{\phi}}{k^2-m^2+i\epsilon} + \mathrm{regular\ terms}.
+\end{equation}
+Physically, Eq.~(\ref{eq:scalar-prop-lehmann}) states that in the interacting theory, the field operator $\tilde\phi(k)$ acting on the vacuum only only generate a single particle state, but also multi-particle states with total momentum $k$.
+However, those multi-particle state have different singularity structure in the Greens function, as they only contribute regular terms.
+If we only care about the propagator of the single particle states, we simply need to extract the singular part of of the Green's function.
+That is, the singularity of $\tilde{G}(k)$ gives the (addresses) mass, and the residue 
+\begin{equation*}
+	\lim_{k^2 \rightarrow m^2} (k^2-m^2)\tilde{G}(k)
+\end{equation*}
+gives the wave-function normalization factor $Z_\phi$.
+Trying to restore the original form of the free theory, we consider a renormalized field:
+\begin{equation}
+	\phi_R(x) = \frac{1}{\sqrt{Z_\phi}}\phi_0(x).
+\end{equation}
+The Green's function of $\phi_R$ has the same form as free theory.
+For this reason, we generate the asymptotic single-particle state using the renormalized field operator:
+\begin{equation}\label{eq:scalar-field-generate-particle}
+	\phi_R(k)|\Omega\rangle = \frac{1}{2\omega_{\bm k}}|k\rangle + \text{multi-particle states}.
+\end{equation}
+
+If we want to create a single-particle state, say at time $t=0$.
+We can do this by acting the operator $\tilde{\phi}(k)$ on the vacuum state at time $-T$, then we know when the system evolves for time $T$, it becomes:
+\begin{equation}
+	e^{-i E_{\bm k} T}|k\rangle + e^{-iHT} \cdot \text{multi-particle states}.
+\end{equation}
+Here comes the trick.
+Assuming the theory is gapped (with mass $m^2>0$), the multi-particle states have higher energy than the single particle states.
+We then replace the $t$ by $(1-i\epsilon)t$, which effectives impose a suppression factor $e^{-\epsilon H T}$ to the state.
+In the $T\rightarrow \infty$ limit, the amplitude of the multi-particle states vanishes.
 
 
 \section{Perturbative Renormalization}
@@ -108,7 +321,7 @@ The regularization is typically controlled by a parameter which will recover the
 The physical observable shall not depend explicitly on the regularization parameter, so the final result is free from divergent even if we take the limit.
 
 
-\subsubsection{Regularization of the Divergent Integral}
+\paragraph*{Regularization}
 Consider the integral
 \begin{equation}
 	I = -\frac{g}{2} \int\frac{d \omega}{2\pi} \int\frac{d^3 q}{(2\pi)^3} \frac{1}{\omega^2 - \bm q^2-m_R^2 -i\varepsilon}.
@@ -144,7 +357,7 @@ We have seen that the integral is controlled by the parameter $\varepsilon$.
 In the $\varepsilon \rightarrow 0$ limit, the integral is divergent.
 
 
-\subsubsection{Renormalization Using the Counter Terms}
+\paragraph*{Renormalization}
 We are now going to renormalize the theory.
 Note that in the self-energy definition
 \begin{equation}
@@ -171,7 +384,7 @@ The one-loop correction also leads to a infinite \textit{Dyson series}:
 
 
 
-\subsubsection{Physical Observables}
+\paragraph*{Physical Observables}
 The physical observable here is the rest mass $m_0$, which is experimentally measurable.
 It equals to the pole of the propagator, i.e.,
 \begin{equation}
@@ -214,7 +427,7 @@ The integral is again divergent.
 
 
 
-\subsubsection{Regularization}
+\paragraph*{Regularization}
 The denominator in the integral
 \begin{equation}
 	iF(k^2) = \int \frac{d^4 q}{(2\pi)^4} \frac{i}{q^2-m_R^2} \frac{i}{(q+k)^2-m_R^2}
@@ -267,7 +480,7 @@ Now sum up the contribution from all channel, the result looks like:
 \end{equation}
 
 
-\subsubsection{Renormalization and Physical Observables}
+\paragraph*{Renormalization and Physical Observables}
 
 To absorb the divergence, we can choose the counter term coefficient as
 \begin{equation}
