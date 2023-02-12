@@ -37,31 +37,175 @@
 \maketitle
 
 
+\tableofcontents
 
+\section{Introduction}
 
-The quantum electrodynamics is the field theory for the interaction of charged Dirac field with U(1) gauge field. 
+Quantum electrodynamics (QED) is the field theory for the interaction of charged Dirac field with the U(1) gauge field. 
 The Lagrangian is obtained by minimal coupling:
 \begin{equation}
 	\mathcal{L}_{\mathrm{QED}}
-	= \bar\psi \left(i\cancel{D} - m\right)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu},
-\end{equation}
-where the ordinary derivative is replaced by the covariant derivative:
-\begin{equation}
+	= \bar\psi \left(i\cancel{D} - m\right)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}, 
+	\quad\text{where}\quad
 	\cancel{D} = \gamma^\mu D_\mu 
 	= \gamma^\mu [\partial_\mu - i q A_\mu(x)]
 	= \cancel{\partial} - iq \cancel{A}.
 \end{equation}
-The Lagrangian is invariant under the gauge transformation:
-\begin{equation}
-	\psi(x) \rightarrow e^{iq\alpha(x)}\psi(x), \quad
-	A^\mu(x) \rightarrow A^\mu(x) + \partial^\mu \alpha(x).
+The Lagrangian is invariant under the gauge transformation: $\psi(x) \rightarrow e^{iq\alpha(x)}\psi(x)$, $A^\mu(x) \rightarrow A^\mu(x) + \partial^\mu \alpha(x)$, where $q$ is the charge of the field.
+For electron, $q=-e$, and for quarks, $q=\frac{2}{3}e$ or $q=-\frac{1}{3}e$.
+
+
+
+\subsection{Representations of Lorentz group}
+For the $(3+1)$D spacetime, the Lorentz group can be represented as 
+\begin{equation}\label{eq:lorentz-parameter}
+	\Lambda(\bm \theta,\bm \beta) = \exp\left(i \theta_i J_i +i\beta_i K_i\right), \quad
+	\theta_i \equiv \frac{1}{2}\varepsilon_{ijk}\omega_{jk},\quad
+	\beta_i \equiv \omega_{i0},
 \end{equation}
+where the Lie algebra contains 3 rotational generators $J_i \equiv \frac{1}{2}\varepsilon_{ijk}M^{jk}$ and 3 boost generators $K_i \equiv M^{i0}$. 
+In the fundamental representation, the generators are represented by
+\begin{equation*}
+\begin{aligned}
+	J_1 &= \left[\begin{array}{cccc} 0 & & & \\ & 0 & & \\ & & 0 & -i \\ & & i & 0 \end{array}\right], & 
+	J_2 &= \left[\begin{array}{cccc} 0 & & & \\ & 0 & & i \\ & & 0 & \\ & -i & & 0 \end{array}\right], &
+	J_3 &= \left[\begin{array}{cccc} 0 & & & \\ & 0 & -i & \\ & i & 0 & \\ & & & 0 \end{array}\right], \\
+	K_1 &= \left[\begin{array}{cccc} 0 & -i & & \\ -i & 0 & & \\ & & 0 & \\ & & & 0 \end{array}\right], & 
+	K_2 &= \left[\begin{array}{cccc} 0 & & -i & \\ & 0 & & \\ -i & & 0 & \\ & & & 0 \end{array}\right], &
+	K_3 &= \left[\begin{array}{cccc} 0 & & & -i \\ & 0 & & \\ & & 0 & \\ -i & & & 0 \end{array}\right].
+\end{aligned}
+\end{equation*}
+The Lie algebra of the Lorentz algebra can be explicitly done using the fundamental representation. 
+The result is
+\begin{equation}
+	\left[J_i, J_j\right] = i \varepsilon_{ijk} J_k, \quad
+	\left[J_i, K_j\right] = i \varepsilon_{ijk} K_k, \quad
+	\left[K_i, K_j\right] = -i\varepsilon_{ijk} J_k.
+\end{equation}
+A special combination of those generators $N_i^{L/R} \equiv \frac{1}{2}(J_i \mp i K_i)$ will create two independent algebras:
+\begin{equation}\label{eq:RFT-LG-Alg}
+\begin{aligned}
+	\left[N_i^L, N_j^L \right] &= i\varepsilon_{ijk}N_k^L, \quad
+	\left[N_i^R, N_j^R \right] &= i\varepsilon_{ijk}N_k^R, \quad
+	\left[N_i^L, N_j^R \right] &= 0.
+\end{aligned}
+\end{equation}
+In the following, we show such generators give all irreducible representations of the Lorentz group $\mathrm{SO}(3,1)$, which are the building blocks of the relativistic field theory.
 
-In the chapter, we first canonically quantize QED, and then relate the correlation function with the cross section.
-We then discuss some important elementary scattering processes.
-Finally we study the renormalization of the QED.
 
-\tableofcontents
+
+
+We see from (\ref{eq:RFT-LG-Alg}) that after the recombination, the Lorentz algebra breaks into two independent $\mathfrak{su}(2)$ algebra.
+Mathematically it means $\mathfrak{so}(3,1) \simeq \mathfrak{su}(2) \oplus \mathfrak{su}(2)$.
+That is,
+\begin{equation}
+	U_{j_L,j_R}(\Lambda)
+	= \exp\left[i(\bm\theta+i\bm\beta)\cdot \bm N^L_{j_L} + i(\bm\theta-i\bm\beta)\cdot \bm N^R_{j_R}\right],
+\end{equation}
+where we see that the representation of the Lorentz algebra can be labeled by $j_L$ and $ j_R$.
+In relativistic QFT, the Lorentz symmetry restricts the possible terms that can appear in the Lagrangian.
+Different free fields correspond to different representations of the Lorentz algebra, and the Lagrangian should be singlet under the Lorentz transformations.
+
+
+\paragraph*{Trivial representation.}
+The $(j_L,j_R) = (0,0)$ representation corresponds to the scalar field denoted as $\phi(x)$.
+Since the field itself is singlet, any polynomial of the field in principle can appear in the theory.
+When considering the free theory, we restrict our attention to the quadratic terms, therefore the allowed free theory can only be
+\begin{equation*}
+	\mathcal L_{\mathrm{KG}} = \frac{1}{2}\partial^\mu \phi \partial_\mu \phi -\frac{m^2}{2}\phi^2 
+	\simeq -\frac{1}{2}\phi (\partial^2+m^2) \phi.
+\end{equation*}
+Besides the field Lagrangian $\mathcal L_{\mathrm{KG}}$, there are more general Lorentz-invariant terms that can be added to the Lagrangian, which describe the interaction of the theory.
+
+\paragraph*{Vector representation.}
+If we choose $(j_L=j_R=1/2)$, the field is transformed as a Lorentz vector.
+We denote the field as $A^\mu(x)$.
+Some possible quadratic forms for the vector field that forms singlets are $A^\mu A_\mu$, $(\partial_\mu A^\mu)^2$, $A^\nu \partial^2 A_\nu$, and $\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda$.
+For the field theory describing the electromagnetic field, we require the theory to further have gauge symmetry, i.e., invariant under $A^\mu(x) \rightarrow A^\mu(x) + \partial^\mu \alpha(x)$.
+The gauge invariant forbids the first term and forces the second and third terms to combine as
+\begin{equation*}
+	(\partial_\mu A^\mu)^2 - A^\nu \partial^2 A_\nu
+	\sim \frac{1}{2}(\partial^\mu A^\nu - \partial^\nu A^\mu)(\partial_\mu A^\nu-\partial_\nu A_\mu)
+	\equiv \frac{1}{2} F^{\mu\nu}F_{\mu\nu},
+	\quad\text{where}\quad
+	F^{\mu\nu}\equiv (\partial^\mu A^\nu - \partial^\nu A^\mu).
+\end{equation*}
+The Lagrangian describing the electromagnetic field is given by
+\begin{equation}
+	\mathcal{L}_{\mathrm{Maxwell}} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}.
+\end{equation}
+Note that the fourth term is called the \textit{theta term}, which can be written as a boundary term: $\varepsilon_{\mu\nu\rho\lambda} \partial^\mu A^\nu \partial^\rho A^\lambda
+	= \partial^\mu (\varepsilon_{\mu\nu\rho\lambda} A^\nu \partial^\rho A^\lambda)$.
+
+
+\paragraph*{Spinor representation.}
+The spinor representations are those with $j_L=1/2$ or $j_R=1/2$. 
+Specifically, we define the left-hand spinor $\psi_L = (\psi_L^1, \psi_L^2)^T$ and right-hand spinor $\psi_R = (\psi_R^1, \psi_R^2)^T$ whose transformations define $\Lambda_L$ and $\Lambda_R$:
+\begin{equation}\label{eq:qft-left-right-spinor-rep}
+	\Lambda_L(\bm\theta,\bm\beta) = \exp\left(\frac{i}{2}\bm\theta\cdot\bm\sigma-\frac{1}{2}\bm\beta\cdot\bm\sigma \right), \quad
+	\Lambda_R(\bm\theta,\bm\beta) = \exp\left(\frac{i}{2}\bm\theta\cdot\bm\sigma+\frac{1}{2}\bm\beta\cdot\bm\sigma \right) = \Lambda_L(\bm \theta, -\bm \beta).
+\end{equation}
+We can create a ``scalar-like'' object by the inner product of the spinors.
+Note that the $\psi_L^\dagger \psi_R$ and $\psi_R^\dagger \psi_L$ are Lorentz invariant objects, while the products of two single-handed spinors like $\psi_L^\dagger \psi_L$ or $\psi_R^\dagger \psi_R$ are not.
+However, note that $-i\sigma^2 \psi_L^*$ transforms like a right-handed spinor.\footnote{Using the identity $\sigma^2 \cdot \bm\sigma^* \cdot\sigma^2 = -\bm\sigma$, we have $\sigma^2 \psi_L^*
+	\rightarrow \sigma^2 \exp\left(-\frac{i}{2}\bm\theta\cdot\bm\sigma^*-\frac{1}{2}\bm\beta\cdot\bm\sigma^* \right) \sigma^2 \sigma^2 \psi_L^* 
+	= \Lambda_L(\bm \theta, -\bm\beta) \sigma^2 \psi_L^*$.}
+Thus, the left-hand and right-hand spinor can be interchanged by the action of a ``time reversal'' operation $-i\sigma^2 \mathcal K$ (where $\mathcal K$ is complex conjugation).
+The bilinears
+\begin{equation*}
+	\psi_L \cdot \psi_L \equiv -i\psi_L^T \sigma^2 \psi_L,\quad
+	\psi_R \cdot \psi_R \equiv -i\psi_R^T \sigma^2 \psi_R
+\end{equation*}
+are therefore invariants.
+The spinor field theory consists of only the left-hand spinor is called the \textit{Majorana theory}:
+\begin{equation}
+\begin{aligned}
+	\mathcal{L}_{\mathrm{Maj}}
+	= i \psi_L^\dagger \bar\sigma^\mu \partial_\mu  \psi_L -m(\psi_L \cdot \psi_L + \psi_L^\dagger \cdot \psi_L^\dagger).
+\end{aligned}
+\end{equation}
+The field theory containing both left-hand and right-hand spinors is called the Dirac theory:
+\begin{equation}
+	\mathcal{L}_{\mathrm{Dirac}} = \bar\psi \left(i\cancel\partial - m\right)\psi
+	\equiv \bar\psi \left(i\gamma^\mu \partial_\mu - m\right)\psi,
+\end{equation}
+where the Dirac spinor contains left- and right-handed Weyl spinors:
+\begin{equation*}
+	\psi = \begin{pmatrix}
+		\psi_L \\ \psi_R
+	\end{pmatrix},\ 
+	\bar\psi = \begin{pmatrix}
+		\psi_R^\dagger & \psi_L^\dagger
+	\end{pmatrix},\ 
+	\gamma^\mu = \begin{bmatrix}
+		0 & \sigma^\mu \\
+		\bar\sigma^\mu & 0
+	\end{bmatrix}.
+\end{equation*}
+We remark that under the Dirac spinor basis, the Lorentz algebra is generated by $M^{\mu\nu} = \frac{i}{4}[\gamma^\mu, \gamma^\nu]$, or 
+\begin{equation*}
+	J_i = \begin{bmatrix}
+		\sigma^i & 0 \\ 0 & -\sigma^i
+	\end{bmatrix}, \quad 
+	K_i = \frac{i}{2}\begin{bmatrix}
+		\sigma^i & 0 \\ 0 & -\sigma^i
+	\end{bmatrix},
+\end{equation*}
+using the familiar parametrization (\ref{eq:lorentz-parameter}).
+We can easily check that these matrices obey the transformation property (\ref{eq:qft-left-right-spinor-rep}).
+
+Finally, we note that there is another invariants consisting of Dirac field and the vector gauge field:
+\begin{equation}
+	\mathcal L_\text{int} = q \bar\psi \gamma^\mu A_\mu \psi,
+\end{equation}
+which produce the QED Lagrangian $\mathcal{L}_\text{QED} = \mathcal{L}_\text{Dirac} + \mathcal{L}_\text{Maxwell}+\mathcal{L}_\text{int}$.
+
+
+
+
+
+
+
 
 \section{Scattering}
 
