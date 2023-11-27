@@ -23,6 +23,7 @@
 \bibliographystyle{apsrev}
 \newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\normord}[1]{{:\mathrel{#1}:}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \def\tbs{\textbackslash}
 \def \tr{\operatorname{tr}}
 \def \Tr{\operatorname{Tr}}
@@ -39,8 +40,7 @@
 
 \tableofcontents
 
-
-\section{Averaging over Random Unitaries}
+\section{Weingarten Calculus}
 
 This section discusses the techniques for averaging random unitary operators appearing in various chaotic models.
 \begin{equation}
@@ -49,14 +49,12 @@ This section discusses the techniques for averaging random unitary operators app
 \end{equation}
 We will review a standard formula for the average of matrix elements of the unitary matrix concerning the Haar probability measure.
 
-\subsection{Weingarten functions}
-The central quantity we need is the \textit{Weingarten functions}, which appear when we are evaluating the following integrals:
+The central quantity we need is the \textbf{Weingarten functions}, which appear when we are evaluating the following integrals:
 \begin{equation}\label{eq:haar-integral}
 	\left\langle U_{i_1 j_1} \cdots U_{i_n j_n} U_{i_1^{\prime} j_1^{\prime}}^* \cdots U_{i_n^{\prime} j_n^{\prime}}^* \right\rangle_\text{Haar}
 	= \sum_{\sigma, \tau \in S_k} \delta_{i_1 i_{\sigma(1)}^{\prime}} \cdots \delta_{i_n i_{\sigma(n)}^{\prime}} \delta_{j_1 j_{\tau(1)}^{\prime}} \cdots \delta_{j_n j_{\tau(n)}^{\prime}} \operatorname{Wg}_d\left(\sigma \tau^{-1}\right),
 \end{equation}
-where $\operatorname{Wg}_d(g)$ is the Weingarten function.\footnote{Formally, $\operatorname{Wg}_d(g)$ has the closed form $\operatorname{Wg}_d(g)=\frac{1}{n!} \sum_{\lambda} \frac{\chi_\lambda(e) \chi_\lambda(g)}{\prod_{(i, j) \in Y(\lambda)}(D-i+j)}$, where the sum is over all partitions $\lambda$ of $n$.
-Here $\chi_\lambda(g)$ is the irreducible character of the symmetric group $S_n$ indexed by the partition $\lambda$, and $Y(\lambda)$ is the Young diagram of shape $\lambda$. Note that the irreducible representations of a permutation group are labeled by the partition $\lambda$'s. Here $\chi_\lambda(g)$ is the character of such representation. We also note that the $\operatorname{Wg}_d(g)$ is actually a function on classes (or the partitions).}
+where $\operatorname{Wg}_d(g)$ is the Weingarten function.
 In practice, we usually encounter cases where $q\le 2$.
 For the ($n=1$) case, the only Weingarten function is
 \begin{equation}
@@ -81,47 +79,137 @@ which leads to the following Haar measure integral:
 		\delta_{i_1 i'_1}\delta_{i_2 i'_2}\delta_{j_1 j'_2}\delta_{j_2 j'_1}
 	}{d(d^2-1)}.
 \end{aligned}
+\end{equation} 
+
+\subsection{Explicit form}
+Formally, $\operatorname{Wg}_d(g)$ has the closed form
+\begin{equation}
+	\operatorname{Wg}_d(g)=\frac{1}{n!} \sum_{\lambda} \frac{\chi_\lambda(e) \chi_\lambda(g)}{\prod_{(i, j) \in Y(\lambda)}(d-i+j)},
+\end{equation}
+where 
+\begin{itemize}
+	\item the sum is over all partitions $\lambda=[\lambda_1,\cdots,\lambda_l]$ of $n=\sum_i\lambda_i$;
+	\item a partition $\lambda$ specifies a Young diagram $Y(\lambda)$, and also corresponds to an irreducible representation.
+	\item $\chi_\lambda(g)$ is the irreducible character of the symmetric group $S_n$ indexed by the partition $\lambda$;
+	\item $(i,j)\in Y(\lambda)$ stands for $1\le i\le l$, $1\le j\le \lambda_i$, i.e., the coordinate of the Young diagram.
+\end{itemize}
+Note that $\operatorname{Wg}_d(g)$ is related only to the character, so it is a function of classes.
+
+Let us give a few examples. 
+For ($n=1$), the partition can only be $\lambda=[1]$, which is a trivial representation:
+\begin{equation}
+	\chi_{[1]}(e)=1 \quad\Longrightarrow\quad \mathrm{Wg}_d([1])=\frac{1}{d}.
 \end{equation}
 
-The Haar-measure integral naturally appears in the calculation of many entanglement-related properties.
-For example, when we apply a random unitary operator $U$ on (part of) the state $|\psi\rangle$, the resulting state is $|\psi'\rangle = U|\psi\rangle$.
-The average of the exponential of $n$-th order renyi entropy on part $B$,
-\begin{equation}\label{eq:exp-k-th-renyi}
-	Z_n \equiv \left\langle q^{-(n-1)S^{(n)}_B} \right\rangle_\mathrm{Haar} 
-	= \left\langle \tr \rho_B^n \right\rangle_\mathrm{Haar} 
-	= \left\langle \tr_B \left(\tr_A U|\psi\rangle\langle\psi|U^\dagger\right)^n \right\rangle_\mathrm{Haar},
-\end{equation}
-formally takes the form of a partition function.
-We can map Eq.~(\ref{eq:exp-k-th-renyi}) to an enlarged system initially at $|\Psi\rangle \equiv |\psi\rangle^{\otimes n}|\psi^*\rangle^{\otimes n}$, and the action of the unitary operator takes the form $\mathcal U = U^{\otimes n} U^{*\otimes n}$.
-We regard the $2n$-fold replica indices as a new internal degree of freedom, and then the system is again a quantum chain.
-The tricky part is the traces.
-For a single site $i$ in part $A$, the trace is within each replica, therefore it is straightforward to check that the trace part can be equivalently expressed as the inner product with the bra:
+For ($n=2$), the partition can be $\lambda=[2]$ or $\lambda=[1,1]$, corresponding to the character table:
+\begin{equation*}
+\begin{tabular}{M{3cm}|M{2cm}M{2cm}c}
+	\hline\hline
+	Representation & $e$ & $\sigma$ & \\
+	\hline \\ [-10pt]
+	$[2]$ & $1$ & $1$ & \\[3pt]
+	$[1,1]$ & $1$ & $-1$ & \\[3pt]
+	\hline
+\end{tabular}
+\end{equation*}
+Therefore, the explicit calculation leads to
 \begin{equation}
-	\langle \mathbb I |_i = \delta_{i_i \bar i_1}\cdots \delta_{i_n\bar i_n} 
-	\equiv \includegraphics[align=c,width=0.25\linewidth]{pics/bra-ket-1},
+\begin{aligned}
+	\operatorname{Wg}_d(e) &=\frac{1}{2} \left[\frac{1}{d(d+1)}+\frac{1}{d(d-1)}\right]= \frac{1}{d^2-1}, \\
+	\operatorname{Wg}_d(\sigma) &=\frac{1}{2} \left[\frac{1}{d(d+1)}-\frac{1}{d(d-1)}\right]= \frac{-1}{d(d^2-1)}.
+\end{aligned}
 \end{equation}
-where we have introduced a graphic notation to represent the states.
-For a site $i$ in part $B$, the 
-\begin{equation}
-	\langle \mathbb (12\cdots n) |_i = \delta_{i_1 \bar i_2} \delta_{i_2 \bar i_3} \cdots \delta_{i_{n-1}\bar i_n}\delta_{i_n,\bar i_1} 
-	\equiv \includegraphics[align=c,width=0.25\linewidth]{pics/bra-ket-2}.
-\end{equation}
-The graphic notation makes the evaluation of the inner product intuitive.
-For example, we have
-\begin{equation}
-	\langle \mathbb I|(123)\rangle 
-	= \includegraphics[align=c,width=0.2\linewidth]{pics/bra-ket-3} = q.
-\end{equation}
-That is, the inner product only depends on the number of cycles in permutation element $\sigma^{-1}\tau$, i.e., $\langle\sigma|\tau\rangle = q^{\#(\sigma^{-1}\tau)}$.
 
-Assuming the unitary operator acts on sites both in $A$ and $B$, with local Hilbert space dimension $q_A$ and $q_B$ respectively.
-Taking the Haar-measure average, the random unitary operator is mapped to a tensor node:
-\begin{equation}\label{eq:random-unitary-gate}
-	\left\langle U^{\otimes n} U^{*\otimes n} \right\rangle_\mathrm{Haar} 
-	= \sum_{\sigma, \tau \in S_n} \mathrm{Wg}_{d}\left(\tau \sigma^{-1}\right)|\tau_A \tau_B\rangle\langle\sigma_A \sigma_B| 
-	\equiv \sum_{\sigma, \tau \in S_n} \mathrm{Wg}_{d}\left(\tau \sigma^{-1}\right) \includegraphics[align=c,width=0.05\linewidth]{pics/replica-block.jpg},
+For ($n=3$), the character table for $S_3$ is
+\begin{equation*}
+\begin{tabular}{M{3cm}|M{2cm}M{2cm}M{2cm}c}
+	\hline\hline \\ [-10pt]
+	Representation & $e$ & $(1,2)$ & $(1,2,3)$ & \\ [1pt]
+	\hline \\ [-10pt]
+	$[2]$ & $1$ & $1$ & $1$ & \\[3pt]
+	$[1^3]$ & $1$ & $-1$ & $1$ & \\[3pt]
+	$[2,1]$ & $2$ & $0$ & $0$ & \\[3pt]
+	\hline
+\end{tabular}
+\end{equation*}
+The direct calculation then gives
+\begin{equation}
+\begin{aligned}
+\operatorname{Wg}_d(e) 
+&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}+\frac{1}{d(d-1)(d-2)}+\frac{4}{d(d+1)(d-1)}\right]
+= \frac{d^2-2}{d(d^2-1)(d^2-4)}, \\
+\operatorname{Wg}_d((12)) 
+&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}-\frac{1}{d(d-1)(d-2)}\right]
+= \frac{-1}{(d^2-1)(d^2-4)}, \\
+\operatorname{Wg}_d((123)) 
+&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}+\frac{1}{d(d-1)(d-2)}-\frac{2}{d(d+1)(d-1)}\right]
+= \frac{2}{d(d^2-1)(d^2-4)}.
+\end{aligned}
 \end{equation}
-where $d = q_A q_B$.
+One useful property of the Weingarten function is the 
+\begin{equation}
+	\operatorname{Wg}_d(g) = d^{-n-|g|} \prod_i (-1)^{|C_i|-1}c_{|C_i|-1} + O(d^{-n-|d|-2}),
+\end{equation}
+where $g$ is a product of cycles of length $C_i$, and $c_n = (2n)!/n!(n+1)!$ is the Catalan number, and $|g|$ is the smallest number of transpositions that $g$ is a product of.
+
+
+\subsection{Orthogonal groups}
+For integral over $O(d)$, 
+\begin{equation}
+	\mathbb E\left[O_{i_1j_1}\cdots O_{i_{2n}j_{2n}}\right]
+	=\sum_{\sigma,\tau\in M_{2n}}
+	\delta_{i_{\sigma(1)}i_{\sigma(2)}}\cdots\delta_{i_{\sigma(2n-1)}i_{\sigma(2n)}}
+	\delta_{j_{\tau(1)}j_{\tau(2)}}\cdots\delta_{j_{\tau(2n-1)}j_{\tau(2n)}}
+	\operatorname{Wg}_d^{O}(\sigma^{-1}\tau),
+\end{equation}
+where $M_{2n}$ is $S_{2n}$ mod all the switching of $(2n-1,2n)$ pairs, and $\operatorname{Wg}_d^{O}$ is the Weingarten function for orthogonal groups:
+\begin{equation}
+	\operatorname{Wg}_d^O(g) = \frac{1}{(2n)!}\sum_\lambda \frac{\chi_{2\lambda}(e) \sum_{\xi\in H_{n}} \chi_{\lambda}(g\xi)}{\prod_{(i,j)\in Y(2\lambda)}(d+2j-i-1)},
+\end{equation}
+where $H_n$ is generated by $\{(2i-2,2i),(2i-1,2j-1)(2i,2j)|i,j\le n\}$.
+
+For ($n=1$) case, the Weingarten function is
+\begin{equation}
+	\operatorname{Wg}^O_d(e) = \frac{1}{d} \quad\Longrightarrow\quad
+	\mathbb E\left[O_{i_1j_1}O_{i_2j_2}\right]
+	= \frac{1}{d}\delta_{i_1i_2}\delta_{j_1j_2}.
+\end{equation}
+
+For ($n=2$) case, the partition $\lambda=[2]/[1,1]$, and $2\lambda=[4]/[2,2]$. 
+\begin{equation}
+	H_n=\{e,(12),(34),(12)(34),(13)(24),(14)(23),(1324),(1423)\}
+\end{equation}
+The characters we need are listed below:
+\begin{equation*}
+\begin{tabular}{M{3cm}|M{2cm}M{2cm}M{2cm}M{2cm}M{2cm}c}
+	\hline\hline \\ [-10pt]
+	Representation & $e$ & $(1,2)$ & $(1,2,3)$ & $(1,2)(3,4)$ & $(1,2,3,4)$ & \\ [1pt]
+	\hline \\ [-10pt]
+	$[4]$ & $1$ & $1$ & $1$ & $1$ & $1$ & \\[3pt]
+	$[2^2]$ & $2$ & $0$ & $-1$ & $2$ & $0$ & \\[3pt]
+	\hline
+\end{tabular}
+\end{equation*}
+Then, for the element $e$:
+\begin{equation}
+	\operatorname{Wg}^O_d(e) = \frac{1}{24}\left[\frac{8}{d(d+2)}+\frac{16}{d(d-1)}\right]
+= \frac{d+1}{d(d+2)(d-1)}.
+\end{equation}
+Note that $\operatorname{Wg}^O_d$ is still a function of classes, and is also equal in the same coset $S_{2n}/H_n$.
+\begin{equation}
+	\operatorname{Wg}_d^{O}((23))= \frac{1}{24}\left[\frac{8}{d(d+2)}+\frac{-8}{d(d-1)}\right]
+	= \frac{-1}{d(d+2)(d-1)}.
+\end{equation}
+
+
+
+
+
+
+
+
+\section{Applications for scrambled systems}
+
 
 
 
@@ -235,7 +323,117 @@ We thus prove the theorem.
 
 
 
+\subsection{Hayden-Preskill Protocol}
 
+\label{Hayden-Preskill}
+
+Consider a many-body teleportation described by the following process:
+\begin{equation}
+	\includegraphics[align=c,width=0.4\linewidth]{pics/decode}.
+\end{equation}
+Denote the quantum state after the decoding $|\Psi_{\text{out}}\rangle$, the fidelity of teleporting the state $|\text{Alice}\rangle$ to the qubit $q_B$ is defined as
+\begin{equation}
+	F(|\text{Alice}\rangle)
+	= \langle\Psi_{\text{out}}|(|\text{Alice}\rangle\langle\text{Alice}|)_{q_B} \otimes \mathbb I\left|\Psi_{\text{out}}\right\rangle .
+\end{equation}
+When the fidelity averaged over Alice's state $\mathbb{E}[F(|\text{Alice}\rangle]$ is 1, it indicates that the system is able to teleport any quantum state with perfect fidelity. 
+The averaged fidelity can be obtained by sampling Alice's state from the action of a random unitary $u_a$ on a basis state $|0\rangle$,
+\begin{equation}
+	\mathbb{E}[F(|\text{Alice}\rangle] 
+	= \mathbb{E}_{u_a} \includegraphics[align=c,width=0.17\linewidth]{pics/decode-2}
+	= \frac{1}{3} + \frac{2}{3} F_\mathrm{EPR},\quad F_\mathrm{EPR} \equiv \includegraphics[align=c,width=0.15\linewidth]{pics/decode-3}.
+\end{equation}
+Note that the last equation comes from the averaging
+\begin{equation}
+\begin{aligned}
+	\int_{U_2} dU \ U_{i_1 0} U_{i_1^{\prime} 0}^* U_{i_2 0} U_{i_2^{\prime} 0}^* 
+	= \frac{1}{6} (\delta_{i_1 i'_1}\delta_{i_2 i'_2} + \delta_{i_1 i'_2}\delta_{i_2 i'_1}).
+\end{aligned}
+\end{equation}
+Also, $F_\mathrm{EPR}$ can be regarded as the fidelity $F(|\text{EPR}\rangle)$ for a state initially entangled with a reference $R$ before undergoing unitary evolution.
+A perfect many-body teleportation requires $F_\text{EPR}=1$.
+So, before decoding, we expect the information shared between $R$ and the subsystem on which the decoder acts maximizes.
+
+For simplicity, we first consider the case where $A_2 = q_n$ is a single qubit.
+Now let us look into the mutual information $I\left(R: \operatorname{MEM} \cup q_n\right)$ more closely: $I\left(R:\mathrm{MEM} \cup q_n\right) = 2-N+S_{\mathrm{MEM} \cup q_n}$.
+That is, the mutual information only depends on the entanglement entropy of $\mathrm{MEM} \cup q_n$, satisfying $N-2 \leq S\left(\operatorname{MEM} \cup q_n\right) \leq N$.
+Since the Von Neumann entropy upper bounds the Renyi entropy, we have,
+\begin{equation}
+	I\left(R:\operatorname{MEM} \cup q_n\right) \geq 2-N+S^{(2)}_{\operatorname{MEM} \cup q_n}.
+\end{equation}
+Since in the case we consider here, the qubits $q_{2 \sim N}$ are in a fully mixed state, we can choose the simplest purification where the memory contains ($N-1$) auxiliary qubits that form ($N-1$) EPR pairs with the ($N-1$) spins in the system.
+The time-evolved purified state is
+\begin{equation}
+	|\Psi\rangle = \includegraphics[align=c,width=0.2\linewidth]{pics/qn-1.jpg}, \quad
+	\rho(\mathrm{MEM}\cup q_n) = \frac{1}{2}\includegraphics[align=c,width=0.18\linewidth]{pics/qn-2.jpg}.
+\end{equation}
+From the density matrix, we can obtain the purity $\tr\rho^2\left(\operatorname{MEM} \cup q_n\right)$ as
+\begin{equation}\label{eq:purity-network}
+	\tr\rho^2\left(\operatorname{MEM} \cup q_n\right) 
+	= \frac{1}{4^N}\includegraphics[align=c,width=0.13\linewidth]{pics/qn-3.jpg}
+	= \frac{1}{4^{N+1}}\sum_{W,V}\includegraphics[align=c,width=0.13\linewidth]{pics/qn-4.jpg},
+\end{equation}
+where $W$ and $V$ are summed over local Pauli matrices on $q_1$ and $q_n$.
+In the last equation, we used the completeness relation of Pauli operators.
+When either $V_1$ or $W_n$ equals the identity, the trace contributes 1 to the sum. 
+Separating these terms from the others, we get,
+\begin{equation}
+	\tr \rho^2\left(\operatorname{MEM} \cup q_n\right)
+	= \frac{1}{2^{N+2}}\left[7+\sum_{W_1 ,V_n \neq I} \frac{1}{2^N} \tr\left(W_1(-t) V_n W_1(-t) V_n\right)\right]
+\end{equation}
+The purity becomes a sum of local correlators between Pauli operators. 
+The Renyi entropy is just $-\log_2 \tr\left(\rho^2\right)$. 
+The mutual information is then upper-bounded by the correlator
+\begin{equation}
+	I\left(R: \operatorname{MEM} \cup q_n\right) 
+	\ge 4-\log _2\left[7+\sum_{W_1, V_n \neq I} \frac{1}{2^N} \tr\left(W_1(-t) V_n W_1(-t) V_n\right)\right].
+\end{equation}
+We emphasize that this inequality applies to any unitary $U$. 
+Each term in the summation has the maximum value of 1, in which case the right-hand side takes the minimal value of 0. 
+This happens when the Heisenberg operator $V_1(-t)$ commutes with the operator $W_n$ for all $V$ and $W$. 
+When $V_1(-t)$ and $W_n$ start to overlap, the correlator decreases from 1. 
+As a result, $I\left(R:\operatorname{MEM} \cup q_n\right)$ is nonzero, indicating that the information has reached $q_n$. 
+At the late time, all the terms decay to 0, and the right-hand side becomes $4-\log _2 7$.
+
+
+
+Now we discuss the decoding protocol for the Hayden-Preskill setup.
+The probabilistic decoding protocol goes as follows:
+\begin{enumerate}
+	\item Bob takes another two qubits, $q_1^{\prime}$ and $R^{\prime}$, and prepares them in an EPR state.
+	\item Bob applies the unitary operator $U^*$ to $\mathrm{MEM} \cup q_1^{\prime}$.
+	\item Bob performs Bell's measurement on each qubit in $E$ and its partner in MEM, with which it forms an EPR initially.
+	\item The entire protocol is repeated including preparing the state until the outcome of all the Bell measurements are the EPR states $\frac{1}{\sqrt 2}(|00\rangle+|11\rangle)$.
+\end{enumerate}
+After these steps, the reference $R$ and $R^{\prime}$, one of Bob's new qubits, would have high fidelity to form an EPR. 
+This protocol is probabilistic because in step 3 Bob needs to post-select the EPR pairs from the Bell measurements. 
+To understand this decoder, let us calculate the probability of successful postselection and the fidelity $F_{\mathrm{EPR}}\left(R, R^{\prime}\right)$ given successful postselection. 
+The probability of successful postselection is
+\begin{equation}
+	\Delta 
+	= \includegraphics[align=c,width=0.2\linewidth]{pics/decode-4}
+	= \frac{1}{2^{N+1+E}}\includegraphics[align=c,width=0.17\linewidth]{pics/decode-5}.
+\end{equation}
+Notice that the diagram is the same as that in Eq.~(\ref{eq:purity-network}) for calculating $\rho^2(\mathrm{MEM}\cup A_2)$.
+Therefore,
+\begin{equation}
+	\Delta = 2^{N-1-E} \operatorname{tr}^2\left(\rho_{\text{MEM}\cup A_2}\right)=2^{-I^{(2)}(R:\text{MEM}\cup E)}.
+\end{equation}
+The probability of the postselection is directly related to the Renyi mutual information between $R$ and Bob's qubit before the decoding. 
+Given the successful postselection, the fidelity that $R$ and $R'$ form an EPR is
+\begin{equation}\label{eq:EPR-fidelity}
+	F_{\mathrm{EPR}} = \includegraphics[align=c,width=0.16\linewidth]{pics/decode-6}/\Delta
+	= 2^{I^{(2)}(R: \mathrm{MEM}\cup A_2)-2}
+	= \frac{1}{1+3\times 4^{-E}}.
+\end{equation}
+That is, $F_{\text{EPR}}$ approach 1 exponentially fast as $E$ increases, indicating perfect teleportation fidelity given successful postselection for fully scrambling unitary time evolution. 
+In general, since $\operatorname{tr}^2 \rho^2(\mathrm{MEM} \cup E)$ can be written as the sum of OTOCs as shown in Eq.~(\ref{eq:purity-network}), the fidelity $F_{\mathrm{EPR}}$ is also directly related to OTOCs as
+\begin{equation}
+	F_{\mathrm{EPR}} = \left[\frac{1}{4^E} \frac{1}{2^N} \sum_{W_1, V_{A_2}} \tr\left(W_1(-t) V_{A_2} W_1(-t) V_{A_2}\right)\right]^{-1},
+\end{equation}
+where $V_1$ and $W_{A_2}$ are summed over all local operators, including the identity, in the first qubit and $E$, respectively. 
+In the fully scrambled regime, the OTOC is 1 if either $V_1$ or $W_E$ is the identity and 0 otherwise, and we get Eq.~(\ref{eq:EPR-fidelity}) back. 
+We see that OTOC provides a tool to detect information propagation and is directly related to the fidelity of information recovery.
 
 
 
@@ -246,6 +444,46 @@ We thus prove the theorem.
 
 
 \section{Random Quantum Circuit}
+
+The Haar-measure integral naturally appears in the calculation of many entanglement-related properties.
+For example, when we apply a random unitary operator $U$ on (part of) the state $|\psi\rangle$, the resulting state is $|\psi'\rangle = U|\psi\rangle$.
+The average of the exponential of $n$-th order renyi entropy on part $B$,
+\begin{equation}\label{eq:exp-k-th-renyi}
+	Z_n \equiv \left\langle q^{-(n-1)S^{(n)}_B} \right\rangle_\mathrm{Haar} 
+	= \left\langle \tr \rho_B^n \right\rangle_\mathrm{Haar} 
+	= \left\langle \tr_B \left(\tr_A U|\psi\rangle\langle\psi|U^\dagger\right)^n \right\rangle_\mathrm{Haar},
+\end{equation}
+formally takes the form of a partition function.
+We can map Eq.~(\ref{eq:exp-k-th-renyi}) to an enlarged system initially at $|\Psi\rangle \equiv |\psi\rangle^{\otimes n}|\psi^*\rangle^{\otimes n}$, and the action of the unitary operator takes the form $\mathcal U = U^{\otimes n} U^{*\otimes n}$.
+We regard the $2n$-fold replica indices as a new internal degree of freedom, and then the system is again a quantum chain.
+The tricky part is the traces.
+For a single site $i$ in part $A$, the trace is within each replica, therefore it is straightforward to check that the trace part can be equivalently expressed as the inner product with the bra:
+\begin{equation}
+	\langle \mathbb I |_i = \delta_{i_i \bar i_1}\cdots \delta_{i_n\bar i_n} 
+	\equiv \includegraphics[align=c,width=0.25\linewidth]{pics/bra-ket-1},
+\end{equation}
+where we have introduced a graphic notation to represent the states.
+For a site $i$ in part $B$, the 
+\begin{equation}
+	\langle \mathbb (12\cdots n) |_i = \delta_{i_1 \bar i_2} \delta_{i_2 \bar i_3} \cdots \delta_{i_{n-1}\bar i_n}\delta_{i_n,\bar i_1} 
+	\equiv \includegraphics[align=c,width=0.25\linewidth]{pics/bra-ket-2}.
+\end{equation}
+The graphic notation makes the evaluation of the inner product intuitive.
+For example, we have
+\begin{equation}
+	\langle \mathbb I|(123)\rangle 
+	= \includegraphics[align=c,width=0.2\linewidth]{pics/bra-ket-3} = q.
+\end{equation}
+That is, the inner product only depends on the number of cycles in permutation element $\sigma^{-1}\tau$, i.e., $\langle\sigma|\tau\rangle = q^{\#(\sigma^{-1}\tau)}$.
+
+Assuming the unitary operator acts on sites both in $A$ and $B$, with local Hilbert space dimension $q_A$ and $q_B$ respectively.
+Taking the Haar-measure average, the random unitary operator is mapped to a tensor node:
+\begin{equation}\label{eq:random-unitary-gate}
+	\left\langle U^{\otimes n} U^{*\otimes n} \right\rangle_\mathrm{Haar} 
+	= \sum_{\sigma, \tau \in S_n} \mathrm{Wg}_{d}\left(\tau \sigma^{-1}\right)|\tau_A \tau_B\rangle\langle\sigma_A \sigma_B| 
+	\equiv \sum_{\sigma, \tau \in S_n} \mathrm{Wg}_{d}\left(\tau \sigma^{-1}\right) \includegraphics[align=c,width=0.05\linewidth]{pics/replica-block.jpg},
+\end{equation}
+where $d = q_A q_B$.
 
 Now consider the unitary dynamics described by the random circuits:
 \begin{equation}\label{eq:random-circuit}
@@ -496,208 +734,90 @@ We recover the percolation result for $S^{(1)}$.
 
 
 
+\section{Classical Shadows}
 
-
-\section{Operator Growth}
-
-\subsection{Hayden-Preskill Protocol}
-
-\label{Hayden-Preskill}
-
-Consider a many-body teleportation described by the following process:
-\begin{equation}
-	\includegraphics[align=c,width=0.4\linewidth]{pics/decode}.
-\end{equation}
-Denote the quantum state after the decoding $|\Psi_{\text{out}}\rangle$, the fidelity of teleporting the state $|\text{Alice}\rangle$ to the qubit $q_B$ is defined as
-\begin{equation}
-	F(|\text{Alice}\rangle)
-	= \langle\Psi_{\text{out}}|(|\text{Alice}\rangle\langle\text{Alice}|)_{q_B} \otimes \mathbb I\left|\Psi_{\text{out}}\right\rangle .
-\end{equation}
-When the fidelity averaged over Alice's state $\mathbb{E}[F(|\text{Alice}\rangle]$ is 1, it indicates that the system is able to teleport any quantum state with perfect fidelity. 
-The averaged fidelity can be obtained by sampling Alice's state from the action of a random unitary $u_a$ on a basis state $|0\rangle$,
-\begin{equation}
-	\mathbb{E}[F(|\text{Alice}\rangle] 
-	= \mathbb{E}_{u_a} \includegraphics[align=c,width=0.17\linewidth]{pics/decode-2}
-	= \frac{1}{3} + \frac{2}{3} F_\mathrm{EPR},\quad F_\mathrm{EPR} \equiv \includegraphics[align=c,width=0.15\linewidth]{pics/decode-3}.
-\end{equation}
-Note that the last equation comes from the averaging
-\begin{equation}
-\begin{aligned}
-	\int_{U_2} dU \ U_{i_1 0} U_{i_1^{\prime} 0}^* U_{i_2 0} U_{i_2^{\prime} 0}^* 
-	= \frac{1}{6} (\delta_{i_1 i'_1}\delta_{i_2 i'_2} + \delta_{i_1 i'_2}\delta_{i_2 i'_1}).
-\end{aligned}
-\end{equation}
-Also, $F_\mathrm{EPR}$ can be regarded as the fidelity $F(|\text{EPR}\rangle)$ for a state initially entangled with a reference $R$ before undergoing unitary evolution.
-A perfect many-body teleportation requires $F_\text{EPR}=1$.
-So, before decoding, we expect the information shared between $R$ and the subsystem on which the decoder acts maximizes.
-
-For simplicity, we first consider the case where $A_2 = q_n$ is a single qubit.
-Now let us look into the mutual information $I\left(R: \operatorname{MEM} \cup q_n\right)$ more closely: $I\left(R:\mathrm{MEM} \cup q_n\right) = 2-N+S_{\mathrm{MEM} \cup q_n}$.
-That is, the mutual information only depends on the entanglement entropy of $\mathrm{MEM} \cup q_n$, satisfying $N-2 \leq S\left(\operatorname{MEM} \cup q_n\right) \leq N$.
-Since the Von Neumann entropy upper bounds the Renyi entropy, we have,
-\begin{equation}
-	I\left(R:\operatorname{MEM} \cup q_n\right) \geq 2-N+S^{(2)}_{\operatorname{MEM} \cup q_n}.
-\end{equation}
-Since in the case we consider here, the qubits $q_{2 \sim N}$ are in a fully mixed state, we can choose the simplest purification where the memory contains ($N-1$) auxiliary qubits that form ($N-1$) EPR pairs with the ($N-1$) spins in the system.
-The time-evolved purified state is
-\begin{equation}
-	|\Psi\rangle = \includegraphics[align=c,width=0.2\linewidth]{pics/qn-1.jpg}, \quad
-	\rho(\mathrm{MEM}\cup q_n) = \frac{1}{2}\includegraphics[align=c,width=0.18\linewidth]{pics/qn-2.jpg}.
-\end{equation}
-From the density matrix, we can obtain the purity $\tr\rho^2\left(\operatorname{MEM} \cup q_n\right)$ as
-\begin{equation}\label{eq:purity-network}
-	\tr\rho^2\left(\operatorname{MEM} \cup q_n\right) 
-	= \frac{1}{4^N}\includegraphics[align=c,width=0.13\linewidth]{pics/qn-3.jpg}
-	= \frac{1}{4^{N+1}}\sum_{W,V}\includegraphics[align=c,width=0.13\linewidth]{pics/qn-4.jpg},
-\end{equation}
-where $W$ and $V$ are summed over local Pauli matrices on $q_1$ and $q_n$.
-In the last equation, we used the completeness relation of Pauli operators.
-When either $V_1$ or $W_n$ equals the identity, the trace contributes 1 to the sum. 
-Separating these terms from the others, we get,
-\begin{equation}
-	\tr \rho^2\left(\operatorname{MEM} \cup q_n\right)
-	= \frac{1}{2^{N+2}}\left[7+\sum_{W_1 ,V_n \neq I} \frac{1}{2^N} \tr\left(W_1(-t) V_n W_1(-t) V_n\right)\right]
-\end{equation}
-The purity becomes a sum of local correlators between Pauli operators. 
-The Renyi entropy is just $-\log_2 \tr\left(\rho^2\right)$. 
-The mutual information is then upper-bounded by the correlator
-\begin{equation}
-	I\left(R: \operatorname{MEM} \cup q_n\right) 
-	\ge 4-\log _2\left[7+\sum_{W_1, V_n \neq I} \frac{1}{2^N} \tr\left(W_1(-t) V_n W_1(-t) V_n\right)\right].
-\end{equation}
-We emphasize that this inequality applies to any unitary $U$. 
-Each term in the summation has the maximum value of 1, in which case the right-hand side takes the minimal value of 0. 
-This happens when the Heisenberg operator $V_1(-t)$ commutes with the operator $W_n$ for all $V$ and $W$. 
-When $V_1(-t)$ and $W_n$ start to overlap, the correlator decreases from 1. 
-As a result, $I\left(R:\operatorname{MEM} \cup q_n\right)$ is nonzero, indicating that the information has reached $q_n$. 
-At the late time, all the terms decay to 0, and the right-hand side becomes $4-\log _2 7$.
-
-
-
-Now we discuss the decoding protocol for the Hayden-Preskill setup.
-The probabilistic decoding protocol goes as follows:
+For an unknown quantum state $\rho$, a \textbf{classical shadow} is obtained by
 \begin{enumerate}
-	\item Bob takes another two qubits, $q_1^{\prime}$ and $R^{\prime}$, and prepares them in an EPR state.
-	\item Bob applies the unitary operator $U^*$ to $\mathrm{MEM} \cup q_1^{\prime}$.
-	\item Bob performs Bell's measurement on each qubit in $E$ and its partner in MEM, with which it forms an EPR initially.
-	\item The entire protocol is repeated including preparing the state until the outcome of all the Bell measurements are the EPR states $\frac{1}{\sqrt 2}(|00\rangle+|11\rangle)$.
+	\item Apply random unitary $U_i$ to $\rho$;
+	\item Perform projective measurement on every site, which produces a vector $|b_i\rangle$;
+	\item Repeat the procedure for multiple times, obtaining an ensemble $\{(U_i,|b_i\rangle)|i=1,2,\dots,N\}$.
 \end{enumerate}
-After these steps, the reference $R$ and $R^{\prime}$, one of Bob's new qubits, would have high fidelity to form an EPR. 
-This protocol is probabilistic because in step 3 Bob needs to post-select the EPR pairs from the Bell measurements. 
-To understand this decoder, let us calculate the probability of successful postselection and the fidelity $F_{\mathrm{EPR}}\left(R, R^{\prime}\right)$ given successful postselection. 
-The probability of successful postselection is
+The expectation of $U_i^\dagger|b_i\rangle$ is a linear map of the density matrix:
 \begin{equation}
-	\Delta 
-	= \includegraphics[align=c,width=0.2\linewidth]{pics/decode-4}
-	= \frac{1}{2^{N+1+E}}\includegraphics[align=c,width=0.17\linewidth]{pics/decode-5}.
+	\mathcal M(\rho) 
+	= \mathbb{E}\left[U^\dagger |b\rangle\langle b|U\right]
+	= \sum_b \int_{U(d)} \langle b|U\rho U^\dagger|b\rangle \cdot U^\dagger |b\rangle\langle b|U.
 \end{equation}
-Notice that the diagram is the same as that in Eq.~(\ref{eq:purity-network}) for calculating $\rho^2(\mathrm{MEM}\cup A_2)$.
-Therefore,
+In the following, we will consider different choice twirling $\{U_i\}$.
+
+
+\subsection{Global twirling}
+If $U \in U(2^n)$, the Weingarten calculus returns:
 \begin{equation}
-	\Delta = 2^{N-1-E} \operatorname{tr}^2\left(\rho_{\text{MEM}\cup A_2}\right)=2^{-I^{(2)}(R:\text{MEM}\cup E)}.
+	\int_{U} U_{i j_1} U_{i j_2} U_{i j_1^{\prime}}^* U_{i j_2^{\prime}}^* 
+	= \frac{\delta_{j_1 j'_1}\delta_{j_2 j'_2} + 
+		\delta_{j_1 j'_2}\delta_{j_2 j'_1}}{2^n(2^n+1)}.
 \end{equation}
-The probability of the postselection is directly related to the Renyi mutual information between $R$ and Bob's qubit before the decoding. 
-Given the successful postselection, the fidelity that $R$ and $R'$ form an EPR is
-\begin{equation}\label{eq:EPR-fidelity}
-	F_{\mathrm{EPR}} = \includegraphics[align=c,width=0.16\linewidth]{pics/decode-6}/\Delta
-	= 2^{I^{(2)}(R: \mathrm{MEM}\cup A_2)-2}
-	= \frac{1}{1+3\times 4^{-E}}.
-\end{equation}
-That is, $F_{\text{EPR}}$ approach 1 exponentially fast as $E$ increases, indicating perfect teleportation fidelity given successful postselection for fully scrambling unitary time evolution. 
-In general, since $\operatorname{tr}^2 \rho^2(\mathrm{MEM} \cup E)$ can be written as the sum of OTOCs as shown in Eq.~(\ref{eq:purity-network}), the fidelity $F_{\mathrm{EPR}}$ is also directly related to OTOCs as
+Therefore, the linear map is
 \begin{equation}
-	F_{\mathrm{EPR}} = \left[\frac{1}{4^E} \frac{1}{2^N} \sum_{W_1, V_{A_2}} \tr\left(W_1(-t) V_{A_2} W_1(-t) V_{A_2}\right)\right]^{-1},
+	\mathcal{M}(\rho) 
+= \sum_{i,\{j\}} \int_{U}  U_{i j_1}U^*_{i j_2} U_{i j_3}U^*_{i j_4}  \rho_{j_1j_2} |j_4\rangle\langle j_3| 
+= \frac{\tr\rho\mathbb I+\rho}{2^n+1}.
 \end{equation}
-where $V_1$ and $W_{A_2}$ are summed over all local operators, including the identity, in the first qubit and $E$, respectively. 
-In the fully scrambled regime, the OTOC is 1 if either $V_1$ or $W_E$ is the identity and 0 otherwise, and we get Eq.~(\ref{eq:EPR-fidelity}) back. 
-We see that OTOC provides a tool to detect information propagation and is directly related to the fidelity of information recovery.
-
-\subsection{Relating OTOC to operator dynamics}
-Consider a quantum many-body system whose dynamics are governed by a unitary operator $U(t)$. 
-The OTOC between $W(t)$ and $V_r$ can be written as
+The inverse is $\mathcal{M}^{-1}(\rho) = (2^n+1)\rho - \tr(\rho)\mathbb{I}$.
+For an observable $o$,
 \begin{equation}
-	F(r, t)=\frac{1}{\tr \mathbb I} \tr\left[W^{\dagger}(t) V_r^{\dagger} W(t) V_r\right].
+	\tr(\rho o) = \tr[\mathcal{M}(\rho)\mathcal{M}^{-1}(o)]
+	= (2^n+1)\mathbb{E}\left[\langle b| U o U^\dagger |b\rangle\right] - \tr o.
 \end{equation}
-The space and time dependence of $F(r, t)$ has a very intuitive picture based on operator growth, sensitive to whether the support of $W(t)$ overlaps with that of $V_r$. 
-The connection between OTOC and operator growth can be made more explicit by introducing the squared commutator
+Note that we used the fact that $\mathcal M$ is self-adjoint since
+\begin{equation*}
+	\tr\left[\mathcal{M}(A)\cdot B\right] 
+	= \frac{1}{d+1}\left[\tr A \tr B + \tr(AB)\right]
+	= \tr\left[A\cdot\mathcal{M}(B)\right].
+\end{equation*}
+The classical shadow gives the sample $\hat o = \langle b|U \mathcal{M}^{-1}(o) U^\dagger|b\rangle$. The variance is
 \begin{equation}
-	C(r, t)=\frac{1}{2} \tr\left(\rho_\infty \left[W(t), V_r\right]^{\dagger}\left[W(t), V_r\right]\right)
-	=\frac{1}{2\tr \mathbb I}\left\|W(t), V_r\right\|_2^2
+	\operatorname{Var}[\hat o] = \sum_b \int_U \langle b|U \rho U^\dagger|b\rangle 
+	\langle b|U \mathcal{M}^{-1}(o) U^\dagger|b\rangle^2-[\mathbb{E}(o)]^2
+	\le \left\Vert o - \frac{\tr o}{2^n}\mathbb I \right\Vert_\text{shadow},
 \end{equation}
-which is proportional to the Frobenius norm of the commutator $\left[W(t), V_r\right]$ and thus always positive. 
-One can easily show that
+where the shadow norm is defined as
 \begin{equation}
-	C(r, t) = -\frac{1}{2}F(r, t)-\frac{1}{2}F^*(r, t) +\frac{1}{2\tr \mathbb I}\left[\tr\left(W^{\dagger}(t) V_r^{\dagger} V_r W(t)\right)+\tr\left(V_r^{\dagger} W^{\dagger}(t) W(t) V_r\right)\right]
+	\Vert o \Vert_\text{shadow}^2 = \max_{\sigma}\sum_b \int_U \langle b|U \sigma U^\dagger|b\rangle \langle b|U \mathcal{M}^{-1}(o) U^\dagger|b\rangle^2.
 \end{equation}
-The last two terms are local observables that typically relax to a constant in a short time due to thermalization.
-Therefore, $C(r, t)$ and $F(r, t)$ have the same behavior after a thermalization time. 
-In particular, if both $W$ and $V$ are Pauli operators, $C(r, t)=1- F(r, t)$.
-
-To be more precise, it is useful to study the growth of $W(t)$ on the Pauli basis $\{\mathcal{S}\}$, which obeys the following normalization and completeness condition:
-\begin{equation}\label{eq:pauli-condition}
-	\frac{1}{\operatorname{tr} \mathbb I} \operatorname{tr}\left(\mathcal{S}^{\dagger} \mathcal{S}^{\prime}\right)=\delta_{\mathcal{S} \mathcal{S}^{\prime}}, \quad \frac{1}{\operatorname{tr} \mathbb I} \sum_{\mathcal{S}} \mathcal{S}_{a b}^{\dagger} \mathcal{S}_{c d}=\delta_{a d} \delta_{b c}.
-\end{equation}
-The Heisenberg operator $W(t)$ can be expanded as $W(t)=\sum_{\mathcal{S}} \alpha(\mathcal{S}, t) \mathcal{S}$, where $|\alpha(\mathcal{S}, t)|^2$ can be interpreted as a probability distribution of the operator.
-We also define a complete local operator basis at site $r$, denoted as $\mathcal{S}_r$. 
-In qubit systems, the local basis includes three Pauli operators and the identity operator.
-
-Using the completeness relation, one can show that the average OTOC between $W(t)$ and all $\mathcal{S}_r$
-\begin{equation}\label{eq:pauli-trace-1}
-	\frac{1}{q^2} \sum_{\mathcal{S}_r} \frac{1}{\operatorname{tr} \mathbb I} \operatorname{tr}\left(W^{\dagger}(t) \mathcal{S}_r^{\dagger} W(t) \mathcal{S}_r\right)
-	=\sum_{\mathcal{S}_r=\mathbb I}|\alpha(\mathcal{S}, t)|^2,
-\end{equation}
-which measures the probability that $W(t)$ acts on site $r$ as the identity operator.
-To derive Eq.~(\ref{eq:pauli-trace-1}), we first note that for those $\mathcal S$ in which $\mathcal S_r \ne \mathbb I$, the completeness condition in Eq.~(\ref{eq:pauli-condition}) requires the trace over site $r$ to vanish:
+We will consider the bound for the shadow norm, using the Weingarten calculus result
 \begin{equation}
-	\frac{1}{q}\sum_{\mathcal S_r}\tr_r(\mathcal S^\dagger \mathcal S_r \mathcal S \mathcal S_r)
-	= \frac{1}{q}\sum_{\mathcal S_r} \sum_{abcd} \mathcal S^\dagger_{da} (\mathcal S_r^\dagger)_{ab} \mathcal S_{bc} (\mathcal S_r)_{cd}
-	=\frac{1}{q}\tr_r \mathcal S^\dagger \tr_r \mathcal  = 0.
+	\int_{U(d)} U_{i j_1} U_{i j_2}U_{i j_3} U_{i j_1^{\prime}}^* U_{i j_2^{\prime}}^* U_{i j_3^{\prime}}^* 
+	= \frac{
+	\delta^{j_1,j_2,j_3}_{j_1',j'_2,j'_3} + \delta^{j_1,j_2,j_3}_{j_2',j'_1,j'_3} +
+	\delta^{j_1,j_2,j_3}_{j_1',j'_3,j'_2} + \delta^{j_1,j_2,j_3}_{j_3',j'_2,j'_1} +
+	\delta^{j_1,j_2,j_3}_{j_2',j'_3,j'_1} +	\delta^{j_1,j_2,j_3}_{j_3',j'_1,j'_2}
+	}{2^n(2^n+1)(2^n+2)}.
 \end{equation}
-On the other hand, for those $\mathcal S$ with trivial part on $r$, $\mathcal S$ commute with $\mathcal S_r$, and therefore
+For traceless operator $o$, the result is
 \begin{equation}
-	\frac{1}{q^2} \sum_{\mathcal{S}_r} \frac{1}{\operatorname{tr} \mathbb I} \operatorname{tr}\left(\mathcal S^{\dagger} \mathcal{S}_r^{\dagger} \mathcal S \mathcal{S}_r\right)
-	= \frac{1}{\operatorname{tr} \mathbb I} \operatorname{tr}\left(\mathcal S^{\dagger} \mathcal S\right) = 1.
+	\Vert o \Vert_\text{shadow}^2 = \frac{2^n+1}{2^n+2}\max_{\sigma} \left[\tr(o^2)+2 \tr(\sigma o^2) \right] < 3 \tr(o^2).
 \end{equation}
-Similarly, the average squared commutator is
-\begin{equation}\label{eq:pauli-trace-2}
-	\frac{1}{q^2} \sum_{\mathcal{S}_r} \frac{1}{\operatorname{tr} \mathbb I}\left\|\left[W(t), \mathcal{S}_r\right]\right\|_2^2
-	=2 \sum_{\mathcal{S}_r \neq \mathbb I}|\alpha(\mathcal{S}, t)|^2.
-\end{equation}
-which is complementary to Eq.~(\ref{eq:pauli-trace-1}). 
-In the summation in Eq.~(\ref{eq:pauli-trace-1}) and (\ref{eq:pauli-trace-2}), the term with $\mathcal{S}_r= \mathbb I$ does not have dynamics and can be separated from the other terms.
-Therefore we define the following average OTOC and squared commutator
+In this way, if $o$ is a projector to a certain state, the shadow norm is bounded by a constant.
+
+\subsection{Local twirling}
+
+If $U \in U(2)^{\otimes n}$, the linear map shall be described by the tensor product
 \begin{equation}
-\begin{aligned}
-	\mathcal{F}(r, t) & =\frac{1}{q^2-1} \frac{1}{\operatorname{tr} \mathbb I} \sum_{\mathcal{S}_r \neq \mathbb I} \operatorname{tr}\left(W^{\dagger}(t) \mathcal{S}_r^{\dagger} W(t) \mathcal{S}_r\right) 
-	=\frac{q^2}{q^2-1} \sum_{\mathcal{S}_r= \mathbb I}|\alpha(\mathcal{S}, t)|^2-\frac{1}{q^2-1}, \\
-	\mathcal{C}(r, t) & =\frac{1}{2(q^2-1)} \sum_{\mathcal{S}_r \neq \mathbb I} \frac{1}{\operatorname{tr} \mathbb I}\left\|\left[W(t), \mathcal{S}_r\right]\right\|_2^2
-	=\frac{q^2}{q^2-1} \sum_{\mathcal{S}_r \neq \mathbb I}|\alpha(\mathcal{S}, t)|^2 .
-\end{aligned}
+	\mathcal{M}(o_1\otimes\cdots\otimes o_N) = \bigotimes_{i=1}^N \frac{\tr o_i\mathbb{I} + o_i}{3},\quad
+	\mathcal{M}^{-1}(o_1\otimes\cdots\otimes o_N) = \bigotimes_{i=1}^N (3 o_i-\tr o_i\mathbb{I}).
 \end{equation}
-Maximal complexity for an initially traceless operator implies uniform distribution over the operator basis $\mathcal{S}$ except for the identity. 
-Therefore in systems with $L$ qudits with local dimension $q$, we have
+This map has a simple form only if the operator it acts on is a tensor product. It is suitable to predict a $k$-local Pauli operator $o = P_{i_1}\otimes\cdots\otimes P_{i_k}$:
 \begin{equation}
-	\lim _{t \rightarrow \infty}|\alpha(\mathcal{S}, t)|=\frac{1}{q^{2 L}-1}\left(1-\delta_{\mathcal{S}, \mathbb I}\right).
+	\tr(\rho o) = \tr[\mathcal{M}(\rho)\mathcal{M}^{-1}(o)]
+	= \prod_{j=1}^k \left\{3\mathbb{E}\left[\langle b| U P_{i_j} U^\dagger |b\rangle\right] - \tr P_{i_j} \right\}.
 \end{equation}
-Apart from the random unitary dynamics, OTOC is also relevant to the many-body Hamiltonian system.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Similarly, the shadow norm is
+\begin{equation}
+	\Vert o \Vert_\text{shadow}^2 = \max_{\sigma} \tr\left[\sigma \bigotimes_{j=1}^k \frac{3}{4}\left(\tr P_{i_j}^2 \mathbb I+2 P_{i_j}^2 \right) \right]
+	= 3^k.
+\end{equation}
 
 
 
