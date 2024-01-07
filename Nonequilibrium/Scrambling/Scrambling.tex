@@ -1,42 +1,42 @@
-\documentclass[aps,prb,superscriptaddress,nofootinbib]{revtex4}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphbox}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{bm}
-\usepackage{bbm}
-\usepackage{cancel}
-\usepackage{color}
-\usepackage{mathrsfs}
-\usepackage[colorlinks,bookmarks=true,citecolor=blue,linkcolor=red,urlcolor=blue]{hyperref}
-\usepackage{simpler-wick}
-\usepackage{appendix}
-\usepackage{float}
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage[export]{adjustbox}
-\setlength{\parindent}{10 pt}
-\setlength{\parskip}{2 pt}
-\setcounter{MaxMatrixCols}{30}
-\bibliographystyle{apsrev}
-\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
-\newcommand{\normord}[1]{{:\mathrel{#1}:}}
-\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
-\def\tbs{\textbackslash}
-\def \tr{\operatorname{tr}}
-\def \Tr{\operatorname{Tr}}
+\documentclass{SciPost}
 
+% Prevent all line breaks in inline equations.
+%\binoppenalty=10000
+%\relpenalty=10000
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage[bitstream-charter]{mathdesign}
+\urlstyle{same}
+
+% Fix \cal and \mathcal characters look (so it's not the same as \mathscr)
+\DeclareSymbolFont{usualmathcal}{OMS}{cmsy}{m}{n}
+\DeclareSymbolFontAlphabet{\mathcal}{usualmathcal}
+
+\fancypagestyle{SPstyle}{
+\fancyhf{}
+\lhead{\colorbox{scipostblue}{\bf \color{white} ~Notes on Physics}}
+\rhead{{\bf \color{scipostdeepblue} ~Nonequilibrium}}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[C]{\textbf{\thepage}}
+}
 
 \begin{document}
-\title{Information Scrambling in Chaotic Systems}
-\author{Jie Ren}
 
+\pagestyle{SPstyle}
 
+\begin{center}{\Large \textbf{\color{scipostdeepblue}{
+Information Scrambling in Chaotic Systems\\
+}}}\end{center}
 
-\maketitle
-
+\begin{center}
+\textbf{Jie Ren}
+\end{center}
 
 \tableofcontents
 
@@ -69,12 +69,12 @@ For the ($n=2$) case, the Weingarten functions are
 which leads to the following Haar measure integral:
 \begin{equation}
 \begin{aligned}
-	\left\langle U_{i_1 j_1} U_{i_2 j_2} U_{i_1^{\prime} j_1^{\prime}}^* U_{i_2^{\prime} j_2^{\prime}}^* \right\rangle 
-	= \frac{
+	\left\langle U_{i_1 j_1} U_{i_2 j_2} U_{i_1^{\prime} j_1^{\prime}}^* U_{i_2^{\prime} j_2^{\prime}}^* \right\rangle_\text{Haar}
+	=&\ \frac{
 		\delta_{i_1 i'_1}\delta_{i_2 i'_2}\delta_{j_1 j'_1}\delta_{j_2 j'_2} + 
 		\delta_{i_1 i'_2}\delta_{i_2 i'_1}\delta_{j_1 j'_2}\delta_{j_2 j'_1}
-	}{d^2-1} 
-	-\frac{
+	}{d^2-1} \\
+	& -\frac{
 		\delta_{i_1 i'_2}\delta_{i_2 i'_1}\delta_{j_1 j'_1}\delta_{j_2 j'_2} + 
 		\delta_{i_1 i'_1}\delta_{i_2 i'_2}\delta_{j_1 j'_2}\delta_{j_2 j'_1}
 	}{d(d^2-1)}.
@@ -109,16 +109,16 @@ For ($n=2$), the partition can be $\lambda=[2]$ or $\lambda=[1,1]$, correspondin
 	\hline \\ [-10pt]
 	$[2]$ & $1$ & $1$ & \\[3pt]
 	$[1,1]$ & $1$ & $-1$ & \\[3pt]
-	\hline
+	\hline\hline
 \end{tabular}
 \end{equation*}
 Therefore, the explicit calculation leads to
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	\operatorname{Wg}_d(e) &=\frac{1}{2} \left[\frac{1}{d(d+1)}+\frac{1}{d(d-1)}\right]= \frac{1}{d^2-1}, \\
 	\operatorname{Wg}_d(\sigma) &=\frac{1}{2} \left[\frac{1}{d(d+1)}-\frac{1}{d(d-1)}\right]= \frac{-1}{d(d^2-1)}.
 \end{aligned}
-\end{equation}
+\end{equation*}
 
 For ($n=3$), the character table for $S_3$ is
 \begin{equation*}
@@ -129,23 +129,23 @@ For ($n=3$), the character table for $S_3$ is
 	$[2]$ & $1$ & $1$ & $1$ & \\[3pt]
 	$[1^3]$ & $1$ & $-1$ & $1$ & \\[3pt]
 	$[2,1]$ & $2$ & $0$ & $0$ & \\[3pt]
-	\hline
+	\hline\hline
 \end{tabular}
 \end{equation*}
 The direct calculation then gives
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
-\operatorname{Wg}_d(e) 
-&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}+\frac{1}{d(d-1)(d-2)}+\frac{4}{d(d+1)(d-1)}\right]
-= \frac{d^2-2}{d(d^2-1)(d^2-4)}, \\
-\operatorname{Wg}_d((12)) 
-&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}-\frac{1}{d(d-1)(d-2)}\right]
-= \frac{-1}{(d^2-1)(d^2-4)}, \\
-\operatorname{Wg}_d((123)) 
-&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}+\frac{1}{d(d-1)(d-2)}-\frac{2}{d(d+1)(d-1)}\right]
-= \frac{2}{d(d^2-1)(d^2-4)}.
-\end{aligned}
-\end{equation}
+	\operatorname{Wg}_d(e) 
+	&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}+\frac{1}{d(d-1)(d-2)}+\frac{4}{d(d+1)(d-1)}\right]
+	= \frac{d^2-2}{d(d^2-1)(d^2-4)}, \\
+	\operatorname{Wg}_d((12)) 
+	&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}-\frac{1}{d(d-1)(d-2)}\right]
+	= \frac{-1}{(d^2-1)(d^2-4)}, \\
+	\operatorname{Wg}_d((123)) 
+	&=\frac{1}{6} \left[\frac{1}{d(d+1)(d+2)}+\frac{1}{d(d-1)(d-2)}-\frac{2}{d(d+1)(d-1)}\right]
+	= \frac{2}{d(d^2-1)(d^2-4)}.
+	\end{aligned}
+\end{equation*}
 One useful property of the Weingarten function is the 
 \begin{equation}
 	\operatorname{Wg}_d(g) = d^{-n-|g|} \prod_i (-1)^{|C_i|-1}c_{|C_i|-1} + O(d^{-n-|d|-2}),
@@ -181,13 +181,13 @@ For ($n=2$) case, the partition $\lambda=[2]/[1,1]$, and $2\lambda=[4]/[2,2]$.
 \end{equation}
 The characters we need are listed below:
 \begin{equation*}
-\begin{tabular}{M{3cm}|M{2cm}M{2cm}M{2cm}M{2cm}M{2cm}c}
+\begin{tabular}{M{2.6cm}|M{1cm}M{1cm}M{1.5cm}M{2cm}M{1.2cm}c}
 	\hline\hline \\ [-10pt]
 	Representation & $e$ & $(1,2)$ & $(1,2,3)$ & $(1,2)(3,4)$ & $(1,2,3,4)$ & \\ [1pt]
 	\hline \\ [-10pt]
 	$[4]$ & $1$ & $1$ & $1$ & $1$ & $1$ & \\[3pt]
 	$[2^2]$ & $2$ & $0$ & $-1$ & $2$ & $0$ & \\[3pt]
-	\hline
+	\hline\hline
 \end{tabular}
 \end{equation*}
 Then, for the element $e$:
@@ -229,24 +229,24 @@ Applying a random unitary evolution to system $A$, we ask how much information i
 
 We can regard the subsystems $A_1$ and $A_2$ as two large indices.
 When calculating $S^{(2)}_{A_1}$, we consider inner-product of the randomized state with boundary $\langle \mathbb I_R(12)_{A_1}\mathbb I_{A_2\cup\text{MEM}}|$.
-Using Eq.~(\ref{eq:random-unitary-gate}) where $q_A$ and $q_B$ denote the dimensions of subsystem $A$ and $B$,
+Using the Weingarten calculus,
 \begin{equation}\label{eq:alter-boundary}
 	\sum_{\sigma, \tau \in S_2} \mathrm{Wg}_2\left(\tau \sigma^{-1}\right)
-	\langle \mathbb (12)_A \mathbb I_B|\tau_A \tau_B\rangle\langle\sigma_A \sigma_B|
-	= \frac{q_A q_B}{q_A^2 q_B^2-1} \left[\left(q_A-\frac{1}{q_A}\right) \langle(12)_A(12)_B|+
-	\left(q_B-\frac{1}{q_B}\right) \langle\mathbb I_A\mathbb I_B| \right],
+	\langle \mathbb (12)_{A_1} \mathbb I_{A_2}|\tau_{A} \rangle\langle\sigma_{A} |
+	= \frac{|A|}{|A|^2-1} \left[\left(|A_1|-\frac{1}{|A_1|}\right) \langle(12)_A|+
+	\left(|A_2|-\frac{1}{|A_2|}\right) \langle\mathbb I_A| \right],
 \end{equation}
-the averaging of the unitary gate effectively alters the boundary to the sum of $\langle \mathbb I_R(12)_{A}\mathbb I_\text{MEM}|$ and $\langle \mathbb I_{A\cap R\cup \text{MEM}}|$.
+the averaging of the unitary gate effectively alters the boundary to the sum of $\langle \mathbb I_R(12)_{A}\mathbb I_\text{MEM}|$ and $\langle \mathbb I_{A\cup R\cup \text{MEM}}|$.
 The averaged entropy of $A_1$ is then\footnote{Note that what we averaged is $\langle \rho^2_{A_1}\rangle$. We define a purity entropy $\tilde S^{(2)}_{A_1} \equiv -\log_2 \langle \rho^2_{A_1}\rangle$. While it is a good approximation of $S^{(2)}_{A_1}$ when the fluctuation is small.}
 \begin{equation}
 	2^{-\tilde S^{(2)}_{A_1}} 
-	= \frac{|A|}{|A|^2-1}\left[\left(|A_2|-\frac{1}{|A_2|}\right)(\tr\rho_{A\cup R\cup\text{MEM}})^2+\left(|A_1|-\frac{1}{|A_1|}\right)\tr\rho^2_A\right].
+	= \frac{|A|}{|A|^2-1}\left[\left(|A_1|-\frac{1}{|A_1|}\right)\tr\rho^2_A + \left(|A_2|-\frac{1}{|A_2|}\right)(\tr\rho)^2\right].
 \end{equation}
 Similarly, when considering the averaged purity entropy of subsystem $A_1 \cup R$, Eq.~(\ref{eq:random-unitary-gate}) changes the boundary from $\langle(12)_{R}\mathbb I_{A_1} (12)_{A_2}\mathbb I_\text{MEM}|$ to $\langle (12)_{A\cup R}\mathbb I_\text{MEM}|$ and $\langle(12)_{R}\mathbb I_{A\cup \text{MEM}}|$, i.e.,
 \begin{equation}
 \begin{aligned}
 	2^{-\tilde S^{(2)}_{A_1\cup R}} 
-	= \frac{|A|}{|A|^2-1}\left[\left(|A_2|-\frac{1}{|A_2|}\right)\tr\rho^2_R+\left(|A_1|-\frac{1}{|A_1|}\right)\tr\rho^2_{A\cup R}\right].
+	= \frac{|A|}{|A|^2-1}\left[\left(|A_1|-\frac{1}{|A_1|}\right)\tr\rho^2_{A\cup R}+\left(|A_2|-\frac{1}{|A_2|}\right)\tr\rho^2_R\right].
 \end{aligned}
 \end{equation}
 We can quantify the information scrambling by calculating the averaged (purity) mutual information
@@ -323,13 +323,13 @@ We thus prove the theorem.
 
 
 
-\subsection{Hayden-Preskill Protocol}
+\subsection{Hayden-Preskill protocol}
 
 \label{Hayden-Preskill}
 
 Consider a many-body teleportation described by the following process:
 \begin{equation}
-	\includegraphics[align=c,width=0.4\linewidth]{pics/decode}.
+	\includegraphics[align=c,width=0.6\linewidth]{pics/decode}.
 \end{equation}
 Denote the quantum state after the decoding $|\Psi_{\text{out}}\rangle$, the fidelity of teleporting the state $|\text{Alice}\rangle$ to the qubit $q_B$ is defined as
 \begin{equation}
@@ -340,8 +340,8 @@ When the fidelity averaged over Alice's state $\mathbb{E}[F(|\text{Alice}\rangle
 The averaged fidelity can be obtained by sampling Alice's state from the action of a random unitary $u_a$ on a basis state $|0\rangle$,
 \begin{equation}
 	\mathbb{E}[F(|\text{Alice}\rangle] 
-	= \mathbb{E}_{u_a} \includegraphics[align=c,width=0.17\linewidth]{pics/decode-2}
-	= \frac{1}{3} + \frac{2}{3} F_\mathrm{EPR},\quad F_\mathrm{EPR} \equiv \includegraphics[align=c,width=0.15\linewidth]{pics/decode-3}.
+	= \mathbb{E}_{u_a} \includegraphics[align=c,width=0.2\linewidth]{pics/decode-2}
+	= \frac{1}{3} + \frac{2}{3} F_\mathrm{EPR},\quad F_\mathrm{EPR} \equiv \includegraphics[align=c,width=0.18\linewidth]{pics/decode-3}.
 \end{equation}
 Note that the last equation comes from the averaging
 \begin{equation}
@@ -364,14 +364,14 @@ Since the Von Neumann entropy upper bounds the Renyi entropy, we have,
 Since in the case we consider here, the qubits $q_{2 \sim N}$ are in a fully mixed state, we can choose the simplest purification where the memory contains ($N-1$) auxiliary qubits that form ($N-1$) EPR pairs with the ($N-1$) spins in the system.
 The time-evolved purified state is
 \begin{equation}
-	|\Psi\rangle = \includegraphics[align=c,width=0.2\linewidth]{pics/qn-1.jpg}, \quad
-	\rho(\mathrm{MEM}\cup q_n) = \frac{1}{2}\includegraphics[align=c,width=0.18\linewidth]{pics/qn-2.jpg}.
+	|\Psi\rangle = \includegraphics[align=c,width=0.28\linewidth]{pics/qn-1.jpg}, \quad
+	\rho(\mathrm{MEM}\cup q_n) = \frac{1}{2}\includegraphics[align=c,width=0.22\linewidth]{pics/qn-2.jpg}.
 \end{equation}
 From the density matrix, we can obtain the purity $\tr\rho^2\left(\operatorname{MEM} \cup q_n\right)$ as
 \begin{equation}\label{eq:purity-network}
 	\tr\rho^2\left(\operatorname{MEM} \cup q_n\right) 
-	= \frac{1}{4^N}\includegraphics[align=c,width=0.13\linewidth]{pics/qn-3.jpg}
-	= \frac{1}{4^{N+1}}\sum_{W,V}\includegraphics[align=c,width=0.13\linewidth]{pics/qn-4.jpg},
+	= \frac{1}{4^N}\includegraphics[align=c,width=0.18\linewidth]{pics/qn-3.jpg}
+	= \frac{1}{4^{N+1}}\sum_{W,V}\includegraphics[align=c,width=0.18\linewidth]{pics/qn-4.jpg},
 \end{equation}
 where $W$ and $V$ are summed over local Pauli matrices on $q_1$ and $q_n$.
 In the last equation, we used the completeness relation of Pauli operators.
@@ -411,8 +411,8 @@ To understand this decoder, let us calculate the probability of successful posts
 The probability of successful postselection is
 \begin{equation}
 	\Delta 
-	= \includegraphics[align=c,width=0.2\linewidth]{pics/decode-4}
-	= \frac{1}{2^{N+1+E}}\includegraphics[align=c,width=0.17\linewidth]{pics/decode-5}.
+	= \includegraphics[align=c,width=0.25\linewidth]{pics/decode-4}
+	= \frac{1}{2^{N+1+E}}\includegraphics[align=c,width=0.22\linewidth]{pics/decode-5}.
 \end{equation}
 Notice that the diagram is the same as that in Eq.~(\ref{eq:purity-network}) for calculating $\rho^2(\mathrm{MEM}\cup A_2)$.
 Therefore,
@@ -422,7 +422,7 @@ Therefore,
 The probability of the postselection is directly related to the Renyi mutual information between $R$ and Bob's qubit before the decoding. 
 Given the successful postselection, the fidelity that $R$ and $R'$ form an EPR is
 \begin{equation}\label{eq:EPR-fidelity}
-	F_{\mathrm{EPR}} = \includegraphics[align=c,width=0.16\linewidth]{pics/decode-6}/\Delta
+	F_{\mathrm{EPR}} = \includegraphics[align=c,width=0.2\linewidth]{pics/decode-6}/\Delta
 	= 2^{I^{(2)}(R: \mathrm{MEM}\cup A_2)-2}
 	= \frac{1}{1+3\times 4^{-E}}.
 \end{equation}
@@ -487,7 +487,7 @@ where $d = q_A q_B$.
 
 Now consider the unitary dynamics described by the random circuits:
 \begin{equation}\label{eq:random-circuit}
-	|\psi(t)\rangle = U_\text{circuit}(t)|\psi_0\rangle =  \includegraphics[align=c,width=0.2\linewidth]{pics/circuit.jpg}.
+	|\psi(t)\rangle = U_\text{circuit}(t)|\psi_0\rangle =  \includegraphics[align=c,width=0.3\linewidth]{pics/circuit.jpg}.
 \end{equation}
 As the first remark, we will show that in the $q\rightarrow \infty$ limit, a single action of a random unitary gate $U_x$ on sites $x$ and ($x+1$) will increase the zeroth-, first-, and second-order Renyi entropy maximally (we denote as $S^{(n)}_{x}$ the entropy of the first $x$ sites):
 \begin{equation}
@@ -569,14 +569,14 @@ Therefore, the asymptotic behavior of the weight function is:\footnote{We remark
 Actually, the left and right domain walls correspond to two biased random walks along opposite directions. 
 In the longtime limit, the crossing case is negligible.
 While in the early time, the no-crossing constraint will eliminate a certain portion of the path configuration, and that is why we use the proportional expression.}
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	C(x,t) &\propto \left(\frac{q}{q^2+1}\right)^{2t}\sum_{u=0}^{l_u} \sum_{v=0}^{l_v} q^{2t-2u-2v} 
 	\begin{pmatrix} t \\ u \end{pmatrix} \begin{pmatrix} t \\ v \end{pmatrix} 
 	= \left[\sum_{u=0}^{l_u}\begin{pmatrix} t \\ u \end{pmatrix} \frac{q^{2(t-u)}}{(q^2+1)^t} \right]
 	\left[\sum_{v=0}^{l_v}\begin{pmatrix} t \\ v \end{pmatrix} \frac{q^{2(t-v)}}{(q^2+1)^t} \right].
 \end{aligned}
-\end{equation}
+\end{equation*}
 Note that in the last expression, the summation corresponds to the distribution of random walk with a biased probability $p = 1/(q^2+1)$.
 We know that a random walk satisfies a gaussian distribution:
 \begin{equation}
@@ -641,8 +641,8 @@ That is, if we obtain the analytic form of $\left\langle Z_n^k\right\rangle$ for
 The full expression for $\left\langle Z_n^k\right\rangle$ is obtained by contracting the tensors (blocks) in accordance with the spatiotemporal structure of the circuit. 
 Graphically, $\left\langle[\operatorname{tr}\rho_x^n]^k\right\rangle$ can be represented as a lattice magnet with a specific boundary condition, which can be graphically represented as:
 \begin{equation}
-	\langle Z_n^k\rangle = \includegraphics[align=c,width=0.15\linewidth]{pics/boundary.jpg}, \quad
-	\includegraphics[align=c,width=0.1\linewidth]{pics/weight.jpg}
+	\langle Z_n^k\rangle = \includegraphics[align=c,width=0.18\linewidth]{pics/boundary.jpg}, \quad
+	\includegraphics[align=c,width=0.12\linewidth]{pics/weight.jpg}
 	= \sum_{\tau\in S_{nk}} \operatorname{Wg}_d (\sigma_a \tau^{-1}) q^{\#(\sigma_b^{-1}\tau)+\#(\sigma_c^{-1}\tau)},
 \end{equation}
 where on the upper boundary $|\tilde\tau\rangle = \left|(12\cdots n)^{\otimes k}\right\rangle$, and there is a free boundary condition on the bottom.
@@ -656,12 +656,12 @@ where on the upper boundary $|\tilde\tau\rangle = \left|(12\cdots n)^{\otimes k}
 
 \subsection{Monitored random circuits}
 Consider a random unitary circuit interspersed by local projective measurements: 
-\begin{equation}
-	\includegraphics[align=c,width=0.2\linewidth]{pics/MIPT-1.jpg}
+\begin{equation*}
+	\includegraphics[align=c,width=0.25\linewidth]{pics/MIPT-1.jpg}
 	\quad \Longrightarrow \quad
-	Z = \includegraphics[align=c,width=0.2\linewidth]{pics/MIPT-2.jpg}
-	\xrightarrow{\text{ average }} \includegraphics[align=c,width=0.2\linewidth]{pics/MIPT-3.jpg}
-\end{equation}
+	Z = \includegraphics[align=c,width=0.25\linewidth]{pics/MIPT-2.jpg}
+	\xrightarrow{\text{ average }} \includegraphics[align=c,width=0.25\linewidth]{pics/MIPT-3.jpg}
+\end{equation*}
 Each blue circle is a random measurement described by the Krause operator
 \begin{equation}
 	\{\mathcal M\} = \left\{\sqrt{1-p}\ \mathbb I, \sqrt p |0\rangle\langle0|,\cdots, \sqrt p|q\rangle\langle q|\right\}.
@@ -820,25 +820,4 @@ Similarly, the shadow norm is
 \end{equation}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \end{document}
-
-

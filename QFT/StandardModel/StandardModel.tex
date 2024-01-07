@@ -1,4 +1,4 @@
-\documentclass[aps,prb,superscriptaddress,nofootinbib]{revtex4}
+\documentclass[aps,rmp,twocolumn,superscriptaddress,nofootinbib]{revtex4-2}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -39,13 +39,15 @@
 \title{The Standard Model}
 \author{Jie Ren}
 
-
+\begin{abstract}
+The standard model (SM) describes all the elementary particles experimentally observed until now.
+It includes the electromagnetic, weak, and strong interactions mediated by corresponding gauge fields.
+Also, an additional scalar Higgs field in SM gives masses to fermions and W, Z gauge bosons.
+\end{abstract}
 
 \maketitle
 
-The standard model (SM) describes all the elementary particles experimentally observed up till now.
-It includes the electromagnetic, weak, and strong interactions, mediated by corresponding gauge fields.
-Also, there is an additional scalar Higgs field in SM that gives masses to fermions and W, Z gauge bosons.
+
 
 \tableofcontents
 
@@ -58,12 +60,12 @@ Also, there is an additional scalar Higgs field in SM that gives masses to fermi
 \subsection{Elementary Particles}
 
 The elementary particles in SM can be divided into the fermions, the gauge bosons, and the Higgs boson. 
-The fermions described the matters, the gauge boson mediate forces, and the Higgs couples to the matter and gauge field to create masses.
+The fermions describe the matters, the gauge boson mediates forces, and the Higgs couples to the matter and gauge field to create masses.
 
-Composite particles like nucleons (neutron/proton) and mesons (pion, kaon, etc.) consist of quarks, which comes in six flavors: up, down, charm, strange, top, and bottom, and can also be grouped into three generations.
-Besides, electrons and neutrinos are known as the lepton, which also comes in three generations.
+Composite particles like nucleons (neutron/proton) and mesons (pion, kaon, etc.) consist of quarks, which come in six flavors: up, down, charm, strange, top, and bottom, and can also be grouped into three generations.
+Besides, electrons and neutrinos are known as the lepton, which comes in three generations.
 
-The gauge bosons mediate electromagnetic force are the photons; for the weak interaction, they are the $W^\pm$ and $Z$ bosons, and for the strong force they are gluons, which comes in 8 colors.
+The gauge bosons that mediate electromagnetic force are the photons; for the weak interaction, they are the $W^\pm$ and $Z$ bosons, and for the strong force, they are gluons, which come in 8 colors.
 
 
 
@@ -72,14 +74,12 @@ The gauge bosons mediate electromagnetic force are the photons; for the weak int
 \subsection{Gauge Group}
 
 The standard model has $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$ gauge symmetry.
-For a general field $\phi_{iI}$, where $i$ labels the electroweak degrees of freedom and $I$ labels the color degrees of freedom.
+For a general field $\phi_{iI}$, $i$ labels the electroweak degrees of freedom, and $I$ labels the color degrees of freedom.
 The covariant derivative for $\phi_{iI}$ is then
-\begin{equation}
-	D_\mu = \partial_\mu -i \left(g_1 B_\mu Y + g_2 W^a_\mu T^a_{2} + g_3 A_\mu^b T^b_3                                                  \right),
-\end{equation}
+$$D_\mu = \partial_\mu -i \left(g_1 B_\mu Y + g_2 W^a_\mu T^a_{2} + g_3 A_\mu^b T^b_3                                                  \right),$$
 where the operator $Y$, $T_2^a$ and $T_3^b$ is depend on the representation of U(1), SU(2) and SU(3) groups respectively. 
 
-The weak interaction only involve left-handed spinor, so the largest fermion sector is
+The weak interaction only involves left-handed spinor, so the largest fermion sector is
 \begin{equation}
 	Q_I = \left[
 		\begin{pmatrix} u_L \\ d_L \end{pmatrix} 
@@ -88,7 +88,7 @@ The weak interaction only involve left-handed spinor, so the largest fermion sec
 	\right]_I.
 \end{equation}
 Each $Q_I$ is in the $\left(3,2,\frac{1}{6}\right)$ representation, where $3$ is the fundamental representation of SU(3), $2$ is the fundamental representation of SU(2), and $\frac{1}{6}$ is the hypercharge of the U(1) gauge group.
-For example the sector of first generation left-handed quarks are
+For example, the sector of first-generation left-handed quarks are
 \begin{equation}
 	Q_1 = \begin{bmatrix}
 		u_L^r & u_L^g & u_L^y \\ d_L^r & d_L^g & d_L^y
@@ -96,7 +96,7 @@ For example the sector of first generation left-handed quarks are
 \end{equation}
 Note that the electric charge satisfies $q = I_3 + Y$, where $I_3$ is the z-component of the isospin.
 
-Besides, the left-handed leptons also involves the weak interaction but not the strong interaction
+Besides, the left-handed leptons also involve the weak interaction but not the strong interaction
 \begin{equation}
 	L_I = \left[
 		\begin{pmatrix} \nu_{e L} \\ e_L \end{pmatrix} 
@@ -106,11 +106,11 @@ Besides, the left-handed leptons also involves the weak interaction but not the 
 \end{equation}
 and thus each $L_I$ is in the $\left(1,2,\frac{1}{2}\right)$ representation.
 
-The right-handed quarks form $\left(3,1,\frac{2}{3}\right)$ and $\left(3,1,-\frac{1}{3}\right)$ representations, the right-handed electrons/muons/tauons form $\left(1,1,-1\right)$ representations, and the right-handed neutrinos form trivial $\left(1,1,0\right)$ representations.
+The right-handed quarks form $(3,1,\frac{2}{3})$ and $(3,1,-\frac{1}{3})$ representations, the right-handed electrons/muons/tauons form $(1,1,-1)$ representations, and the right-handed neutrinos form trivial $(1,1,0)$ representations.
 
-In addition to the fermion, there is also a scalar Higgs field in the representation $\left(1,2,\frac{1}{2}\right)$.
-Together, we say that the standard model contains the representations (only fermions in the first generation are listed):
-\begin{equation}
+In addition to the fermion, there is also a scalar Higgs field in the representation $(1,2,\frac{1}{2})$.
+Together, we say that the standard model contains the following representations (only fermions in the first generation are listed):
+\begin{equation*}
 \begin{tabular}{c|c|c}
 \hline \hline
 \multicolumn{2}{c|}{Particles} & Representation\tabularnewline
@@ -126,9 +126,8 @@ Together, we say that the standard model contains the representations (only ferm
 Higgs & $\varphi$ & $(1,2,1/2)$\tabularnewline
 \hline \hline
 \end{tabular}
-\end{equation}
-
-The standard model described the interaction of quarks, leptons and gauge bosons.
+\end{equation*}
+The standard model described the interaction of quarks, leptons, and gauge bosons.
 The gauge boson intermediate electromagnetic, weak, and strong interaction.
 In the standard model, the gauge group is 
 \begin{equation}
@@ -136,11 +135,11 @@ In the standard model, the gauge group is
 \end{equation}
 where $\mathrm{SU(3)}$ concerns the color degrees of freedom, and the $\mathrm{SU(2)}\times \mathrm{U(1)}$ is gauge group of the electroweak interaction.
 
-The gauge field is coupled to the matter fields consists of 12 elementary fermion particles and a Higgs boson.
+The gauge field is coupled to the matter fields and consists of 12 elementary fermion particles and a Higgs boson.
 
-The gauge theory is written as a nonabelian gauge theory, or the Yang-Mills theory, which forbid the gauge field to have mass term.
-Also, the weak interaction breaks the parity -- it only involve the left-handed spinor field, and such single-handed gauge symmetry forbid the mass term for fermions.
-In order to obtain the mass, the Higgs field should be introduced, which involves the spontaneous symmetry breaking.
+The gauge theory is written as a nonabelian or the Yang-Mills theory, which forbids the gauge field to have a mass term.
+Also, the weak interaction breaks the parity -- it only involves the left-handed spinor field, and such single-handed gauge symmetry forbids the mass term for fermions.
+The Higgs field should be introduced to obtain the mass, which involves spontaneous symmetry breaking.
 
 
 \subsection{Interactions}
@@ -148,33 +147,25 @@ The Lagrangian of the SM consists of
 \begin{equation}
 	\mathcal L_{\mathrm{SM}} = \mathcal L_{\mathrm{QED}} + \mathcal L_{\mathrm{QCD}} + \mathcal L_{\mathrm{W}} + \mathcal L_{\mathrm{H}}.
 \end{equation}
-In each sector, the free theory is described by the free fermions fields, free scalar fields or free vector fields.
-The interaction among them can be represented by the Feynman diagrams.\footnote{All Feynman diagrams in the model are built from combinations of these vertices.The conjugate of each listed vertex (reversing the direction of arrows) is also allowed.}
+In each sector, the free theory is described by the free fermions fields, free scalar fields, or free vector fields.
+The Feynman diagrams can represent the interaction among them.\footnote{All Feynman diagrams in the model are built from combinations of these vertices. The conjugate of each listed vertex (reversing the direction of arrows) is also allowed.}
 
 The strong interaction involves the vertices:
-\begin{equation}
-	\includegraphics[width=0.5\linewidth,align=c]{pics/SM-Feyn-Strong.png}
-\end{equation}
+$$\includegraphics[width=0.7\linewidth,align=c]{pics/SM-Feyn-Strong.png}$$
 where $q$ is any quark, $g$ is a gluon.
 The weak interaction involves the vertices:
-\begin{equation}
-	\includegraphics[width=0.5\linewidth,align=c]{pics/SM-Feyn-Weak.png}
-\end{equation}
+$$\includegraphics[width=0.7\linewidth,align=c]{pics/SM-Feyn-Weak.png}$$
 where $f$ is any fermion.
 
 The electro-weak interaction involves the vertices:
-\begin{equation}
-	\includegraphics[width=0.5\linewidth,align=c]{pics/SM-Feyn-EW.png}
-\end{equation}
+$$\includegraphics[width=0.7\linewidth,align=c]{pics/SM-Feyn-EW.png}$$
 where $X$ is any charged particle, $\gamma$ is a photon.
-In diagrams with multiple particle labels separated by ``/'', one particle label is chosen. 
+One particle label is chosen in diagrams with multiple particle labels separated by ``/''. 
 In diagrams with particle labels separated by ``|'', the labels must be chosen in the same order. 
-For example, in the four boson electroweak case the valid diagrams are WWWW, WWZZ, WW$\gamma\gamma$, WWZ$\gamma$.
+For example, in the four boson electroweak case, the valid diagrams are WWWW, WWZZ, WW$\gamma\gamma$, and WWZ$\gamma$.
 
 The Higgs vertices are:
-\begin{equation}
-	\includegraphics[width=0.5\linewidth,align=c]{pics/SM-Feyn-Higgs.png}
-\end{equation}
+$$\includegraphics[width=0.7\linewidth,align=c]{pics/SM-Feyn-Higgs.png}$$
 where $m$ is any particle with mass, $m_B$ is any boson with mass. 
  
 
@@ -188,14 +179,14 @@ where $m$ is any particle with mass, $m_B$ is any boson with mass.
 \section{Electroweak Interaction}
 
 \subsection{Spontaneous Symmetry Breaking of Higgs Field}
-Beside the quarks, leptons and gauge bosons, a doublet scalar field (Higgs) is also introduced in order to generate mass for the particles:
+Besides the quarks, leptons, and gauge bosons, a doublet scalar field (Higgs) is also introduced to generate mass for the particles:
 \begin{equation}
 	\varphi \equiv \left[\begin{array}{c}
 		\varphi_1 \\ \varphi_2
 	\end{array} \right],
 \end{equation}
-which is also an isospin doublet with hyperchage $Y=\frac{1}{2}I$:
-\begin{equation}
+which is also an isospin doublet with hypercharge $Y=\frac{1}{2}I$:
+\begin{equation*}
 	\begin{tabular}{c c c c}
 		\hline 
 		Field & $I_3$ & $Y$ & $q$\\ \hline
@@ -203,21 +194,20 @@ which is also an isospin doublet with hyperchage $Y=\frac{1}{2}I$:
 		$\varphi_2$ & $-1/2$ & $1/2$ & $0$ \\  
 		\hline 
 	\end{tabular}
-\end{equation}
-
+\end{equation*}
 The Lagrangian of the Higgs field is 
 \begin{equation}\label{eq:SM-Higgs-L1}
 	\mathcal L = -\frac{1}{4}(W^a_{\mu\nu})^2 - \frac{1}{4}B_{\mu\nu}^2 +(D^\mu \varphi)^\dagger D_\mu \varphi- V(\varphi),
 \end{equation}
 where the field strength tensors are
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	W^a_{\mu\nu} &= \partial_\mu W_\nu^1 - \partial_\nu W^1_\mu + g_2 (W_\mu^2 W_\nu^3 - W_\mu^3 W_\nu^2), \\
 	W^a_{\mu\nu} &= \partial_\mu W_\nu^1 - \partial_\nu W^1_\mu + g_2 (W_\mu^3 W_\nu^1 - W_\mu^1 W_\nu^3), \\
 	W^a_{\mu\nu} &= \partial_\mu W_\nu^1 - \partial_\nu W^1_\mu + g_2 (W_\mu^1 W_\nu^2 - W_\mu^2 W_\nu^1), \\
 	B^a_{\mu\nu} &= \partial_\mu B_\nu^1 - \partial_\nu B^1_\mu,
 \end{aligned}
-\end{equation}
+\end{equation*}
 and the Higgs interaction is
 \begin{equation}
 	V(\varphi) = \frac{\lambda}{4} \left(\varphi^\dagger \varphi - \frac{v^2}{2} \right)^2.
@@ -238,11 +228,7 @@ where the covariant derivative is
 \begin{equation}
 	D_\mu = \partial_\mu -i \left(g_1 B_\mu Y + g_2 W^a_\mu T_2^a\right).
 \end{equation}
-We can introducing the Weinberg angle
-\begin{equation}
-	\theta_W \equiv\arctan \frac{g_1}{g_2},
-\end{equation}
-and the fields
+We can introduce the Weinberg angle $\theta_W = \arctan\frac{g_1}{g_2}$, and the fields
 \begin{equation}
 \begin{aligned}
 	W_\mu^\pm &\equiv \frac{1}{\sqrt 2}(W^1_\mu \mp i A_\mu^2), \\
@@ -265,6 +251,7 @@ The off-diagonal part of the Lie algebra becomes
 	\end{bmatrix},
 \end{equation}
 and the diagonal part becomes
+\begin{widetext}
 \begin{equation}
 \begin{aligned}
 	g_2 W_\mu^3 T^z_2 + g_1 B_\mu Y
@@ -274,7 +261,8 @@ and the diagonal part becomes
 	&= e A_\mu q + \frac{e}{\sin{\theta_W}\cos{\theta_W}} Z_\mu \left(T_2^3 - \sin^2{\theta_W} q\right).
 \end{aligned}
 \end{equation}
-Note that the gauge field $A_\mu$ describe QED, so we identify the coupling constant with the electric charge:
+\end{widetext}
+Note that the gauge field $A_\mu$ describes QED, so we identify the coupling constant with the electric charge:
 \begin{equation}
 	e = g_2 \sin{\theta_W} = g_1 \cos{\theta_W}.
 \end{equation}
@@ -288,20 +276,20 @@ For Higgs field,
 	\end{bmatrix}.
 \end{equation}
 $T^3_2 = \frac{1}{2}\sigma^z$, $Y=\frac{1}{2}I$, so 
-With the new definition of the field, the Lie algebra of becomes
-\begin{equation}
+With the new definition of the field, the Lie algebra becomes
+\begin{equation*}
 \begin{aligned}
-	g_2 W^a_\mu T_2^a + g_1 B_\mu Y 
-	&= \frac{e}{2 \sin{\theta_W}} 
+	&\ g_2 W^a_\mu T_2^a + g_1 B_\mu Y \\
+	=&\ \frac{e}{2 \sin{\theta_W}} 
 	\begin{bmatrix}
 		2\sin{\theta_W} A_\mu + \frac{\cos{2\theta_W}}{\cos{\theta_W}} Z_\mu & \sqrt{2} W^+_\mu \\
 		\sqrt{2} W_\mu^- & \frac{1}{\cos{\theta_W}} Z_\mu
 	\end{bmatrix}.
 \end{aligned}
-\end{equation}
-We can now expand the kinetic term to get the effective mass of the the gauge field in unitary gauge. 
+\end{equation*}
+We can now expand the kinetic term to get the effective mass of the gauge field in a unitary gauge. 
 The mass term is the quadratic part of $\varphi$:
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	\mathcal L_{\mathrm{mass}} 
 	&= \varphi_0^\dagger \left(g_2 W^a_\mu T_2^a + g_1 B_\mu Y\right)^2 \varphi_0 \\
@@ -318,18 +306,18 @@ The mass term is the quadratic part of $\varphi$:
 	\end{bmatrix} \\
 	&= m_W W^{+\mu} W_\mu^- + \frac{1}{2}m_Z^2 Z^\mu Z_\mu,
 \end{aligned}
-\end{equation}
+\end{equation*}
 where the mass for $W$ and $Z$ bosons are
-\begin{equation}
+\begin{equation*}
 	m_W = \frac{ev}{2 \sin{\theta_W}}, \quad 
 	m_Z = \frac{e v}{2\sin{\theta_W}\cos{\theta_W}} = \frac{m_W}{\cos{\theta_W}}.
-\end{equation}
+\end{equation*}
 Note that the photon field $A_\mu$ does not obtain mass from the Higgs field.
 
 
 
 \subsection{Lagrangian of Higgs-Gauge Sector}
-We are now going to express the Lagrangian (\ref{eq:SM-Higgs-L1}) in terms of the fields we have just introduced.
+We will now express the Lagrangian (\ref{eq:SM-Higgs-L1}) in terms of the fields we have just introduced.
 In the unitary gauge, the Higgs field can be written as
 \begin{equation}
 	\varphi = \frac{1}{\sqrt 2} \begin{bmatrix}
@@ -337,7 +325,7 @@ In the unitary gauge, the Higgs field can be written as
 	\end{bmatrix},
 \end{equation}
 where $H(x)$ is a real scalar field.
-The interaction terms gives
+The interaction terms give
 \begin{equation}
 \begin{aligned}
 	V(H) &= \frac{\lambda v^2}{4} H^2 + \frac{\lambda v}{4}H^3 + \frac{\lambda}{16}H^4 \\
@@ -348,42 +336,46 @@ where we have defined the Higgs mass
 \begin{equation}
 	m_H^2 = \frac{\lambda v^2}{2}.
 \end{equation}
-Also, the fluctuation around the $\varphi_0$ also create coupling between Higgs field and the gauge fields.
-We can simply replace $v^2$ with $(v+H)^2$ in the gauge field mass term to capture the coupling.
+Also, the fluctuation around the $\varphi_0$ creates coupling between the Higgs field and the gauge fields.
+To capture the coupling, we can replace $v^2$ with $(v+H)^2$ in the gauge field mass term.
 Thus, the Lagrangian is
-\begin{equation}
-	\mathcal L_{\mathrm{H}} = \partial^\mu H^\dagger \partial_\mu H - V(H) + \left(m_W W^{+\mu} W_\mu^- + \frac{1}{2}m_Z^2 Z^\mu Z_\mu \right) \left(H^2+2vH \right).
-\end{equation}
+\begin{equation*}
+\begin{aligned}
+	\mathcal L_{\mathrm{H}} =&\ \partial^\mu H^\dagger \partial_\mu H - V(H) +  \\
+	& \left(m_W W^{+\mu} W_\mu^-+\frac{m_Z^2}{2} Z^\mu Z_\mu \right) \left(H^2+2vH \right).
+\end{aligned}
+\end{equation*}
 Now consider the Lagrangian for the gauge field
-\begin{equation}
+\begin{equation*}
 	\mathcal L_\mathrm{W} = -\frac{1}{4}(W^a_{\mu\nu})^2 - \frac{1}{4}B_{\mu\nu}^2 + m_W W^{+\mu} W_\mu^- + \frac{1}{2}m_Z^2 Z^\mu Z_\mu.
-\end{equation}
+\end{equation*}
 We can regroup the field strength as
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	W^+_{\mu\nu} &= D_\mu W_\nu^+ - D_\nu W^+_\mu, \\
 	W^-_{\mu\nu} &= D_\mu^\dagger W_\nu^- - D_\nu^\dagger W^-_\mu, \\
 	W^3_{\mu\nu} &= \sin{\theta_W} F_{\mu\nu} + \cos{\theta_W}Z_{\mu\nu} -ig_2(W^+_\mu W^-_\nu - W_\mu^- W_\nu^+), \\
 	B^a_{\mu\nu} &= \cos{\theta_W} F_{\mu\nu} - \sin{\theta_W} Z_{\mu\nu},
 \end{aligned}
-\end{equation}
+\end{equation*}
 where we have defined 
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	W^\pm_{\mu\nu} &= \frac{1}{\sqrt 2} (W^1_{\mu\nu} \mp i W^2_{\mu\nu}), \\
 	F_{\mu\nu} &= \partial_\mu A_\nu - \partial_\nu A_\mu, \\
 	Z_{\mu\nu} &= \partial_\mu Z_\nu - \partial_\nu Z_\mu.
 \end{aligned}
-\end{equation}
-The covariant derivative for $W^\pm$ field is
-\begin{equation}
+\end{equation*}
+The covariant derivative for the $W^\pm$ field is
+\begin{equation*}
 \begin{aligned}
 	D_\mu &= \partial_\mu -i g_2 W^3_\mu \\
 	&= \partial_\mu -i g_2 \left(\sin{\theta_W}A_\mu + \cos{\theta_W} Z_\mu \right) \\
 	&= \partial_\mu -i e \left(A_\mu + \cot{\theta_W} Z_\mu \right)
 \end{aligned}
-\end{equation}
-So the Lagrangian for the gauge field is
+\end{equation*}
+So, the Lagrangian for the gauge field is
+\begin{widetext}
 \begin{equation}
 \begin{aligned}
 	\mathcal L_\mathrm{W}
@@ -393,6 +385,7 @@ So the Lagrangian for the gauge field is
 	&\ -\frac{e^2}{2\sin^2{\theta_W}} \left(W^{+\mu}W^-_\mu W^{+\nu}W^-_\nu - W^{+\mu}W^+_\mu W^{-\nu}W^-_\nu \right).
 \end{aligned}
 \end{equation}
+\end{widetext}
 We remark that in the unitary gauge, there is no redundancy of the gauge field.
 No ghost field is needed in the quantization procedure.
 
@@ -416,14 +409,14 @@ The fermion fields in the electroweak interaction
 \end{equation}
 
 The kinetic term for the fermion Lagrangian is
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	\mathcal L_{\mathrm{kin}}
 	=&\ i Q^\dagger_J \sigma^\mu D_\mu Q_J + i u_{RJ}^\dagger \bar\sigma^\mu D_\mu u_{RJ} + i d_{RJ}^\dagger \bar\sigma^\mu D_\mu d_{RJ} \\
 	& + i L^\dagger_J \sigma^\mu D_\mu L_J + i e_{RJ}^\dagger \bar\sigma^\mu D_\mu e_{RJ} + i \nu_{RJ}^\dagger \bar\sigma^\mu D_\mu \nu_{RJ},
 \end{aligned}
-\end{equation}
-where we have use the index $J$ to label the generation of the fermion:
+\end{equation*}
+where we have used the index $J$ to label the generation of the fermion:
 \begin{equation}
 \begin{aligned}
 	u_{RJ} &= \{u_R, c_R, t_R\}, & 
@@ -433,7 +426,7 @@ where we have use the index $J$ to label the generation of the fermion:
 \end{aligned}
 \end{equation}
 
-The left-handed SU(2) gauge symmetry forbid any fermion mass term, which is incompatible with the reality.
+The left-handed SU(2) gauge symmetry forbids any fermion mass term incompatible with reality.
 However, fermion can obtain fermion mass by introducing Yukawa coupling between the Higgs and fermion fields.
 
 \subsection{Quark Sector}
@@ -444,13 +437,13 @@ The Yukawa coupling between quark and Higgs is
 	- Y^d_{IJ} Q^\dagger_{I} \varphi d_{RJ} +h.c..
 \end{equation}
 The first term corresponds to
-\begin{equation}
+\begin{equation*}
 	\left(\bar 3, \bar 2, -\frac{1}{6}\right) \times \left(1, \bar 2, -\frac{1}{2}\right) \times \left(3, 1, \frac{2}{3}\right) = \left(1,1,0\right)\oplus \cdots,
-\end{equation}
+\end{equation*}
 with $\varepsilon^{ij}$ being the Clebsch-Gordan coefficient, and the second term corresponds to
-\begin{equation}
+\begin{equation*}
 	\left(\bar 3, \bar 2, -\frac{1}{6}\right) \times \left(1, 2, \frac{1}{2}\right) \times \left(3, 1, -\frac{1}{3}\right) = \left(1,1,0\right).
-\end{equation}
+\end{equation*}
 Now substitute $\varphi$ with 
 \begin{equation}
 	\varphi = \frac{1}{\sqrt 2} \begin{bmatrix}
@@ -458,10 +451,10 @@ Now substitute $\varphi$ with
 	\end{bmatrix}.
 \end{equation}
 The Yukawa potential then gives quark mass term:
-\begin{equation}
+\begin{equation*}
 	\mathcal L_{Q,\mathrm{Yuk}}
 	= -\frac{v+H}{\sqrt 2} \left( Y^u_{IJ} u^\dagger_{LI} u_{RJ} +Y^d_{IJ} d^\dagger_{LI} d_{RJ} \right) +h.c..
-\end{equation}
+\end{equation*}
 We can then use a basis transformation (singular value decomposition) to diagonalize the coupling matrix:
 \begin{equation}
 	Y^u_{IJ} = U_u M_u K^\dagger_u, \quad
@@ -469,26 +462,27 @@ We can then use a basis transformation (singular value decomposition) to diagona
 \end{equation}
 where $M_u$ and $M_d$ are diagonal matrices.
 We can change the basis
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	u_L &\rightarrow U_u u_L, & u_R &\rightarrow K_u u_R, \\
 	d_L &\rightarrow U_d d_L, & d_R &\rightarrow K_d d_R,
 \end{aligned}
-\end{equation}
+\end{equation*}
 and define the diagonal masses:
-\begin{equation}
+\begin{equation*}
 	m_{u_I} = \frac{v}{\sqrt 2} (M_u)_{II}, \quad 
 	m_{d_I} = \frac{v}{\sqrt 2} (M_d)_{II},
-\end{equation}
+\end{equation*}
 then the Lagrangian in the quark sector can be expressed as:
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	\mathcal L_Q =&\ \sum_I \bar u_I\left(i\cancel D^c-m_{u_I}\right)u_I + \sum_I \bar d_I \left(i \cancel D^c-m_{d_I}\right)d_I \\
 	& -\frac{H}{v} \sum_I\left(m_{u_I}\bar u_I u_I+m_{d_I}\bar d_I d_I \right) + \mathcal L_{Q-G},
 \end{aligned}
-\end{equation}
+\end{equation*}
 where $\cancel D^c$ is the covariant derivative in QCD (neglecting the electroweak gauge), and $\mathcal L_{Q-G}$ denotes the coupling between quarks and the gauge fields.
 Using the expression of the Lie algebra
+\begin{widetext}
 \begin{equation}
 \begin{aligned}
 	g_2 \sum_{a=1}^2 W^a_\mu T^a_2 &= \frac{e}{\sqrt{2}\sin{\theta_W}}\begin{bmatrix}
@@ -502,17 +496,18 @@ The gauge-current coupling is:
 \begin{equation}
 	\mathcal L_{Q-G} = \frac{e}{\sqrt{2}\sin{\theta_W}} \left(W^{+}_\mu J_Q^{+\mu} + W^{-}_\mu J_Q^{-\mu} \right) + e A_\mu J^{\mu}_{\mathrm{EM},Q} + \frac{e}{\sin{\theta_W}\cos{\theta_W}} Z_\mu J^\mu_{z,Q},
 \end{equation}
+\end{widetext}
 where the currents are defined as
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	J^{+\mu}_Q &= d_{LI}^\dagger \bar\sigma^\mu u_{LI}, \quad
 	J^{-\mu}_Q = u_{LI}^\dagger \bar\sigma^\mu d_{LI}, \\
 	J^\mu_{\mathrm{EM},Q} &= \frac{2}{3} u_{LI}^\dagger \bar\sigma^\mu u_{LI} - \frac{1}{3} d_{LI}^\dagger \bar\sigma^\mu d_{LI}, \\
 	J_{z,Q}^\mu &= \frac{1}{2} u_{LI}^\dagger \bar\sigma^\mu u_{LI} - \frac{1}{2} d_{LI}^\dagger \bar\sigma^\mu d_{LI} J^\mu_3-\sin^2{\theta_W}J_{\mathrm{EM},Q}^\mu.
 \end{aligned}
-\end{equation}
-We note that in the definition of the currents, the quarks is the eigenstates of the weak interaction, not the mass eigenstates.
-If we define the quarks as the particle with definite mass, the above definition shall be rotation by a unitary matrix.
+\end{equation*}
+We note that in the definition of the currents, the quarks are the eigenstates of the weak interaction, not the mass eigenstates.
+If we define the quarks as particles with definite mass, the above definition shall be rotation by a unitary matrix.
 
 
 \subsection{Lepton Sector}
@@ -522,11 +517,11 @@ The coupling between Higgs and $e_R$ has the general Yukawa form:
 \end{equation}
 where $y_{IJ}$ is the Hermitian coupling matrix on generation space.
 The Yukawa coupling term corresponds to
-\begin{equation}
+\begin{equation*}
 	\left(\bar 2, \frac{1}{2}\right) \times \left(2, \frac{1}{2}\right) \times \left(1, -1\right) = \left(1,0\right),
-\end{equation}
+\end{equation*}
 which is indeed a singlet under gauge transformation (it is also a singlet under Lorentz transformation).
-The Higgs field then produce the term
+The Higgs field then produces the term
 \begin{equation}
 	\mathcal L_{e,\mathrm{Yuk}} = -\frac{Y^e_{IJ}}{\sqrt 2}(v+H) e_{LI}^\dagger e_{RJ} + h.c.,
 \end{equation}
@@ -537,12 +532,10 @@ We then diagonalize the coupling matrix:
 where $M_e$ is diagonal.
 We can then change the basis by
 \begin{equation}
-\begin{aligned}
-	e_R &\rightarrow K_e e_R, \\
-	e_L &\rightarrow U_e e_L,
-\end{aligned}
+	e_R \rightarrow K_e e_R, \quad
+	e_L \rightarrow U_e e_L,
 \end{equation}
-Then the coupling gives the mass:
+Then, the coupling gives the mass:
 \begin{equation}
 	\mathcal L_{e,\mathrm{Yuk}} 
 	= - \sum_I m_{e_I} \bar e_I e_I - \frac{H}{v}\sum_I m_{e_I} \bar e_I e_I,
@@ -552,23 +545,23 @@ where
 	m_{e_I} = \frac{v}{\sqrt 2} (M_e)_{II}.
 \end{equation}
 
-Now we consider the neutrino mass, which is much smaller than electrons.
-The neutrinos can similarly obtain mass by coupling to Higgs field.
-However, as the neutrinos being charge neutral, the mass term can come from Yukawa coupling as well as the Majorana pairing:
-\begin{equation}
+Now, we consider the neutrino mass much smaller than electrons.
+The neutrinos can similarly obtain mass by coupling to the Higgs field.
+However, as the neutrinos are charge neutral, the mass term can come from the Yukawa coupling as well as the Majorana pairing:
+\begin{equation*}
 \begin{aligned}
 	\mathcal L_{\nu,\mathrm{Yuk}} 
 	&= - Y^\nu_{IJ} \varepsilon^{ij} L_{iI} \varphi_j \nu_{RJ} - \frac{1}{2} M_{IJ} \nu_{RI} \cdot \nu_{RJ} + h.c. \\
 	&= -\frac{Y^\nu_{IJ}}{\sqrt 2}(v+H) \nu_{LI}^\dagger \nu_{RJ} - \frac{1}{2}M_{IJ}\nu_{RI}\cdot \nu_{RJ} + h.c.
 \end{aligned}
-\end{equation}
+\end{equation*}
 The first term corresponds to
-\begin{equation}
+\begin{equation*}
 	\left(2, -\frac{1}{2}\right) \times \left(2, \frac{1}{2}\right) \times \left(1, 0\right) = \left(1,0\right) \oplus(3,0),
-\end{equation}
+\end{equation*}
 and $\varepsilon^{ij}$ is the Clebsch-Gordan coefficients.
 The second term is automatically a gauge singlet.
-We can make a basis change to make $Y$ diagonal, and define a new set of Dirac spinors from single Weyl spinors:
+We can make a basis change to make $Y$ diagonal and define a new set of Dirac spinors from single Weyl spinors:
 \begin{equation}
 	\psi_1 = \begin{pmatrix}
 		\nu_L \\ i\sigma^2 \nu_L^*
@@ -582,51 +575,53 @@ and the effective mass term can be written as:
 	\mathcal L_{\nu,\mathrm{mass}} 
 	= -\sum_I \frac{Y_{II} v}{\sqrt 2}\bar\psi_{1I} \psi_{2I} - \sum_{IJ}\frac{1}{2} M_{IJ} \bar\psi_{2I} \psi_{2J}.
 \end{equation}
-Now the Dirac spinor $\psi_1$ and $\psi_2$ can mix, and a suitable mixing renders the mass term diagonal.
-If $M \gg m$, the eigenvalues of the mass term will be a huge masses plus some tiny masses.
+Now, the Dirac spinor $\psi_1$ and $\psi_2$ can mix, and a suitable mixing renders the mass term diagonal.
+If $M \gg m$, the eigenvalues of the mass term will be huge masses plus some tiny masses.
 In general, the low-energy part of the mass term is
 \begin{equation}
 	\mathcal L_{\nu,\mathrm{mass}} = -\sum_I m_{\nu_I}\bar\nu_I \nu_I \left(1+\frac{H}{v}\right)^2,
 \end{equation}
 
 With the discussion above, we can write down the Lagrangian in the lepton sector:
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	\mathcal L_L =&\ \sum_I \bar e_I (i\cancel\partial-m_{e_I})e_I + \sum_I \nu_{LI}^\dagger (\bar\sigma^\mu \partial_\mu -m_{\nu_I})\nu_{LI} \\
 	& -\frac{H}{v} \sum_I \left(m_{e_I} \bar e_I e_I + m_{\nu_I}\bar\nu_{LI}\nu_{LI}\right)+ \mathcal L_{L-G},
 \end{aligned}
-\end{equation}
+\end{equation*}
 where $\mathcal L_{L-G}$ is the lepton-gauge coupling term:
+\begin{widetext}
 \begin{equation}
 	\mathcal L_{L-G} = \frac{e}{\sqrt{2}\sin{\theta_W}}\left(W^{+}_\mu J_L^{+\mu} + W^{-}_\mu J_L^{-\mu} \right) + e A_\mu J^{\mu}_{\mathrm{EM},L} + \frac{e}{\sin{\theta_W}\cos{\theta_W}} Z_\mu J^\mu_{z,L},
 \end{equation}
 where the current is defined as 
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
-	J^{+\mu}_L &= e_{LI}^\dagger \bar\sigma^\mu \nu_{LJ}, \\
-	J^{-\mu}_L &= \nu_{LI}^\dagger \bar\sigma^\mu e_{LJ}, \\
-	J^\mu_{\mathrm{EM},L} &= - e_{LI}^\dagger \bar\sigma^\mu e_{LI} \\
+	J^{+\mu}_L &= e_{LI}^\dagger \bar\sigma^\mu \nu_{LJ}, \quad
+	J^{-\mu}_L = \nu_{LI}^\dagger \bar\sigma^\mu e_{LJ}, \quad
+	J^\mu_{\mathrm{EM},L} = - e_{LI}^\dagger \bar\sigma^\mu e_{LI}, \\
 	J_{z,L}^\mu &= \frac{1}{2} \nu_{LI}^\dagger \bar\sigma^\mu \nu_{LI} - \frac{1}{2} e_{LI}^\dagger \bar\sigma^\mu e_{LI} J^\mu_3-\sin^2{\theta_W}J_{\mathrm{EM},L}^\mu.
 \end{aligned}
-\end{equation}
-We note that although right-handed neutrinos are introduced, experimentally we can only directly observe the left-handed neutrinos.
-For the same reason the eigenstate of the weak interaction works more natural than the mass eigenstate for neutrinos. 
-We choose to define the neutrinos as what we directly measured -- the left-handed ``particle'' with no definite mass.
+\end{equation*}
+\end{widetext}
+Although right-handed neutrinos are introduced, we can only directly observe the left-handed neutrinos.
+For the same reason, the weak interaction's eigenstate works more naturally than the mass eigenstate for neutrinos. 
+We define the neutrinos as what we directly measured -- the left-handed ``particle'' with no definite mass.
 
 
 
 \subsection{Particle Mixing}
 
 \subsubsection{Quark Mixing}
-In the above discussion, when talking about ``particles'', we actually mean two different things. 
+In the above discussion, we mean two different things when talking about ``particles''. 
 The original definition of the particle is an excitation with definite energy.
 But in the weak interaction process, say
 \begin{equation}
 	u \rightarrow d + W^+,
 \end{equation}
 the strange and charm quark is the eigenstate of the weak interaction.
-That is, the weak interaction can change a state called $u$ to a states called $d$, both of which not necessarily have fixed energies.
-If we stick to the original definition of the particles, it turns out that the isospin doublet $Q_I$ we have just defined is not exact.
+The weak interaction can change a state called $u$ to a state called $d$, which does not necessarily have fixed energies.
+If we stick to the original definition of the particles, it turns out that the isospin doublet $Q_I$ we have just defined is different.
 It really should be written as
 \begin{equation}
 	Q_I = \left[
@@ -664,7 +659,7 @@ The quark mixing changes the original definition of $J^\pm_Q$ to:
 		= V_{IJ} u_{LI}^\dagger \bar\sigma^\mu d_{LJ}.
 \end{aligned}
 \end{equation}
-Note that the diagonal current $J_{\mathrm{EM}}$ or $J_z$ will not change change under the basis transformation.
+Note that the diagonal current $J_{\mathrm{EM}}$ or $J_z$ will not change under the basis transformation.
 
 The experimental value of the CKM matrix is approximately
 \begin{equation}
@@ -682,21 +677,24 @@ The experimental value of the CKM matrix is approximately
 We see the CKM matrix is closed to an identity matrix, and the most mixing happens between $d$ and $s$ quarks, i.e.,
 \begin{equation}
 \begin{aligned}
-	d' &= \cos\theta_c\ d + \sin\theta_c\ s \\
+	d' &= \cos\theta_c\ d + \sin\theta_c\ s, \\
 	s' &= -\sin\theta_c\ d + \cos\theta_c\ s.
 \end{aligned}
 \end{equation}
-Here the angle $\theta_c \approx 13^{\circ}$ is called the Cabbibo angle.
-It correct the quark decay process to:
+Here, the angle $\theta_c \approx 13^{\circ}$ is called the Cabbibo angle.
+It corrects the quark decay process to:
 \begin{equation}
+\begin{aligned}
 	\left[u \rightarrow d' + W^+\right]
-	= \cos\theta_c \left[u \rightarrow d + W^+\right] + \sin\theta_c \left[u \rightarrow s + W^+\right].
+	=&\ \cos\theta_c \left[u \rightarrow d + W^+\right] \\
+	&\ + \sin\theta_c \left[u \rightarrow s + W^+\right].
+\end{aligned}
 \end{equation}
 
 
 \subsubsection{Neutrino Oscillation}
-Quite similarly, particles in lepton sector also mix.
-We choose to identify $e'_L = e_L$ (similarly for muon and tauon).
+Quite similarly, particles in the lepton sector also mix.
+We identify $e'_L = e_L$ (similarly for muon and tauon).
 Neutrinos that have specific mass are called $\nu_1$, $\nu_2$, and $\nu_3$ instead, which satisfies
 \begin{equation}
 	\begin{pmatrix}
@@ -725,31 +723,33 @@ Its value is roughly
 		0.4 & 0.6 & 0.6
 	\end{bmatrix}.
 \end{equation}
-The neutrino mixing means that in the weak process, say
-\begin{equation}
-	e \rightarrow \nu_e + W^-,
-\end{equation}
-the produced neutrino $\nu_e$ is not an energy eigenstate of the SM Hamiltonian -- it will oscillates.
+The neutrino mixing means that in the weak process, say $e \rightarrow \nu_e + W^-$, the produced neutrino $\nu_e$ is not an energy eigenstate of the SM Hamiltonian -- it will oscillate.
 As for the definition of the lepton current $J^\pm_L$. 
-If we stick to the definition of neutrino as the eigenstate of the weak interaction -- since that is what we get from the particle decay process -- we do not need to change the definition, but we should remember that such ``neutrinos'' do not have fixed mass.
+If we stick to the definition of neutrino as the eigenstate of the weak interaction -- since that is what we get from the particle decay process -- we do not need to change the definition. 
+Still, we should remember that such ``neutrinos'' do not have fixed mass.
 
 
 \subsection{Restore 4-Fermion Theory}
-Finally, we can sum over the current, and write down the total fermion-gauge coupling:
+Finally, we can sum over the current and write down the total fermion-gauge coupling:
 \begin{equation}
-	\mathcal L_{F-G} = \frac{e}{\sqrt{2}\sin{\theta_W}} \left(W^{+}_\mu J^{+\mu} + W^{-}_\mu J^{-\mu} \right) + e A_\mu J^{\mu}_{\mathrm{EM}} + \frac{e}{\sin{\theta_W}\cos{\theta_W}} Z_\mu J^\mu_{z}.
+\begin{aligned}
+	\mathcal L_{F-G} =&\ \frac{e}{\sqrt{2}\sin{\theta_W}} \left(W^{+}_\mu J^{+\mu} + W^{-}_\mu J^{-\mu} \right) \\
+	&\ + e A_\mu J^{\mu}_{\mathrm{EM}} + \frac{e}{\sin{\theta_W}\cos{\theta_W}} Z_\mu J^\mu_{z}.
+\end{aligned}
 \end{equation}
 From the current-gauge coupling, we can recover the effective 4-fermion theory by integrating out the gauge field.
 In the low energy regime ($p^2 \ll m_W^2$), the vertex function for electron decay is:
-\begin{equation}
+\begin{equation*}
 	2\left(\frac{e}{\sqrt{2}\sin{\theta_W}} \right)^2 J^+_\mu \frac{g^{\mu\nu}}{p^2-m_W^2} J^-_\nu 
 	\simeq \frac{e^2}{m_W^2 \sin^2{\theta_W}} J^{+\mu} J^-_\mu.
-\end{equation}
+\end{equation*}
 The diagonal part of the vertex is
-\begin{equation}
-	\left(\frac{e}{\sin{\theta_W}\cos{\theta_W}} \right)^2 J^z_\mu \frac{g^{\mu\nu}}{p^2-m_Z^2} J^z_\nu 
-	\simeq -\frac{e^2}{m_Z^2 \sin^2{\theta_W}\cos^2{\theta_W}} J^{z\mu} J^z_\mu.
-\end{equation}\
+\begin{equation*}
+\begin{aligned}
+	&\ \left(\frac{e}{\sin{\theta_W}\cos{\theta_W}} \right)^2 J^z_\mu \frac{g^{\mu\nu}}{p^2-m_Z^2} J^z_\nu \\
+	\simeq &\ -\frac{e^2}{m_Z^2 \sin^2{\theta_W}\cos^2{\theta_W}} J^{z\mu} J^z_\mu.
+\end{aligned}
+\end{equation*}
 Note that $m_Z^2\cos^2{\theta_W} = m_W^2$, we can then identify the fermion constant
 \begin{equation}
 	\frac{4G_F}{\sqrt 2} = \frac{e^2}{m_W^2 \sin^2{\theta_W}},

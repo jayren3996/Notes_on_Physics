@@ -1,0 +1,490 @@
+\documentclass{SciPost}
+
+% Prevent all line breaks in inline equations.
+%\binoppenalty=10000
+%\relpenalty=10000
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage[bitstream-charter]{mathdesign}
+\urlstyle{same}
+
+% Fix \cal and \mathcal characters look (so it's not the same as \mathscr)
+\DeclareSymbolFont{usualmathcal}{OMS}{cmsy}{m}{n}
+\DeclareSymbolFontAlphabet{\mathcal}{usualmathcal}
+
+\fancypagestyle{SPstyle}{
+\fancyhf{}
+\lhead{\colorbox{scipostblue}{\bf \color{white} ~Notes on Physics}}
+\rhead{{\bf \color{scipostdeepblue} ~Nonequilibrium}}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[C]{\textbf{\thepage}}
+}
+
+\begin{document}
+
+\pagestyle{SPstyle}
+
+\begin{center}{\Large \textbf{\color{scipostdeepblue}{
+Gaussian Stochastic Schr\"odinger Equation\\
+}}}\end{center}
+
+\begin{center}
+\textbf{Jie Ren}
+\end{center}
+
+\tableofcontents
+
+\section{Gaussian System}
+
+\subsection{BdG Hamiltonian}
+The BdG Hamiltonian has the form
+\begin{equation}
+	\hat H = \sum_{i,j=1}^n A_{ij} c_i^\dagger c_j+\frac{1}{2}\sum_{i,j=1}^n (B_{ij}c_i^\dagger c_j^\dagger-B_{ij}^*c_ic_j)=\frac{1}{2}\sum_{i,j=1}^{2n} \Psi_i^\dagger H_{ij} \Psi_j,
+\end{equation}
+where $A$ is Hermitian and $B$ is antisymmetric, the Hamiltonian matrix is
+\begin{equation}
+	H= \begin{bmatrix} A & B \\ -B^* & -A^* \end{bmatrix},
+\end{equation}
+and the Nambu spinor $\Psi$ is
+\begin{equation}
+	\Psi_i = \begin{cases}
+		c_i & 1 \le i \le n \\
+		c_i^\dagger & n+1 \le i \le 2n
+	\end{cases}.
+\end{equation} 
+A fermionic Gaussian state can be regarded as the ground state of a BdG Hamiltonian.
+
+The action of particle-hole symmetry $\mathcal C$ on the Nambu spinor is $\mathcal C \cdot \Psi = \sigma^x \cdot\Psi^*$, on Hamiltonian is $C H C^{-1} = \sigma^x H^* \sigma^x = -H$. The unitary transformation conserving particle-hole symmetry is
+\begin{equation}
+	T^\dagger H T = \mathrm{diag}(\varepsilon_1,\cdots,\varepsilon_N,-\varepsilon_1,\cdots,-\varepsilon_N),\quad
+	T = \begin{bmatrix}
+		U & V^* \\ V & U^*
+	\end{bmatrix}.
+\end{equation}
+Define a set of new fermionic modes
+\begin{equation}
+	d_k^\dagger = \sum_{j=1}^{2n} \Psi_j^\dagger T_{jk}
+	= \sum_{j=1}^n (U_{jk} c_j^\dagger + V_{jk} c_j),
+\end{equation}
+where $k = 1,2,\dots,n$.
+The Hamiltonian is
+\begin{equation}
+	\hat H = \frac{1}{2} \sum_n \varepsilon_n (d_n^\dagger d_n- d_n d_n^\dagger) 
+	= \sum_n \varepsilon_n\left(d_n^\dagger d_n-\frac{1}{2}\right).
+\end{equation}
+The following code does the diagonalization in the Nambu basis:
+\begin{lstlisting}
+function bdg_eigen(A, B)
+	n = size(A, 1)
+	H = [A B; -conj(B) -conj(A)]
+	vals, vecs = eigen(Hermitian(H))
+	e = real(vals[n+1:2n])
+	U, V = vecs[1:n, n+1:2n], vecs[n+1:2n, n+1:2n]
+	T = [U conj(V); V conj(U)]
+	e, T
+end
+\end{lstlisting}
+
+
+
+\subsection{Majorana Basis}
+Under the Majorana basis $\underline\Omega=(\omega_1,\dots,\omega_{2n})^T$, where
+\begin{equation}
+	\omega_i = \begin{cases}
+		c_i + c_i^\dagger & 1 \le i \le n \\
+		i(c_i-c_i^\dagger) & n+1 \le i \le 2n
+	\end{cases}.
+\end{equation}
+the Hamiltonian is
+\begin{equation}
+	\hat H = \frac{1}{8} \underline\Omega 
+	\begin{bmatrix}
+		\mathbb{I} & \mathbb{I} \\ i\mathbb{I} & -i\mathbb{I}
+	\end{bmatrix}\cdot
+	\begin{bmatrix}
+		A & B \\ -B^* & -A^*
+	\end{bmatrix}\cdot
+	\begin{bmatrix}
+		\mathbb{I} & -i\mathbb{I} \\ \mathbb{I} & i\mathbb{I}
+	\end{bmatrix}
+	\underline\Omega 
+	= -\frac{i}{4} \sum_{i,j=1}^{2n} \Omega_i H_{ij} \Omega_j.
+\end{equation}
+Here, the Hamiltonian matrix under the Majorana basis is
+\begin{equation}
+	H = \begin{bmatrix}
+		-\im{A} - \im{B} & \re{A} - \re{B} \\
+    	-\re{A} - \re{B} &  -\im{A} + \im{B}
+	\end{bmatrix},
+\end{equation}
+where $\re{A} = \mathrm{Re}[A]$, $\im{A} = \mathrm{Im}[A]$, $\re{B} = \mathrm{Re}[B]$, $\im{B} = \mathrm{Im}[B]$. 
+The canonical form of antisymmetric matrix $H$ is:
+\begin{equation}
+	H = R \begin{bmatrix}
+		0 & \mathrm{diag}(\varepsilon_1,\cdots,\varepsilon_n) \\ 
+		-\mathrm{diag}(\varepsilon_1,\cdots,\varepsilon_n) & 0
+	\end{bmatrix} R^T,
+\end{equation}
+where $R \in \mathrm{SO}(2n)$.
+By defining the new Majorana operator 
+\begin{equation}
+	\gamma_k = \sum_{j=1}^{2n} \omega_j R_{jk},\quad
+	k=1,\cdots,2n.
+\end{equation}
+The Hamiltonian becomes diagonal
+\begin{equation}
+	H = -\frac{i}{2} \sum_{k=1}^n \varepsilon_k \gamma_k\gamma_{k+n}
+	= \sum_{k=1}^n \varepsilon_k \left(d_k^\dagger d_k -\frac{1}{2}\right),
+\end{equation}
+The diagonalization is done by
+\begin{lstlisting}
+function majorana_eigen(A, B)
+	n = size(A, 1)
+	S, V, vals = schur(majoranaform(A, B))
+	e = abs.(imag(vals))
+	R = Matrix{Float64}(undef, 2n, 2n)
+	for i in 1:n
+		if S[2i-1, 2i] > 0
+			R[:, i] = V[:, 2i-1]
+			R[:, i+n] = V[:, 2i]
+		else
+			R[:, i] = V[:, 2i]
+			R[:, i+n] = V[:, 2i-1]
+		end
+	end
+	e, R
+end	
+\end{lstlisting}
+Note that the ground state $|\psi\rangle$ of $H$ is annihilated by all $d$'s, 
+\begin{equation}
+	\sum_{j=1}^n U_{jk}^* c_j|\psi\rangle = - \sum_{j=1}^n V_{jk}^* c_j^\dagger|\psi\rangle, \quad\forall k =1,2,\dots,n.
+\end{equation}
+For this linear form, we immediately see that $|\psi\rangle$ has the Gaussian form:
+\begin{equation}
+	|\psi\rangle = \frac{1}{\mathcal N} \exp\left(\sum_{ij}M_{ij}c_i^\dagger c_j^\dagger\right)|0\rangle.
+\end{equation}
+The equation leads to
+\begin{equation*}
+	c_j |\psi\rangle = e^{\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} e^{-\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} c_j e^{\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} |0\rangle 
+	= -2 M_{kj} c_k^\dagger|\psi\rangle.
+\end{equation*}
+Therefore $M = \frac{1}{2} V^* \cdot (U^*)^{-1}$.
+
+
+
+
+\section{Dirac SSE}
+
+For particle number conserving systems, the Gaussian state can be represented as a matrix: 
+\begin{equation}
+	|B\rangle \equiv \prod_{j=1}^N \sum_i B_{ij} c_{i}^\dagger |0\rangle 
+	\equiv \bigotimes_{j=1}^N |B_j\rangle.
+\end{equation}
+Note that the matrix $B$ representing the Gaussian state has the unitary degree of freedom
+$$|B\rangle = |B'\rangle, \quad B'_{ij} = \sum_k B_{ik}U_{kj},$$
+where $U_{kj}$ is an $N\times N$ unitary matrix. It means that the Gaussian state is determined by the linear subspace that columns of $B$ span. The columns of $B$ need not be orthogonal, while the canonical form can be obtained by the QR decomposition: $B_{L\times N} = Q_{L\times N} \cdot R_{N\times N},$ where the $Q$ matrix is orthonormal and we can set $B' = Q$.
+
+
+\subsection{Evolution}
+
+The Stochastic Schr\"odinger equation can be Trotterized as
+\begin{equation}
+	|\psi'\rangle = \left(\prod_x \mathcal{M}_x \right) e^{-iH \Delta t} |\psi\rangle.
+\end{equation}
+That is, the monitored dynamics can be regarded as a two-step process, where the state $|\psi\rangle$ first undergoes a coherent Hamiltonian evolution and is then subject to a generalized measurement controlled by parameter $\Delta t$.
+Using the Baker-Campbell-Hausdorff formula, 
+\begin{equation*}
+	e^X Y e^{-X} = \exp(\operatorname{ad} X) Y,\quad
+	e^{-iH \Delta t} c_j^\dagger e^{iH \Delta t} = c_k^\dagger[e^{-iH \Delta t}]_{kj}.
+\end{equation*}
+Therefore,\footnote{Note that the Hamiltonian is not necessarily Hermitian, so the vectors will no longer be orthogonal.}
+\begin{equation}
+	e^{-iH \Delta t}|B\rangle = \prod_{j=1}^N \sum_i \left[e^{-iH \Delta t}\right]_{ki} B_{ij} c_{k}^\dagger |0\rangle = \left|e^{-iH \Delta t}\cdot B \right\rangle.
+\end{equation}
+The Krause operator of $\mathcal M$ is
+\begin{equation}
+	M_x = L_x \sqrt{\gamma \Delta t},\quad
+	M_0 = \sqrt{1-L_x^\dagger L_x \gamma \Delta t}.
+\end{equation}
+We consider the case where the jump operator $L_x$ the form:
+\begin{equation}
+	L_x = U_x d_x^\dagger d_x,\quad
+	L_x^\dagger L_x = d_x^\dagger d_x,
+\end{equation}
+where $U_x$ is a Gaussian unitary operator. In this case, the Kraus operator is 
+\begin{equation*}
+	M_0 = \sqrt{(1-\gamma\Delta t)d_x^\dagger d_x + d_x d_x^\dagger} 
+	= \sqrt{1-\gamma\Delta t} d_x^\dagger d_x + d_x d_x^\dagger
+	= 1 - \left(1-\sqrt{1-\gamma\Delta t}\right) d_x^\dagger d_x.
+\end{equation*}
+This operator preserve Gaussianity since $\exp(-\alpha d_x^\dagger d_x) = 1 - (1-e^{-\alpha})d_x^\dagger d_x$. 
+
+\subsection{Quantum Jump}
+When applied to a quasi-particle creation/annihilation operator, a free fermion state maintains its structure. Consider a general quasi-particle $b^\dagger = \sum_i b_i c_i^\dagger$, creating a quasiparticle is simply adding a column to $B$, since
+\begin{equation}
+	b^\dagger|B\rangle = \sum_k b_k c^\dagger_k \prod_{j=1}^N \sum_i c_i^\dagger B_{ij} |0\rangle
+	= \prod_{j=1}^{N+1} \sum_i c_i^\dagger \left[b|B\right]_{ij} |0\rangle.
+\end{equation}
+The new column $b$ is not orthogonal to linear space $B$. Therefore, an orthogonalization procedure is needed to obtain canonical form.
+
+
+For the quasiparticle annihilation operator $b$, 
+\begin{equation*}
+	b|B\rangle = \sum_k b_k^* c_k \prod_{j} \sum_i c_i^\dagger B_{ij} |0\rangle
+	=\sum_j \langle b|B_j\rangle \bigotimes_{l\ne j}|B_l\rangle.
+\end{equation*}
+We can use the gauge freedom to restrict $\langle b| B'_{j}\rangle = 0$ for $j>1$. Such matrix $B'$ always exists since we can always find a column $j$ that $\langle b| B_{j}\rangle \ne 0$ (otherwise $p_m=0$ and the jump is impossible). We then move the column to the first and define the column as
+\begin{equation}
+	|B'_{j}\rangle = |B_{j}\rangle - \frac{\langle a|B_{j}\rangle}{\langle a|B_{1}\rangle} |B_{1}\rangle, \quad j>1.
+\end{equation}
+Such column transformations do not alter the linear space $B$ spans, while the orthogonality and the normalization might be affected. 
+
+
+\subsection{Entanglement Entropy}
+The density matrix for $m$-site subregion has the Gaussian form $\rho = e^{-M_{ij}c_i^\dagger c_j}$. If we diagonalize it, 
+\begin{equation}
+	\rho = \frac{1}{Z}\exp(-\sum_k \lambda_k a_k^\dagger a_k) 
+	= \bigotimes_{k=1}^n \frac{1}{1+e^{-\lambda_k}} 
+	\begin{bmatrix} 1 & 0 \\ 0 & e^{-\lambda_k} \end{bmatrix} 
+	= \bigotimes_{k=1}^n \operatorname{diag}(1-\mu_k, \mu_k).
+\end{equation}
+Note that $\{a_k\}$ is also the basis that diagonalizes the correlation function $G_{ij} = \Tr[\rho c_i^\dagger c_j]$, with
+\begin{equation}
+	U \cdot G \cdot U^T = \operatorname{diag}(\mu_1,\cdots,\mu_m).
+\end{equation}
+The entropy is
+\begin{equation}
+	S(\rho) = -\Tr[\rho \log \rho] 
+	= -\sum_k \left[\mu_k \log\mu_k + (1-\mu_k)\log(1-\mu_k)\right] 
+	= \sum_k H(\mu_k).
+\end{equation}
+Note that the eigenvalue $\mu_k$ of correlation $G$ is the square of singular values of $B|_\text{subregion}$ matrix.
+
+
+
+
+
+\section{Majorana SSE}
+The Majorana operators are defined as ${\omega}_j ={c}_{i}+{c}_{i}^{\dagger}$, ${\omega}_{j+n} = i({c}_{i}-{c}_{i}^{\dagger})$.
+For the Majorana case, a Gaussian pure state $|\psi$ can be expressed as 
+\begin{equation}
+	|\psi\rangle\langle\psi| = \prod_{j=1}^n  d_j^\dagger d_j.
+\end{equation}
+Note that the state is annihilated by $\{d_j^\dagger\}$. We can store the information of $|\psi\rangle$ into a $2n\times n$ complex matrix $B$. The rest of the procedures parallel those of the Dirac fermion case.
+
+
+
+\section{Grassmann Representation}
+In this section, we discuss the general fermionic Gaussian state in the framework of the Grassmann representation. We will closely follow Ref.~\cite{bravyi2004lagrangian}.  A general operator in Fermionic Fock space can be expanded on the Majorana basis:
+\begin{equation}
+	\hat{X}=\alpha\hat{I}+\sum_{p=1}^{2n}\sum_{1\le a_{1}<\cdots<a_{p}\le2n}\alpha_{a_{1}\cdots a_{p}}\hat{\omega}_{a_{1}}\cdots\hat{\omega}_{a_{p}}.
+\end{equation}
+Define a linear map from Fermionic operator space to Grassmann algebra:
+\begin{equation}
+	\hat X \mapsto X(\theta)=\alpha + \sum_{1\le a_{1}<\cdots<a_{p}\le2n}\alpha_{a_{1}\cdots a_{p}}\theta_{a_{1}}\cdots \theta_{a_{p}}.
+\end{equation}
+This mapping is called the Grassmann representation of $\hat X$. 
+
+One can formally define calculus on Grassmann algebra:
+\begin{equation}
+	\frac{\partial}{\partial\theta_{i}}\theta_{j} = \int d\theta_{i}\theta_{j}=\delta_{ij},\quad
+	\frac{\partial}{\partial\theta_{i}}1 = \int d\theta_{i}1=0.
+\end{equation}
+The Gaussian integral of Grassmann algebra is
+\begin{equation}
+	\int D\theta\ e^{\eta^T\theta+\frac{i}{2}\theta^T M\theta}
+	=i^n \operatorname{Pf}(M) e^{-\frac{i}{2}\eta^T M^{-1}\eta}.
+\end{equation}
+One useful result concerning the expectation value is
+\begin{theorem}
+For two operator $\hat X$ and $\hat Y$, we have the following identity 
+$$
+\Tr\left(\hat{X}\hat{Y}\right)=\left(-2\right)^{n}\int D[\theta,\mu] e^{\theta^{T}\cdot \mu} X(\theta) Y(\mu).
+$$
+where $\int D\theta=\int d\theta_{2n}\cdots\int d\theta_{1}$, $\int D\mu =\int d\mu_{2n}\cdots\int d\mu_{1}$.
+\end{theorem}
+\begin{proof}
+We prove the statement by considering only $m$-th order monomial. On the one hand 
+$$
+\text{LHS}=\Tr[\hat\omega_1 \cdots \hat\omega_m \hat\omega_1 \cdots \hat\omega_m] = 2^{n} (-1)^{m(m-1)/2}.
+$$
+On the other hand,
+\begin{equation*}
+\begin{aligned}
+	\text{RHS} 
+	&= \left(-2\right)^{n} \int D[\theta,\mu] \prod_{i=1}^m\theta_i \prod_{j=m+1}^{2n}(\theta_j\mu_j) \prod_{k=1}^m \mu_k \\
+	&= \left(-2\right)^{n} (-1)^{(4n-m)m+(m+1+2n)(2n-m)/2} \\
+	&= 2^n(-1)^{-m(m+3)/2} = 2^n(-1)^{m(m-1)/2}.
+\end{aligned}
+\end{equation*}
+We, therefore, proved the statement.
+\end{proof}
+
+
+\subsection{Gaussian States}
+
+\begin{definition}
+A quantum state $\hat \rho$ is Gaussian if it has Gaussian Grassmann representation:
+\begin{equation}
+	\rho(\theta)=\frac{1}{2^{n}}\exp\left(\frac{i}{2}\theta^{T}M\theta\right),
+\end{equation}
+where the antisymmetric matrix $M_{ab}=\frac{i}{2}\Tr(\hat \rho[\hat \omega_a,\hat\omega_b])$ is the \textbf{covariance matrix}.
+\end{definition}
+All higher correlations of a Gaussian state are determined by the Wick theorem, namely
+$$
+\Tr(i^p\hat\rho\hat\omega_{a_1}\cdots\hat\omega_{a_p})=\operatorname{Pf}(M|_{a_1,\dots,a_p}).
+$$
+The canonical form of antisymmetric matrix $M$ is:
+\begin{equation}
+	M = R \begin{bmatrix}
+	0 & \mathrm{diag}(\lambda_1,\cdots,\lambda_n) \\ 
+	-\mathrm{diag}(\lambda_1,\cdots,\lambda_n) & 0
+\end{bmatrix} R^T,
+\end{equation}
+where $R \in \mathrm{SO}(2n)$.
+Under the new Grassmann variance $\mu = R\theta$, $\rho$ has the form
+\begin{equation}
+	\rho(\mu)
+	=\frac{1}{2^{n}}\prod_{j}\exp\left(i\lambda_j\mu_{j} \mu_{j+n}\right)
+	=\frac{1}{2^{n}}\prod_{j}\left(1+i\lambda_{j} \mu_{j} \mu_{j+n}\right).
+\end{equation}
+We can then obtain the operator form: 
+\begin{equation}
+	\hat\rho = 2^{-n} \prod_{j=1}^n(1+i\lambda_j \hat\gamma_j\hat\gamma_{j+n})
+\end{equation}
+where $\hat \gamma$'s are a new set of Majorana operators. In the fermion basis
+\begin{equation}
+	\hat d_j = \frac{\hat\gamma_j - i \hat\gamma_{j+n}}{2},\quad
+	\hat d_j^\dagger = \frac{\hat\gamma_j + i \hat\gamma_{j+n}}{2},
+\end{equation}
+the density matrix has the form
+\begin{equation}\label{eq:gaussian-std-form}
+	\hat\rho
+	= \prod_{j}\left(\frac{1+\lambda_j}{2}-\lambda_{j}d_{j}^{\dagger}d_{j}\right) 
+	=\bigotimes_j \begin{bmatrix}
+		\frac{1+\lambda_j}{2} & 0 \\
+		0 & \frac{1-\lambda_j}{2}
+	\end{bmatrix}_j.
+\end{equation}
+Without loss of generality, we assume $\lambda_i \ge 0$. For pure state, $\lambda_i =1,\ \forall i$.
+For mixed state, the entropy of $\rho$ is just 
+\begin{equation}
+	S(\hat\rho)=\sum_j H\left(\frac{1+\lambda_j}{2}\right),
+\end{equation}
+where $H(p) = -p \log p - (1-p) \log(1-p)$.
+
+
+\subsection{Gaussian Operators}
+\begin{definition}
+An operator $\hat X$ (with nonzero trace) is Gaussian if 
+$$
+X(\theta)=C\exp\left(\frac{i}{2}\theta^TM\theta\right)
+$$
+for some complex number $C$ and some \textbf{complex antisymmetric} matrix $M$. $M$ is called a correlation matrix of $\hat X$. 
+If $\hat X$ is traceless, it should be thought of as a limit $\hat X = \lim_{m\rightarrow\infty} \hat X_m$ for some converging sequence of Gaussian operators with nonzero trace. 
+\end{definition}
+Note that for traceless $\hat X$, the explicit form of $X(\theta)$ is
+\begin{equation}
+	X(\theta)=C \left(\prod_{a=1}^{2k}\mu_a\right)\exp\left(\frac{i}{2}\sum_{a,b=2k+1}^{2n} M_{ab}\mu_a \mu_b\right),
+\end{equation}
+where $\mu_a = \sum_b T_{ab}\theta_b$ for some invertible complex matrix $T$. The factor is a limiting point of the sequence:
+\begin{equation}
+\begin{aligned}
+	\prod_{a=1}^{2k} \mu_a = \lim_{t\rightarrow\infty} \prod_{a=1}^k \left(\mu_{2a-1}\mu_{2a}+\frac{1}{t}\right) 
+	= \lim_{t\rightarrow\infty} \frac{1}{t^k} \exp\left(t\sum_{a=1}^k \mu_{2a-1}\mu_{2a}\right).
+\end{aligned}
+\end{equation}
+Introducing the operator $\hat\Lambda \equiv \sum_{a=1}^{2n} \hat \omega_a \otimes \hat \omega_a$, we have the following theorem:
+\begin{theorem}
+An operator $\hat X$ is Gaussian iff $\hat X$ is even and satisfies $$[\hat\Lambda, \hat X\otimes \hat X]=0.$$
+\end{theorem}
+\begin{proof}
+The adjoint action of $\hat \Lambda$ in the Grassmann representation has the form:
+\begin{equation}
+	\Lambda_\text{ad} = 2\sum_a\left(\theta_a\otimes \frac{\partial}{\partial\theta_a}+\frac{\partial}{\partial\theta_a}\otimes \theta_a\right) \equiv \sum_a \Delta_a.
+\end{equation}
+That is, $[\hat\omega_a\otimes \hat \omega_a, Y \otimes Z](\theta)= \Delta_a \cdot Y(\theta)\otimes Z(\theta)$ for any operators $Y,Z$ having the same parity. Without loss of generality, both $Y$ and $Z$ are monomials in $\hat\omega$'s. Each commutes or anticommutes with $\hat{\omega}_a$. Consider two cases:
+\begin{enumerate}
+	\item Both $Y$ and $Z$ contain $\hat{\omega}_a$, or both $Y$ and $Z$ do not contain $\hat{\omega}_a$. Then the commutator $[\hat{\omega}_a\otimes \hat{\omega}_a,Y\otimes Z]$ is zero since both factors yield the same sign. The right-hand side is also zero since either $\theta_a$ or $\partial/\partial{\theta_a}$ annihilates both $Y$ and $Z$.
+	\item $Y$ contains $\hat{\omega}_a$ while $Z$ does not contain $\hat{\omega}_a$ (or vice verse). In this case $\hat{\omega}_a\otimes\hat{\omega}_a$ anticommutes with $Y\otimes Z$. Let us write $Y=\hat{\omega}_a \tilde{Y}$, where $\tilde{Y}$ is a monomial which does not contain $\hat{\omega}_a$. We have: $$[\hat{\omega}_a\otimes \hat{\omega}_a,Y\otimes Z]=2(\hat{\omega}_a\otimes \hat{\omega}_a)(Y\otimes Z) = 2\tilde{Y}\otimes(\hat{\omega}_a Z).$$ On the other hand, $$\theta_a\otimes \frac{\partial}{\partial\theta_a} \cdot Y \otimes Z =0,\ \frac{\partial}{\partial\theta_a}\otimes \theta_a \cdot Y\otimes Z = \tilde{Y}\otimes \theta_a Z.$$ We again get equality.
+\end{enumerate}
+
+\noindent\textbf{Necessity:}
+Note that $\Lambda_\text{ad}$ is invariant under change of variables since $\mu_a = \sum_b T_{ab}\theta_b$,
+$$
+\frac{\partial}{\partial\mu_a} = \sum_b(T^{-1})_{ab}\frac{\partial}{\partial\theta_b} \ \Longrightarrow\ \sum_a \theta_a\otimes\frac{\partial}{\partial\theta_a} = \sum_a \mu_a\otimes\frac{\partial}{\partial\mu_a}.
+$$
+Direct application of the operator to the general Gaussian form will prove the necessity.
+
+\noindent\textbf{Sufficiency:} Denote $C=2^{-n}\tr{(X)}\equiv X(0)$ and represent $X(\theta)$ as
+$$X(\theta)= C\cdot 1 + \frac{iC}2\sum_{a,b=1}^{2n} M_{ab}\,\theta_a \theta_b + \mbox{higher order terms}.$$
+Applying a differential operator $1\otimes \frac{\partial}{\partial\theta_b}$ to both sides:
+$$
+\sum_{a=1}^{2n} \left(\theta_a X \otimes \frac{\partial^2 X}{\partial \theta_b \partial \theta_a}  - \frac{\partial X}{\partial\theta_a}  \otimes \theta_a\frac{\partial X}{\partial\theta_b}  \right) + \frac{\partial(X \otimes X)}{\partial\theta_b}  = 0.
+$$
+Now let us put $\theta\equiv 0$ in the second factor:
+$$
+\frac{\partial}{\partial\theta_b} X = i\sum_{a=1}^{2n} M_{ba} \theta_a X.
+$$
+This differential equation can be easily solved by $X(\theta)=C \exp{\left( \frac{i}2\, \theta^T M \theta \right)}$. 
+
+For general cases, we denote $\mathcal K \subseteq \mathcal M_1$ a subspace spanned by linear functions which annihilate $\hat X$, i.e.
+$$
+\mathcal K=\left\{ f \in \mathcal M_1 \; : \; f(\theta)X(\theta)=0\right\}.
+$$
+Let us perform a linear change of variables $\mu_a=\sum_b T_{ab} \theta_b$, with $T$ being an invertible complex matrix chosen such  that the first $k$ variables $\mu$ span the subspace $\mathcal K$, i.e. $\mathcal K=\operatorname{span}\, [ \mu_1,\ldots,\mu_{2k}]$. From equalities $\mu_j X=0$, $j\in [1,2k]$ it follows that 
+$$
+X(\theta(\mu))=\left(\prod_a \mu_a \right) \tilde{X}(\mu),
+$$
+where $\tilde{X}(\mu)$ depends only upon $\mu_{2k+1},\ldots,\mu_{2n}$. The function $\tilde{X}(\mu)$ satisfies the equation
+$$
+\sum_{a=2k+1}^{2n}\left(\mu_a\otimes \frac{\partial}{\partial\mu_a} + \frac{\partial}{\partial\mu_a}\otimes \mu_a\right)\, \tilde{X}\otimes \tilde{X}=0.
+$$
+Therefore, we get the general Gaussian form.
+\end{proof}
+
+\subsection{Gaussian Linear Maps}
+We define linear maps that preserve Gaussian states as the following:
+\begin{definition}
+A linear map $\mathcal E$ is Gaussian iff it admits an integral  representation
+\begin{equation}
+	\mathcal E(X)(\theta) = C \int D[\eta,\mu] \exp{\left[ S(\theta,\eta) + i\eta^T \mu \right]} X(\mu),
+\end{equation}
+where
+\begin{equation}
+	S(\theta,\eta)= \frac{i}{2} (\theta^T,\eta^T)
+	\begin{pmatrix}
+		A & B \\ -B^T & D
+	\end{pmatrix}
+	\begin{pmatrix}
+		\theta \\ \eta
+	\end{pmatrix}
+\end{equation}
+for some complex  $2n\times 2n$ matrices $A$, $B$, $D$, and some complex number $C$.
+\end{definition}
+Consider a Gaussian operator $\hat X$, described by a correlation matrix $M$ and a Gaussian map $\mathcal E$. Applying the Gaussian integration, one can show that $\mathcal E(X)$ has a correlation matrix
+\begin{equation*}
+\begin{aligned}
+	\mathcal E(M) &= A + B \left(M^{-1} + D \right)^{-1} B^T
+	= A + B \left(I + MD \right)^{-1} M B^T,
+\end{aligned}
+\end{equation*}
+while a pre-exponential factor of the operator $\mathcal E(X)$ can be found from an  identity
+$$
+\tr{ \left(\mathcal E(X)\right)} = C (-1)^n \Pf(M) \Pf(M^{-1}+D) \tr{(X)}.
+$$
+The value of $\tr{(\mathcal E(X))}$ can be found up to a factor $\pm 1$ using a regularized version:
+$$
+\tr{ \left( \mathcal E(X) \right) }^2 = C^2 \det{\left( I + M D \right) } \tr{(X)}^2.
+$$
+
+\bibliography{ref.bib}
+
+
+\end{document}
