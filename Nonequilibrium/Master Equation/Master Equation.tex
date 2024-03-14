@@ -1,0 +1,116 @@
+\documentclass{SciPost}
+
+% Prevent all line breaks in inline equations.
+%\binoppenalty=10000
+%\relpenalty=10000
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage[bitstream-charter]{mathdesign}
+\urlstyle{same}
+
+% Fix \cal and \mathcal characters look (so it's not the same as \mathscr)
+\DeclareSymbolFont{usualmathcal}{OMS}{cmsy}{m}{n}
+\DeclareSymbolFontAlphabet{\mathcal}{usualmathcal}
+
+\fancypagestyle{SPstyle}{
+\fancyhf{}
+\lhead{\colorbox{scipostblue}{\bf \color{white} ~Notes on Physics}}
+\rhead{{\bf \color{scipostdeepblue} ~Nonequilibrium}}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[C]{\textbf{\thepage}}
+}
+
+\begin{document}
+
+\pagestyle{SPstyle}
+
+\begin{center}{\Large \textbf{\color{scipostdeepblue}{
+Master Equation\\
+}}}\end{center}
+
+\begin{center}
+\textbf{Jie Ren}
+\end{center}
+
+\tableofcontents
+
+\section{General System-Environment Coupling}
+
+In this section, we consider a general system-bath coupling:\footnote{Without loss of generality, we can also assume $\Vert A_k \Vert =1$, $\Tr[\rho_B B_k]=0$.}
+\begin{equation}
+	H_T = H + H_B + V, \quad V = \sum_k A_k \otimes B_k.
+\end{equation}
+Under certain conditions, we will show that the dynamics of the system are well approximated by the Lindblad equation. We first assume that initially, the total system is a product state 
+$$\rho_T(0) = \rho(0) \otimes \rho_B.$$ 
+In the following, we will adopt the interacting picture, where the density operator evolves as 
+$$\partial_t \rho_T(t) = -i[V(t), \rho_T(t)] \equiv -i\mathcal V(t) |\rho_T(t) \rangle.$$
+In the last equality, $\rho_T$ is expressed as a ket in the Hilbert space of linear operator, and the commutator with $V$ is expressed as a superoperator $\mathcal V$. This notation can simplify the expression. For example, the inner product in the operator space is the trace so that the partial trace operation can be denoted as $|\rho\rangle = \langle \mathbb I_B|\rho_T\rangle$. The evolution of the system is then 
+\begin{equation}
+\begin{aligned}
+	\partial_t |\rho(t)\rangle &= -i \langle \mathbb I_B|\mathcal V(t) |\rho_T(t)\rangle 
+	= -i \langle \mathbb I_B|\mathcal{V}(t) |\rho_T(0)\rangle - \int_0^t \langle \mathbb I_B| \mathcal{V}(t) \mathcal{V}(\tau) |\rho_T(\tau)\rangle d\tau \\
+	&= - \int_0^t \langle \mathbb I_B| \mathcal{V}(t) \mathcal{V}(\tau) |\rho_T(\tau)\rangle d\tau.
+\end{aligned}
+\end{equation}
+Now we are taking the \textbf{Born approximation}, which states when the coupling is weak enough compared with the energy scale of the system and the bath, the total density matrix is approximated by the product state $|\rho_T(t)\rangle \approx |\rho(t)\rangle \otimes |\rho_B\rangle$. The evolution is now
+\begin{equation}
+\begin{aligned}
+	\frac{d}{dt} \rho(t) 
+	&\approx  \int_0^t \mathrm{Tr}_B\left[ V(t) \rho_T(\tau) V(\tau)- \rho_T(\tau) V(\tau) V(t) \right]d\tau +h.c. \\
+	&= \sum_{kl}\int_0^t d\tau\ \left[C_{lk}(\tau - t) A_k(t)\rho(\tau)A_l(\tau) -  C_{lk}(\tau - t)\rho(\tau)A_l(\tau)A_k(t)+h.c.\right],
+\end{aligned}
+\end{equation}
+where $C_{kl}(t) \equiv \mathrm{Tr}_B[\rho_B B_k(t) B_l ]$ is the correlation function of $B_k$'s.  We then take the \textbf{Markovian approximation}, which assumes that the correlations of the bath decay fast in time. We can thus make the substitution $\rho(\tau) \rightarrow \rho(t)$, the result equation of motion is Markovian:
+\begin{equation}
+\begin{aligned}
+	\frac{d}{dt} \rho(t) &\approx \sum_{kl}\int_{0}^{t}dt' \left[C_{lk}(-t') A_k(t)\rho(t)A_l(t-t') - C_{lk}(-t')\rho(t)A_l(t-t')A_k(t)+h.c.\right] \\
+	&= \sum_{k} \int_0^t dt \left[A_k \rho B_{k}-\rho B_{k} A_k+h.c.\right],
+\end{aligned}
+\end{equation}
+where we have defined $B_{k}(t) = \sum_l \int_0^{\infty} dt' A_l(t-t')C_{lk}(-t')$. Now, we switch to the frequency domain,
+\begin{equation*}
+\begin{aligned}
+	A_k(t) = \sum_\omega A_{k}(\omega) e^{-i\omega t}, \quad
+	B_k(t) = \sum_{l,\omega} e^{-i\omega t} A_l(\omega)\Gamma_{lk}(\omega), \quad
+	\Gamma_{kl}(\omega) = \int_0^\infty dt\ e^{i\omega t}C_{kl}(t).
+\end{aligned}
+\end{equation*}
+We then take the \textbf{rotating wave approximation}, where we only keep the contributions from canceling frequency of operator $A$ and $B$,
+\begin{equation}
+\begin{aligned}
+	\frac{d}{dt}\rho(t) &= \sum_{\omega} \left[\Gamma_{lk}(\omega) A_k(\omega) \rho A_l(\omega) - \Gamma_{lk}(\omega)\rho A_l(\omega) A_k(\omega) + h.c. \right] \\
+	&= \sum_{\omega} \gamma_{kl}(\omega)(A_{l,\omega}\rho A_{k,\omega}^\dagger-\frac{1}{2}\{\rho,A_{k,\omega}^\dagger A_{l,\omega}\}) -i\left[\sum_{\omega}S_{kl}(\omega)A_{k,\omega}^\dagger A_{l,\omega},\rho\right],
+\end{aligned}
+\end{equation}
+where we defined 
+\begin{equation}
+	\gamma_{kl}(\omega) = \Gamma_{kl}(\omega) +\Gamma^*_{lk}(\omega),\quad 
+	S_{kl}(\omega) = \frac{1}{2i}[\Gamma_{kl}(\omega) - \Gamma^*_{lk}(\omega)].
+\end{equation}
+The matrices $\gamma(\omega)$ are positive; we can then take the square root of them. The jump operator is then 
+$$L_{i,\omega} = \sum_j \sqrt{\gamma_{ij}(\omega)}A_{j,\omega}.$$ 
+The evolution is then in the Lindblad form.
+
+
+
+
+
+
+
+
+
+
+
+
+%\bibliography{SciPost_Example_BiBTeX_File.bib}
+
+%%%%%%%%%% END TODO: BIBLIOGRAPHY
+
+
+\end{document}

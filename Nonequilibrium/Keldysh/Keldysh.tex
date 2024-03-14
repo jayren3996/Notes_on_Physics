@@ -1,0 +1,159 @@
+\documentclass{SciPost}
+
+% Prevent all line breaks in inline equations.
+%\binoppenalty=10000
+%\relpenalty=10000
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage[bitstream-charter]{mathdesign}
+\urlstyle{same}
+
+% Fix \cal and \mathcal characters look (so it's not the same as \mathscr)
+\DeclareSymbolFont{usualmathcal}{OMS}{cmsy}{m}{n}
+\DeclareSymbolFontAlphabet{\mathcal}{usualmathcal}
+
+\fancypagestyle{SPstyle}{
+\fancyhf{}
+\lhead{\colorbox{scipostblue}{\bf \color{white} ~Notes on Physics}}
+\rhead{{\bf \color{scipostdeepblue} ~Nonequilibrium}}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[C]{\textbf{\thepage}}
+}
+
+\begin{document}
+
+\pagestyle{SPstyle}
+
+\begin{center}{\Large \textbf{\color{scipostdeepblue}{
+Keldysh Field Theory\\
+}}}\end{center}
+
+\begin{center}
+\textbf{Jie Ren}
+\end{center}
+
+\section*{\color{scipostdeepblue}{Abstract}}
+\boldmath\textbf{%
+%%%%%%%%%% TODO: ABSTRACT
+% Write your abstract here.
+As what is done in ordinary QFT. We start from the Keldysh path-integral approach of the Harmonic oscillator, generalize it to real and complex Bosonic fields, and finally to Fermionic fields. In the meantime, we also discuss some classical field theory in the Keldysh formalism.
+%%%%%%%%%% END TODO: ABSTRACT
+}
+
+
+\noindent\rule{\textwidth}{1pt}
+\tableofcontents
+\noindent\rule{\textwidth}{1pt}
+
+
+\section{Free Green's function}
+
+Consider a single site boson system $H = \omega_0 (b^\dagger b + 1/2)$. Green's functions are the correlation $\langle b(t) b^\dagger\rangle \simeq iG(t)$, but with different choices of time ordering, there are six conventions of $G(t)$:
+\begin{equation}
+\begin{aligned}
+	iG^> &= (n_B+1)e^{-i\omega_0 t}, &
+	iG^< &= n_B e^{-i\omega_0 t}, \\
+	iG^{\mathrm{T}} &= i\theta(t-t')G^> + i\theta(t'-t)G^<, &
+	iG^{\tilde{\mathrm{T}}} &= i\theta(-t)G^>(t,t') + i\theta(t)G^<, \\
+	iG^{\mathrm{R}} &= i\theta(t) (G^>-G^<) = i\theta(t)e^{-i\omega_0 t}, &
+	iG^{\mathrm{A}} &= i\theta(-t) (G^<-G^>) = -i\theta(-t)e^{-i\omega_0 t}.
+\end{aligned}
+\end{equation}
+The equilibrium field theory mostly deals with time-ordered Green's function. But in Keldysh formalism, we directly obtain $G^{\mathrm{R}}$, $G^{\mathrm{A}}$, and in addition a new type of Green's function
+\begin{equation}
+	iG^{\mathrm{K}} = \frac{i}{2}\left(G^>+G^<+G^{\mathrm{T}}+G^{\tilde{\mathrm{T}}}\right)=iG^> + iG^< = (2n_B+1)e^{-i\omega_0 t}.
+\end{equation}
+In the frequency domain, 
+\begin{equation}
+\begin{aligned}
+	G^{\mathrm{R}}(\epsilon) &= \frac{1}{\epsilon-\omega_0+\mathrm{i} 0} = \mathcal{P}\frac{1}{\epsilon-\omega_0} - i\pi \delta(\epsilon-\omega_0), \\
+	G^{\mathrm{A}}(\epsilon) &= \frac{1}{\epsilon-\omega_0-\mathrm{i} 0} = \mathcal{P}\frac{1}{\epsilon-\omega_0} + i\pi \delta(\epsilon-\omega_0), \\
+	G^{\mathrm{K}}(\epsilon) &= -2 \pi \mathrm{i}\left[2 n_{\mathrm{B}}(\epsilon)+1\right] \delta\left(\epsilon-\omega_0\right)= \coth \frac{\epsilon-\mu}{2 T}\left[G^{\mathrm{R}}(\epsilon)-G^{\mathrm{A}}(\epsilon)\right].
+\end{aligned}
+\end{equation}
+
+
+
+\section{Absorbing State Phase Transition}
+
+Consider a lattice of ``active" and ``inactive" sites, where the former can spontaneously decay to inactive, whereas activation can only occur in the proximity of already active sites. 
+On every site $k$ we define the basis $\left|a_k\right\rangle$ (active) and $\left|i_k\right\rangle$ (inactive), the density of active sites $n_k=\left|a_k\right\rangle\left\langle a_k\right|$ and the ladder operators $\sigma_k^{+}=\left|a_k\right\rangle\left\langle i_k\right|$ and $\sigma_k^{-}=\left|i_k\right\rangle\left\langle a_k\right|$. 
+Under the action of Markovian noise sources, the state $\rho$ of the system evolves according to the Lindblad equation 
+\begin{equation}
+	\partial_t \rho=-i[H, \rho]+\sum_{a, k} D\left[L_{a, k}\right] \rho,\quad
+	D'[X]\rho = X \rho X^\dagger - \frac{1}{2}\{X^\dagger X, \rho\},
+\end{equation}
+where the Hamiltonian is 
+\begin{equation}
+	H=\Omega \sum_k C_k \sigma_k^x, \quad \text { with } \quad C_k=\sum_{\langle j,k\rangle} n_j.
+\end{equation}
+There are three types of jump operators (decay, branching, and coagulation):
+\begin{equation}
+	L_{d, k}=\sqrt{\gamma} \sigma_k^{-},\quad
+	L_{b, j, k}=\sqrt{\kappa} n_j \sigma_k^{+},\quad
+	L_{c, j, k}=\sqrt{\kappa} n_j \sigma_k^{-}.
+\end{equation}
+We will follow the Langevin equation approach, where the operator Lindblad equation is actually the averaged result of a stochastic equation
+\begin{equation}
+	\partial_t O = i[H, O]+\sum_{a, k} D'\left[L_{a, k}\right] O + \hat\xi^O,\quad
+	D'[X]O = X^\dagger O X - \frac{1}{2}\{X^\dagger X, O\},
+\end{equation}
+where $\hat\xi^o$ is the quantum noise term for $O$.
+
+We will determine the $\hat\xi^o$ in a first-principle way by considering the system-environment Hamiltonian $\tilde H$.
+We assume the spatial correlations of this bath to be shorter than the typical interparticle distance in the system. This allows us to describe every spin as coupled to its own bath. 
+Focus on $L_{d,k}$, we consider the Hamiltonian:
+\begin{equation}
+	\widetilde{H} = H_{\mathrm{s}-\mathrm{b}}+H_{\mathrm{b}}
+	= \sum_q \lambda_q\left(\sigma^{+} b_q+ \sigma^{-}b_q^{\dagger} \right)+\sum_q \omega_q b_q^{\dagger} b_q,
+\end{equation}
+where the $b_l$'s represent a set of bosonic bath operators.
+We further assume that this bosonic reservoir is kept at zero temperature and that the number of modes is sufficiently large for a continuum description: $D(\omega)=\sum_q \delta(\omega-\omega_q)$
+According to first-principle derivation, 
+\begin{equation*}
+	\partial_t \rho(t)
+	\approx \sum_{kl}\int_0^t d\tau\ \left[C(\tau - t) \sigma^-(t)\rho(\tau)\sigma^+(\tau) -  C(\tau - t)\rho(\tau)\sigma^+(\tau)\sigma^-(t)\right],
+\end{equation*}
+where $C(t)$ is the correlation function
+\begin{equation}
+	C(t) = \sum_q \lambda_q^2 \langle b_q(t) b_q^\dagger\rangle = \sum_q \lambda_q^2 e^{-i\omega_q t},\quad
+	C_\omega = \int_0^t e^{i\omega t} C(t) \simeq 2\pi \lambda_q^2 D(\omega)
+\end{equation}
+In the rotating wave approximation,
+\begin{equation}
+	L_\omega = \sqrt{C_\omega} \sigma^- \quad\Longrightarrow\quad
+	\gamma \simeq 2\pi \lambda_0^2 D(0).
+\end{equation}
+The Heisenberg equations of motion for the operators are therefore\footnote{We ignore the contribution from $H_S$ as it is irrelevant to the $\xi^O$.}
+\begin{equation}
+\begin{aligned}
+	\partial_t\sigma^{+} & =i\left[\widetilde{H}, \sigma^{+}\right]=-i \sum_q \lambda_q b_q^{\dagger} \sigma^z, \\
+	\partial_t n & =i \sum_q \lambda_q\left(\sigma^{-}b_q^{\dagger}-\sigma^{+} b_q\right), \\
+	\partial_t b_q^{\dagger} & =i \lambda_q \sigma^{+}+i \omega_q b_q^{\dagger} .
+\end{aligned}
+\end{equation}
+Formally solving the first equation yields
+$$
+b_q^{\dagger}(t)=b_q^{\dagger}(0) e^{i \omega_q t}+i \lambda_q \int_0^t d t^{\prime} \sigma^{+}(t^{\prime}) e^{i \omega_q(t-t^{\prime})}
+$$
+Inserting this solution into the second and the third equations and performing the Born-Markov approximation leads to
+$$
+\begin{aligned}
+\dot{\sigma}^{+} & =-\frac{\gamma}{2} \sigma^{+}+\underbrace{i \sum_q \lambda_q b_q^{\dagger}(0) \sigma^z e^{i \omega_q t}}_{\tilde{\xi}^{+}(t)} \\
+\dot{n} & =-\gamma n+\underbrace{i \sum_q \lambda_q\left(b_q^{\dagger}(0) \sigma^{-} e^{i \omega_q t}-\sigma^{+} b_q(0) e^{-i \omega_q t}\right)}_{\tilde{\xi}^n(t)} .
+\end{aligned}
+$$
+
+
+%\bibliography{SciPost_Example_BiBTeX_File.bib}
+
+%%%%%%%%%% END TODO: BIBLIOGRAPHY
+
+
+\end{document}

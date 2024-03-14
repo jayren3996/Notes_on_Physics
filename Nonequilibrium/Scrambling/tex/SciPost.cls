@@ -85,6 +85,11 @@
 \def \tr{\operatorname{tr}}
 \def \Tr{\operatorname{Tr}}
 
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\theoremstyle{rmk}
+\newtheorem*{rmk}{Remark}
 
 \usepackage{listings}
 % the following lines make sure the pdf code is copy-pastable

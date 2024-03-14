@@ -1,7 +1,0 @@
-\contentsline {title}{Krylov Complexity}{1}{section*.1}%
-\tocdepth@munge 
-\contentsline {section}{\numberline {}Contents}{1}{section*.2}%
-\tocdepth@restore 
-\contentsline {section}{\numberline {I}Operator growth}{1}{section*.3}%
-\contentsline {subsection}{\numberline {A}Lanczos iteration}{1}{section*.4}%
-\contentsline {section}{\numberline {}References}{1}{section*.5}%

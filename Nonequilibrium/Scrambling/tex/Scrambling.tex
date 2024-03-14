@@ -459,7 +459,7 @@ We regard the $2n$-fold replica indices as a new internal degree of freedom, and
 The tricky part is the traces.
 For a single site $i$ in part $A$, the trace is within each replica, therefore it is straightforward to check that the trace part can be equivalently expressed as the inner product with the bra:
 \begin{equation}
-	\langle \mathbb I |_i = \delta_{i_i \bar i_1}\cdots \delta_{i_n\bar i_n} 
+	\langle e |_i = \delta_{i_i \bar i_1}\cdots \delta_{i_n\bar i_n} 
 	\equiv \includegraphics[align=c,width=0.25\linewidth]{pics/bra-ket-1},
 \end{equation}
 where we have introduced a graphic notation to represent the states.
@@ -471,7 +471,7 @@ For a site $i$ in part $B$, the
 The graphic notation makes the evaluation of the inner product intuitive.
 For example, we have
 \begin{equation}
-	\langle \mathbb I|(123)\rangle 
+	\langle e|(123)\rangle 
 	= \includegraphics[align=c,width=0.2\linewidth]{pics/bra-ket-3} = q.
 \end{equation}
 That is, the inner product only depends on the number of cycles in permutation element $\sigma^{-1}\tau$, i.e., $\langle\sigma|\tau\rangle = q^{\#(\sigma^{-1}\tau)}$.
@@ -529,46 +529,57 @@ The model can be further simplified by tracing out the middle ``spin" in the gre
 We can then denote the weight for the resulting triangle as:
 \begin{equation}
 	\includegraphics[align=c,width=0.1\linewidth]{pics/weight.jpg}
-	= \sum_{\tau=\mathbb I, (12)} \operatorname{Wg}_d (\sigma_a \tau^{-1}) q^{\#(\sigma_b^{-1}\tau)+\#(\sigma_c^{-1}\tau)}
+	= \sum_{\tau=e, (12)} \operatorname{Wg}_d (\sigma_a \tau^{-1}) q^{\#(\sigma_b^{-1}\tau)+\#(\sigma_c^{-1}\tau)}
 	=\begin{cases}
 		\delta_{\sigma_a\sigma_b} & \sigma_b = \sigma_c \\
 		\frac{q}{q^2+1} & \sigma_b \ne \sigma_c
 	\end{cases}.
 \end{equation}
-This weight function makes the model behave like an Ising magnet with local sites taking values $|\mathbb I\rangle$ or $|(12)\rangle$, and subject to a special constraint: the domain wall shall not be horizontal.
+This weight function makes the model behave like an Ising magnet 
+\begin{equation*}
+	h_3 = \alpha s_a s_b + \alpha s_a s_c + \beta s_b s_c + \gamma,
+\end{equation*}
+with local sites taking values $|e\rangle \sim (s=1)$ or $|(12)\rangle \sim (s=-1)$.
+The 3 parameters can be determined as
+\begin{equation*}
+	a = \frac{1}{4},\quad
+	b = \frac{1}{4}-\frac{q}{2(q^2+1)},\quad
+	c = \frac{1}{4}+\frac{q}{2(q^2+1)}.
+\end{equation*}
+In the domain wall picture, this Ising magnet has the property that the domain wall shall not be horizontal.
 
-For the upper boundary, if $\tau_x = (12)$, the domain wall constraint will require the whole bulk in the $|(12)\rangle$ state. 
-Also, $\sigma_0 = (12)$ because $W$ is traceless.
-The trick is to replace $\tilde W$ with $|\mathbb I\rangle$ and write
+For the spin $\tau_0$. When $\tau_0 = (12)$, since we assume $W$ to be Pauli (therefore $W^2=\mathbb I$), we could replace $W$ with $\mathbb I$ for this $\tau_0$. 
+While in doing so, $\tau_0$ can also be $e$, which is a fictitious contribution.
+Taking in this part, the total result is $1$.
+Therefore, the OTOC can be expressed as
 \begin{equation}
-	F = \sum_{\tau,\tau_0=(12)} W(\tau) 
-	= \sum_\tau W(\tau) - \sum_{\tau,\tau_0=\mathbb I} W(\tau)
-	= 1 - \sum_{\tau,\tau_0=\mathbb I} W(\tau).
+	F = 1 - \sum_{\tau} \left.W(\tau)\right|_{\tau_0\rightarrow e,W\rightarrow\mathbb I}.
 \end{equation}
-In the last equation, we note the fact that $\sum_\tau W(\tau)$ is OTOC with $W$ replaced by $\mathbb I$, which is the identity.
-Therefore, 
-\begin{equation}
-	C(x,t) = 1 - F(x,t) = \sum_{\tau,\tau_0=\mathbb I} W(\tau).
-\end{equation}
-When considering the statistical model corresponding to $C(x,t)$, there will be two downward domain walls starting from $x$, the total weight is nonzero only when $\tau_0$ is in the $\mathbb I$ domain.
+We denote $C(x,t) = 1 - F(x,t)$ and calculate this instead in the following.
+When considering the statistical model corresponding to $C(x,t)$, there will be two downward domain walls starting from $x$, the total weight is nonzero only when $\tau_0$ is in the $e$ domain.
 
-In the bottom region, each Ising variable $\tau = (12)$ contributes a factor $q^2$, which will be renormalized out, while each $\tau=\mathbb I$ contributes a factor of $q^4$, which contribute an additional $q^2$ factor.
+In the bottom region, each Ising variable $\tau = (12)$ contributes a factor $q^2$, which will be renormalized out, while each $\tau=e$ contributes a factor of $q^4$, which contributes an additional $q^2$ factor (factor $q$ per site).
 Since the number of Ising variables is half of the original spin, the size of the bottom domain contributes additional weight to the partition function.
 Now the evaluation of the partition function is mapped to a random walk problem.
 We introduce the null coordinate
 \begin{equation}
-	u \equiv \frac{t+x}{2}, \quad 
-	v \equiv \frac{t-x}{2},
+	\underline u \equiv \frac{1}{2}\left(\underline t + \underline x\right), \quad 
+	\underline v \equiv \frac{1}{2}\left(\underline t - \underline x\right),
 \end{equation}
 and denote the endpoint in this coordinate as $(l_u, l_v)$.
-For each step, either $u$ or $v$ decreases by one.
-We denote the endpoint of the left/right random walk as $(l_u-u,l_v-t+u)$/$(l_u-t+v,l_v-v)$
-The length of the bottom domain is $(2t-2u-2v)$.
+Note that $l_u+l_v=t$.
+For each step, the trajectory increases one unit in either $\underline u$ or $\underline v$ direction.
+We denote the endpoint (light-cone coordinate) of the left/right random walk as:
+\begin{equation}
+	X_L = (l_u-u,l_v-t+u),\quad
+	X_R = (l_u-t+v,l_v-v).
+\end{equation}
+The length of the bottom domain is
+\begin{equation}
+	(X_L^u-X_L^v)-(X_R^u-X_R^v) = 2t-2u-2v.
+\end{equation}
 Also, two domain walls contribute a constant factor of $\left[q/(q^2+1)\right]^{2t}$.
-Therefore, the asymptotic behavior of the weight function is:\footnote{We remark here that we completely neglect the cases where two paths cross. 
-Actually, the left and right domain walls correspond to two biased random walks along opposite directions. 
-In the longtime limit, the crossing case is negligible.
-While in the early time, the no-crossing constraint will eliminate a certain portion of the path configuration, and that is why we use the proportional expression.}
+Therefore, the asymptotic behavior of the weight function is:
 \begin{equation*}
 \begin{aligned}
 	C(x,t) &\propto \left(\frac{q}{q^2+1}\right)^{2t}\sum_{u=0}^{l_u} \sum_{v=0}^{l_v} q^{2t-2u-2v} 
@@ -578,16 +589,69 @@ While in the early time, the no-crossing constraint will eliminate a certain por
 \end{aligned}
 \end{equation*}
 Note that in the last expression, the summation corresponds to the distribution of random walk with a biased probability $p = 1/(q^2+1)$.
-We know that a random walk satisfies a gaussian distribution:
-\begin{equation}
-	f(u) = \begin{pmatrix} t \\ u \end{pmatrix} (1-p)^{t-u} p^u
-	\xrightarrow{\ x=t-2u\ } \exp\left[-\frac{1}{2}\left(\frac{x - v_B t}{\sigma(t)}\right)^2\right],
-\end{equation}
+We remark here that we completely neglect the cases where two paths cross since it's negligible in the long-time limit, while in the early time, it's just a constant factor.
+
+\begin{thm}
+The binomial expression gives a Gaussian distribution:
+\begin{equation*}
+	f(u,t) = \begin{pmatrix} t \\ u \end{pmatrix} (1-p)^{t-u} p^u
+	\xrightarrow{\ x=2u-t\ } \exp\left[-\frac{1}{2}\left(\frac{x - v_B t}{\sigma(t)}\right)^2\right],
+\end{equation*}
 where the butterfly velocity $v_B$ and the broadening factor $\sigma(t)$ are
-\begin{equation}
+\begin{equation*}
 	v_B = 1-2p = \frac{q^2-1}{q^2+1},\quad 
-	\sigma(t) = \sqrt{\left[(v_B+1)^2 p + (v_B-1)^2(1-p)\right]t} = \frac{2 q \sqrt t}{q^2+1}.
+	\sigma(t) = 2\sqrt{p(1-p)t} = \frac{2 q \sqrt t}{q^2+1}.
+\end{equation*}
+\end{thm}
+\begin{proof}
+Sterling's approximation:
+\begin{equation}
+	n! \sim \sqrt{2n\pi} \left(\frac{n}{e}\right)^n.
 \end{equation}
+Using this approximation, and think of $t$ and $u$ as both large,
+\begin{equation*}
+	f(u,t) = \sqrt{\frac{t}{2\pi t(t-u)}} (1-p)^{t-u} p^u \left(\frac{u}{t}\right)^{-u} \left(1-\frac{u}{t}\right)^{-t+u}.
+\end{equation*}
+Assuming $u = pt +\delta$,
+\begin{equation*}
+\begin{aligned}
+	f(u,t) &= \sqrt{\frac{t}{2\pi u(t-u)}}(1-p)^{t-u} p^u \left(p+\frac{\delta}{t}\right)^{-u} \left(1-p-\frac{\delta}{t}\right)^{-t+u} \\
+	&= \sqrt{\frac{t}{2\pi u(t-u)}} \left(1+\frac{\delta}{pt}\right)^{-pt+\delta} \left(1-\frac{\delta}{(1-p)t}\right)^{-(1-p)t+\delta}
+\end{aligned}
+\end{equation*}
+Taking the logarithm,
+\begin{equation*}
+\begin{aligned}
+	\ln \left[\sqrt{\frac{2\pi u(t-u)}{t}}f \right]
+	&= (\delta-pt)\ln  \left(1+\frac{\delta}{pt}\right) -[\delta+(1-p)t]\ln\left(1-\frac{\delta}{(1-p)t}\right) \\
+	&= (\delta-pt) \left(\frac{\delta}{pt}-\frac{1}{2}\frac{\delta^2}{p^2t^2}\right)
+	-[\delta-(1-p)t]\left[\frac{\delta}{(1-p)t}+\frac{1}{2}\frac{\delta^2}{(1-p)^2t^2}\right] \\
+	&= -\frac{\delta^2}{2 p(1-p) t} + O(\delta^3).
+\end{aligned}
+\end{equation*}
+Note that $x=2u-t=(2p-1)t+2\delta$, therefore,
+\begin{equation*}
+	\delta = \frac{x+(1-2p)t}{2} \equiv \frac{x+v_B t}{2}.
+\end{equation*}
+We then get the following distribution
+\begin{equation*}
+	f(x,t) \simeq \frac{1}{\sqrt{2\pi }\sqrt{p(1-p)t}} \exp\left[-\frac{(x+v_B t)^2}{8p(1-p)t}\right].
+\end{equation*}
+The variance is
+\begin{equation*}
+	\sigma(t)= 2\sqrt{p(1-p)t}.
+\end{equation*}
+Note that 
+\begin{equation*}
+	f(x,t) = \begin{cases}
+		\frac{2}{\sqrt{2\pi} \sigma(t)} \exp\left[-\frac{1}{2}\left(\frac{x+v_B t}{\sigma(t)}\right)^2\right] & x=t \mod 2 \\
+		0 & x\ne t \mod 2
+	\end{cases}.
+\end{equation*}
+In the continuum limit, we can smooth the function and therefore get rid of the factor $2$.
+Therefore we reach the desired expression.
+\end{proof}
+
 With proper normalization, we obtain the asymptotic expression for the OTOC:
 \begin{equation}
 	C(x,t) = \operatorname{erf}\left(\frac{x + v_B t}{\sigma(t)}\right) \operatorname{erf}\left(\frac{x - v_B t}{\sigma(t)}\right), \quad
@@ -602,7 +666,7 @@ We conjecture that this physics also occurs in generic (nonintegrable) 1D system
 \subsection{Entanglement entropy and replica trick}
 
 The above mapping can be generalized to entanglement entropy.
-In particular, the averaged purity entropy, defined as $\tilde S^{(2)}_x(t) \equiv -\log_q \langle \tr\rho_x^2(t)\rangle$, can be mapped to a statistical model described by a statistical model with the same bulk as Eq.~(\ref{eq:otoc-stat-model}), but with a free boundary condition on the bottom and a fixed boundary $\left\langle \mathbb I^{\otimes x},(1,2)^{\otimes (N-x)}\right|$ on the top.
+In particular, the averaged purity entropy, defined as $\tilde S^{(2)}_x(t) \equiv -\log_q \langle \tr\rho_x^2(t)\rangle$, can be mapped to a statistical model described by a statistical model with the same bulk as Eq.~(\ref{eq:otoc-stat-model}), but with a free boundary condition on the bottom and a fixed boundary $\left\langle e^{\otimes x},(1,2)^{\otimes (N-x)}\right|$ on the top.
 In the domain-wall language, all random paths contribute equally to the partition function $Z$, i.e.,
 \begin{equation}
 	Z \simeq \left(\frac{2q}{q^2+1}\right)^t
@@ -680,7 +744,7 @@ The statistical weight on the monitored bond is:
 	\equiv W_p(\sigma^{-1}\tau).
 \end{equation}
 The statistical model is now a classical Ising model (with $\mathbb Z_2$ spin-flip symmetry).
-We can use the Ising variables $(+) \equiv \mathbb I$, $(-) \equiv (12)$ to simplify the notation.
+We can use the Ising variables $(+) \equiv e$, $(-) \equiv (12)$ to simplify the notation.
 By integrating out the middle spin degrees of freedom, we can obtain a triangle Ising model:
 \begin{equation}
 	J\left(\sigma_b, \sigma_c ; \sigma_a\right)

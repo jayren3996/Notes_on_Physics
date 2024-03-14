@@ -31,7 +31,7 @@
 \pagestyle{SPstyle}
 
 \begin{center}{\Large \textbf{\color{scipostdeepblue}{
-Gaussian Stochastic Schr\"odinger Equation\\
+Gaussian Lindbladian\\
 }}}\end{center}
 
 \begin{center}
@@ -42,25 +42,55 @@ Gaussian Stochastic Schr\"odinger Equation\\
 
 \section{Gaussian System}
 
+\subsection{Dirac Free Fermion}
+
+For Dirac Free Fermion systems, a Gaussian state can be represented as a matrix $B$:\footnote{Note that the matrix $B$ representing the Gaussian state has the unitary degree of freedom $$|B\rangle = |B'\rangle, \quad B'_{ij} = \sum_k B_{ik}U_{kj},$$ where $U_{kj}$ is an $N\times N$ unitary matrix. It means that the Gaussian state is determined by the linear subspace that columns of $B$ span. The columns of $B$ need not be orthogonal, while the canonical form can be obtained by the QR decomposition: $B_{L\times N} = Q_{L\times N} \cdot R_{N\times N},$ where the $Q$ matrix is orthonormal and we can set $B' = Q$.} 
+\begin{equation}
+	|B\rangle \equiv \prod_{j=1}^N \sum_i B_{ij} c_{i}^\dagger |0\rangle 
+	\equiv \bigotimes_{j=1}^N |B_j\rangle.
+\end{equation}
+The Hamiltonian evolution $|\psi(t)\rangle = e^{-iH \Delta t} |\psi\rangle$ becomes evolution of the matrix $B$:\footnote{Using the Baker-Campbell-Hausdorff formula, $e^X Y e^{-X} = \exp(\operatorname{ad} X) Y$, therefore $e^{-iH \Delta t} c_j^\dagger e^{iH \Delta t} = c_k^\dagger[e^{-iH \Delta t}]_{kj}$. Here the Hamiltonian is not necessarily Hermitian.}
+\begin{equation}
+	e^{-iH \Delta t}|B\rangle = \prod_{j=1}^N \sum_i \left[e^{-iH \Delta t}\right]_{ki} B_{ij} c_{k}^\dagger |0\rangle = \left|e^{-iH \Delta t}\cdot B \right\rangle.
+\end{equation}
+The density matrix for $m$-site subregion has the Gaussian form $\rho = \exp(-M_{ij}c_i^\dagger c_j)$. If we diagonalize matrix $M$
+\begin{equation}
+	M_{ij} = \sum_k \lambda_k U_{ik}  U^*_{jk},
+\end{equation}
+and consider the new basis $a_k^\dagger = \sum_i U_{ik}c_i^\dagger$, then $\rho$ will be in diagonal form
+\begin{equation}
+	\rho = \frac{1}{Z}\exp\left(-\sum_k \lambda_k a_k^\dagger a_k\right) 
+	= \bigotimes_{k=1}^n \begin{pmatrix} 
+		\mu_k & 0 \\ 0 & 1-\mu_k 
+	\end{pmatrix},
+\end{equation}
+where $\mu_k = (1+e^{-\lambda_k})^{-1}$. 
+Under basis $\{a_k\}$, the correlation function is diagonal: 
+\begin{equation}
+	\langle a_k^\dagger a_l\rangle = \delta_{kl}\mu_k = U_{ik}\langle c_i^\dagger c_j\rangle U_{jk}^* = U^T\cdot G\cdot U^*.
+\end{equation}
+It means the spectrum of $\rho$ can be obtained from correlation function $G$.
+The entropy is
+\begin{equation}
+	S(\rho) = -\Tr[\rho \log \rho] = \sum_k H(\mu_k).
+\end{equation}
+where $H(x) = -x\log x - (1-x)\log(1-x)$.
+
 \subsection{BdG Hamiltonian}
 The BdG Hamiltonian has the form
 \begin{equation}
-	\hat H = \sum_{i,j=1}^n A_{ij} c_i^\dagger c_j+\frac{1}{2}\sum_{i,j=1}^n (B_{ij}c_i^\dagger c_j^\dagger-B_{ij}^*c_ic_j)=\frac{1}{2}\sum_{i,j=1}^{2n} \Psi_i^\dagger H_{ij} \Psi_j,
+	\hat H = \sum_{i,j=1}^n A_{ij} c_i^\dagger c_j+\frac{1}{2}\sum_{i,j=1}^n (B_{ij}c_i^\dagger c_j^\dagger-B_{ij}^*c_ic_j),
 \end{equation}
-where $A$ is Hermitian and $B$ is antisymmetric, the Hamiltonian matrix is
+where $A$ is Hermitian and $B$ is antisymmetric. 
+Define the Nambu basis $\underline\Psi$ where $\Psi_i = c_i$ when $1 \le i \le n$, and $\Psi_i = c_i^\dagger$ when $n+1 \le i \le 2n$.
+The Hamiltonian under $\underline\Psi$ becomes
 \begin{equation}
+	\hat H = \frac{1}{2}\sum_{i,j=1}^{2n} \Psi_i^\dagger H_{ij} \Psi_j, \quad
 	H= \begin{bmatrix} A & B \\ -B^* & -A^* \end{bmatrix},
 \end{equation}
-and the Nambu spinor $\Psi$ is
-\begin{equation}
-	\Psi_i = \begin{cases}
-		c_i & 1 \le i \le n \\
-		c_i^\dagger & n+1 \le i \le 2n
-	\end{cases}.
-\end{equation} 
-A fermionic Gaussian state can be regarded as the ground state of a BdG Hamiltonian.
 
-The action of particle-hole symmetry $\mathcal C$ on the Nambu spinor is $\mathcal C \cdot \Psi = \sigma^x \cdot\Psi^*$, on Hamiltonian is $C H C^{-1} = \sigma^x H^* \sigma^x = -H$. The unitary transformation conserving particle-hole symmetry is
+The action of particle-hole symmetry $\mathcal C$ on the Nambu spinor is $\mathcal C \cdot \Psi = \sigma^x \cdot\Psi^*$, on Hamiltonian is $C H C^{-1} = \sigma^x H^* \sigma^x = -H$. 
+Consider a unitary transformation\footnote{Since $T$ is unitary, the submatrix $U$ and $V$ satisfy: $U^\dagger \cdot U + V^\dagger \cdot V = \mathbb I$, and $U^\dagger \cdot V^* + V^\dagger \cdot U^* = 0$. In numerical diagonalization, one shall only keep half of the eigenvectors to obtain the matrix $U, V$ and discard the rest as a way of gauge fixing.} $T$ conserving particle-hole symmetry that diagonalizes the Hamiltonian matrix:
 \begin{equation}
 	T^\dagger H T = \mathrm{diag}(\varepsilon_1,\cdots,\varepsilon_N,-\varepsilon_1,\cdots,-\varepsilon_N),\quad
 	T = \begin{bmatrix}
@@ -78,19 +108,41 @@ The Hamiltonian is
 	\hat H = \frac{1}{2} \sum_n \varepsilon_n (d_n^\dagger d_n- d_n d_n^\dagger) 
 	= \sum_n \varepsilon_n\left(d_n^\dagger d_n-\frac{1}{2}\right).
 \end{equation}
-The following code does the diagonalization in the Nambu basis:
-\begin{lstlisting}
-function bdg_eigen(A, B)
-	n = size(A, 1)
-	H = [A B; -conj(B) -conj(A)]
-	vals, vecs = eigen(Hermitian(H))
-	e = real(vals[n+1:2n])
-	U, V = vecs[1:n, n+1:2n], vecs[n+1:2n, n+1:2n]
-	T = [U conj(V); V conj(U)]
-	e, T
-end
-\end{lstlisting}
 
+\paragraph{Gaussian State}
+A fermionic Gaussian state $|\psi\rangle$ can be regarded as the ground state of a BdG Hamiltonian $H$, which is annihilated by all $d$'s:
+\begin{equation}
+	\sum_{j=1}^n U_{jk}^* c_j|\psi\rangle = - \sum_{j=1}^n V_{jk}^* c_j^\dagger|\psi\rangle, \quad\forall k =1,2,\dots,n.
+\end{equation}
+For this linear form, we immediately see that $|\psi\rangle$ has the Gaussian form:
+\begin{equation}
+	|\psi\rangle = \frac{1}{\mathcal N} \exp\left(\sum_{ij}M_{ij}c_i^\dagger c_j^\dagger\right)|0\rangle.
+\end{equation}
+The equation leads to
+\begin{equation*}
+	c_j |\psi\rangle = e^{\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} \left(e^{-\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} c_j e^{\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger}\right) |0\rangle 
+	= -2 M_{kj} c_k^\dagger|\psi\rangle.
+\end{equation*}
+Therefore $M = \frac{1}{2} V^* \cdot (U^*)^{-1}$, or equivalently, $M = -\frac{1}{2}(U^\dagger)^{-1} \cdot V^\dagger$.
+The matrix $M$ is antisymmetric since
+\begin{equation*}
+\begin{aligned}
+	M + M^T 
+	&= \frac{1}{2} \left[V^* \cdot (U^*)^{-1} + (U^\dagger)^{-1} \cdot V^\dagger\right] 
+	= \frac{1}{2} \left[V^*  + (U^\dagger)^{-1} \cdot V^\dagger \cdot U^*\right] \cdot  (U^*)^{-1} \\
+	&= \frac{1}{2} \left[V^*  - (U^\dagger)^{-1} \cdot  U^\dagger \cdot V^*\right] \cdot  (U^*)^{-1} =0.
+\end{aligned}
+\end{equation*}
+For BdG system, a Gaussian state $|\psi\rangle$ is specified by the matrix $U$ and $V$, or equivalently by the $\{d^\dagger_k\}$ which annihilate $|\psi\rangle$.
+The evolution of the system is equivalently described by the evolution of the operator
+\begin{equation}
+	d_k^\dagger(t) = e^{-iHt} d_k^\dagger e^{iHt}.
+\end{equation}
+Formally, the expression resembles the case in the Dirac free fermion system, but the BdG form has the redundancy that shall be eliminated by imposing particle-hole symmetry. Effectively,  the apparent ``energy" is one-half of the true energy of $d_k$. From the commutation relation point of view, the factor 2 comes from the commutator $[\Psi_i, \Psi_{i+n}]$. As a result, the evolution follows
+\begin{equation*}
+	\begin{bmatrix} U(t) \\ V(t) \end{bmatrix}
+	= \exp(-iH_\text{BdG}t)\begin{bmatrix} U \\ V \end{bmatrix}.
+\end{equation*}
 
 
 \subsection{Majorana Basis}
@@ -101,7 +153,8 @@ Under the Majorana basis $\underline\Omega=(\omega_1,\dots,\omega_{2n})^T$, wher
 		i(c_i-c_i^\dagger) & n+1 \le i \le 2n
 	\end{cases}.
 \end{equation}
-the Hamiltonian is
+The Majorana operators satisfy the commutation relation $\{\omega_i,\omega_j\} = 2\delta_{ij}$.
+The Hamiltonian under $\underline\Omega$ is
 \begin{equation}
 	\hat H = \frac{1}{8} \underline\Omega 
 	\begin{bmatrix}
@@ -132,156 +185,14 @@ The canonical form of antisymmetric matrix $H$ is:
 	\end{bmatrix} R^T,
 \end{equation}
 where $R \in \mathrm{SO}(2n)$.
-By defining the new Majorana operator 
-\begin{equation}
-	\gamma_k = \sum_{j=1}^{2n} \omega_j R_{jk},\quad
-	k=1,\cdots,2n.
-\end{equation}
-The Hamiltonian becomes diagonal
+By defining the new Majorana operator $\gamma_k = \sum_{j=1}^{2n} \omega_j R_{jk}$, the Hamiltonian becomes a diagonal form
 \begin{equation}
 	H = -\frac{i}{2} \sum_{k=1}^n \varepsilon_k \gamma_k\gamma_{k+n}
-	= \sum_{k=1}^n \varepsilon_k \left(d_k^\dagger d_k -\frac{1}{2}\right),
+	= \sum_{k=1}^n \varepsilon_k \left(d_k^\dagger d_k -\frac{1}{2}\right).
 \end{equation}
-The diagonalization is done by
-\begin{lstlisting}
-function majorana_eigen(A, B)
-	n = size(A, 1)
-	S, V, vals = schur(majoranaform(A, B))
-	e = abs.(imag(vals))
-	R = Matrix{Float64}(undef, 2n, 2n)
-	for i in 1:n
-		if S[2i-1, 2i] > 0
-			R[:, i] = V[:, 2i-1]
-			R[:, i+n] = V[:, 2i]
-		else
-			R[:, i] = V[:, 2i]
-			R[:, i+n] = V[:, 2i-1]
-		end
-	end
-	e, R
-end	
-\end{lstlisting}
-Note that the ground state $|\psi\rangle$ of $H$ is annihilated by all $d$'s, 
-\begin{equation}
-	\sum_{j=1}^n U_{jk}^* c_j|\psi\rangle = - \sum_{j=1}^n V_{jk}^* c_j^\dagger|\psi\rangle, \quad\forall k =1,2,\dots,n.
-\end{equation}
-For this linear form, we immediately see that $|\psi\rangle$ has the Gaussian form:
-\begin{equation}
-	|\psi\rangle = \frac{1}{\mathcal N} \exp\left(\sum_{ij}M_{ij}c_i^\dagger c_j^\dagger\right)|0\rangle.
-\end{equation}
-The equation leads to
-\begin{equation*}
-	c_j |\psi\rangle = e^{\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} e^{-\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} c_j e^{\sum_{kl}M_{kl}c_k^\dagger c_l^\dagger} |0\rangle 
-	= -2 M_{kj} c_k^\dagger|\psi\rangle.
-\end{equation*}
-Therefore $M = \frac{1}{2} V^* \cdot (U^*)^{-1}$.
 
-
-
-
-\section{Dirac SSE}
-
-For particle number conserving systems, the Gaussian state can be represented as a matrix: 
-\begin{equation}
-	|B\rangle \equiv \prod_{j=1}^N \sum_i B_{ij} c_{i}^\dagger |0\rangle 
-	\equiv \bigotimes_{j=1}^N |B_j\rangle.
-\end{equation}
-Note that the matrix $B$ representing the Gaussian state has the unitary degree of freedom
-$$|B\rangle = |B'\rangle, \quad B'_{ij} = \sum_k B_{ik}U_{kj},$$
-where $U_{kj}$ is an $N\times N$ unitary matrix. It means that the Gaussian state is determined by the linear subspace that columns of $B$ span. The columns of $B$ need not be orthogonal, while the canonical form can be obtained by the QR decomposition: $B_{L\times N} = Q_{L\times N} \cdot R_{N\times N},$ where the $Q$ matrix is orthonormal and we can set $B' = Q$.
-
-
-\subsection{Evolution}
-
-The Stochastic Schr\"odinger equation can be Trotterized as
-\begin{equation}
-	|\psi'\rangle = \left(\prod_x \mathcal{M}_x \right) e^{-iH \Delta t} |\psi\rangle.
-\end{equation}
-That is, the monitored dynamics can be regarded as a two-step process, where the state $|\psi\rangle$ first undergoes a coherent Hamiltonian evolution and is then subject to a generalized measurement controlled by parameter $\Delta t$.
-Using the Baker-Campbell-Hausdorff formula, 
-\begin{equation*}
-	e^X Y e^{-X} = \exp(\operatorname{ad} X) Y,\quad
-	e^{-iH \Delta t} c_j^\dagger e^{iH \Delta t} = c_k^\dagger[e^{-iH \Delta t}]_{kj}.
-\end{equation*}
-Therefore,\footnote{Note that the Hamiltonian is not necessarily Hermitian, so the vectors will no longer be orthogonal.}
-\begin{equation}
-	e^{-iH \Delta t}|B\rangle = \prod_{j=1}^N \sum_i \left[e^{-iH \Delta t}\right]_{ki} B_{ij} c_{k}^\dagger |0\rangle = \left|e^{-iH \Delta t}\cdot B \right\rangle.
-\end{equation}
-The Krause operator of $\mathcal M$ is
-\begin{equation}
-	M_x = L_x \sqrt{\gamma \Delta t},\quad
-	M_0 = \sqrt{1-L_x^\dagger L_x \gamma \Delta t}.
-\end{equation}
-We consider the case where the jump operator $L_x$ the form:
-\begin{equation}
-	L_x = U_x d_x^\dagger d_x,\quad
-	L_x^\dagger L_x = d_x^\dagger d_x,
-\end{equation}
-where $U_x$ is a Gaussian unitary operator. In this case, the Kraus operator is 
-\begin{equation*}
-	M_0 = \sqrt{(1-\gamma\Delta t)d_x^\dagger d_x + d_x d_x^\dagger} 
-	= \sqrt{1-\gamma\Delta t} d_x^\dagger d_x + d_x d_x^\dagger
-	= 1 - \left(1-\sqrt{1-\gamma\Delta t}\right) d_x^\dagger d_x.
-\end{equation*}
-This operator preserve Gaussianity since $\exp(-\alpha d_x^\dagger d_x) = 1 - (1-e^{-\alpha})d_x^\dagger d_x$. 
-
-\subsection{Quantum Jump}
-When applied to a quasi-particle creation/annihilation operator, a free fermion state maintains its structure. Consider a general quasi-particle $b^\dagger = \sum_i b_i c_i^\dagger$, creating a quasiparticle is simply adding a column to $B$, since
-\begin{equation}
-	b^\dagger|B\rangle = \sum_k b_k c^\dagger_k \prod_{j=1}^N \sum_i c_i^\dagger B_{ij} |0\rangle
-	= \prod_{j=1}^{N+1} \sum_i c_i^\dagger \left[b|B\right]_{ij} |0\rangle.
-\end{equation}
-The new column $b$ is not orthogonal to linear space $B$. Therefore, an orthogonalization procedure is needed to obtain canonical form.
-
-
-For the quasiparticle annihilation operator $b$, 
-\begin{equation*}
-	b|B\rangle = \sum_k b_k^* c_k \prod_{j} \sum_i c_i^\dagger B_{ij} |0\rangle
-	=\sum_j \langle b|B_j\rangle \bigotimes_{l\ne j}|B_l\rangle.
-\end{equation*}
-We can use the gauge freedom to restrict $\langle b| B'_{j}\rangle = 0$ for $j>1$. Such matrix $B'$ always exists since we can always find a column $j$ that $\langle b| B_{j}\rangle \ne 0$ (otherwise $p_m=0$ and the jump is impossible). We then move the column to the first and define the column as
-\begin{equation}
-	|B'_{j}\rangle = |B_{j}\rangle - \frac{\langle a|B_{j}\rangle}{\langle a|B_{1}\rangle} |B_{1}\rangle, \quad j>1.
-\end{equation}
-Such column transformations do not alter the linear space $B$ spans, while the orthogonality and the normalization might be affected. 
-
-
-\subsection{Entanglement Entropy}
-The density matrix for $m$-site subregion has the Gaussian form $\rho = e^{-M_{ij}c_i^\dagger c_j}$. If we diagonalize it, 
-\begin{equation}
-	\rho = \frac{1}{Z}\exp(-\sum_k \lambda_k a_k^\dagger a_k) 
-	= \bigotimes_{k=1}^n \frac{1}{1+e^{-\lambda_k}} 
-	\begin{bmatrix} 1 & 0 \\ 0 & e^{-\lambda_k} \end{bmatrix} 
-	= \bigotimes_{k=1}^n \operatorname{diag}(1-\mu_k, \mu_k).
-\end{equation}
-Note that $\{a_k\}$ is also the basis that diagonalizes the correlation function $G_{ij} = \Tr[\rho c_i^\dagger c_j]$, with
-\begin{equation}
-	U \cdot G \cdot U^T = \operatorname{diag}(\mu_1,\cdots,\mu_m).
-\end{equation}
-The entropy is
-\begin{equation}
-	S(\rho) = -\Tr[\rho \log \rho] 
-	= -\sum_k \left[\mu_k \log\mu_k + (1-\mu_k)\log(1-\mu_k)\right] 
-	= \sum_k H(\mu_k).
-\end{equation}
-Note that the eigenvalue $\mu_k$ of correlation $G$ is the square of singular values of $B|_\text{subregion}$ matrix.
-
-
-
-
-
-\section{Majorana SSE}
-The Majorana operators are defined as ${\omega}_j ={c}_{i}+{c}_{i}^{\dagger}$, ${\omega}_{j+n} = i({c}_{i}-{c}_{i}^{\dagger})$.
-For the Majorana case, a Gaussian pure state $|\psi$ can be expressed as 
-\begin{equation}
-	|\psi\rangle\langle\psi| = \prod_{j=1}^n  d_j^\dagger d_j.
-\end{equation}
-Note that the state is annihilated by $\{d_j^\dagger\}$. We can store the information of $|\psi\rangle$ into a $2n\times n$ complex matrix $B$. The rest of the procedures parallel those of the Dirac fermion case.
-
-
-
-\section{Grassmann Representation}
-In this section, we discuss the general fermionic Gaussian state in the framework of the Grassmann representation. We will closely follow Ref.~\cite{bravyi2004lagrangian}.  A general operator in Fermionic Fock space can be expanded on the Majorana basis:
+\paragraph{Grassmann representation}
+A general operator in Fermionic Fock space can be expanded on the Majorana basis:
 \begin{equation}
 	\hat{X}=\alpha\hat{I}+\sum_{p=1}^{2n}\sum_{1\le a_{1}<\cdots<a_{p}\le2n}\alpha_{a_{1}\cdots a_{p}}\hat{\omega}_{a_{1}}\cdots\hat{\omega}_{a_{p}}.
 \end{equation}
@@ -289,53 +200,17 @@ Define a linear map from Fermionic operator space to Grassmann algebra:
 \begin{equation}
 	\hat X \mapsto X(\theta)=\alpha + \sum_{1\le a_{1}<\cdots<a_{p}\le2n}\alpha_{a_{1}\cdots a_{p}}\theta_{a_{1}}\cdots \theta_{a_{p}}.
 \end{equation}
-This mapping is called the Grassmann representation of $\hat X$. 
-
-One can formally define calculus on Grassmann algebra:
-\begin{equation}
-	\frac{\partial}{\partial\theta_{i}}\theta_{j} = \int d\theta_{i}\theta_{j}=\delta_{ij},\quad
-	\frac{\partial}{\partial\theta_{i}}1 = \int d\theta_{i}1=0.
-\end{equation}
+This mapping is called the Grassmann representation\cite{bravyi2004lagrangian} of $\hat X$.\footnote{One can formally define calculus on Grassmann algebra: $\partial_{\theta_i} \theta_j = \int d{\theta_i}\theta_j = \delta_{ij}$ and $\int d{\theta}=0$.}
 The Gaussian integral of Grassmann algebra is
 \begin{equation}
-	\int D\theta\ e^{\eta^T\theta+\frac{i}{2}\theta^T M\theta}
-	=i^n \operatorname{Pf}(M) e^{-\frac{i}{2}\eta^T M^{-1}\eta}.
+	\int D[\theta]\ \exp\left(\eta^T\cdot\theta+\frac{i}{2}\theta^T \cdot M\cdot\theta \right)
+	=i^n \operatorname{Pf}(M) \exp\left(-\frac{i}{2}\eta^T\cdot M^{-1}\cdot\eta \right).
 \end{equation}
-One useful result concerning the expectation value is
-\begin{theorem}
-For two operator $\hat X$ and $\hat Y$, we have the following identity 
-$$
-\Tr\left(\hat{X}\hat{Y}\right)=\left(-2\right)^{n}\int D[\theta,\mu] e^{\theta^{T}\cdot \mu} X(\theta) Y(\mu).
-$$
-where $\int D\theta=\int d\theta_{2n}\cdots\int d\theta_{1}$, $\int D\mu =\int d\mu_{2n}\cdots\int d\mu_{1}$.
-\end{theorem}
-\begin{proof}
-We prove the statement by considering only $m$-th order monomial. On the one hand 
-$$
-\text{LHS}=\Tr[\hat\omega_1 \cdots \hat\omega_m \hat\omega_1 \cdots \hat\omega_m] = 2^{n} (-1)^{m(m-1)/2}.
-$$
-On the other hand,
-\begin{equation*}
-\begin{aligned}
-	\text{RHS} 
-	&= \left(-2\right)^{n} \int D[\theta,\mu] \prod_{i=1}^m\theta_i \prod_{j=m+1}^{2n}(\theta_j\mu_j) \prod_{k=1}^m \mu_k \\
-	&= \left(-2\right)^{n} (-1)^{(4n-m)m+(m+1+2n)(2n-m)/2} \\
-	&= 2^n(-1)^{-m(m+3)/2} = 2^n(-1)^{m(m-1)/2}.
-\end{aligned}
-\end{equation*}
-We, therefore, proved the statement.
-\end{proof}
-
-
-\subsection{Gaussian States}
-
-\begin{definition}
-A quantum state $\hat \rho$ is Gaussian if it has Gaussian Grassmann representation:
+A Gaussian state $\hat \rho$ has Gaussian Grassmann representation:
 \begin{equation}
-	\rho(\theta)=\frac{1}{2^{n}}\exp\left(\frac{i}{2}\theta^{T}M\theta\right),
+	\rho(\theta)=\frac{1}{2^{n}}\exp\left(\frac{i}{2}\theta^{T}\cdot M\cdot\theta\right),
 \end{equation}
 where the antisymmetric matrix $M_{ab}=\frac{i}{2}\Tr(\hat \rho[\hat \omega_a,\hat\omega_b])$ is the \textbf{covariance matrix}.
-\end{definition}
 All higher correlations of a Gaussian state are determined by the Wick theorem, namely
 $$
 \Tr(i^p\hat\rho\hat\omega_{a_1}\cdots\hat\omega_{a_p})=\operatorname{Pf}(M|_{a_1,\dots,a_p}).
@@ -354,11 +229,7 @@ Under the new Grassmann variance $\mu = R\theta$, $\rho$ has the form
 	=\frac{1}{2^{n}}\prod_{j}\exp\left(i\lambda_j\mu_{j} \mu_{j+n}\right)
 	=\frac{1}{2^{n}}\prod_{j}\left(1+i\lambda_{j} \mu_{j} \mu_{j+n}\right).
 \end{equation}
-We can then obtain the operator form: 
-\begin{equation}
-	\hat\rho = 2^{-n} \prod_{j=1}^n(1+i\lambda_j \hat\gamma_j\hat\gamma_{j+n})
-\end{equation}
-where $\hat \gamma$'s are a new set of Majorana operators. In the fermion basis
+We can then obtain the operator form $\hat\rho = 2^{-n} \prod_{j=1}^n(1+i\lambda_j \hat\gamma_j\hat\gamma_{j+n})$, where $\hat \gamma$'s are a new set of Majorana operators. In the fermion basis
 \begin{equation}
 	\hat d_j = \frac{\hat\gamma_j - i \hat\gamma_{j+n}}{2},\quad
 	\hat d_j^\dagger = \frac{\hat\gamma_j + i \hat\gamma_{j+n}}{2},
@@ -377,114 +248,392 @@ For mixed state, the entropy of $\rho$ is just
 \begin{equation}
 	S(\hat\rho)=\sum_j H\left(\frac{1+\lambda_j}{2}\right),
 \end{equation}
-where $H(p) = -p \log p - (1-p) \log(1-p)$.
 
 
-\subsection{Gaussian Operators}
-\begin{definition}
-An operator $\hat X$ (with nonzero trace) is Gaussian if 
-$$
-X(\theta)=C\exp\left(\frac{i}{2}\theta^TM\theta\right)
-$$
-for some complex number $C$ and some \textbf{complex antisymmetric} matrix $M$. $M$ is called a correlation matrix of $\hat X$. 
-If $\hat X$ is traceless, it should be thought of as a limit $\hat X = \lim_{m\rightarrow\infty} \hat X_m$ for some converging sequence of Gaussian operators with nonzero trace. 
-\end{definition}
-Note that for traceless $\hat X$, the explicit form of $X(\theta)$ is
+\section{Lindblad Master Equation}
+\subsection{General Markovian Form}
+For general open quantum evolution, suppose the system and environment are separable initially: $\rho_T=\rho\otimes\rho_B$, where we assume $\rho_B=\sum_\alpha \lambda_\alpha |\phi_\alpha\rangle\langle\phi_\alpha |$. Then the evolution of system-bath is unitary: $\rho_T(t) = U(t)\rho_TU^\dagger(t)$. Trace out the environment's degrees of freedom, we have the quantum channel expression: $\rho(t) = \sum_{\alpha\beta} W_{\alpha\beta} \rho W^\dagger_{\alpha\beta}$, where the \textbf{Kraus operator} $W$ can be expressed formally as $W_{\alpha\beta} = \sqrt{\lambda_\beta} \langle\phi_\alpha|U(t)|\phi_\beta\rangle$.
+
+The Lindblad equation assumes a semi-group relation: 
 \begin{equation}
-	X(\theta)=C \left(\prod_{a=1}^{2k}\mu_a\right)\exp\left(\frac{i}{2}\sum_{a,b=2k+1}^{2n} M_{ab}\mu_a \mu_b\right),
+	\rho_t = \mathcal{L}_t \rho_0 = \lim_{N \rightarrow \infty} \mathcal{L}_{t/N}\cdot\mathcal{L}_{t/N}\cdots \mathcal{L}_{t/N}\rho_0.
 \end{equation}
-where $\mu_a = \sum_b T_{ab}\theta_b$ for some invertible complex matrix $T$. The factor is a limiting point of the sequence:
+Such time decimation implies that the evolution is Markovian. We will show that Markovian approximation leads directly to the Lindblad equation. First, we choose a complete operator basis $\{F_i\}$ in $N$-dimensional Hilbert space, satisfying $\Tr[F_i^\dagger F_j] = \delta_{ij}$, where we choose $F_0=N^{-1/2} \cdot\mathbb I$. For a quantum channel, the channel operator $K_\mu$ can be expanded as 
 \begin{equation}
-\begin{aligned}
-	\prod_{a=1}^{2k} \mu_a = \lim_{t\rightarrow\infty} \prod_{a=1}^k \left(\mu_{2a-1}\mu_{2a}+\frac{1}{t}\right) 
-	= \lim_{t\rightarrow\infty} \frac{1}{t^k} \exp\left(t\sum_{a=1}^k \mu_{2a-1}\mu_{2a}\right).
+	K_\mu = \sum_i \Tr[F_i^\dagger K_\mu]F_i.
+\end{equation}
+In general, we have: $\mathcal{L}_t[\rho] = \sum_{ij}c_{ij}(t)F_i\rho F_j^\dagger$, where the Hermitian coefficient $c_{ij}(t)$ is 
+\begin{equation}
+	c_{ij}(t) = \sum_{\mu} \Tr[F_i^\dagger K_\mu]\cdot \Tr[F_j^\dagger K_\mu]^*.
+\end{equation}
+Our target is to compute the limit $\partial_t \rho \equiv \lim_{t\rightarrow 0} \frac{1}{t}(\mathcal{L}_t[\rho]-\rho)$.
+For this purpose, we define the (Hermitian) coefficient $a_{ij}$ as:
+\begin{equation*}
+	a_{00} = \lim_{t\rightarrow 0} \frac{c_{00}(t)-N}{t}, \quad
+	a_{ij} = \lim_{t\rightarrow 0} \frac{c_{ij}(t)}{t}.
+\end{equation*}
+The limit is then
+$$
+	\frac{d}{dt}\rho 
+	= \frac{a_{00}}{N}\rho + \frac{1}{\sqrt N} \sum_{i>0} \left(a_{i0} F_i \rho + a_{i0}^*\rho F_i^\dagger\right) + \sum_{i,j>0} a_{ij} F_i \rho F_j^\dagger. 
+$$
+To further simplify the expression, we define
+\begin{equation*}
+	F = \frac{1}{\sqrt N} \sum_{i=1}^{N^2-1} a_{i0} F_i, \quad
+	G = \frac{a_{00}}{2N}\mathbb I +\frac{1}{2}(F^\dagger+F), \quad
+	H = \frac{1}{2i}(F^\dagger-F).
+\end{equation*}
+The limit can be expressed by $G,H$ in a compact form:
+\begin{equation*}
+	\frac{d\rho}{dt} = -i[H,\rho]+\{G, \rho\}+\sum_{i,j=1}^{N^2-1}a_{ij}F_i\rho F_j^\dagger.
+\end{equation*}
+Note the $[H,\rho]$ part is the traceless part, and the $\{G,\rho\}$ is the trace part. Since the quantum channel preserves the trace (for any $\rho$):
+$$
+\Tr\left[\frac{d\rho}{dt}\right]= \Tr\left[ \left(2G+\sum_{i,j=1}^{N^2-1}a_{ij}F_j^\dagger F_i \right)\rho \right]=0.
+$$
+Therefore $G = -\frac{1}{2}\sum_{i,j=1}^{N^2-1}a_{ij}F_j^\dagger F_i$. We thus obtain the Lindblad form:
+\begin{equation}
+	\frac{d\rho}{dt} = -i[H,\rho]+\sum_{i,j=1}^{N^2-1}a_{ij} \left(F_i\rho F_j^\dagger-\frac{1}{2}\{F_j^\dagger F_i, \rho\} \right).
+\end{equation}
+We can simplify the form by diagonalizing the matrix $a_{ij}$. It is a convention to take the norm of $a_{ij}$ out to indicate the strength of the system-bath coupling, and the diagonalized Lindblad equation is
+\begin{equation}\label{eq:lindbladian}
+	\frac{d\rho}{dt} = -i[H,\rho]+ \gamma\sum_{m} \left(L_m\rho L_m^\dagger-\frac{1}{2}\{L_m^\dagger L_m, \rho\} \right).
+\end{equation}
+
+
+
+
+
+
+
+\subsection{Quasi-Free Lindbladian}
+Consider the Lindblad in the Heisenberg picture:
+\begin{equation}
+	\frac{d}{dt} \hat O
+	= i[\hat H, \hat O] + \sum_\mu \hat L_\mu^\dagger \hat O\hat L_\mu - \frac{1}{2} \sum_\mu\{\hat L_\mu^\dagger \hat L_\mu, \hat O \},
+\end{equation}
+where we choose $\hat O_{ij} = \omega_i\omega_j$ satisfying the relation $\hat O^T = 2\mathbb I - \hat O$. The covariance matrix is then $\Gamma_{ij} = i\langle \hat O\rangle - i\delta_{ij}$.
+
+We assume that the jump operator has up to quadratic Majorana terms. In particular, we denote the linear terms and the Hermitian quadratic terms as
+\begin{equation}
+	\hat L_r = \sum_{j=1}^{2N} L^r_{j} \omega_j, \quad
+	\hat L_s = -\frac{i}{4} \sum_{j,k=1}^{2N} M^s_{jk} \omega_j \omega_k.
+\end{equation}
+When the \textbf{jump operator} $\hat L_\mu$ contains only the linear Majorana operator, the Lindblad equation preserves Gaussianity. The evolution will break the Gaussian form for jump operators containing up to quadratic Majorana terms. 
+However, the $2n$-point correlation is still solvable for free fermion systems.
+
+
+Assume only linear terms in jump operators,
+\begin{equation}
+	\partial_t \hat O = \left[i\hat H,\hat O\right] + \mathcal D_r[\hat O] 
+	= \left[i\hat H - \frac{1}{2}\sum_r \hat L_r^\dagger L_r,\hat O\right] + \sum_r \left[\hat L_r^\dagger,\hat O\right]\hat L_r.
+\end{equation}
+For the future convenience, we define 
+\begin{equation}
+	\sum_r L_i^r L_j^{r*} = B_{ij} = \re B_{ij} + i \im B_{ij}. 
+\end{equation}
+The first term of EOM is:
+\begin{equation*}
+	\left[i\hat H - \frac{1}{2}\sum_r \hat L_r^\dagger L_r,\hat O_{ij}\right]
+	= \sum_{kl}\left(\frac{1}{4}H-\frac{1}{2}B \right)_{kl} [\omega_k \omega_l, \omega_i \omega_j].
+\end{equation*}
+Use the commutation relation $\{\omega_i, \omega_j\} = 2\delta_{ij}$, we have the relation 
+\begin{equation}
+\begin{aligned}[]
+	[\omega_k,\omega_i \omega_j] &= 2(\delta_{ki}\omega_j-\delta_{kj}\omega_i),\\
+	[\omega_k \omega_l, \omega_i \omega_j] &= 2(\delta_{ki}\omega_j \omega_l-\delta_{kj} \omega_i \omega_l + \delta_{li}\omega_k \omega_j - \delta_{lj}\omega_k\omega_i).
 \end{aligned}
 \end{equation}
-Introducing the operator $\hat\Lambda \equiv \sum_{a=1}^{2n} \hat \omega_a \otimes \hat \omega_a$, we have the following theorem:
-\begin{theorem}
-An operator $\hat X$ is Gaussian iff $\hat X$ is even and satisfies $$[\hat\Lambda, \hat X\otimes \hat X]=0.$$
-\end{theorem}
-\begin{proof}
-The adjoint action of $\hat \Lambda$ in the Grassmann representation has the form:
+Therefore
+\begin{equation*}
+\begin{aligned}[]
+	\left[i\hat H - \frac{1}{2}\sum_r \hat L_r^\dagger L_r,\hat O_{ij}\right]
+	&= \left[
+		\left(\frac{H}{2}- B\right) \cdot \hat O^T + \left(\frac{H}{2}- B\right)^T \cdot \hat O
+		- \hat O \cdot \left(\frac{H}{2}- B\right)^T- \hat O^T \cdot \left(\frac{H}{2}- B\right)
+	\right]_{ij} \\
+	&= \left[
+		(-H+2\im B) \cdot \hat O + \hat O \cdot (H-2\im B)
+	\right]_{ij}.
+\end{aligned}
+\end{equation*}
+The second term is
+\begin{equation*}
+\begin{aligned}
+	\sum_r \left[L_r^\dagger, \hat O_{ij}\right] \hat L_r
+	&= \sum_{kl} B_{kl} [\omega_k, \omega_i \omega_j]\omega_l
+	= 2\sum_{kl} B_{kl}\left(
+		\delta_{ki} \omega_j \omega_l - 
+		\delta_{kj} \omega_i \omega_l\right) \\
+	&= \left[2B\cdot \hat O^T - 2\hat O\cdot B^T\right]_{ij}
+	= \left[-2B\cdot \hat O - 2\hat O\cdot B^* + 4B\right]_{ij}.
+\end{aligned}
+\end{equation*}
+Therefore
 \begin{equation}
-	\Lambda_\text{ad} = 2\sum_a\left(\theta_a\otimes \frac{\partial}{\partial\theta_a}+\frac{\partial}{\partial\theta_a}\otimes \theta_a\right) \equiv \sum_a \Delta_a.
+	\partial_t \hat O_{ij} = \left[
+		(-H-2\re B) \cdot \hat O + \hat O \cdot (H-2\re{B}) + 4B
+	\right]_{ij}.
 \end{equation}
-That is, $[\hat\omega_a\otimes \hat \omega_a, Y \otimes Z](\theta)= \Delta_a \cdot Y(\theta)\otimes Z(\theta)$ for any operators $Y,Z$ having the same parity. Without loss of generality, both $Y$ and $Z$ are monomials in $\hat\omega$'s. Each commutes or anticommutes with $\hat{\omega}_a$. Consider two cases:
-\begin{enumerate}
-	\item Both $Y$ and $Z$ contain $\hat{\omega}_a$, or both $Y$ and $Z$ do not contain $\hat{\omega}_a$. Then the commutator $[\hat{\omega}_a\otimes \hat{\omega}_a,Y\otimes Z]$ is zero since both factors yield the same sign. The right-hand side is also zero since either $\theta_a$ or $\partial/\partial{\theta_a}$ annihilates both $Y$ and $Z$.
-	\item $Y$ contains $\hat{\omega}_a$ while $Z$ does not contain $\hat{\omega}_a$ (or vice verse). In this case $\hat{\omega}_a\otimes\hat{\omega}_a$ anticommutes with $Y\otimes Z$. Let us write $Y=\hat{\omega}_a \tilde{Y}$, where $\tilde{Y}$ is a monomial which does not contain $\hat{\omega}_a$. We have: $$[\hat{\omega}_a\otimes \hat{\omega}_a,Y\otimes Z]=2(\hat{\omega}_a\otimes \hat{\omega}_a)(Y\otimes Z) = 2\tilde{Y}\otimes(\hat{\omega}_a Z).$$ On the other hand, $$\theta_a\otimes \frac{\partial}{\partial\theta_a} \cdot Y \otimes Z =0,\ \frac{\partial}{\partial\theta_a}\otimes \theta_a \cdot Y\otimes Z = \tilde{Y}\otimes \theta_a Z.$$ We again get equality.
-\end{enumerate}
-
-\noindent\textbf{Necessity:}
-Note that $\Lambda_\text{ad}$ is invariant under change of variables since $\mu_a = \sum_b T_{ab}\theta_b$,
-$$
-\frac{\partial}{\partial\mu_a} = \sum_b(T^{-1})_{ab}\frac{\partial}{\partial\theta_b} \ \Longrightarrow\ \sum_a \theta_a\otimes\frac{\partial}{\partial\theta_a} = \sum_a \mu_a\otimes\frac{\partial}{\partial\mu_a}.
-$$
-Direct application of the operator to the general Gaussian form will prove the necessity.
-
-\noindent\textbf{Sufficiency:} Denote $C=2^{-n}\tr{(X)}\equiv X(0)$ and represent $X(\theta)$ as
-$$X(\theta)= C\cdot 1 + \frac{iC}2\sum_{a,b=1}^{2n} M_{ab}\,\theta_a \theta_b + \mbox{higher order terms}.$$
-Applying a differential operator $1\otimes \frac{\partial}{\partial\theta_b}$ to both sides:
-$$
-\sum_{a=1}^{2n} \left(\theta_a X \otimes \frac{\partial^2 X}{\partial \theta_b \partial \theta_a}  - \frac{\partial X}{\partial\theta_a}  \otimes \theta_a\frac{\partial X}{\partial\theta_b}  \right) + \frac{\partial(X \otimes X)}{\partial\theta_b}  = 0.
-$$
-Now let us put $\theta\equiv 0$ in the second factor:
-$$
-\frac{\partial}{\partial\theta_b} X = i\sum_{a=1}^{2n} M_{ba} \theta_a X.
-$$
-This differential equation can be easily solved by $X(\theta)=C \exp{\left( \frac{i}2\, \theta^T M \theta \right)}$. 
-
-For general cases, we denote $\mathcal K \subseteq \mathcal M_1$ a subspace spanned by linear functions which annihilate $\hat X$, i.e.
-$$
-\mathcal K=\left\{ f \in \mathcal M_1 \; : \; f(\theta)X(\theta)=0\right\}.
-$$
-Let us perform a linear change of variables $\mu_a=\sum_b T_{ab} \theta_b$, with $T$ being an invertible complex matrix chosen such  that the first $k$ variables $\mu$ span the subspace $\mathcal K$, i.e. $\mathcal K=\operatorname{span}\, [ \mu_1,\ldots,\mu_{2k}]$. From equalities $\mu_j X=0$, $j\in [1,2k]$ it follows that 
-$$
-X(\theta(\mu))=\left(\prod_a \mu_a \right) \tilde{X}(\mu),
-$$
-where $\tilde{X}(\mu)$ depends only upon $\mu_{2k+1},\ldots,\mu_{2n}$. The function $\tilde{X}(\mu)$ satisfies the equation
-$$
-\sum_{a=2k+1}^{2n}\left(\mu_a\otimes \frac{\partial}{\partial\mu_a} + \frac{\partial}{\partial\mu_a}\otimes \mu_a\right)\, \tilde{X}\otimes \tilde{X}=0.
-$$
-Therefore, we get the general Gaussian form.
-\end{proof}
-
-\subsection{Gaussian Linear Maps}
-We define linear maps that preserve Gaussian states as the following:
-\begin{definition}
-A linear map $\mathcal E$ is Gaussian iff it admits an integral  representation
+The EOM of the covariance matrix is then
 \begin{equation}
-	\mathcal E(X)(\theta) = C \int D[\eta,\mu] \exp{\left[ S(\theta,\eta) + i\eta^T \mu \right]} X(\mu),
+	\partial_t \Gamma = X^T\cdot\Gamma + \Gamma \cdot X + Y,\quad
+	X = H - 2\re{B},\quad Y = 4\im{B}.
+\end{equation}
+Note that the constant part is replaced by its anti-symmetric part.
+
+The steady state of the system is solved by the Lyapunov equation
+\begin{equation}
+	X^T\cdot\Gamma + \Gamma \cdot X = - Y.
+\end{equation}
+
+
+Now include the Hermitian quadratic quantum jumps:
+\begin{equation}
+\begin{aligned}
+	\partial_t \hat O &= i[\hat H, \hat O] + \mathcal D_r[\hat O] + \mathcal D_s[\hat O], \\
+	\mathcal D_s[\hat O] 
+	&= \sum_s \hat L_s \hat O\hat L_s - \frac{1}{2} \sum_r\{\hat L_s^2, \hat O \}
+	= -\frac{1}{2} \sum_s [\hat L_s,[\hat L_s,\hat O]].
+\end{aligned}
+\end{equation}
+
+
+
+\subsection{Closed Hierachy}
+A direct calculation gives
+\begin{equation}
+\begin{aligned}
+	D_s[\hat O]
+	&= \frac{i}{8} \sum_s \sum_{kl} M^s_{kl} [\hat L_s,[\omega_k \omega_l, \omega_i \omega_j]] \\
+	&= -\frac{i}{2}\sum_s \sum_{k} \left\{ M^s_{ik}[\hat L_s,\omega_k \omega_j]-[\hat L_s,\omega_i \omega_k]M^s_{kj} \right\} \\
+	&= -\sum_{s,kl} \left[ M^s_{ik}(-M^s_{kl}\omega_l\omega_j+\omega_k\omega_l M^s_{lj})+(M^s_{il}\omega_l\omega_k-\omega_i\omega_l M^s_{lk})M^s_{kj} \right] \\
+	&= \frac{1}{2}\sum_s \left[(M^s)^2 \cdot \hat O + \hat O\cdot(M^s)^2 -2 M^s \cdot\hat O\cdot M^s\right]_{ij}.
+\end{aligned}
+\end{equation}
+Since $M^s$ is imaginary anti-symmetric matrix, $(M^s)^2 = - (\im M^s)^2$, and $M^s \cdot O \cdot M^s = - \im M^s \cdot O \cdot \im M^s$.
+Together, we get the EOM of the variance matrix $\Gamma_{ij}$:
+\begin{equation}
+	\partial_t \Gamma = X^T\cdot\Gamma + \Gamma \cdot X - \sum_s M^s \cdot \Gamma\cdot M^s + Y,
 \end{equation}
 where
 \begin{equation}
-	S(\theta,\eta)= \frac{i}{2} (\theta^T,\eta^T)
-	\begin{pmatrix}
-		A & B \\ -B^T & D
-	\end{pmatrix}
-	\begin{pmatrix}
-		\theta \\ \eta
-	\end{pmatrix}
+\begin{aligned}
+	X = H - 2\re{B} + \frac{1}{2} \sum_s (M^s)^2, \quad
+	Y = 4\im{B}.
+\end{aligned}
 \end{equation}
-for some complex  $2n\times 2n$ matrices $A$, $B$, $D$, and some complex number $C$.
-\end{definition}
-Consider a Gaussian operator $\hat X$, described by a correlation matrix $M$ and a Gaussian map $\mathcal E$. Applying the Gaussian integration, one can show that $\mathcal E(X)$ has a correlation matrix
+
+
+\paragraph{Dirac Fermion Case}
+
+This section considers the free fermion system preserving the U(1) charge. The jump operators are assumed to be quadratic: $\hat L_s = \sum_{jk} M^s_{jk} c_j^\dagger c_k$ where $\{M^s\}$ are Hermitian matrices.
+
+For the fermion case, we choose $\hat O_{ij} = c_i^\dagger c_j$, and consider the Lindbladian
+\begin{equation}
+	\partial_t \hat O = i[\hat H, \hat O] + \mathcal D_s[\hat O]
+	= i[\hat H, \hat O] - \frac{1}{2} \sum_s [\hat L_s,[\hat L_s,\hat O]],
+\end{equation}
+where each $\hat L_s = M^s_{ij} c_i^\dagger c_j$ is a Hermitian fermion bilinear.
+
+
+The Hamiltonian part is:\footnote{Using the fact
+$[c_k^\dagger c_l, c_i^\dagger c_j] = c_k^\dagger[c_l,c_i^\dagger c_j] + [c_k^\dagger,c_i^\dagger c_j]c_l =\delta_{il}c_k^\dagger c_j -\delta_{jk}c_i^\dagger c_l$, we know that for a quadratic form $\hat A = \sum_{ij} A_{ij} c_i^\dagger c_j$, $[\hat A, \hat O_{ij}] = [A^T, \hat O]_{ij}$.}
+\begin{equation}
+	i \sum_{kl}H_{kl}[c_k^\dagger c_l, c_i^\dagger c_j]
+	= i \sum_{kl} H_{kl} (\delta_{il}c_k^\dagger c_j -\delta_{jk}c_i^\dagger c_l) 
+	= i [H^T\cdot \hat O - \hat O\cdot H^T]_{ij}.
+\end{equation}
+Similarly, the double commutation in the second term is:
+\begin{equation}
+	\mathcal D_s[\hat O]
+	= -\frac{1}{2}\sum_s [(M^{s*})^2\cdot\hat O + \hat O\cdot (M^{s*})^2 - 2 M^{s*}\cdot \hat O \cdot M^{s*}].
+\end{equation}
+Together, the EOM of correlation $G_{ij} = \langle c_i^\dagger c_j\rangle$ is
+\begin{equation}
+	\partial_t G = X^\dagger \cdot G + G \cdot X + \sum_s M^{s*}\cdot G \cdot M^{s*},
+\end{equation}
+where 
+\begin{equation}
+	X = -i H^* - \frac{1}{2}\sum_s (M^{s*})^2.
+\end{equation}
+
+
+
+
+
+\section{Stochastic Schr\"{o}dinger Equation}
+
+The Lindblad form Eq.~(\ref{eq:lindbladian}) is equivalent to the stochastic Schr\"{o}dinger equation (SSE):
+\begin{equation}
+	d|\psi\rangle = -iH|\psi\rangle + A[\psi]dt + \sum_m B[\psi]dW_m,
+\end{equation}
+where $dW_m$ is a stochastic infinitesimal element. The expectation value is then the average over all possible evolution path (trajectory): 
+$$\langle O(t) \rangle = \overline{\langle\psi(t)|O|\psi(t)\rangle}.$$
+For simplicity, in this section, we consider the jump operator $L_x$ labeled by coordinate $x$. 
+The SSE can be Trotterized as
+\begin{equation}
+	\rho' = \left(\prod_x \mathcal{M}_{x} \right) \left[e^{-iH\Delta t} \rho e^{iH\Delta t}\right].
+\end{equation}
+
+
+\subsection{Quantum Jump}
+Consider a small time interval $\Delta t$; the Lindblad equation is equivalent to the quantum channel 
+\begin{equation}
+	\mathcal{L}_{\Delta t}[\rho] = M_0 \rho M_0^\dagger + M_x \rho M_x^\dagger,
+\end{equation}
+where the jump operators are:
+\begin{equation}
+\begin{aligned}
+	M_x = \sqrt{\gamma\Delta t} L_x, \quad
+	M_0 = \sqrt{1 - \gamma \Delta t L_x^\dagger L_x}.
+\end{aligned}
+\end{equation}
+A quantum channel can be simulated by a stochastic evolution of pure states:
+\begin{equation}
+	|\psi(t+\Delta t)\rangle \propto \left(\prod_{x} \mathcal{M}_x\right) e^{-i H\Delta t}|\psi(t)\rangle
+\end{equation}
+where each weak measurement is
+\begin{equation}
+	\mathcal{M}_x|\psi\rangle \propto \begin{cases}
+		M_x |\psi\rangle & p = \langle L_x^\dagger L_x\rangle \gamma\Delta t \\
+		M_0 |\psi\rangle & p = 1-\langle L_x^\dagger L_x\rangle \gamma\Delta t
+	\end{cases},
+\end{equation}
+We can introduce a Poisson variable $dW_x$ satisfying 
+\begin{equation}
+	dW_x dW_y = \delta_{xy} dW_x,\quad \overline{dW_x} = \langle L_x^\dagger L_x\rangle\gamma dt,
+\end{equation}
+and the evolution can be cast into the stochastic differential equation
+\begin{equation}
+\begin{aligned}
+	d|\psi\rangle = & -iHdt |\psi\rangle + \sum_x \frac{L_x-\sqrt{\langle L_x^\dagger L_x\rangle}}{\sqrt{\langle L_x^\dagger L_x\rangle}}dW_x|\psi\rangle - \frac{\gamma}{2} \sum_x \left(L_x^\dagger L_x-\langle L_x^\dagger L_x\rangle\right)dt 
+	  |\psi\rangle.
+\end{aligned}
+\end{equation}
+The $-\langle L_x^\dagger L_x\rangle dt |\psi\rangle$ comes from the renormalization. 
+For numerical simulation, we can ignore it.
+
+Note that in the numerical simulation, after each quantum jump, the state should be renormalized so that the jump probability for other $L_x$ can be computed correctly; this requires several renormalization procedures in a single time step. 
+
+When applied to a quasi-particle creation/annihilation operator, a Diract free fermion state maintains its structure. Consider a general quasi-particle $b^\dagger = \sum_i b_i c_i^\dagger$, creating a quasiparticle is simply adding a column to $B$:\footnote{The new column $b$ is not orthogonal to linear space $B$. Therefore, an orthogonalization procedure is needed to obtain canonical form.}
+\begin{equation}
+	b^\dagger|B\rangle = \sum_k b_k c^\dagger_k \prod_{j=1}^N \sum_i c_i^\dagger B_{ij} |0\rangle
+	= \prod_{j=1}^{N+1} \sum_i c_i^\dagger \left[b|B\right]_{ij} |0\rangle.
+\end{equation}
+For the quasiparticle annihilation operator $b$, 
+\begin{equation*}
+	b|B\rangle = \sum_k b_k^* c_k \prod_{j} \sum_i c_i^\dagger B_{ij} |0\rangle
+	=\sum_j \langle b|B_j\rangle \bigotimes_{l\ne j}|B_l\rangle.
+\end{equation*}
+We can use the gauge freedom to restrict $\langle b| B'_{j}\rangle = 0$ for $j>1$. Such matrix $B'$ always exists since we can always find a column $j$ that $\langle b| B_{j}\rangle \ne 0$ (otherwise $p_m=0$ and the jump is impossible). We then move the column to the first and define the column as
+\begin{equation}
+	|B'_{j}\rangle = |B_{j}\rangle - \frac{\langle a|B_{j}\rangle}{\langle a|B_{1}\rangle} |B_{1}\rangle, \quad j>1.
+\end{equation}
+In the weak measurement setting, the jump operator is $d^\dagger d$, which first finds the null space of $b$ in $B$, then adds $b$ to $B$. The following function \lstinline{replace_vector!} do the routine:
+\begin{lstlisting}
+function replace_vector!(B, b)
+	c = vec(b'*B)
+	p = argmax(abs.(c))
+	Bp = B[:, p] / c[p]
+	B[:, p] = b
+	for i in axes(B,2)
+		isequal(i, p) && continue
+		for j in axes(B,1)
+			B[j, i] -= c[i] * Bp[j]
+		end
+	end
+end	
+\end{lstlisting}
+While for jump operator $dd^\dagger$, the function \lstinline{avoid_vector!} do the routine:
+\begin{lstlisting}
+function avoid_vector!(B, b)
+	c = vec(b'*B)
+	for i in axes(B, 2), j in axes(B, 1)
+		B[j, i] -= c[i] * b[j]
+	end
+end
+\end{lstlisting}
+Such column transformations do not alter the linear space $B$ spans, while the orthogonality and the normalization might be affected.
+
+The story for BdG system is similar. That is, for jump operator $b^\dagger b$ and $b b^\dagger$, we can treat them as particles in Nabu basis in the equal footing.  
+
+
+
+
+\subsection{Quantum State Diffusion}
+Gaussian SSE is another way to unravel the Lindblad evolution.
+It is often numerically more efficient since it only requires one renormalization in a single time step.
+We first introduce the Wiener processes $dW_x$ satisfying 
+\begin{equation}
+	\overline{dW_x} = 0,\quad \overline{dW_x dW_y} = \delta_{xy} \gamma dt.
+\end{equation}
+Here we assume $L_x$ is Hermitian. The Gaussian SSE is then
+\begin{equation}
+	d |\psi\rangle = -i H dt |\psi\rangle + 
+	\sum_x \left(L_x-\langle L_x\rangle \right) d W_x \left|\psi\right\rangle - \frac{\gamma}{2} \sum_x  (L_x - \langle L_x \rangle)^2 dt  \left|\psi\right\rangle.
+\end{equation}
+To retain the Lindblad, note that 
+\begin{equation*}
+	d\rho = \overline{|d\psi\rangle\langle\psi|} + \overline{|\psi\rangle \langle d\psi|}+ \overline{|d\psi\rangle\langle d\psi|}.
+\end{equation*}
+The first two terms give
+\begin{equation*}
+	-i[H,\rho]dt - \frac{\gamma}{2} \sum_x \left\{L_x^2- 2\langle L_x\rangle L_x + \langle L_x\rangle^2,\rho \right\}dt.
+\end{equation*}
+The second term gives
+\begin{equation*}
+	\gamma \sum_x \left[L_x \rho L_x  - \left\{\langle L_x\rangle L_x - \frac{\langle L_x\rangle^2}{2},\rho \right\}\right]dt + O(dt^2).
+\end{equation*}
+We, therefore, recover the Lindblad equation after averaging the SSE.
+
+In numerical simulation, we exponentiate the expression, 
+\begin{equation}
+	|\psi'\rangle \sim \exp\left(A dt + \sum_x B_x dW_x \right) e^{-iH\Delta t}|\psi\rangle.
+\end{equation}
+The Taylor expansion of the exponent to the lowest order gives
+\begin{equation*}
+	e^{A dt + B \sum_x dW_x} = 1 + \left(A + \frac{1}{2} \sum_x B_x^2\right) dt + \sum_x B_x dW_x
+\end{equation*}
+Compared with the SSE, we get
+\begin{equation*}
+	A = -\gamma \sum_x (L_x-\langle L_x\rangle)^2,\quad
+	B_x = L_x-\langle L_x\rangle.
+\end{equation*}
+The simplest example is when $L_x = n_x$ is a (quasi-)particle number operator, $n_x^2=n_x$, then we can simulate the SSE by the following form
+\begin{equation}
+	|\psi'\rangle \propto \exp\left\{\sum_x [dW_x + \gamma (2\langle n_x\rangle-1)]n_x dt \right\} e^{-iH\Delta t}|\psi\rangle,
+\end{equation} 
+where we have ignored the normalization term. After each time step, there should be a normalization procedure.
+
+Consider local Lindbladian $\partial_t \rho = -i[H,\rho] + \sum_x \mathcal{M}_x[\rho]$.
+The Krause operator of $\mathcal M_x$ is
+\begin{equation}
+	M_x^{(1)} = L_x \sqrt{\gamma \Delta t},\quad
+	M_x^{(0)} = \sqrt{1-L_x^\dagger L_x \gamma \Delta t}.
+\end{equation}
+We consider the case where the jump operator $L_x$ the form:
+\begin{equation}
+	L_x = U_x d_x^\dagger d_x,\quad
+	L_x^\dagger L_x = d_x^\dagger d_x,
+\end{equation}
+where $U_x$ is a Gaussian unitary operator. In this case, the Kraus operator is 
 \begin{equation*}
 \begin{aligned}
-	\mathcal E(M) &= A + B \left(M^{-1} + D \right)^{-1} B^T
-	= A + B \left(I + MD \right)^{-1} M B^T,
+	M_x^{(0)} &= \sqrt{(1-\gamma\Delta t)d_x^\dagger d_x + d_x d_x^\dagger} 
+	= \sqrt{1-\gamma\Delta t} d_x^\dagger d_x + d_x d_x^\dagger \\
+	&= 1 - \left(1-\sqrt{1-\gamma\Delta t}\right) d_x^\dagger d_x
+	= \exp\left[\log\left(1-\sqrt{1-\gamma\Delta t}\right) d_x^\dagger d_x\right],
 \end{aligned}
 \end{equation*}
-while a pre-exponential factor of the operator $\mathcal E(X)$ can be found from an  identity
-$$
-\tr{ \left(\mathcal E(X)\right)} = C (-1)^n \Pf(M) \Pf(M^{-1}+D) \tr{(X)}.
-$$
-The value of $\tr{(\mathcal E(X))}$ can be found up to a factor $\pm 1$ using a regularized version:
-$$
-\tr{ \left( \mathcal E(X) \right) }^2 = C^2 \det{\left( I + M D \right) } \tr{(X)}^2.
-$$
+which preserves Gaussianity. 
 
-\bibliography{ref.bib}
+
+
+
+
+
+
 
 
 \end{document}
